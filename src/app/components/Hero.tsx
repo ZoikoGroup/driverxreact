@@ -178,81 +178,62 @@ const Hero = () => {
 
 </section>
 
+<section className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_55%,#c8d8c8_100%)] py-20 lg:py-24">
+  
+  {/* 1. IMAGE: Pinned to left edge, but centered vertically and size-constrained */}
+  <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[85%] max-w-3xl z-0">
+    <img
+      src="/images/xshaped.png"
+      alt="Driver using mobile"
+      className="w-full h-auto object-contain"
+    />
+  </div>
 
-<section
-  className="relative overflow-hidden
-  bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_45%,#c8d8c8_100%)]
-  py-28"
->
-  <div className="max-w-7xl mx-auto px-6">
-    <div className="flex items-center justify-between gap-20">
-
-      {/* LEFT IMAGE */}
-      <div className="w-[48%] flex justify-start">
-        <img
-          src="/images/xshaped.png"
-          alt="Driver using mobile"
-          className="max-h-[1000px] w-auto object-contain"
-        />
-      </div>
-
-      {/* RIGHT CONTENT */}
-      <div className="w-[45%] flex flex-col justify-center space-y-8">
-
-        <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+  {/* 2. CONTAINER: Standard centered container for the text */}
+  <div className="relative z-10 mx-auto max-w-7xl px-6">
+    <div className="flex justify-end">
+      
+      {/* 3. CONTENT: Takes up the right 50% */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
+        
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
           How we support our <br />
           drivers all over the world
         </h2>
 
-        <p className="text-gray-700 text-lg leading-relaxed">
-          We’re committed to empowering drivers globally with accessible,
+        <p className="text-gray-700 text-lg leading-relaxed max-w-lg">
+          We're committed to empowering drivers globally with accessible,
           reliable, and flexible services tailored to their everyday needs—
-          whether they’re on highways, in cities, or across borders.
+          whether they're on highways, in cities, or across borders.
         </p>
 
-        {/* STORE CARDS */}
-        <div className="flex gap-8">
+        {/* 4. STORE CARDS ROW */}
+       <div className="flex flex-col sm:flex-row gap-4 pt-2">
 
-          {/* Google Play Card */}
-          <div className="bg-white rounded-xl shadow-md px-6 py-5 w-[260px] flex items-center gap-4">
-            
-            {/* QR Placeholder */}
-            <div className="w-20 h-20 bg-gray-200 rounded-md flex items-center justify-center text-xs text-gray-500">
-              QR
-            </div>
+  {/* Google Play Card */}
+  <div className="flex items-center bg-white rounded-xl shadow-sm px-4 py-3 gap-4 border border-gray-100 min-w-[240px]">
+    <img 
+      src="/images/playstore.png" 
+      alt="Google Play QR"
+      className="w-160 h-160 object-contain border border-gray-200 rounded p-1"
+    />
+  </div>
 
-            {/* Content */}
-            <div>
-              <p className="font-semibold text-gray-900">Google Play</p>
-              <p className="text-sm text-gray-500">★★★★★</p>
-              <p className="text-xs text-gray-500">4.9 / 5 rating</p>
-            </div>
-          </div>
+  {/* Apple Card */}
+  <div className="flex items-center bg-white rounded-xl shadow-sm px-4 py-3 gap-4 border border-gray-100 min-w-[240px]">
+    <img 
+      src="/images/appstore.png" 
+      alt="Apple QR"
+      className="w-160 h-160 object-contain border border-gray-200 rounded p-1"
+    />
+  </div>
 
-          {/* Apple Card */}
-          <div className="bg-white rounded-xl shadow-md px-6 py-5 w-[260px] flex items-center gap-4">
-            
-            {/* QR Placeholder */}
-            <div className="w-20 h-20 bg-gray-200 rounded-md flex items-center justify-center text-xs text-gray-500">
-              QR
-            </div>
-
-            {/* Content */}
-            <div>
-              <p className="font-semibold text-gray-900">Apple</p>
-              <p className="text-sm text-gray-500">★★★★☆</p>
-              <p className="text-xs text-gray-500">4.8 / 5 rating</p>
-            </div>
-          </div>
-
-        </div>
+</div>
 
       </div>
     </div>
   </div>
 </section>
-
-
 
 {/* SMART SERVICES SECTION */}
 <section className="bg-gray-50 py-24">

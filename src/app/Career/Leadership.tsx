@@ -57,7 +57,7 @@ the people who move America.
               {/* Image */}
               <img
                 src={leader.img}
-                alt={leader.name}
+                alt="leader"
                 className="w-52 h-60 object-cover rounded-md shadow-md"
               />
 

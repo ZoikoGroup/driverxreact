@@ -1,6 +1,19 @@
 "use client";
 
-const features = [
+
+
+
+interface FeatureItem {
+  text: string;
+  subtitle?: string;
+}
+
+interface FeatureSection {
+  sectionTitle: string;
+  description?: string;
+  items?: FeatureItem[];
+}
+const features: FeatureSection[] = [
   {
     sectionTitle: "Overview",
     description:

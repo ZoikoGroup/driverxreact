@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import Form from "../loginform/form";
 
-function FleetSection() {
+function Gig() {
   return (
     <>
       {/* ================= HERO ================= */}
@@ -13,14 +13,11 @@ function FleetSection() {
           {/* LEFT CONTENT */}
           <div className="text-white">
             <h2 className="text-4xl font-bold leading-tight">
-              Keep Your Fleet on the <br />
-              Move with Intelligent <br />
-              Mobile
+          Flexible Plans for Rideshare & Gig Drivers
             </h2>
 
             <p className="mt-6 text-gray-200 max-w-lg">
-              Fast, reliable wireless connectivity combined with AI-powered
-              fleet tools built to drive logistics success at scale.
+            Pay only when you drive. No contracts, no credit checks, no surprises — just smarter mobile made for your hustle.
             </p>
 
             <div className="mt-8 flex gap-4">
@@ -36,7 +33,7 @@ function FleetSection() {
 
           {/* RIGHT IMAGE */}
           <div>
-            <Image src="/images/man-by-fleet.png" alt="DHL" width={600} height={350} />
+            <Image src="/images/Frame2.png" alt="DHL" width={600} height={350} />
           </div>
 
         </div>
@@ -133,4 +130,4 @@ function FleetSection() {
   );
 };
 
-export default FleetSection;
+export default Gig;

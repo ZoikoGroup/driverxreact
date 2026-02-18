@@ -82,7 +82,7 @@ function NetworkFeatures() {
               <ul className="mt-3 space-y-2 list-disc list-inside">
                 {section.items.map((item, j) => (
                   <li key={j} className="text-sm leading-relaxed">
-                    {item.subtitle && (
+                    {"subtitle" in item && item.subtitle && (
                       <span className="font-semibold text-gray-900">
                         {item.subtitle}:{" "}
                       </span>
