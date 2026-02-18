@@ -34,9 +34,10 @@
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900">Leadership Team</h1>
-          <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
+          <p className="text-gray-600 mt-4 max-w-3xl mx-auto a">
            At DriverX Mobile, leadership is not just about operational excellence - it's about purpose, people, and progress. Our executive team brings deep expertise across telecommunications, technology, logistics, customer operations, and commercial strategy. Together, we’re building a next-generation mobile platform that empowers 
 the people who move America.
+         
           </p>
         </div>
 
