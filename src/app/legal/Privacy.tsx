@@ -28,9 +28,9 @@ const features = [
   {
     sectionTitle: "How We Use It",
     items: [
-      { text: "To provision, maintain, and improve your mobile services." },
-      { text: "To detect and prevent fraud." },
-      { text: "To offer relevant promotions — you can opt out at any time." }
+      { subtitle: undefined, text: "To provision, maintain, and improve your mobile services." },
+      { subtitle: undefined, text: "To detect and prevent fraud." },
+      { subtitle: undefined, text: "To offer relevant promotions — you can opt out at any time." }
     ]
   },
 
@@ -38,9 +38,11 @@ const features = [
     sectionTitle: "Data Retention & Transfers",
     items: [
       {
+        subtitle: undefined,
         text: "We retain records for as long as legally necessary to comply with FCC, CCPA, and GDPR frameworks, or to fulfill operational needs — typically no more than 7 years."
       },
       {
+        subtitle: undefined,
         text: "Data may be processed outside your state or country under robust privacy agreements."
       }
     ]
@@ -49,8 +51,8 @@ const features = [
   {
     sectionTitle: "Your Rights",
     items: [
-      { text: "Access, correction, deletion, or portability of your personal data." },
-      { text: "Control marketing preferences directly from your account dashboard." }
+      { subtitle: undefined, text: "Access, correction, deletion, or portability of your personal data." },
+      { subtitle: undefined, text: "Control marketing preferences directly from your account dashboard." }
     ]
   },
 

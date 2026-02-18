@@ -196,7 +196,7 @@ export default Bottom;
 
 /* ---------- SMALL COMPONENTS ---------- */
 
-const FooterColumn = ({ title, links }) => (
+const FooterColumn = ({ title, links }: { title: string; links: string[] }) => (
   <div>
     <h5 className="text-teal-700 font-semibold mb-4">{title}</h5>
     <ul className="space-y-2 text-gray-600">
@@ -209,7 +209,7 @@ const FooterColumn = ({ title, links }) => (
   </div>
 );
 
-const SocialIcon = ({ Icon }) => (
+const SocialIcon = ({ Icon }: { Icon: React.ComponentType<{ size: number }> }) => (
   <div className="h-9 w-9 flex items-center justify-center rounded-full bg-teal-700 text-white hover:bg-teal-600 transition cursor-pointer">
     <Icon size={16} />
   </div>
