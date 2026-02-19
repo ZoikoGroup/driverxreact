@@ -1,86 +1,85 @@
 function Loginform() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-600 to-teal-700 flex items-center justify-center p-8">
-      <div className="flex items-center gap-12 max-w-6xl w-full">
-        {/* Left side - Image */}
-        <div className="flex-1">
-          <img
-            src="/images/image 232.png"
-            alt="Driver using phone"
-            className="w-full max-w-[520px] h-auto object-cover rounded-3xl shadow-xl"
-          />
-        </div>
+    <div className="h-screen w-full flex">
+      
+      {/* Left Side - Full Height Map Image */}
+      <div className="w-1/2 h-full">
+        <img
+          src="/images/image 232.png"
+          alt="Map"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-        {/* Right side - Form */}
-        <div className="flex-1">
-          <div className="bg-teal-700 rounded-lg p-10 max-w-lg w-full">
-            <h1 className="text-4xl font-bold text-white mb-3">
-              Let's Talk
-            </h1>
+      {/* Right Side - Form Section */}
+      <div className="w-1/2 h-full bg-teal-800 flex items-center px-20">
+        <div className="w-full max-w-md">
+          
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Let’s Talk
+          </h1>
 
-            <p className="text-white text-sm mb-8">
-              Fill up the form our team will get back to you within 24 Hours
-            </p>
+          <p className="text-gray-200 text-sm mb-10">
+            Fill up the form our team will get back to you within 24 Hours
+          </p>
 
-            <form className="space-y-5">
-              {/* First Name and Last Name - Side by Side */}
-              <div className="flex gap-4">
-                <div className="flex-1">
-                  <label className="block text-sm font-medium text-white mb-2">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your First Name"
-                    className="w-full px-4 py-3 border-0 rounded-lg outline-none transition bg-white text-gray-700 placeholder:text-gray-400"
-                  />
-                </div>
+          <form className="space-y-6">
 
-                <div className="flex-1">
-                  <label className="block text-sm font-medium text-white mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your Last Name"
-                    className="w-full px-4 py-3 border-0 rounded-lg outline-none transition bg-white text-gray-700 placeholder:text-gray-400"
-                  />
-                </div>
-              </div>
-
-              {/* Email Address */}
-              <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Email Address
+            {/* First + Last Name */}
+            <div className="flex gap-6">
+              <div className="flex-1">
+                <label className="block text-sm text-white mb-2">
+                  First Name
                 </label>
                 <input
-                  type="email"
-                  placeholder="Enter your Email Address"
-                  className="w-full px-4 py-3 border-0 rounded-lg outline-none transition bg-white text-gray-700 placeholder:text-gray-400"
+                  type="text"
+                  placeholder="Enter your First Name"
+                  className="w-full px-4 py-3 rounded-md bg-gray-200 focus:outline-none"
                 />
               </div>
 
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Message
+              <div className="flex-1">
+                <label className="block text-sm text-white mb-2">
+                  Last Name
                 </label>
-                <textarea
-                  placeholder="Enter your Messages"
-                  rows={5}
-                  className="w-full px-4 py-3 border-0 rounded-lg outline-none transition resize-none bg-white text-gray-700 placeholder:text-gray-400"
+                <input
+                  type="text"
+                  placeholder="Enter your Last Name"
+                  className="w-full px-4 py-3 rounded-md bg-gray-200 focus:outline-none"
                 />
               </div>
+            </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="bg-transparent border-2 border-white text-white font-medium py-3 px-8 rounded-lg hover:bg-white hover:text-teal-700 transition duration-200"
-              >
-                Send Messages
-              </button>
-            </form>
-          </div>
+            {/* Email */}
+            <div>
+              <label className="block text-sm text-white mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your Email Address"
+                className="w-full px-4 py-3 rounded-md bg-gray-200 focus:outline-none"
+              />
+            </div>
+
+            {/* Message */}
+            <div>
+              <textarea
+                placeholder="Enter your Messages"
+                rows={5}
+                className="w-full px-4 py-3 rounded-md bg-gray-200 resize-none focus:outline-none"
+              />
+            </div>
+
+            {/* Button */}
+            <button
+              type="submit"
+              className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-teal-800 transition"
+            >
+              Send Messages
+            </button>
+
+          </form>
         </div>
       </div>
     </div>

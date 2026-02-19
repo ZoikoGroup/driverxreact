@@ -40,10 +40,9 @@ const Hero = () => {
 
           {/* LEFT CONTENT */}
           <div>
-
             {/* Badge */}
             <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-4 py-1 text-sm font-semibold text-white">
-               #01 Driver Mobile Network
+               #1 Driver Mobile Network
             </span>
 
             {/* Heading */}
@@ -178,51 +177,300 @@ const Hero = () => {
 
 
 </section>
-<section className="relative overflow-hidden 
-bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_45%,#c8d8c8_100%)] 
-py-24">
 
-  <div className="max-w-7xl mx-auto px-6 
-                  flex items-center justify-between gap-16">
+<section className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_55%,#c8d8c8_100%)] py-20 lg:py-24">
+  
+  {/* 1. IMAGE: Pinned to left edge, but centered vertically and size-constrained */}
+  <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[85%] max-w-4xl z-2">
+    <img
+      src="/images/xshaped.png"
+      alt="Driver using mobile"
+      className="w-full h-auto object-contain"
+    />
+  </div>
 
-    {/* LEFT - Image */}
-    <div className="w-1/2 flex justify-center">
-      <img 
-        src="/images/New-Project-186.png" 
-        alt="Driver" 
-        className="h-[420px] w-auto object-contain"
-      />
-    </div>
+  {/* 2. CONTAINER: Standard centered container for the text */}
+  <div className="relative z-10 mx-auto max-w-7xl px-6">
+    <div className="flex justify-end">
+      
+      {/* 3. CONTENT: Takes up the right 50% */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
+        
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+          How we support our <br />
+          drivers all over the world
+        </h2>
 
-    {/* RIGHT - Text */}
-    <div className="w-1/2 space-y-6">
-      <h2 className="text-4xl font-bold text-gray-900 leading-tight">
-        How we support our drivers all over the world
-      </h2>
+        <p className="text-gray-700 text-lg leading-relaxed max-w-lg">
+          We're committed to empowering drivers globally with accessible,
+          reliable, and flexible services tailored to their everyday needs—
+          whether they're on highways, in cities, or across borders.
+        </p>
 
-      <p className="text-gray-700 text-lg">
-        We’re committed to empowering drivers globally with accessible,
-        reliable, and flexible services tailored to their everyday needs—
-        whether they’re on highways, in cities, or across borders.
-      </p>
+        {/* 4. STORE CARDS ROW */}
+       <div className="flex flex-col sm:flex-row gap-4 pt-2">
 
-      <div className="flex gap-6">
-        <div className="bg-white rounded-xl shadow-md p-6 w-60">
-          <h4 className="font-semibold">Google Play</h4>
-          <p className="text-sm text-gray-500">4.9 / 5 rating</p>
-        </div>
+  {/* Google Play Card */}
+  <div className="flex items-center bg-white rounded-xl shadow-sm px-4 py-3 gap-4 border border-gray-100 min-w-[240px]">
+    <img 
+      src="/images/playstore.png" 
+      alt="Google Play QR"
+      className="w-160 h-160 object-contain border border-gray-200 rounded p-1"
+    />
+  </div>
 
-        <div className="bg-white rounded-xl shadow-md p-6 w-60">
-          <h4 className="font-semibold">Apple</h4>
-          <p className="text-sm text-gray-500">4.8 / 5 rating</p>
-        </div>
+  {/* Apple Card */}
+  <div className="flex items-center bg-white rounded-xl shadow-sm px-4 py-3 gap-4 border border-gray-100 min-w-[240px]">
+    <img 
+      src="/images/appstore.png" 
+      alt="Apple QR"
+      className="w-160 h-160 object-contain border border-gray-200 rounded p-1"
+    />
+  </div>
+
+</div>
+
       </div>
     </div>
-
   </div>
 </section>
 
+{/* SMART SERVICES SECTION */}
+<section className="bg-gray-50 py-24">
+  <div className="max-w-7xl mx-auto px-6 text-center">
 
+    <h2 className="text-3xl font-bold text-gray-800 mb-16">
+      Smarter Services for Smarter Drivers
+    </h2>
+
+    <div className="grid md:grid-cols-3 gap-12">
+
+      {/* Card 1 */}
+      <div className="flex flex-col items-center">
+        <img
+          src="/images/global-coverage-img1-228x300.png"
+          alt="Global Coverage"
+          className="h-40 mb-6"
+        />
+        <h3 className="font-semibold text-lg text-gray-900">
+          Global Coverage
+        </h3>
+        <p className="text-gray-600 mt-3 max-w-xs">
+          Access essential driver services anywhere you go, worldwide.
+        </p>
+      </div>
+
+      {/* Card 2 */}
+      <div className="flex flex-col items-center">
+        <img
+          src="/images/Group 1597883025.png"
+          alt="Smart Savings"
+          className="h-40 mb-6"
+        />
+        <h3 className="font-semibold text-lg text-gray-900">
+          Smart Savings with AI
+        </h3>
+        <p className="text-gray-600 mt-3 max-w-xs">
+          Our AI tracks usage and spending patterns to help cut costs without
+          compromising essentials.
+        </p>
+      </div>
+
+      {/* Card 3 */}
+      <div className="flex flex-col items-center">
+        <img
+          src="/images/global-coverage-img1-228x300.png"
+          alt="Vehicle Help"
+          className="h-40  mb-6"
+        />
+        <h3 className="font-semibold text-lg text-gray-900">
+          All-in-One Vehicle Help
+        </h3>
+        <p className="text-gray-600 mt-3 max-w-xs">
+          Repairs, insurance, legal, and finance services — all in one place.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  {/* CTA Banner */}
+  <div className="max-w-6xl mx-auto px-6 mt-20">
+    <div className="relative bg-[#1e5f4f] text-white rounded-3xl p-10 flex items-center justify-between overflow-hidden">
+
+      {/* Left Content */}
+      <div className="max-w-lg">
+        <h3 className="text-2xl font-bold mb-4">
+          Partner With Us to Serve Drivers Better
+        </h3>
+        <p className="text-gray-200 mb-6">
+          If you offer finance, insurance, repair, garage, or legal services,
+          let’s team up. Join our network and help drivers access smarter
+          solutions via mobile.
+        </p>
+
+        <button className="bg-white text-[#1e5f4f] px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+          Contact us
+        </button>
+      </div>
+
+      {/* Right Coin Image */}
+      <div className="hidden md:block">
+        <img
+          src="/images/Group 1597882922.png"
+          alt="Partner"
+          className="h-50"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+{/* DRIVE TYPE SECTION */}
+<section className="bg-gray-50 py-20">
+  <div className="max-w-7xl mx-auto px-6 flex gap-8">
+
+    {/* LEFT PANEL */}
+    <div className="bg-[#2e7d6f] text-white p-10 rounded-2xl w-1/4">
+      <h3 className="text-2xl font-bold mb-4">
+        Choose Your <br /> Drive Type
+      </h3>
+      <p className="text-gray-200">
+        Personalized plans for every kind of driver.
+      </p>
+    </div>
+
+    {/* RIGHT CARDS */}
+    <div className="flex-1 grid md:grid-cols-3 gap-8">
+
+      {/* Card 1 */}
+      <div className="bg-[#e8dfc8] rounded-xl p-6 text-center shadow-sm">
+        <img
+          src="/images/Freight-Drivers1.png"
+          alt="Freight Drivers"
+          className="h-40 mx-auto mb-6"
+        />
+        <p className="text-sm text-gray-600">Commercial & Logistics</p>
+        <h4 className="text-lg font-bold mt-1">Freight Drivers</h4>
+        <p className="text-gray-600 text-sm mt-2">
+          Fast, reliable support for fleet, ride-hailing & logistics drivers.
+        </p>
+
+        <div className="mt-6">
+          <button className="h-10 w-10 rounded-full bg-[#2e7d6f] text-white">
+            →
+          </button>
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="bg-white border rounded-xl p-6 text-center shadow-sm">
+        <img
+          src="/images/gig-drives-img1.png"
+          alt="Gig Drivers"
+          className="h-40 mx-auto mb-6"
+        />
+        <p className="text-sm text-gray-600">Independent & part-time</p>
+        <h4 className="text-lg font-bold mt-1">Gig Drivers</h4>
+        <p className="text-gray-600 text-sm mt-2">
+          Flexible options with no long term commitments.
+        </p>
+
+        <div className="mt-6">
+          <button className="h-10 w-10 rounded-full bg-orange-400 text-white">
+            →
+          </button>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="bg-white border rounded-xl p-6 text-center shadow-sm">
+        <img
+          src="/images/daily-commuters-img1.png"
+          alt="Daily Commuters"
+          className="h-40 mx-auto mb-6"
+        />
+        <p className="text-sm text-gray-600">Independent & part-time</p>
+        <h4 className="text-lg font-bold mt-1">Daily Commuters</h4>
+        <p className="text-gray-600 text-sm mt-2">
+          Affordable plans, quick help, and essential coverage.
+        </p>
+
+        <div className="mt-6">
+          <button className="h-10 w-10 rounded-full bg-red-400 text-white">
+            →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{/* TRUSTED DRIVERS SECTION */}
+<section className="bg-[#f3f2ea] py-24">
+  <div className="max-w-7xl mx-auto px-6">
+
+    <p className="text-center text-gray-500 mb-3">You will love it</p>
+
+    <h2 className="text-center text-3xl font-bold mb-6">
+      We Prominent Truly <span className="text-teal-600">Trusted drivers Solutions</span>
+    </h2>
+
+    <p className="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+      It is a long established fact that a reader will be distracted by the readable content of a page when looking at layout.
+    </p>
+
+    <div className="flex items-center gap-16">
+
+      {/* LEFT IMAGE */}
+      <div className="w-1/2">
+        <img
+          src="/images/Group-1437254838.png"
+          alt="Taxi Driver"
+          className="w-full object-contain"
+        />
+      </div>
+
+      {/* RIGHT STATS */}
+      <div className="w-1/2 grid grid-cols-2 gap-10">
+
+        <div>
+          <h3 className="text-2xl font-bold text-teal-700">92%</h3>
+          <p className="font-semibold">Satisfied Clients</p>
+          <p className="text-sm text-gray-600 mt-2">
+            Based on 500+ pilot drivers most loved the real time data alerts.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-bold text-teal-700">25M+</h3>
+          <p className="font-semibold">Miles Optimized</p>
+          <p className="text-sm text-gray-600 mt-2">
+            AI tracks dead zones, suggests cheaper plans, and cuts signal drops.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-bold text-teal-700">70%</h3>
+          <p className="font-semibold">Faster Activation</p>
+          <p className="text-sm text-gray-600 mt-2">
+            No store visits. Get a SIM ready eSIM in 3 mins.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-bold text-teal-700">35+</h3>
+          <p className="font-semibold">Cities (Expanding Weekly)</p>
+          <p className="text-sm text-gray-600 mt-2">
+            Live in major markets like Houston, Atlanta & Miami.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
 
 </>
 

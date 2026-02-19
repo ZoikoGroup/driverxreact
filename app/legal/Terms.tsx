@@ -1,6 +1,19 @@
 "use client";
 
-const features = [
+
+
+
+interface FeatureItem {
+  text: string;
+  subtitle?: string;
+}
+
+interface FeatureSection {
+  sectionTitle: string;
+  description?: string;
+  items?: FeatureItem[];
+}
+const features: FeatureSection[] = [
   {
     sectionTitle: "Overview",
     description:
@@ -113,6 +126,11 @@ Terms of Service & Legal
               <ul className="mt-3 space-y-2 list-disc list-inside">
                 {section.items.map((item, j) => (
                   <li key={j} className="text-sm leading-relaxed">
+                    {item.subtitle && (
+                      <span className="font-semibold text-gray-900">
+                        {item.subtitle}:{" "}
+                      </span>
+                    )}
                     {item.text}
                   </li>
                 ))}

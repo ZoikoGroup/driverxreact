@@ -28,9 +28,9 @@ const features = [
   {
     sectionTitle: "How We Use It",
     items: [
-      { subtitle: undefined, text: "To provision, maintain, and improve your mobile services." },
-      { subtitle: undefined, text: "To detect and prevent fraud." },
-      { subtitle: undefined, text: "To offer relevant promotions — you can opt out at any time." }
+      { text: "To provision, maintain, and improve your mobile services." },
+      { text: "To detect and prevent fraud." },
+      { text: "To offer relevant promotions — you can opt out at any time." }
     ]
   },
 
@@ -38,11 +38,9 @@ const features = [
     sectionTitle: "Data Retention & Transfers",
     items: [
       {
-        subtitle: undefined,
         text: "We retain records for as long as legally necessary to comply with FCC, CCPA, and GDPR frameworks, or to fulfill operational needs — typically no more than 7 years."
       },
       {
-        subtitle: undefined,
         text: "Data may be processed outside your state or country under robust privacy agreements."
       }
     ]
@@ -51,8 +49,8 @@ const features = [
   {
     sectionTitle: "Your Rights",
     items: [
-      { subtitle: undefined, text: "Access, correction, deletion, or portability of your personal data." },
-      { subtitle: undefined, text: "Control marketing preferences directly from your account dashboard." }
+      { text: "Access, correction, deletion, or portability of your personal data." },
+      { text: "Control marketing preferences directly from your account dashboard." }
     ]
   },
 
@@ -91,25 +89,38 @@ function Privacy() {
               <p className="text-sm leading-relaxed">{section.description}</p>
             )}
 
-            {section.items && (
-              <ul className="mt-3 space-y-2 list-disc list-inside">
-                {section.items.map((item, j) => (
-                  <li key={j} className="text-sm leading-relaxed">
-                    {item.subtitle && (
-                      <span className="font-semibold text-gray-900">
-                        {item.subtitle}:{" "}
-                      </span>
-                    )}
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
-            )}
+              {section.items && (
+                <ul className="mt-3 space-y-2 list-disc list-inside">
+                  {section.items.map((item, j) => (
+                    <li key={j} className="text-sm leading-relaxed">
+                      {"subtitle" in item && item.subtitle && (
+                        <span className="font-semibold text-gray-900">
+                          {item.subtitle}:{" "}
+                        </span>
+                      )}
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
           </div>
         ))}
       </div>
     </section>
   );
 }
+
+
+interface FeatureItem {
+  text: string;
+  subtitle?: string; // optional, not union
+}
+
+interface FeatureSection {
+  sectionTitle: string;
+  description?: string;
+  items?: FeatureItem[];
+}
+
 
 export default Privacy;
