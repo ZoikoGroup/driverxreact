@@ -187,7 +187,7 @@ py-24">
     {/* LEFT - Image */}
     <div className="w-1/2 flex justify-center">
       <img 
-        src="/images/New Project 186 [ED072AB].png" 
+        src="/images/New-Project-186.png" 
         alt="Driver" 
         className="h-[420px] w-auto object-contain"
       />
