@@ -181,7 +181,7 @@ const Hero = () => {
 <section className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_55%,#c8d8c8_100%)] py-20 lg:py-24">
   
   {/* 1. IMAGE: Pinned to left edge, but centered vertically and size-constrained */}
-  <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[85%] max-w-3xl z-0">
+  <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[85%] max-w-4xl z-2">
     <img
       src="/images/xshaped.png"
       alt="Driver using mobile"

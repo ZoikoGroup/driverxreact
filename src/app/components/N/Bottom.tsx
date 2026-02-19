@@ -45,7 +45,7 @@ const Bottom = () => {
 
       {/* ===== 0️⃣ GET IN TOUCH HEADER ===== */}
 <div className="bg-gray-100 py-10 text-center">
-  <h2 className="text-4xl font-semibold text-teal-800">
+  <h2 className="text-4xl font-bold text-teal-800">
     Get in Touch
   </h2>
 </div>
