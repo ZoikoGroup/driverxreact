@@ -5,7 +5,7 @@ import Blog3 from "./Blog3";
 export default function page(){
 
     return(
-        <div>
+        <div className="px-2">
         <Blog1/>
         <Blog2/>  
         <Blog3/>
