@@ -1,17 +1,17 @@
  function Leadership() {
   const leaders = [
     {
-      name: "Linnox",
+     
       img: "/images/Group 1597883024.png",
       bio: "A visionary leader with over 30 years of executive experience across global business strategy, telecommunications, fintech, and enterprise governance. Lennox holds an MSc in Accounting, an LLB (Hons), and two international professional accountancy qualifications. As Founder and Executive Chairman of DriverX Mobile and the wider Zoiko Communications Group, he brings unmatched foresight, financial rigor, and purpose-driven innovation to every venture. Lennox’s leadership philosophy fuses economic empowerment with practical connectivity - enabling DriverX to deliver transformative services to America’s mobility workforce."
     },
     {
-      name: "Sophia Martinez",
+
       img: "/images/Group 1597883024 (1).png",
       bio: "A telecom industry veteran with over 20 years of experience in wireless network expansion, digital platform growth, and customer innovation. Sophia previously led enterprise strategy at a leading Tier-1 carrier and brings proven expertise in scaling purpose-built platforms. Her vision for DriverX focuses on unlocking value across the gig and logistics mobility sectors, ensuring operational agility and strategic resilience."
     },
     {
-      name: "Dr. Suresh",
+   
       img: "/images/Group 1597883024 (2).png",
       bio: "With a PhD in Computer Engineering and more than 25 years of experience in IoT, telematics, and cloud-native infrastructure, Dr. Suresh leads DriverX’s engineering and product innovation. He architected the company’s SIM provisioning engine, telematics stack, and mobility integration APIs, making DriverX a pioneer in intelligent fleet connectivity."
     },
@@ -34,9 +34,10 @@
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900">Leadership Team</h1>
-          <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
+          <p className="text-gray-600 mt-4 max-w-3xl mx-auto a">
            At DriverX Mobile, leadership is not just about operational excellence - it's about purpose, people, and progress. Our executive team brings deep expertise across telecommunications, technology, logistics, customer operations, and commercial strategy. Together, we’re building a next-generation mobile platform that empowers 
 the people who move America.
+         
           </p>
         </div>
 
@@ -56,7 +57,7 @@ the people who move America.
               {/* Image */}
               <img
                 src={leader.img}
-                alt={leader.name}
+                alt="leader"
                 className="w-52 h-60 object-cover rounded-md shadow-md"
               />
 

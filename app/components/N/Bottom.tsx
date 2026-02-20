@@ -1,4 +1,6 @@
+
 "use client";
+import { IconType } from "react-icons";
 
 import Image from "next/image";
 import {
@@ -10,6 +12,9 @@ import {
 } from "react-icons/fa6";
 
 /* ---------- TOP CONTACT STRIP (YOUR CURRENT FOOTER) ---------- */
+
+
+
 
 const Sitem = [
   {
@@ -34,7 +39,16 @@ const Sitem = [
 
 const Bottom = () => {
   return (
+    
     <footer className="w-full">
+
+
+      {/* ===== 0️⃣ GET IN TOUCH HEADER ===== */}
+<div className="bg-gray-100 py-10 text-center">
+  <h2 className="text-4xl font-bold text-teal-800">
+    Get in Touch
+  </h2>
+</div>
       {/* ===== 1️⃣ TOP CONTACT STRIP (UNCHANGED LOGIC) ===== */}
       <div className="bg-teal-800 py-6">
         <div className="mx-auto max-w-6xl grid gap-8 px-6 sm:grid-cols-1 md:grid-cols-3 text-center">
@@ -196,7 +210,12 @@ export default Bottom;
 
 /* ---------- SMALL COMPONENTS ---------- */
 
-const FooterColumn = ({ title, links }: { title: string; links: string[] }) => (
+interface FooterColumnProps {
+  title: string;
+  links: string[];
+}
+
+const FooterColumn = ({ title, links }: FooterColumnProps) => (
   <div>
     <h5 className="text-teal-700 font-semibold mb-4">{title}</h5>
     <ul className="space-y-2 text-gray-600">
@@ -209,7 +228,13 @@ const FooterColumn = ({ title, links }: { title: string; links: string[] }) => (
   </div>
 );
 
-const SocialIcon = ({ Icon }: { Icon: React.ComponentType<{ size: number }> }) => (
+
+
+interface SocialIconProps {
+  Icon: IconType;
+}
+
+const SocialIcon = ({ Icon }: SocialIconProps) => (
   <div className="h-9 w-9 flex items-center justify-center rounded-full bg-teal-700 text-white hover:bg-teal-600 transition cursor-pointer">
     <Icon size={16} />
   </div>

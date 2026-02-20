@@ -29,7 +29,7 @@ export default function Navbar() {
              Solutions
             </Link>
             <Link href="/plans" className="text-gray-600 hover:text-gray-900">
-             Plans
+             plans
             
             </Link>
             <Link href="/about" className="text-gray-600 hover:text-gray-900">
