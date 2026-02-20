@@ -41,7 +41,7 @@ function Pci() {
       <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700">
         {features.map((section, i) => (
           <div key={i}>
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3">
               {section.sectionTitle}
             </h2>
 
@@ -50,7 +50,7 @@ function Pci() {
             )}
 
             {section.items && (
-              <ul className="mt-3 space-y-3 list-disc list-inside">
+              <ul className="mt-4 space-y-3 list-disc list-inside">
                 {section.items.map((item, j) => (
                   <li key={j} className="text-sm leading-relaxed">
                     {item.subtitle && (

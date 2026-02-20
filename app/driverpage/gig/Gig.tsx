@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Form from "../loginform/form";
+import Form from "../../loginform/form";
 
-function Daily() {
+
+function Gig() {
   return (
     <>
       {/* ================= HERO ================= */}
@@ -13,11 +14,11 @@ function Daily() {
           {/* LEFT CONTENT */}
           <div className="text-white">
             <h2 className="text-4xl font-bold leading-tight">
-     Affordable Mobile for Everyday Driving
+          Flexible Plans for Rideshare & Gig Drivers
             </h2>
 
             <p className="mt-6 text-gray-200 max-w-lg">
-            Essential coverage, instant help, and smart savings — designed for your daily routes, errands, and everything in between.
+            Pay only when you drive. No contracts, no credit checks, no surprises — just smarter mobile made for your hustle.
             </p>
 
             <div className="mt-8 flex gap-4">
@@ -33,7 +34,7 @@ function Daily() {
 
           {/* RIGHT IMAGE */}
           <div>
-            <Image src="/images/D1.png" alt="DHL" width={600} height={350} />
+            <Image src="/images/Frame2.png" alt="DHL" width={600} height={350} />
           </div>
 
         </div>
@@ -123,11 +124,13 @@ function Daily() {
           </div>
         </div>
       </section>
-    <Form />
+
+   
     <br />
+    <Form/>
     
     </>
   );
 };
 
-export default Daily;
+export default Gig;

@@ -33,7 +33,7 @@ function GDPR() {
       {/* Header */}
       <div className="bg-[#1e5d57] py-6 text-center">
         <h1 className="text-white text-2xl md:text-3xl font-bold">
-          Privacy & Data Protection Standards
+         GDPR, CCPA, CPRA Compliance
         </h1>
       </div>
 

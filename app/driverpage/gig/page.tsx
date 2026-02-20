@@ -1,15 +1,16 @@
-import Daily from "./daily/Daily";
-import FleetSection from "./fleetsection/FleetSection";
+import { Form } from "lucide-react";
 import Gig from "./Gig";
+
 
 function Plan(){
 
 
     return(
 <div>
-<FleetSection/>
+
 <Gig/>
-<Daily/>
+
+
           
 </div>
     );
