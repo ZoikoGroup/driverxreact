@@ -163,20 +163,28 @@ const Hero = () => {
       */}
     </section>
 
-<section className="bg-gray-100 dark:bg-gray-900 p-4">
+  <section className="bg-gray-100 dark:bg-gray-900 p-4">
 
-<p className="text-xl font-medium dark:text-white text-center p-4">Supporting professionals across rideshare, delivery, and mobility services such as Lyft, Uber, DoorDash, Cabify, Bolt, and beyond.</p>
+    <p className="text-xl font-medium dark:text-white text-center p-4">Supporting professionals across rideshare, delivery, and mobility services such as Lyft, Uber, DoorDash, Cabify, Bolt, and beyond.</p>
 
- <div className="flex justify-center items-center space-x-6 p-6 bg-gray-100 dark:bg-gray-500">
-      <img src="/images/lyft-logo-1.png" alt="Lyft" className="h-12 w-auto" />
-      <img src="/images/Uber_logo.png" alt="Uber" className="h-12 w-auto" />
-      <img src="/images/DoorDash_Logo.png" alt="DoorDash" className="h-12 w-auto" />
-      <img src="/images/Cabify_logo.png" alt="Cabify" className="h-12 w-auto" />
-      <img src="/images/bolt-1.png" alt="Bolt" className="h-12 w-auto" />
+    <div className="flex justify-center items-center space-x-6 p-6 bg-gray-100 dark:bg-gray-900">
+      <img src="/images/lyft-logo-1.png" alt="Lyft" className="h-12 w-auto dark:hidden" />
+      <img src="/images/lyft-logo-1_dark.png" alt="Lyft" className="h-12 w-auto hidden dark:block" />
+
+      <img src="/images/Uber_logo.png" alt="Uber" className="h-12 w-auto dark:hidden" />
+      <img src="/images/Uber_logo_dark.png" alt="Uber" className="h-12 w-auto hidden dark:block" />
+
+      <img src="/images/DoorDash_Logo.png" alt="DoorDash" className="h-12 w-auto dark:hidden" />
+      <img src="/images/DoorDash_Logo_dark.png" alt="DoorDash" className="h-12 w-auto hidden dark:block" />
+
+      <img src="/images/Cabify_logo.png" alt="Cabify" className="h-12 w-auto dark:hidden" />
+      <img src="/images/Cabify_logo_dark.png" alt="Cabify" className="h-12 w-auto hidden dark:block" />
+
+      <img src="/images/bolt-1.png" alt="Bolt" className="h-12 w-auto dark:hidden" />
+      <img src="/images/bolt-1_dark.png" alt="Bolt" className="h-12 w-auto hidden dark:block" />
     </div>
 
-
-</section>
+  </section>
 
 <section className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_55%,#c8d8c8_100%)] dark:bg-[linear-gradient(135deg,#1f2421_0%,#2b3a2f_55%,#1e2f2a_100%)] py-20 lg:py-24">
   
@@ -194,7 +202,7 @@ const Hero = () => {
     <div className="flex justify-end">
       
       {/* 3. CONTENT: Takes up the right 50% */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
+      <div className="w-full lg:w-[40%] flex flex-col justify-center space-y-6">
         
         <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 leading-tight">
           How we support our <br />
