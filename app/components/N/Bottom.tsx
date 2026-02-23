@@ -1,8 +1,8 @@
-
 "use client";
-import { IconType } from "react-icons";
 
+import { IconType } from "react-icons";
 import Image from "next/image";
+import Link from "next/link";
 import {
   FaFacebookF,
   FaInstagram,
@@ -11,36 +11,119 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
-/* ---------- TOP CONTACT STRIP (YOUR CURRENT FOOTER) ---------- */
+/* =========================================================
+   ✅ 1. ALL FOOTER LINKS LIVE HERE (EDIT ONLY THIS)
+   ========================================================= */
 
+const FOOTER_LINKS = [
+  {
+    title: "About Us",
+    links: [
+      { label: "Company Overview", href: "/about-us" },
+      { label: "Our Mission & Values", href: "/about/mission-values" },
+      { label: "Leadership Team", href: "/loginform" },
+      { label: "Careers", href: "/about/careers" },
+      { label: "Press & Media", href: "/about/press" },
+    ],
+  },
+  {
+    title: "Our Solutions",
+    links: [
+      { label: "Fleet & Logistics", href: "/driverpage/fleetsection" },
+      { label: "Connectivity", href: "/solutions/connectivity" },
+      { label: "Gig & Delivery Driver Plans", href: "/driverpage/gig" },
+      { label: "Telematics & IoT", href: "/telematics-iot-integrations" },
+      { label: "Integrations", href: "/solutions/integrations" },
+      { label: "Become a DriverX Partner", href: "/become-a-driverx-partner" },
+    ],
+  },
+  {
+    title: "Support & Resources",
+    links: [
+      { label: "24/7 Driver Support", href: "/support/driver-support" },
+      { label: "Fleet Priority Line", href: "/fleet-priority-line" },
+      { label: "Coverage Maps", href: "/support/coverage" },
+      { label: "FAQs & Self Service", href: "/support/faqs" },
+      { label: "Accessibility & Language Options", href: "/accessibility-language-options"}
+    ],
+  },
+  {
+    title: "Security & Compliance",
+    links: [
+      { label: "PCI DSS Payments", href: "/pci-dss-payments" },
+      { label: "GDPR, CCPA, CPRA", href: "/gdpr-ccpa-cpra-compliance" },
+      { label: "E911, DOT & FMCSA", href: "/e911-dot-fmcsa-standards" },
+      { label: "SOC 2 Cybersecurity Controls", href: "/soc-2-cybersecurity-controls" },
+    ],
+  },
+  {
+    title: "Trust & Transparency",
+    links: [
+      { label: "Network Coverage & Performance", href: "/network-coverage-performance" },
+      { label: "Refund & Service Guarantees", href: "/refund-service-guarantees" },
+      { label: "Terms of Service & Legal", href: "/terms-of-service-legal" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Cookie Preferences & Opt-Out", href: "cookie-preferences-opt-out" },
+    ],
+  },
+];
 
+/* =========================================================
+   CONTACT STRIP DATA
+   ========================================================= */
 
-
-const Sitem = [
+const CONTACT_ITEMS = [
   {
     id: 1,
     image: "/images/location-icon-footer.png",
-    Head: "Find Us",
-    contact: "418 Broadway, STE R, Albany, NY 12207",
+    title: "Find Us",
+    value: "418 Broadway, STE R, Albany, NY 12207",
   },
   {
     id: 2,
     image: "/images/email-icon-footer.png",
-    Head: "Mail us",
-    contact: "info@driverxmobile.com",
+    title: "Mail us",
+    value: "info@driverxmobile.com",
   },
   {
     id: 3,
     image: "/images/phone-icon-footer.png",
-    Head: "Contact us",
-    contact: "+1 (800) 399-0087",
+    title: "Contact us",
+    value: "+1 (800) 399-0087",
   },
 ];
 
+/* =========================================================
+   TYPES
+   ========================================================= */
+
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+interface SocialIconProps {
+  Icon: IconType;
+}
+
+/* =========================================================
+   MAIN FOOTER
+   ========================================================= */
+
 const Bottom = () => {
   return (
-    
     <footer className="w-full">
+      {/* HEADER */}
+      <div className="bg-gray-100 py-10 text-center">
+        <h2 className="text-4xl font-bold text-teal-800">
+          Get in Touch
+        </h2>
+      </div>
 
 
       {/* ===== 0️⃣ GET IN TOUCH HEADER ===== */}
@@ -52,20 +135,20 @@ const Bottom = () => {
       {/* ===== 1️⃣ TOP CONTACT STRIP (UNCHANGED LOGIC) ===== */}
       <div className="bg-teal-800 dark:bg-teal-900 py-6">
         <div className="mx-auto max-w-6xl grid gap-8 px-6 sm:grid-cols-1 md:grid-cols-3 text-center">
-          {Sitem.map((item) => (
+          {CONTACT_ITEMS.map((item) => (
             <div key={item.id} className="flex flex-col items-center">
               <Image
                 src={item.image}
-                alt={item.Head}
+                alt={item.title}
                 width={48}
                 height={48}
                 className="mb-3"
               />
               <h3 className="text-lg font-semibold text-white">
-                {item.Head}
+                {item.title}
               </h3>
               <p className="mt-1 text-sm text-white/90 max-w-xs">
-                {item.contact}
+                {item.value}
               </p>
             </div>
           ))}
@@ -138,69 +221,31 @@ const Bottom = () => {
       {/* ===== 3️⃣ FOOTER LINKS ===== */}
       <div className="bg-white dark:bg-gray-900 border-t">
         <div className="mx-auto max-w-7xl px-6 py-12 grid gap-8 sm:grid-cols-2 md:grid-cols-5 text-sm">
-          <FooterColumn
-            title="About Us"
-            links={[
-              "Company Overview",
-              "Our Mission & Values",
-              "Leadership Team",
-              "Careers",
-              "Press & Media",
-            ]}
-          />
-
-          <FooterColumn
-            title="Our Solutions"
-            links={[
-              "Fleet & Logistics",
-              "Connectivity",
-              "Gig & Delivery Driver Plans",
-              "Telematics & IoT",
-              "Integrations",
-              "Become a DriverX Partner",
-            ]}
-          />
-
-          <FooterColumn
-            title="Support & Resources"
-            links={[
-              "24/7 Driver Support",
-              "Fleet Priority Line",
-              "Coverage Maps",
-              "FAQs & Self Service",
-              "Accessibility & Language Options",
-            ]}
-          />
-
-          <FooterColumn
-            title="Security & Compliance"
-            links={[
-              "PCI DSS Payments",
-              "GDPR, CCPA, CPRA",
-              "Compliance",
-              "E911, DOT & FMCSA",
-              "SOC 2 Cybersecurity Controls",
-            ]}
-          />
-
-          <FooterColumn
-            title="Trust & Transparency"
-            links={[
-              "Network Coverage & Performance",
-              "Refund & Service Guarantees",
-              "Terms of Service & Legal",
-              "Privacy Policy",
-              "Cookie Preferences & Opt-Out",
-            ]}
-          />
+          {FOOTER_LINKS.map((section: FooterSection) => (
+            <div key={section.title}>
+              <h5 className="text-teal-700 font-semibold mb-4">
+                {section.title}
+              </h5>
+              <ul className="space-y-2 text-gray-600">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="hover:text-teal-700 transition"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ===== 4️⃣ COPYRIGHT BAR ===== */}
+      {/* COPYRIGHT */}
       <div className="bg-teal-800 text-white text-sm text-center px-6 py-4">
-        © 2025 DriverX Mobile. DriverX Mobile is a trading name for DriverX Mobile
-        Inc., a wholly owned subsidiary of Zoiko Communications Group Inc. All
-        rights reserved.
+        © 2025 DriverX Mobile. All rights reserved.
       </div>
     </footer>
   );

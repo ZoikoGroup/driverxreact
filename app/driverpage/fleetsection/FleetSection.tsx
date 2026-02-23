@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Form from "../loginform/form";
+import Form from "../../loginform/form";
 
-function Gig() {
+function FleetSection() {
   return (
     <>
       {/* ================= HERO ================= */}
@@ -13,11 +13,14 @@ function Gig() {
           {/* LEFT CONTENT */}
           <div className="text-white">
             <h2 className="text-4xl font-bold leading-tight">
-          Flexible Plans for Rideshare & Gig Drivers
+              Keep Your Fleet on the <br />
+              Move with Intelligent <br />
+              Mobile
             </h2>
 
             <p className="mt-6 text-gray-200 max-w-lg">
-            Pay only when you drive. No contracts, no credit checks, no surprises — just smarter mobile made for your hustle.
+              Fast, reliable wireless connectivity combined with AI-powered
+              fleet tools built to drive logistics success at scale.
             </p>
 
             <div className="mt-8 flex gap-4">
@@ -33,7 +36,7 @@ function Gig() {
 
           {/* RIGHT IMAGE */}
           <div>
-            <Image src="/images/Frame2.png" alt="DHL" width={600} height={350} />
+            <Image src="/images/man-by-fleet.png" alt="DHL" width={600} height={350} />
           </div>
 
         </div>
@@ -130,4 +133,4 @@ function Gig() {
   );
 };
 
-export default Gig;
+export default FleetSection;
