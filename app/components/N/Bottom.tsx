@@ -119,13 +119,6 @@ const Bottom = () => {
   return (
     <footer className="w-full">
       {/* HEADER */}
-      <div className="bg-gray-100 py-10 text-center">
-        <h2 className="text-4xl font-bold text-teal-800">
-          Get in Touch
-        </h2>
-      </div>
-
-
       {/* ===== 0️⃣ GET IN TOUCH HEADER ===== */}
 <div className="dark:bg-gray-900 bg-gray-100 py-10 text-center">
   <h2 className="text-4xl font-bold dark:text-teal-500 text-teal-800">
