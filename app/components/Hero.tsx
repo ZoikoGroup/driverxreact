@@ -42,7 +42,7 @@ const Hero = () => {
           <div>
             {/* Badge */}
             <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-4 py-1 text-sm font-semibold text-white">
-               #01 Driver Mobile Network
+               #001 Driver Mobile Network
             </span>
 
             {/* Heading */}
