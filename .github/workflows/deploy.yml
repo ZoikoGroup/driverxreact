@@ -25,5 +25,5 @@ jobs:
             git pull origin main
             npm install --production=false
             npm run build
-            pm2 restart nextapp
+            pm2 restart driverx-frontend
             pm2 save
