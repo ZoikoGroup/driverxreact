@@ -32,9 +32,9 @@ const FOOTER_LINKS = [
       { label: "Fleet & Logistics", href: "/driverpage/fleetsection" },
       { label: "Connectivity", href: "/solutions/connectivity" },
       { label: "Gig & Delivery Driver Plans", href: "/driverpage/gig" },
-      { label: "Telematics & IoT", href: "/solutions/telematics-iot" },
+      { label: "Telematics & IoT", href: "/telematics-iot-integrations" },
       { label: "Integrations", href: "/solutions/integrations" },
-      { label: "Become a DriverX Partner", href: "/solutions/partner" },
+      { label: "Become a DriverX Partner", href: "/become-a-driverx-partner" },
     ],
   },
   {
@@ -53,7 +53,7 @@ const FOOTER_LINKS = [
       { label: "PCI DSS Payments", href: "/pci-dss-payments" },
       { label: "GDPR, CCPA, CPRA", href: "/gdpr-ccpa-cpra-compliance" },
       { label: "E911, DOT & FMCSA", href: "/e911-dot-fmcsa-standards" },
-      { label: "SOC 2 Cybersecurity Controls", href: "/security/soc2" },
+      { label: "SOC 2 Cybersecurity Controls", href: "/soc-2-cybersecurity-controls" },
     ],
   },
   {
@@ -148,9 +148,10 @@ const Bottom = () => {
         </div>
       </div>
 
-      {/* LOGO + SOCIAL */}
+      {/* ===== 2️⃣ location-icon-footer + QR + SOCIAL ===== */}
       <div className="bg-white border-t">
         <div className="mx-auto max-w-7xl px-6 py-10 grid gap-10 md:grid-cols-3 items-center">
+          {/* location-icon-footer */}
           <Image
             src="/images/Logo.svg.png"
             alt="DriverX Mobile"
@@ -158,32 +159,58 @@ const Bottom = () => {
             height={50}
           />
 
-          <div></div>
+          {/* QR + App buttons */}
+          <div className="flex items-center gap-6 justify-center">
+            <div className="relative w-[190px] h-[190px]">
+  <Image
+    src="/images/Group 1597883013.png"
+    alt="QR Code"
+    fill
+    className="border rounded-lg object-contain"
+  />
 
+  <Image
+    src="/images/vector.png"
+    alt="vector"
+    width={30}
+    height={30}
+    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+  />
+</div>
+
+             
+            <div className="flex flex-col gap-3">
+              <Image
+                src="/images/Group 691314729.png"
+                alt="App Store"
+                width={140}
+                height={42}
+              />
+              <Image
+                src="/images/Group 691314728.png"
+                alt="Google Play"
+                width={140}
+                height={42}
+              />
+            </div>
+          </div>
+
+          {/* Social */}
           <div className="text-center md:text-right">
             <h4 className="text-teal-700 font-semibold mb-3">
               Connect With Us
             </h4>
             <div className="flex justify-center md:justify-end gap-3">
-              <a href="https://www.facebook.com/DriverXMobile/" target="_blank">
-                <SocialIcon Icon={FaFacebookF} />
-              </a>
-              <a href="https://www.instagram.com/driverx_mobile/" target="_blank">
-                <SocialIcon Icon={FaInstagram} />
-              </a>
-              <a href="https://x.com/driverx_mobile" target="_blank">
-                <SocialIcon Icon={FaXTwitter} />
-              </a>
-              <a href="https://www.linkedin.com/uas/login?session_redirect=%2Fcompany%2F106760019%2F" target="_blank">
-                <SocialIcon Icon={FaLinkedinIn} />
-              </a>
-              <a href="https://www.youtube.com/@DriverXMobile" target="_blank">
-                <SocialIcon Icon={FaYoutube} />
-              </a>
+             <a href="https://www.facebook.com/DriverXMobile/"> <SocialIcon Icon={FaFacebookF} /></a>
+             <a href="https://www.instagram.com/driverx_mobile/"> <SocialIcon Icon={FaInstagram} /></a>
+         <a href="https://www.pinterest.com/driverx_mobile/">     <SocialIcon Icon={FaXTwitter} /></a>
+        <a href="https://www.linkedin.com/uas/login?session_redirect=%2Fcompany%2F106760019%2F"> <SocialIcon Icon={FaLinkedinIn} /></a>
+             <a href="https://www.youtube.com/@DriverXMobile"><SocialIcon Icon={FaYoutube} /></a>
             </div>
           </div>
         </div>
       </div>
+
 
       {/* FOOTER LINKS (AUTO GENERATED) */}
       <div className="bg-white border-t">
