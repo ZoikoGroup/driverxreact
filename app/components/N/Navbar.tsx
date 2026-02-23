@@ -8,7 +8,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="w-full border-b border-gray-200 bg-white">
+    <nav className="w-full border-b border-gray-200 dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center justify-between">
 
@@ -25,32 +25,32 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/solutions" className="text-gray-600 hover:text-gray-900">
+            <Link href="/solutions" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
              Solutions
             </Link>
-            <Link href="/plans" className="text-gray-600 hover:text-gray-900">
+            <Link href="/plans" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
              plans
             
             </Link>
-            <Link href="/about" className="text-gray-600 hover:text-gray-900">
+            <Link href="/about" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
              Partner offers
             </Link>
-               <Link href="/shop" className="text-gray-600 hover:text-gray-900">
+               <Link href="/shop" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
            Shop
             </Link>
-               <Link href="/Support" className="text-gray-600 hover:text-gray-900">
+               <Link href="/Support" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
              Support
             </Link>
           </div>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/login" className="text-gray-600 hover:text-gray-900">
+            <Link href="/login" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
               Login
             </Link>
             <Link
               href="/signup"
-              className="rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
+              className="rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-300"
             >
               Get Started
             </Link>

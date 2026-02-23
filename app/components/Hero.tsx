@@ -34,7 +34,7 @@ const mobileFeatures = [
 const Hero = () => {
   return (
     <>
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8]">
+    <section className="relative overflow-hidden dark:bg-gradient-to-br dark:from-[#0c1a18] dark:to-[#0a1412] bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8]">
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid items-center gap-16 md:grid-cols-2">
 
@@ -46,7 +46,7 @@ const Hero = () => {
             </span>
 
             {/* Heading */}
-            <h1 className="mt-6 text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
+            <h1 className="mt-6 text-4xl font-extrabold leading-tight dark:text-white text-gray-900 md:text-5xl">
               Connectivity That <br />
               Works as{" "}
               <span className="text-teal-500">Hard as</span>{" "}
@@ -54,28 +54,28 @@ const Hero = () => {
             </h1>
 
             {/* Description */}
-            <p className="mt-6 max-w-xl text-lg text-gray-600">
+            <p className="mt-6 max-w-xl text-lg  text-gray-600 dark:text-gray-300">
               Designed for gig workers, fleet drivers, and mobile professionals
               who cant afford downtime.
             </p>
 
             {/* Features */}
             <ul className="mt-8 space-y-4">
-              <li className="flex items-center gap-3 text-gray-700">
+              <li className="flex items-center gap-3 dark:text-gray-300 text-gray-700">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-500 text-white">
                   ✓
                 </span>
                 Reliable nationwide coverage
               </li>
 
-              <li className="flex items-center gap-3 text-gray-700">
+              <li className="flex items-center gap-3 dark:text-gray-300 text-gray-700">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-500 text-white">
                   ✓
                 </span>
                 Priority support 24/7
               </li>
 
-              <li className="flex items-center gap-3 text-gray-700">
+              <li className="flex items-center gap-3 dark:text-gray-300 text-gray-700">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-500 text-white">
                   ✓
                 </span>
@@ -95,7 +95,7 @@ const Hero = () => {
             </div>
 
             {/* Footer text */}
-            <p className="mt-6 text-sm text-gray-500">
+            <p className="mt-6 text-sm text-gray-500 dark:text-gray-200">
               Reliable nationwide coverage. Priority support. Built for drivers, not just users.
             </p>
           </div>
@@ -163,11 +163,11 @@ const Hero = () => {
       */}
     </section>
 
-<section className="bg-gray-100 p-4;">
+<section className="bg-gray-100 dark:bg-gray-900 p-4">
 
-<p className="text-xl font-medium text-center p-4">Supporting professionals across rideshare, delivery, and mobility services such as Lyft, Uber, DoorDash, Cabify, Bolt, and beyond.</p>
+<p className="text-xl font-medium dark:text-white text-center p-4">Supporting professionals across rideshare, delivery, and mobility services such as Lyft, Uber, DoorDash, Cabify, Bolt, and beyond.</p>
 
- <div className="flex justify-center items-center space-x-6 p-6 bg-gray-100">
+ <div className="flex justify-center items-center space-x-6 p-6 bg-gray-100 dark:bg-gray-500">
       <img src="/images/lyft-logo-1.png" alt="Lyft" className="h-12 w-auto" />
       <img src="/images/Uber_logo.png" alt="Uber" className="h-12 w-auto" />
       <img src="/images/DoorDash_Logo.png" alt="DoorDash" className="h-12 w-auto" />
@@ -178,7 +178,7 @@ const Hero = () => {
 
 </section>
 
-<section className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_55%,#c8d8c8_100%)] py-20 lg:py-24">
+<section className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_55%,#c8d8c8_100%)] dark:bg-[linear-gradient(135deg,#1f2421_0%,#2b3a2f_55%,#1e2f2a_100%)] py-20 lg:py-24">
   
   {/* 1. IMAGE: Pinned to left edge, but centered vertically and size-constrained */}
   <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[85%] max-w-4xl z-2">
@@ -190,18 +190,18 @@ const Hero = () => {
   </div>
 
   {/* 2. CONTAINER: Standard centered container for the text */}
-  <div className="relative z-10 mx-auto max-w-7xl px-6">
+  <div className="relative z-10 mx-auto max-w-7xl px-6 dark:text-white text-gray-900">
     <div className="flex justify-end">
       
       {/* 3. CONTENT: Takes up the right 50% */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
         
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+        <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 leading-tight">
           How we support our <br />
           drivers all over the world
         </h2>
 
-        <p className="text-gray-700 text-lg leading-relaxed max-w-lg">
+        <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-lg">
           We're committed to empowering drivers globally with accessible,
           reliable, and flexible services tailored to their everyday needs—
           whether they're on highways, in cities, or across borders.
@@ -236,10 +236,10 @@ const Hero = () => {
 </section>
 
 {/* SMART SERVICES SECTION */}
-<section className="bg-gray-50 py-24">
+<section className="bg-gray-50 dark:bg-gray-900 py-24">
   <div className="max-w-7xl mx-auto px-6 text-center">
 
-    <h2 className="text-3xl font-bold text-gray-800 mb-16">
+    <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-16">
       Smarter Services for Smarter Drivers
     </h2>
 
@@ -252,10 +252,10 @@ const Hero = () => {
           alt="Global Coverage"
           className="h-40 mb-6"
         />
-        <h3 className="font-semibold text-lg text-gray-900">
+        <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
           Global Coverage
         </h3>
-        <p className="text-gray-600 mt-3 max-w-xs">
+        <p className="text-gray-600 dark:text-gray-300 mt-3 max-w-xs">
           Access essential driver services anywhere you go, worldwide.
         </p>
       </div>
@@ -267,10 +267,10 @@ const Hero = () => {
           alt="Smart Savings"
           className="h-40 mb-6"
         />
-        <h3 className="font-semibold text-lg text-gray-900">
+        <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
           Smart Savings with AI
         </h3>
-        <p className="text-gray-600 mt-3 max-w-xs">
+        <p className="text-gray-600 dark:text-gray-300 mt-3 max-w-xs">
           Our AI tracks usage and spending patterns to help cut costs without
           compromising essentials.
         </p>
@@ -283,10 +283,10 @@ const Hero = () => {
           alt="Vehicle Help"
           className="h-40  mb-6"
         />
-        <h3 className="font-semibold text-lg text-gray-900">
+        <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
           All-in-One Vehicle Help
         </h3>
-        <p className="text-gray-600 mt-3 max-w-xs">
+        <p className="text-gray-600 dark:text-gray-300 mt-3 max-w-xs">
           Repairs, insurance, legal, and finance services — all in one place.
         </p>
       </div>
@@ -327,11 +327,11 @@ const Hero = () => {
   </div>
 </section>
 {/* DRIVE TYPE SECTION */}
-<section className="bg-gray-50 py-20">
+<section className="bg-gray-50 py-20 dark:bg-gray-900">
   <div className="max-w-7xl mx-auto px-6 flex gap-8">
 
     {/* LEFT PANEL */}
-    <div className="bg-[#2e7d6f] text-white p-10 rounded-2xl w-1/4">
+    <div className="bg-[#2e7d6f] dark:[rgb(23 69 61)] text-white p-10 rounded-2xl w-1/4">
       <h3 className="text-2xl font-bold mb-4">
         Choose Your <br /> Drive Type
       </h3>
@@ -344,15 +344,15 @@ const Hero = () => {
     <div className="flex-1 grid md:grid-cols-3 gap-8">
 
       {/* Card 1 */}
-      <div className="bg-[#e8dfc8] rounded-xl p-6 text-center shadow-sm">
+      <div className="bg-[#e8dfc8] dark:bg-[#787366] rounded-xl p-6 text-center shadow-sm">
         <img
           src="/images/Freight-Drivers1.png"
           alt="Freight Drivers"
           className="h-40 mx-auto mb-6"
         />
-        <p className="text-sm text-gray-600">Commercial & Logistics</p>
-        <h4 className="text-lg font-bold mt-1">Freight Drivers</h4>
-        <p className="text-gray-600 text-sm mt-2">
+        <p className="text-sm text-gray-600 dark:text-gray-300">Commercial & Logistics</p>
+        <h4 className="text-lg font-bold mt-1 text-gray-900 dark:text-white">Freight Drivers</h4>
+        <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
           Fast, reliable support for fleet, ride-hailing & logistics drivers.
         </p>
 
@@ -364,15 +364,15 @@ const Hero = () => {
       </div>
 
       {/* Card 2 */}
-      <div className="bg-white border rounded-xl p-6 text-center shadow-sm">
+      <div className="bg-white dark:bg-[#404040] border rounded-xl p-6 text-center shadow-sm">
         <img
           src="/images/gig-drives-img1.png"
           alt="Gig Drivers"
           className="h-40 mx-auto mb-6"
         />
-        <p className="text-sm text-gray-600">Independent & part-time</p>
-        <h4 className="text-lg font-bold mt-1">Gig Drivers</h4>
-        <p className="text-gray-600 text-sm mt-2">
+        <p className="text-sm text-gray-600 dark:text-gray-300">Independent & part-time</p>
+        <h4 className="text-lg font-bold mt-1 text-gray-900 dark:text-white">Gig Drivers</h4>
+        <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
           Flexible options with no long term commitments.
         </p>
 
@@ -384,15 +384,15 @@ const Hero = () => {
       </div>
 
       {/* Card 3 */}
-      <div className="bg-white border rounded-xl p-6 text-center shadow-sm">
+      <div className="bg-white dark:bg-[#404040] border rounded-xl p-6 text-center shadow-sm">
         <img
           src="/images/daily-commuters-img1.png"
           alt="Daily Commuters"
           className="h-40 mx-auto mb-6"
         />
-        <p className="text-sm text-gray-600">Independent & part-time</p>
-        <h4 className="text-lg font-bold mt-1">Daily Commuters</h4>
-        <p className="text-gray-600 text-sm mt-2">
+        <p className="text-sm text-gray-600 dark:text-gray-300">Independent & part-time</p>
+        <h4 className="text-lg font-bold mt-1 text-gray-900 dark:text-white">Daily Commuters</h4>
+        <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
           Affordable plans, quick help, and essential coverage.
         </p>
 
@@ -407,16 +407,16 @@ const Hero = () => {
   </div>
 </section>
 {/* TRUSTED DRIVERS SECTION */}
-<section className="bg-[#f3f2ea] py-24">
+<section className="bg-[#f3f2ea] dark:bg-[#393937] py-24">
   <div className="max-w-7xl mx-auto px-6">
 
-    <p className="text-center text-gray-500 mb-3">You will love it</p>
+    <p className="text-center text-gray-500 dark:text-gray-400 mb-3">You will love it</p>
 
     <h2 className="text-center text-3xl font-bold mb-6">
-      We Prominent Truly <span className="text-teal-600">Trusted drivers Solutions</span>
+      We Prominent Truly <span className="text-teal-600 dark:text-teal-400">Trusted drivers Solutions</span>
     </h2>
 
-    <p className="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+    <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-16">
       It is a long established fact that a reader will be distracted by the readable content of a page when looking at layout.
     </p>
 
@@ -435,33 +435,33 @@ const Hero = () => {
       <div className="w-1/2 grid grid-cols-2 gap-10">
 
         <div>
-          <h3 className="text-2xl font-bold text-teal-700">92%</h3>
+          <h3 className="text-2xl font-bold text-teal-700 dark:text-teal-400">92%</h3>
           <p className="font-semibold">Satisfied Clients</p>
-          <p className="text-sm text-gray-600 mt-2">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
             Based on 500+ pilot drivers most loved the real time data alerts.
           </p>
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-teal-700">25M+</h3>
+          <h3 className="text-2xl font-bold text-teal-700 dark:text-teal-400">25M+</h3>
           <p className="font-semibold">Miles Optimized</p>
-          <p className="text-sm text-gray-600 mt-2">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
             AI tracks dead zones, suggests cheaper plans, and cuts signal drops.
           </p>
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-teal-700">70%</h3>
+          <h3 className="text-2xl font-bold text-teal-700 dark:text-teal-400">70%</h3>
           <p className="font-semibold">Faster Activation</p>
-          <p className="text-sm text-gray-600 mt-2">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
             No store visits. Get a SIM ready eSIM in 3 mins.
           </p>
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-teal-700">35+</h3>
+          <h3 className="text-2xl font-bold text-teal-700 dark:text-teal-400">35+</h3>
           <p className="font-semibold">Cities (Expanding Weekly)</p>
-          <p className="text-sm text-gray-600 mt-2">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
             Live in major markets like Houston, Atlanta & Miami.
           </p>
         </div>
