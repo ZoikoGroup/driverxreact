@@ -216,7 +216,7 @@ const Bottom = () => {
         <div className="mx-auto max-w-7xl px-6 py-12 grid gap-8 sm:grid-cols-2 md:grid-cols-5 text-sm">
           {FOOTER_LINKS.map((section: FooterSection) => (
             <div key={section.title}>
-              <h5 className="text-teal-700 font-semibold mb-4">
+              <h5 className="text-teal-700 dark:text-teal-500 font-semibold mb-4">
                 {section.title}
               </h5>
               <ul className="space-y-2 dark:text-gray-300 text-gray-600">
