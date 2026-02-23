@@ -219,7 +219,7 @@ const Bottom = () => {
               <h5 className="text-teal-700 font-semibold mb-4">
                 {section.title}
               </h5>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 dark:text-gray-300 text-gray-600">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
