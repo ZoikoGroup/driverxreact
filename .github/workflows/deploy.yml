@@ -8,22 +8,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
-      - name: Deploy to GCP VM via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd /var/www/html/driverxreact
-            git pull origin main
-            npm install --production=false
-            npm run build
-            pm2 restart driverx-frontend
-            pm2 save
+    steps:
+      - name: Deploy to GCP VM
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+          ssh -i /tmp/deploy_key \
+              -o StrictHostKeyChecking=no \
+              -p ${{ secrets.SSH_PORT }} \
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+              "cd /var/www/html/driverxreact && git pull origin main && npm install && npm run build && pm2 restart driverx-frontend && pm2 save"
+          rm /tmp/deploy_key
