@@ -29,15 +29,15 @@ function Aboutus() {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8] py-16 px-6">
+      <section className="bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8] dark:from-[#1e2421] dark:to-[#2b3a2f] py-16 px-6">
 
         {/* COMPANY OVERVIEW TEXT */}
         <div className="max-w-6xl mx-auto text-center mb-12">
-          <h2 className="text-2xl font-bold text-[#1e6f5c] mb-6">
+          <h2 className="text-2xl font-bold text-[#1e6f5c] mb-6 dark:text-[#a0d9c8] tracking-wider">
             COMPANY OVERVIEW
           </h2>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed dark:text-gray-400">
             As a wholly owned subsidiary of Zoiko Communications Group Inc., a global leader in wireless,
             IoT, and fintech solutions, we bring the unmatched scale, security, and innovation of a
             multinational powerhouse directly to the world of professional drivers.
@@ -63,10 +63,10 @@ function Aboutus() {
           </div>
         </div>
               </section>
-
+<section className="bg-white dark:bg-gray-900 py-16 px-6">
         {/* DRIVERPLUS ADVANTAGE */}
         <div className="max-w-8xl mx-auto text-center mb-14">
- <h1 className="text-4xl font-bold text-gray-800 tracking-wider">
+            <h1 className="text-4xl font-bold text-gray-800 tracking-wider dark:text-gray-200">
             THE DRIVERPLUS ADVANTAGE
           </h1>
         </div>
@@ -75,7 +75,7 @@ function Aboutus() {
         <div className="max-w-6xl mx-auto grid grid-cols-3 gap-8 mb-12">
 
           {features.slice(0, 3).map((item, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm text-center">
+            <div key={index} className="bg-gray-200 dark:bg-gray-800 p-8 rounded-2xl shadow-sm text-center">
               <div className="w-16 h-16 bg-[#1e6f5c] rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <img
                   src={item.icon}
@@ -83,10 +83,10 @@ function Aboutus() {
                   className="w-7 h-7 object-contain"
                 />
               </div>
-              <h4 className="font-semibold mb-3 text-gray-800">
+              <h4 className="font-semibold mb-3 text-gray-800 dark:text-gray-200">
                 {item.title}
               </h4>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {item.desc}
               </p>
             </div>
@@ -97,7 +97,7 @@ function Aboutus() {
         <div className="max-w-4xl mx-auto grid grid-cols-2 gap-8 mb-24">
 
           {features.slice(3, 5).map((item, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm text-center">
+            <div key={index} className="bg-gray-200 dark:bg-gray-800 p-8 rounded-2xl shadow-sm text-center">
               <div className="w-16 h-16 bg-[#1e6f5c] rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <img
                   src={item.icon}
@@ -105,10 +105,10 @@ function Aboutus() {
                   className="w-7 h-7 object-contain"
                 />
               </div>
-              <h4 className="font-semibold mb-3 text-gray-800">
+              <h4 className="font-semibold mb-3 text-gray-800 dark:text-gray-200">
                 {item.title}
               </h4>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {item.desc}
               </p>
             </div>
@@ -119,8 +119,8 @@ function Aboutus() {
         <div className="max-w-6xl mx-auto flex items-center gap-12 mb-24">
 
           <div className="w-1/2">
-            <h3 className="text-2xl font-bold mb-4">Why Choose Us</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Why Choose Us</h3>
+            <p className="text-gray-600 leading-relaxed dark:text-gray-400">
               DriverX Mobile is your wireless network, your virtual personal assistant,
               your silent business partner — all in one powerful platform.
             </p>
@@ -135,9 +135,9 @@ function Aboutus() {
           </div>
 
         </div>
-
+</section>
         {/* GREEN QUOTE SECTION */}
-<div className="bg-[#1e6f5c] text-white py-20">
+<div className="bg-[#1e6f5c] dark:bg-gray-900 text-white py-20">
 
   {/* Inner content container */}
   <div className="max-w-6xl mx-auto px-6 flex justify-between items-start gap-12">
