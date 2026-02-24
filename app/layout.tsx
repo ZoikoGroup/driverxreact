@@ -4,7 +4,12 @@ import "./globals.css";
 
 export const metadata = {
   title: "DriverX",
-  description: "DriverX frontend",
+  description: "DriverX Mobile - Your Ultimate Driving Companion",
+  icons: {
+    icon: "/favicon.ico",        // standard favicon
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
