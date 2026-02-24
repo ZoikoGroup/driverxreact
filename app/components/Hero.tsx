@@ -85,15 +85,14 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-wrap gap-4">
-              <button className="rounded-full bg-teal-500 px-8 py-3 font-semibold text-white shadow-lg hover:bg-teal-600 transition">
-                View Plans
-              </button>
+  <button className="w-full sm:w-auto rounded-full bg-teal-500 px-8 py-3 font-semibold text-white shadow-lg hover:bg-teal-600 transition">
+    View Plans
+  </button>
 
-              <button className="rounded-full border-2 border-teal-500 px-8 py-3 font-semibold text-teal-600 hover:bg-teal-50 transition">
-                Explore Business Plans
-              </button>
-            </div>
-
+  <button className="w-full sm:w-auto rounded-full border-2 border-teal-500 px-8 py-3 font-semibold text-teal-600 hover:bg-teal-50 transition">
+    Explore Business Plans
+  </button>
+</div>
             {/* Footer text */}
             <p className="mt-6 text-sm text-gray-500 dark:text-gray-200">
               Reliable nationwide coverage. Priority support. Built for drivers, not just users.
@@ -164,27 +163,27 @@ const Hero = () => {
     </section>
 
   <section className="bg-gray-100 dark:bg-gray-900 p-4">
+  <p className="text-xl font-medium dark:text-white text-center p-4">
+    Supporting professionals across rideshare, delivery, and mobility services such as Lyft, Uber, DoorDash, Cabify, Bolt, and beyond.
+  </p>
 
-    <p className="text-xl font-medium dark:text-white text-center p-4">Supporting professionals across rideshare, delivery, and mobility services such as Lyft, Uber, DoorDash, Cabify, Bolt, and beyond.</p>
+  <div className="flex flex-wrap justify-center items-center gap-6 p-6 bg-gray-100 dark:bg-gray-900">
+    <img src="/images/lyft-logo-1.png" alt="Lyft" className="h-8 sm:h-12 w-auto dark:hidden" />
+    <img src="/images/lyft-logo-1_dark.png" alt="Lyft" className="h-8 sm:h-12 w-auto hidden dark:block" />
 
-    <div className="flex justify-center items-center space-x-6 p-6 bg-gray-100 dark:bg-gray-900">
-      <img src="/images/lyft-logo-1.png" alt="Lyft" className="h-12 w-auto dark:hidden" />
-      <img src="/images/lyft-logo-1_dark.png" alt="Lyft" className="h-12 w-auto hidden dark:block" />
+    <img src="/images/Uber_logo.png" alt="Uber" className="h-8 sm:h-12 w-auto dark:hidden" />
+    <img src="/images/Uber_logo_dark.png" alt="Uber" className="h-8 sm:h-12 w-auto hidden dark:block" />
 
-      <img src="/images/Uber_logo.png" alt="Uber" className="h-12 w-auto dark:hidden" />
-      <img src="/images/Uber_logo_dark.png" alt="Uber" className="h-12 w-auto hidden dark:block" />
+    <img src="/images/DoorDash_Logo.png" alt="DoorDash" className="h-8 sm:h-12 w-auto dark:hidden" />
+    <img src="/images/DoorDash_Logo_dark.png" alt="DoorDash" className="h-8 sm:h-12 w-auto hidden dark:block" />
 
-      <img src="/images/DoorDash_Logo.png" alt="DoorDash" className="h-12 w-auto dark:hidden" />
-      <img src="/images/DoorDash_Logo_dark.png" alt="DoorDash" className="h-12 w-auto hidden dark:block" />
+    <img src="/images/Cabify_logo.png" alt="Cabify" className="h-8 sm:h-12 w-auto dark:hidden" />
+    <img src="/images/Cabify_logo_dark.png" alt="Cabify" className="h-8 sm:h-12 w-auto hidden dark:block" />
 
-      <img src="/images/Cabify_logo.png" alt="Cabify" className="h-12 w-auto dark:hidden" />
-      <img src="/images/Cabify_logo_dark.png" alt="Cabify" className="h-12 w-auto hidden dark:block" />
-
-      <img src="/images/bolt-1.png" alt="Bolt" className="h-12 w-auto dark:hidden" />
-      <img src="/images/bolt-1_dark.png" alt="Bolt" className="h-12 w-auto hidden dark:block" />
-    </div>
-
-  </section>
+    <img src="/images/bolt-1.png" alt="Bolt" className="h-8 sm:h-12 w-auto dark:hidden" />
+    <img src="/images/bolt-1_dark.png" alt="Bolt" className="h-8 sm:h-12 w-auto hidden dark:block" />
+  </div>
+</section>
 
 <section className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#e8dfc8_0%,#d7e2c9_55%,#c8d8c8_100%)] dark:bg-[linear-gradient(135deg,#1f2421_0%,#2b3a2f_55%,#1e2f2a_100%)] py-20 lg:py-24">
   
@@ -336,10 +335,10 @@ const Hero = () => {
 </section>
 {/* DRIVE TYPE SECTION */}
 <section className="bg-gray-50 py-20 dark:bg-gray-900">
-  <div className="max-w-7xl mx-auto px-6 flex gap-8">
+  <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-8">
 
     {/* LEFT PANEL */}
-    <div className="bg-[#2e7d6f] dark:[rgb(23 69 61)] text-white p-10 rounded-2xl w-1/4">
+    <div className="bg-[#2e7d6f] dark:bg-[rgb(23,69,61)] text-white p-10 rounded-2xl w-full md:w-1/4">
       <h3 className="text-2xl font-bold mb-4">
         Choose Your <br /> Drive Type
       </h3>
@@ -349,7 +348,7 @@ const Hero = () => {
     </div>
 
     {/* RIGHT CARDS */}
-    <div className="flex-1 grid md:grid-cols-3 gap-8">
+    <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8">
 
       {/* Card 1 */}
       <div className="bg-[#e8dfc8] dark:bg-[#787366] rounded-xl p-6 text-center shadow-sm">
@@ -363,11 +362,8 @@ const Hero = () => {
         <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
           Fast, reliable support for fleet, ride-hailing & logistics drivers.
         </p>
-
         <div className="mt-6">
-          <button className="h-10 w-10 rounded-full bg-[#2e7d6f] text-white">
-            →
-          </button>
+          <button className="h-10 w-10 rounded-full bg-[#2e7d6f] text-white">→</button>
         </div>
       </div>
 
@@ -383,11 +379,8 @@ const Hero = () => {
         <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
           Flexible options with no long term commitments.
         </p>
-
         <div className="mt-6">
-          <button className="h-10 w-10 rounded-full bg-orange-400 text-white">
-            →
-          </button>
+          <button className="h-10 w-10 rounded-full bg-orange-400 text-white">→</button>
         </div>
       </div>
 
@@ -403,11 +396,8 @@ const Hero = () => {
         <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
           Affordable plans, quick help, and essential coverage.
         </p>
-
         <div className="mt-6">
-          <button className="h-10 w-10 rounded-full bg-red-400 text-white">
-            →
-          </button>
+          <button className="h-10 w-10 rounded-full bg-red-400 text-white">→</button>
         </div>
       </div>
 
@@ -428,10 +418,10 @@ const Hero = () => {
       It is a long established fact that a reader will be distracted by the readable content of a page when looking at layout.
     </p>
 
-    <div className="flex items-center gap-16">
+    <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
       {/* LEFT IMAGE */}
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <img
           src="/images/Group-1437254838.png"
           alt="Taxi Driver"
@@ -440,7 +430,7 @@ const Hero = () => {
       </div>
 
       {/* RIGHT STATS */}
-      <div className="w-1/2 grid grid-cols-2 gap-10">
+      <div className="w-full md:w-1/2 grid grid-cols-2 gap-8 md:gap-10">
 
         <div>
           <h3 className="text-2xl font-bold text-teal-700 dark:text-teal-400">92%</h3>
