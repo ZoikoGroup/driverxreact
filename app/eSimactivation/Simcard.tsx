@@ -5,21 +5,21 @@ function Simcard() {
   const [selectedOption, setSelectedOption] = useState("");
 
   return (
-    <section className="w-full py-20 bg-gradient-to-r from-yellow-50 via-green-50 to-green-100">
+    <section className="w-full py-20 bg-gradient-to-r from-yellow-50 via-green-50 to-green-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       <div className="max-w-4xl mx-auto px-4">
 
         {/* Dynamic Heading */}
-        <h1 className="text-4xl font-bold text-center mb-10">
+        <h1 className="text-4xl font-bold text-center mb-10 dark:text-white">
           {selectedOption === "port" ? "SIM Port Form" : "SIM Activation Form"}
         </h1>
 
-        <div className="bg-[#fffdf5] border-4 border-teal-700 rounded-xl p-8 shadow-sm">
+        <div className="bg-[#fffdf5] dark:bg-gray-900 border-4 border-teal-700 dark:border-teal-500 rounded-xl p-8 shadow-sm">
           <form className="space-y-6">
 
             {/* NAME + EMAIL */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block mb-2 font-medium">
+                <label className="block mb-2 font-medium dark:text-gray-200">
                   Full Name<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -30,7 +30,9 @@ function Simcard() {
               </div>
 
               <div>
-                <label className="block mb-2 font-medium">Email Address</label>
+                <label className="block mb-2 font-medium dark:text-gray-200">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   placeholder="Enter Email used for eSIM QR and activation info"
@@ -41,7 +43,9 @@ function Simcard() {
 
             {/* NUMBER OPTION */}
             <div>
-              <label className="block mb-2 font-medium">Number Option</label>
+              <label className="block mb-2 font-medium dark:text-gray-200">
+                Number Option
+              </label>
               <select
                 value={selectedOption}
                 onChange={(e) => setSelectedOption(e.target.value)}
@@ -57,25 +61,25 @@ function Simcard() {
             {selectedOption === "port" && (
               <>
                 <div>
-                  <label className="block mb-2 font-medium">
+                  <label className="block mb-2 font-medium dark:text-gray-200">
                     Current Carrier Name<span className="text-red-500">*</span>
                   </label>
                   <input placeholder="Enter Carrier Name" className="input" />
                 </div>
 
                 <div className="space-y-3 pt-4">
-                  <label className="flex gap-3">
+                  <label className="flex gap-3 dark:text-gray-300">
                     <input type="checkbox" className="checkbox" />
                     <span>
                       I agree to the{" "}
-                      <a href="#" className="text-teal-600 underline">
+                      <a href="#" className="text-teal-600 dark:text-teal-400 underline">
                         terms & conditions
                       </a>{" "}
                       of GoLite Mobile
                     </span>
                   </label>
 
-                  <label className="flex gap-3">
+                  <label className="flex gap-3 dark:text-gray-300">
                     <input type="checkbox" className="checkbox" />
                     <span>
                       I authorize GoLite Mobile to transfer my number and understand
@@ -90,18 +94,21 @@ function Simcard() {
             {selectedOption === "new" && (
               <>
                 <div>
-                  <label className="block mb-2 font-medium">
-                    Activation Code <span className="italic text-sm">(send to email Address)</span>
+                  <label className="block mb-2 font-medium dark:text-gray-200">
+                    Activation Code{" "}
+                    <span className="italic text-sm">
+                      (send to email Address)
+                    </span>
                   </label>
                   <input placeholder="Enter Activation Code" className="input" />
                 </div>
 
                 <div className="pt-4">
-                  <label className="flex gap-3">
+                  <label className="flex gap-3 dark:text-gray-300">
                     <input type="checkbox" className="checkbox" />
                     <span>
                       I agree to the{" "}
-                      <a href="#" className="text-teal-600 underline">
+                      <a href="#" className="text-teal-600 dark:text-teal-400 underline">
                         terms & conditions
                       </a>{" "}
                       and authorize eSIM activation
@@ -115,7 +122,7 @@ function Simcard() {
             <div className="flex justify-center pt-6">
               <button
                 type="submit"
-                className="px-20 py-3 bg-teal-700 text-white rounded-md font-semibold hover:bg-teal-800 transition"
+                className="px-20 py-3 bg-teal-700 text-white rounded-md font-semibold hover:bg-teal-800 transition dark:bg-teal-600 dark:hover:bg-teal-500"
               >
                 {selectedOption === "port" ? "Submit Request" : "Activate Your SIM"}
               </button>
@@ -133,16 +140,25 @@ function Simcard() {
           border: 1px solid #d1d5db;
           border-radius: 6px;
           background: white;
+          color: #111827;
         }
+
         .input:focus {
           outline: none;
           border-color: #0d9488;
         }
+
         .checkbox {
           width: 18px;
           height: 18px;
           accent-color: #0f766e;
           margin-top: 3px;
+        }
+
+        :global(.dark) .input {
+          background: #111827;
+          border: 1px solid #374151;
+          color: #f9fafb;
         }
       `}</style>
     </section>

@@ -52,26 +52,34 @@ const features = [
   }
 ];
 
+
 function Refund() {
   return (
-    <section className="bg-[#f8f9f7]">
-      {/* Green Header Bar */}
+    <section className="bg-[#f8f9f7] dark:bg-gray-900">
+      
+      {/* Header Bar */}
       <div className="bg-[#1e5d57] py-6 text-center">
         <h1 className="text-white text-2xl md:text-3xl font-bold">
-     Refund & Service Guarantees
+          Refund & Service Guarantees
         </h1>
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700">
+      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 
+                      text-gray-700 dark:text-gray-300">
+        
         {features.map((section, i) => (
           <div key={i}>
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            
+            <h2 className="text-lg font-semibold mb-2 
+                           text-gray-900 dark:text-white">
               {section.sectionTitle}
             </h2>
 
             {section.description && (
-              <p className="text-sm leading-relaxed">{section.description}</p>
+              <p className="text-sm leading-relaxed">
+                {section.description}
+              </p>
             )}
 
             {section.items && (
@@ -79,8 +87,9 @@ function Refund() {
                 {section.items.map((item, j) => (
                   <li key={j} className="text-sm leading-relaxed">
                     {item.subtitle && (
-                      <span className="font-semibold text-gray-900">
-                        {item.subtitle}:{" "}
+                      <span className="font-semibold 
+                                       text-gray-900 dark:text-white">
+                        {item.subtitle}{" "}
                       </span>
                     )}
                     {item.text}
@@ -94,5 +103,4 @@ function Refund() {
     </section>
   );
 }
-
 export default Refund;

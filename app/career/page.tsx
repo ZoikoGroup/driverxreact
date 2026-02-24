@@ -1,4 +1,4 @@
-import Accessibility from "./Accessibility";
+import Accessibility from "../accessibility-language-options/Accessibility";
 import Leadership from "./Leadership";
 import MissionValues from "./Missionvalue";
 import PressMedia from "./Pressmedia";

@@ -1,6 +1,6 @@
 function Loginform() {
   return (
-    <div className="h-screen w-full flex">
+    <div className="dark:bg-gray-900 h-screen w-full flex">
       
       {/* Left Side - Full Height Map Image */}
       <div className="w-1/2 h-full">
