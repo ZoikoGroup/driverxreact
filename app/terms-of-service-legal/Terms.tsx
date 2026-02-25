@@ -102,32 +102,32 @@ const features: FeatureSection[] = [
 
 function Terms() {
   return (
-    <section className="bg-[#f8f9f7]">
+    <section className="bg-[#f8f9f7] dark:bg-gray-900">
       {/* Green Header Bar */}
       <div className="bg-[#1e5d57] py-6 text-center">
-        <h1 className="text-white text-2xl md:text-3xl font-bold">
+        <h1 className="text-white text-2xl md:text-3xl font-bold dark:text-white">
 Terms of Service & Legal
         </h1>
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700">
+      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700 dark:text-white">
         {features.map((section, i) => (
           <div key={i}>
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 dark:text-white">
               {section.sectionTitle}
             </h2>
 
             {section.description && (
-              <p className="text-sm leading-relaxed">{section.description}</p>
+              <p className="text-sm leading-relaxed dark:text-white">{section.description}</p>
             )}
 
             {section.items && (
               <ul className="mt-3 space-y-2 list-disc list-inside">
                 {section.items.map((item, j) => (
-                  <li key={j} className="text-sm leading-relaxed">
+                  <li key={j} className="text-sm leading-relaxed dark:text-white">
                     {item.subtitle && (
-                      <span className="font-semibold text-gray-900">
+                      <span className="font-semibold text-gray-900 dark:text-white">
                         {item.subtitle}:{" "}
                       </span>
                     )}

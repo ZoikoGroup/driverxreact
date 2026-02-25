@@ -23,7 +23,7 @@ const FOOTER_LINKS = [
       { label: "Our Mission & Values", href: "/about/mission-values" },
       { label: "Leadership Team", href: "/loginform" },
       { label: "Careers", href: "/about/careers" },
-      { label: "Press & Media", href: "/about/press" },
+      { label: "Press & Media", href: "/press-media" },
     ],
   },
   {

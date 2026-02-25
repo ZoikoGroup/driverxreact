@@ -29,32 +29,32 @@ const features = [
 
 function Pci() {
   return (
-    <section className="bg-[#f8f9f7]">
+    <section className="bg-[#f8f9f7]  dark:bg-gray-900">
       {/* Header */}
       <div className="bg-[#1e5d57] py-6 text-center">
-        <h1 className="text-white text-2xl md:text-3xl font-bold">
+        <h1 className="text-white text-2xl md:text-3xl font-bold  dark:text-white">
           PCI DSS Security Standards
         </h1>
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700">
+      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700  dark:text-white">
         {features.map((section, i) => (
           <div key={i}>
-            <h2 className="text-lg font-semibold text-gray-900 mb-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3  dark:text-white">
               {section.sectionTitle}
             </h2>
 
             {section.description && (
-              <p className="text-sm leading-relaxed">{section.description}</p>
+              <p className="text-sm leading-relaxed  dark:text-white">{section.description}</p>
             )}
 
             {section.items && (
-              <ul className="mt-4 space-y-3 list-disc list-inside">
+              <ul className="mt-4 space-y-3 list-disc list-inside  dark:text-white">
                 {section.items.map((item, j) => (
                   <li key={j} className="text-sm leading-relaxed">
                     {item.subtitle && (
-                      <span className="font-semibold text-gray-900">
+                      <span className="font-semibold text-gray-900 dark:text-white">
                         {item.subtitle}:{" "}
                       </span>
                     )}
@@ -62,7 +62,7 @@ function Pci() {
 
                     {/* FIX — now this prints */}
                     {item.description && (
-                      <p className="mt-1 text-gray-600">{item.description}</p>
+                      <p className="mt-1 text-gray-600  dark:text-white">{item.description}</p>
                     )}
                   </li>
                 ))}
