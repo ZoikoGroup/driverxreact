@@ -23,9 +23,9 @@ export default function Navbar() {
   const menuData = {
     Solutions: [
       { label: "Fleet & Logistics Connectivity", href: "/solutions/fleet-logistics" },
-      { label: "Gig & Delivery Driver Plans", href: "/solutions/gig-delivery" },
-      { label: "Telematics & IoT Integrations", href: "/solutions/telematics-iot" },
-      { label: "Become a DriverX Partner", href: "/solutions/partner" },
+      { label: "Gig & Delivery Driver Plans", href: "/driverpage/gig" },
+      { label: "Telematics & IoT Integrations", href: "/telematics-iot-integrations" },
+      { label: "Become a DriverX Partner", href: "/become-a-driverx-partner" },
     ],
     Plans: [
       { label: "Prepaid Plans", href: "/plans/prepaid" },
