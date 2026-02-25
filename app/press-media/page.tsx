@@ -1,10 +1,11 @@
-import PressMedia from "../career/Pressmedia";
+import PressMedia from "./PressMedia";
+
 
 export default function plans(){
 
     return(
         <>
-        <PressMedia/>
+ <PressMedia/>
         
         </>
     );
