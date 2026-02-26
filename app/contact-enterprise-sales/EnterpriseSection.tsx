@@ -50,12 +50,12 @@ export default function EnterpriseSection() {
 
   return (
     <>
-      <br />
+      
 
       <section className="w-full bg-[#f5f5f5] dark:bg-gray-950 transition-colors duration-300">
 
         {/* HERO */}
-        <div className="bg-[#1f5f55] dark:bg-teal-900 py-20 text-center text-white font-semibold text-xl">
+        <div className="bg-[#1f5f55] dark:bg-teal-900 py-20 text-center text-white font-semibold text-5xl">
           Engineer The Future Of Mobility With DriverX
         </div>
 

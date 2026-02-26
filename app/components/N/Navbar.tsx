@@ -35,9 +35,9 @@ export default function Navbar() {
       { label: "Top-up Plans", href: "/plans/topup" },
     ],
     "Partner Offers": [
-      { label: "Partner with DriverX", href: "/partners" },
-      { label: "Partner Offer Program", href: "/partners/program" },
-      { label: "Contact Enterprise Sales", href: "/enterprise-sales" },
+      { label: "Partner with DriverX", href: "/partner-with-driverx" },
+      { label: "Partner Offer Program", href: "/partner-offer-program" },
+      { label: "Contact Enterprise Sales", href: "/contact-enterprise-sales" },
     ],
     Shop: [
       { label: "Smartphones", href: "/shop/smartphones" },
@@ -106,7 +106,7 @@ export default function Navbar() {
 
           {/* Desktop Right */}
           <div className="hidden md:flex items-center gap-4">
-            <Link href="/login" className="text-gray-600 hover:text-black">
+            <Link href="/login" className="text-gray-600 hover:text-black dark:text-gray-300">
               Login
             </Link>
             <Link
