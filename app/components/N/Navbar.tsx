@@ -45,10 +45,10 @@ export default function Navbar() {
     ],
     Support: [
       { label: "24/7 Driver Support", href: "/support/driver-support" },
-      { label: "DriverX Fleet Priority Line", href: "/support/fleet-priority" },
+      { label: "DriverX Fleet Priority Line", href: "/fleet-priority-line" },
       { label: "Coverage Maps", href: "/support/coverage" },
-      { label: "FAQs & Self Service", href: "/support/faqs" },
-      { label: "Accessibility & Language Options", href: "/support/accessibility" },
+      { label: "FAQs & Self Service", href: "/faqs-self-service" },
+      { label: "Accessibility & Language Options", href: "/accessibility-language-options" },
     ],
   };
 
