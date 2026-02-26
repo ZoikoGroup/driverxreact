@@ -1,9 +1,9 @@
 function Loginform() {
   return (
-    <div className="dark:bg-gray-900 h-screen w-full flex">
+    <div className="dark:bg-gray-900 flex flex-col lg:flex-row w-full">
       
       {/* Left Side - Full Height Map Image */}
-      <div className="w-1/2 h-full">
+      <div className="w-full lg:w-1/2 h-[300px] lg:h-auto">
         <img
           src="/images/image 232.png"
           alt="Map"
@@ -12,7 +12,7 @@ function Loginform() {
       </div>
 
       {/* Right Side - Form Section */}
-      <div className="w-1/2 h-full bg-teal-800 flex items-center px-20">
+      <div className="w-full lg:w-1/2 p-6 bg-teal-800 flex items-center px-20">
         <div className="w-full max-w-md">
           
           <h1 className="text-4xl font-bold text-white mb-4">
