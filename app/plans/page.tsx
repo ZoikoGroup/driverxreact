@@ -1,5 +1,14 @@
-import PlansSection from "../components/PlansSection";
+import PlansSection from "./PlansSection";
+
 
 export default function PlansPage() {
-  return <PlansSection />;
+  return (
+    <>
+    
+    
+    <PlansSection/>
+    
+    
+    </>
+  );
 }

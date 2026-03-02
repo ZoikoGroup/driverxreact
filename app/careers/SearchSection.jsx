@@ -1,51 +1,41 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import jobsData from "./jobsData";
-
-
-
- function SearchSection() {
+import { fetchJobs } from "../../Sdata/fetchJobs";
+export default function SearchSection() {
   const router = useRouter();
 
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
-  const [results, setResults] = useState(jobsData);
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 🔍 FILTER JOBS (FRONTEND ONLY)
+  //  LIVE FETCH FROM DJANGO BACKEND
   useEffect(() => {
-    const delay = setTimeout(() => {
-      setLoading(true);
+    const delay = setTimeout(async () => {
+      try {
+        setLoading(true);
 
-      const filtered = jobsData.filter((job) => {
-        const matchesQuery =
-          query.trim() === "" ||
-          job.title.toLowerCase().includes(query.toLowerCase()) ||
-          job.technologies.some((tech) =>
-            tech.toLowerCase().includes(query.toLowerCase())
-          );
+        // call backend with filters
+        const data = await fetchJobs({ query, location });
 
-        const matchesLocation =
-          location === "" || job.location === location;
-
-        return matchesQuery && matchesLocation;
-      });
-
-      setResults(filtered);
-      setLoading(false);
-    }, 300);
+        setResults(data);
+      } catch (err) {
+        console.error("Job fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    }, 400);
 
     return () => clearTimeout(delay);
   }, [query, location]);
 
-  // 🔍 SEARCH BUTTON → REDIRECT (OPTIONAL)
+  // 🔍 SEARCH BUTTON → REDIRECT PAGE
   function handleSearch() {
     const params = new URLSearchParams();
     if (query.trim()) params.append("q", query.trim());
     if (location) params.append("location", location);
-    router.push(`/jobs?${params.toString()}`);
+router.push(`/jobs?${params.toString()}`);
   }
 
   return (
@@ -54,7 +44,6 @@ import jobsData from "./jobsData";
         Check out our Open Positions to see where you fit in
       </h2>
 
-      {/* SEARCH CONTROLS */}
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row gap-4">
         <input
           type="text"
@@ -85,7 +74,7 @@ import jobsData from "./jobsData";
         </button>
       </div>
 
-      {/* RESULTS */}
+      {/* RESULTS UI SAME */}
       <div className="max-w-4xl mx-auto mt-12">
         {loading && (
           <p className="text-center text-gray-500">Loading...</p>
@@ -116,9 +105,10 @@ import jobsData from "./jobsData";
               </p>
 
               <div className="flex flex-wrap gap-2 mt-3">
-                {job.technologies.map((tech, index) => (
+                {job.technologies?.map((tech, index) => (
                   <span
                     key={index}
+                  
                     className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded"
                   >
                     {tech}
@@ -132,4 +122,3 @@ import jobsData from "./jobsData";
     </section>
   );
 }
-export default SearchSection;
