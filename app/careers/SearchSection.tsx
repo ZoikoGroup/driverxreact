@@ -64,7 +64,7 @@ export default function SearchSection() {
 
         <button
           onClick={handleSearch}
-          className="px-6 py-3 rounded-lg bg-orange-600 text-white hover:bg-orange-500 transition"
+          className="px-6 py-3 rounded-lg bg-teal-800 text-white hover:bg-teal-500 transition"
         >
           Search Jobs
         </button>
