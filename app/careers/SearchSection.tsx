@@ -3,12 +3,20 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { fetchJobs } from "../Sdata/fetchJobs";
 
+type Job = {
+  id: number;
+  title: string;
+  location: string;
+  shortDescription: string;
+  technologies?: string[];
+};
+
 export default function SearchSection() {
   const router = useRouter();
 
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<Job[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
