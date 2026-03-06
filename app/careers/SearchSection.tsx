@@ -1,46 +1,40 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import jobsData from "./jobsData";
+import { fetchJobs } from "../Sdata/fetchJobs";
 
+type Job = {
+  id: number;
+  title: string;
+  location: string;
+  shortDescription: string;
+  technologies?: string[];
+};
 
-
- function SearchSection() {
+export default function SearchSection() {
   const router = useRouter();
 
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
-  const [results, setResults] = useState(jobsData);
+  const [results, setResults] = useState<Job[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // 🔍 FILTER JOBS (FRONTEND ONLY)
   useEffect(() => {
-    const delay = setTimeout(() => {
-      setLoading(true);
-
-      const filtered = jobsData.filter((job) => {
-        const matchesQuery =
-          query.trim() === "" ||
-          job.title.toLowerCase().includes(query.toLowerCase()) ||
-          job.technologies.some((tech) =>
-            tech.toLowerCase().includes(query.toLowerCase())
-          );
-
-        const matchesLocation =
-          location === "" || job.location === location;
-
-        return matchesQuery && matchesLocation;
-      });
-
-      setResults(filtered);
-      setLoading(false);
-    }, 300);
+    const delay = setTimeout(async () => {
+      try {
+        setLoading(true);
+        const data = await fetchJobs({ query, location });
+        setResults(data);
+      } catch (err) {
+        console.error("Job fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    }, 400);
 
     return () => clearTimeout(delay);
   }, [query, location]);
 
-  // 🔍 SEARCH BUTTON → REDIRECT (OPTIONAL)
   function handleSearch() {
     const params = new URLSearchParams();
     if (query.trim()) params.append("q", query.trim());
@@ -49,25 +43,24 @@ import jobsData from "./jobsData";
   }
 
   return (
-    <section className="py-20 px-6 bg-gray-50">
-      <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">
+    <section className="py-20 px-6 bg-gray-950 text-gray-100">
+      <h2 className="text-3xl font-bold text-gray-100 text-center mb-10">
         Check out our Open Positions to see where you fit in
       </h2>
 
-      {/* SEARCH CONTROLS */}
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           placeholder="Job title or technology (React, Java, etc.)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="text-base sm:text-lg text-gray-900 flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="text-base sm:text-lg text-gray-100 bg-gray-900 flex-1 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
         />
 
         <select
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="text-base sm:text-lg text-gray-900 flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="text-base sm:text-lg text-gray-100 bg-gray-900 flex-1 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
         >
           <option value="">All Locations</option>
           <option value="delhi">Delhi</option>
@@ -79,7 +72,7 @@ import jobsData from "./jobsData";
 
         <button
           onClick={handleSearch}
-          className="px-6 py-3 rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition"
+          className="px-6 py-3 rounded-lg bg-teal-800 text-white hover:bg-teal-500 transition"
         >
           Search Jobs
         </button>
@@ -88,11 +81,11 @@ import jobsData from "./jobsData";
       {/* RESULTS */}
       <div className="max-w-4xl mx-auto mt-12">
         {loading && (
-          <p className="text-center text-gray-500">Loading...</p>
+          <p className="text-center text-gray-400">Loading...</p>
         )}
 
         {!loading && results.length === 0 && (
-          <p className="text-center text-gray-500">
+          <p className="text-center text-gray-400">
             No jobs found.
           </p>
         )}
@@ -101,25 +94,25 @@ import jobsData from "./jobsData";
           {results.map((job) => (
             <li
               key={job.id}
-              className="border rounded-xl p-6 shadow-sm hover:shadow-md transition"
+              className="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:shadow-lg hover:shadow-orange-500/10 transition"
             >
-              <h3 className="font-semibold text-lg text-gray-900">
+              <h3 className="font-semibold text-lg text-gray-100">
                 {job.title}
               </h3>
 
-              <p className="text-sm text-gray-600 mt-1 capitalize">
+              <p className="text-sm text-gray-400 mt-1 capitalize">
                 {job.location}
               </p>
 
-              <p className="text-sm text-gray-700 mt-3">
+              <p className="text-sm text-gray-300 mt-3">
                 {job.shortDescription}
               </p>
 
               <div className="flex flex-wrap gap-2 mt-3">
-                {job.technologies.map((tech, index) => (
+                {job.technologies?.map((tech, index) => (
                   <span
                     key={index}
-                    className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded"
+                    className="text-xs bg-orange-500/10 text-orange-400 px-2 py-1 rounded"
                   >
                     {tech}
                   </span>
@@ -132,4 +125,3 @@ import jobsData from "./jobsData";
     </section>
   );
 }
-export default SearchSection;

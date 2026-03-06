@@ -3,7 +3,10 @@ import Image from "next/image";
 import React from "react";
 
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+
+console.log(`${API_BASE}/jobs/api/`)
 const mobileFeatures = [
   {   id:1,
      image: "/images/headphone.png",

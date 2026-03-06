@@ -1,4 +1,4 @@
-import Accessibility from "../career/Accessibility";
+import Accessibility from "./Accessibility";
 
 export default function plan(){
 

@@ -49,19 +49,19 @@ const features = [
 
 function Cookie() {
   return (
-    <section className="bg-[#f8f9f7]">
+    <section className="bg-[#f8f9f7] dark:bg-gray-900">
       {/* Green Header Bar */}
-      <div className="bg-[#1e5d57] py-6 text-center">
-        <h1 className="text-white text-2xl md:text-3xl font-bold">
+      <div className="bg-[#1e5d57] py-6 text-center  dark:text-gray-300">
+        <h1 className=" dark:text-gray-300 text-white text-2xl md:text-3xl font-bold">
 Cookie Preferences & Opt-Out
         </h1>
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700">
+      <div className=" dark:text-gray-300 max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700">
         {features.map((section, i) => (
           <div key={i}>
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            <h2 className="text-lg font-semibold dark:text-gray-300 text-gray-900 mb-2">
               {section.sectionTitle}
             </h2>
 
@@ -69,12 +69,12 @@ Cookie Preferences & Opt-Out
               <p className="text-sm leading-relaxed">{section.description}</p>
             )}
 
-            {section.items && (
+            {section.items && ( 
               <ul className="mt-3 space-y-2 list-disc list-inside">
                 {section.items.map((item, j) => (
                   <li key={j} className="text-sm leading-relaxed">
                     {item.subtitle && (
-                      <span className="font-semibold text-gray-900">
+                      <span className="font-semibold dark:text-gray-300 text-gray-900">
                         {item.subtitle}:{" "}
                       </span>
                     )}
