@@ -15,7 +15,7 @@ export default function SearchSection() {
   const router = useRouter();
 
   const [query, setQuery] = useState("");
-  const [location, setLocation] = useState("");
+const [location, setLocation] = useState("all");
   const [results, setResults] = useState<Job[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -42,6 +42,8 @@ export default function SearchSection() {
     router.push(`/jobs?${params.toString()}`);
   }
 
+
+  
   return (
     <section className="py-20 px-6 bg-gray-950 text-gray-100">
       <h2 className="text-3xl font-bold text-gray-100 text-center mb-10">
@@ -62,12 +64,12 @@ export default function SearchSection() {
           onChange={(e) => setLocation(e.target.value)}
           className="text-base sm:text-lg text-gray-100 bg-gray-900 flex-1 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
         >
-          <option value="">All Locations</option>
-          <option value="delhi">Delhi</option>
-          <option value="mumbai">Mumbai</option>
-          <option value="chandigarh">Chandigarh</option>
-          <option value="bangalore">Bangalore</option>
-          <option value="mohali">Mohali</option>
+     <option value="all">All Locations</option>
+<option value="delhi">Delhi</option>
+<option value="mumbai">Mumbai</option>
+<option value="chandigarh">Chandigarh</option>
+<option value="bangalore">Bangalore</option>
+<option value="mohali">Mohali</option>
         </select>
 
         <button
@@ -84,11 +86,11 @@ export default function SearchSection() {
           <p className="text-center text-gray-400">Loading...</p>
         )}
 
-        {!loading && results.length === 0 && (
-          <p className="text-center text-gray-400">
-            No jobs found.
-          </p>
-        )}
+{!loading && results.length === 0 && (query || location) && (
+  <p className="text-center text-gray-400">
+    No jobs found.
+  </p>
+)}
 
         <ul className="grid sm:grid-cols-2 gap-6">
           {results.map((job) => (
