@@ -1,18 +1,20 @@
 export default function PressMedia() {
   return (
-    <section className="bg-[#f8faf7] min-h-screen">
+    <section className="bg-[#f8faf7] dark:bg-gray-950 min-h-screen transition-colors duration-300">
 
       {/* Top Banner */}
-      <div className="bg-[#0f766e] text-white text-center py-5">
-        <h1 className="text-2xl md:text-3xl font-semibold">Press & Media</h1>
+      <div className="bg-[#0f766e] dark:bg-teal-900 text-white dark:text-gray-200 text-center py-5 transition-colors duration-300">
+        <h1 className="text-2xl md:text-3xl font-semibold">
+          Press & Media
+        </h1>
       </div>
 
       {/* Content Container */}
-      <div className="max-w-4xl mx-auto px-6 py-12 text-gray-700 space-y-10">
+      <div className="max-w-4xl mx-auto px-6 py-12 text-gray-700 dark:text-gray-300 space-y-10 transition-colors duration-300">
 
         {/* Intro */}
         <div>
-          <h2 className="font-semibold text-lg mb-2">
+          <h2 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
             Welcome to the DriverX Mobile Media Room
           </h2>
           <p className="text-sm leading-relaxed">
@@ -26,7 +28,9 @@ export default function PressMedia() {
 
         {/* Recent Announcements */}
         <div>
-          <h2 className="font-semibold text-lg mb-3">Recent Announcements</h2>
+          <h2 className="font-semibold text-lg mb-3 text-gray-900 dark:text-white">
+            Recent Announcements
+          </h2>
           <ul className="list-disc list-inside text-sm space-y-2">
             <li>DriverX launches nationwide fleet connectivity suite (July 2025)</li>
             <li>Zoiko Communications expands investment in DriverX (June 2025)</li>
@@ -36,7 +40,9 @@ export default function PressMedia() {
 
         {/* Media Highlights */}
         <div>
-          <h2 className="font-semibold text-lg mb-3">Media Highlights</h2>
+          <h2 className="font-semibold text-lg mb-3 text-gray-900 dark:text-white">
+            Media Highlights
+          </h2>
           <ul className="list-disc list-inside text-sm space-y-2">
             <li>Telecom Weekly: DriverX building telecom layer for mobile professionals</li>
             <li>TechOnTrack Podcast: Interview with CEO Lance Mused</li>
@@ -44,13 +50,17 @@ export default function PressMedia() {
           </ul>
           <p className="text-sm mt-3">
             For media appearances, contact:
-            <span className="font-medium text-teal-700"> media@driverxmobile.com</span>
+            <span className="font-medium text-teal-700 dark:text-teal-400">
+              {" "}media@driverxmobile.com
+            </span>
           </p>
         </div>
 
         {/* Press & Brand Assets */}
         <div>
-          <h2 className="font-semibold text-lg mb-3">Press & Brand Assets</h2>
+          <h2 className="font-semibold text-lg mb-3 text-gray-900 dark:text-white">
+            Press & Brand Assets
+          </h2>
           <ul className="list-disc list-inside text-sm space-y-2">
             <li>Company overview and executive bios</li>
             <li>Leadership headshots (high-resolution)</li>
@@ -62,7 +72,9 @@ export default function PressMedia() {
 
         {/* Editorial Image Library */}
         <div>
-          <h2 className="font-semibold text-lg mb-3">Editorial Image Library</h2>
+          <h2 className="font-semibold text-lg mb-3 text-gray-900 dark:text-white">
+            Editorial Image Library
+          </h2>
           <ul className="list-disc list-inside text-sm space-y-2">
             <li>Fleet vehicles and brand ambassadors</li>
             <li>Behind-the-scenes product demos</li>
@@ -73,7 +85,7 @@ export default function PressMedia() {
 
         {/* Speaking Engagements */}
         <div>
-          <h2 className="font-semibold text-lg mb-3">
+          <h2 className="font-semibold text-lg mb-3 text-gray-900 dark:text-white">
             Speaking Engagements & Industry Panels
           </h2>
           <ul className="list-disc list-inside text-sm space-y-2">
@@ -84,14 +96,20 @@ export default function PressMedia() {
           </ul>
           <p className="text-sm mt-3">
             To request a speaker, email:
-            <span className="font-medium text-teal-700"> press@driverxmobile.com</span>
+            <span className="font-medium text-teal-700 dark:text-teal-400">
+              {" "}press@driverxmobile.com
+            </span>
           </p>
         </div>
 
         {/* Contact Block */}
-        <div className="bg-[#eef3f2] p-6 rounded-md">
-          <h2 className="font-semibold text-lg mb-2">DriverX Mobile – Press Office</h2>
-          <p className="text-sm">Albany | Sacramento | Austin | Springfield | Orlando | Delaware</p>
+        <div className="bg-[#eef3f2] dark:bg-gray-900 border dark:border-gray-800 p-6 rounded-md transition-colors duration-300">
+          <h2 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
+            DriverX Mobile – Press Office
+          </h2>
+          <p className="text-sm">
+            Albany | Sacramento | Austin | Springfield | Orlando | Delaware
+          </p>
           <p className="text-sm mt-2">
             Tel: <span className="font-medium">(800) 399-0087</span>
           </p>
