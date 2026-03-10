@@ -171,7 +171,7 @@ export default function PlansSection() {
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
-            Choose a Plan that's right for you
+            Choose a Plan that's right for you 1
           </h2>
           <p className="text-gray-500 text-base">
             Choose plan that works best for you, feel free to contact us
