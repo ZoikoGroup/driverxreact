@@ -51,7 +51,6 @@ const CheckIcon = () => (
     />
   </svg>
 );
-
 const PlanCard = ({ plan }: { plan: Plan }) => {
   const mid = Math.ceil(plan.features.length / 2);
   const leftFeatures = plan.features.slice(0, mid);
@@ -59,68 +58,82 @@ const PlanCard = ({ plan }: { plan: Plan }) => {
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
-      <div className="flex flex-col md:flex-row">
-        {/* Left: Plan Info */}
-        <div className="flex-1 p-6">
-          <div className="inline-block bg-[#1a4a3f] text-white text-sm font-bold px-4 py-2 rounded-lg mb-3">
-            {plan.name}
+      <div className="flex flex-row">
+
+        {/* ── LEFT 2/3: Header + Features ── */}
+        <div className="flex flex-col overflow-hidden" style={{ width: "75%" }}>
+
+          {/* Header row: badge + description */}
+          <div className="flex items-center pt-5 pb-4 gap-5">
+            <div
+              className="flex-shrink-0 bg-[#1a4a3f] text-white text-sm font-bold pl-5 pr-8 py-2.5 whitespace-nowrap"
+              style={{ borderRadius: "0 999px 999px 0" }}
+            >
+              {plan.name}
+            </div>
+
+            {plan.short_description && (
+              <p className="text-gray-800 text-sm font-semibold leading-snug pr-4">
+                {plan.short_description}
+              </p>
+            )}
           </div>
-          {plan.short_description && (
-            <p className="text-gray-600 text-sm font-medium mb-4">
-              {plan.short_description}
-            </p>
-          )}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
-            <div className="space-y-2">
+
+          {/* Features 2-col grid */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 px-5 pb-6">
+            <div className="space-y-2.5">
               {leftFeatures.map((f) => (
                 <div key={f.id} className="flex items-start gap-2">
                   <CheckIcon />
-                  <span className="text-gray-700 text-sm">{f.title}</span>
+                  <span className="text-gray-600 text-sm leading-snug">{f.title}</span>
                 </div>
               ))}
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {rightFeatures.map((f) => (
                 <div key={f.id} className="flex items-start gap-2">
                   <CheckIcon />
-                  <span className="text-gray-700 text-sm">{f.title}</span>
+                  <span className="text-gray-600 text-sm leading-snug">{f.title}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="hidden md:block w-px bg-gray-200 my-6" />
+        {/* Vertical divider */}
+        <div className="w-px bg-gray-200 my-5 flex-shrink-0" />
 
-        {/* Right: Price + CTA */}
-        <div className="md:w-48 flex flex-col items-center justify-center p-6 gap-4">
+        {/* ── RIGHT 1/3: Price + Button side by side ── */}
+        <div
+          className="flex flex-row items-center justify-center gap-3 px-5"
+          style={{ width: "25%" }}
+        >
           {plan.final_price > 0 ? (
-            <div className="text-center">
-              <span className="text-4xl font-extrabold text-gray-900">
+            <div className="flex items-baseline whitespace-nowrap">
+              <span className="text-3xl font-extrabold text-gray-900 tracking-tight">
                 ${plan.final_price % 1 === 0 ? plan.final_price.toFixed(0) : plan.final_price}
               </span>
-              <span className="text-gray-500 text-sm font-medium"> /mo</span>
+              <span className="text-gray-400 text-sm font-medium ml-1">/mo</span>
             </div>
           ) : (
-            <div className="text-center">
-              <span className="text-lg font-bold text-gray-700">Custom</span>
-            </div>
+            <span className="text-lg font-bold text-gray-700 whitespace-nowrap">Custom</span>
           )}
-          <button className="w-full bg-[#1a8a76] hover:bg-[#157a68] text-white font-semibold py-2.5 px-6 rounded-full transition-colors duration-200 text-sm">
+
+          <button className="bg-[#1a8a76] hover:bg-[#157a68] text-white font-semibold py-2.5 px-5 rounded-full transition-colors duration-200 text-sm whitespace-nowrap">
             Buy plan
           </button>
+
           {plan.is_popular && (
             <span className="text-xs bg-amber-100 text-amber-700 font-semibold px-3 py-1 rounded-full">
               Most Popular
             </span>
           )}
         </div>
+
       </div>
     </div>
   );
 };
-
 export default function PlansSection() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [loading, setLoading] = useState(true);
