@@ -20,8 +20,8 @@ const FOOTER_LINKS = [
     title: "About Us",
     links: [
       { label: "Company Overview", href: "/about-us" },
-      { label: "Our Mission & Values", href: "/about/mission-values" },
-      { label: "Leadership Team", href: "/loginform" },
+      { label: "Our Mission & Values", href: "/our-mission-values" },
+      { label: "Leadership Team", href: "/leadership-team" },
       { label: "Careers", href: "/careers" },
       { label: "Press & Media", href: "/press-media" },
     ],
