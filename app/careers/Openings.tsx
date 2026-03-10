@@ -16,7 +16,7 @@ export default function Openings() {
       <div className="max-w-6xl mx-auto text-center">
         <p className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto">
           At Zoiko Healthcare, your skills can thrive in a multitude of areas.
-          We are continuously seeking bright minds across functions such as
+          We are continuously seeking bright minds across   123 functions such as
         </p>
 
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
