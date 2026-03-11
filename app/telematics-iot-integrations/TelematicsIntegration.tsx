@@ -39,11 +39,10 @@ function TelematicsIntegration() {
     <section className="w-full bg-[#f3f4f6] dark:bg-gray-950 py-12">
 
       {/* Header */}
-      <div className="bg-[#1f6f63] dark:bg-[#154c44] py-3 text-center">
-        <span className="bg-[#f4a300] text-black text-sm font-semibold px-4 py-1 rounded dark:bg-gray-800 dark:text-yellow-400">
-          DriverX Telematics & IoT Integrations
-        </span>
+      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-5 text-xl font-semibold tracking-wide">
+     DriverX Telematics & IoT Integrations
       </div>
+
 
       {/* Intro */}
       <div className="max-w-6xl mx-auto px-6 py-10">
@@ -71,12 +70,12 @@ function TelematicsIntegration() {
             priority
           />
 
-          <div className="absolute bottom-6 right-6 bg-[#7dc9b2] dark:bg-gray-800 p-6 rounded-lg shadow-lg w-[280px] dark:text-gray-200">
+          <div className="absolute bottom-6 right-6 bg-[#7dc9b2] dark:bg-teal-500 p-6 rounded-lg shadow-lg w-[280px] dark:text-gray-200">
             <h4 className="font-semibold mb-3 text-sm">
               Built for Scale | Trusted Across Industries
             </h4>
             <ul className="space-y-2 text-xs">
-              <li>● Logistics & Freight</li>
+              <li>● Freight & Logistics</li>
               <li>● Construction & Heavy Equipment</li>
               <li>● Emergency Services</li>
               <li>● Asset Management</li>
