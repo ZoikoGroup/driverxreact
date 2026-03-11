@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-
+import PlansSection from "./AllPlansSection";
 
 
 const mobileFeatures = [
@@ -115,51 +115,7 @@ const Hero = () => {
       </div>
 
 
-      {/*
       
-      <div className="mx-auto max-w-7xl px-6 py-20">
-
-
-        <h2 className="text-center font-bold text-5xl">Why DriverX Mobile?</h2>
-<br />
-
-          <div className="grid gap-8 md:grid-cols-3">
-    {mobileFeatures.map((item) => (
-      <div
-        key={item.id}
-        className="rounded-2xl bg-white p-6 shadow-lg flex flex-col items-center"
->
-        <Image
-          src={item.image}
-          alt={item.title}
-          width={64}
-          height={64}
-          className="mb-4"
-        />
-
-        <h3 className="text-xl font-semibold text-gray-900">
-          {item.title}
-        </h3>
-
-        <p className="mt-2 text-gray-600">
-          {item.description}
-        </p>
-
-        <a
-          href={item.buttonLink}
-          className="mt-4 inline-block rounded-lg bg-teal-500 px-4 py-2 text-white hover:bg-teal-600"
-        >
-          {item.buttonText}
-        </a>
-      </div>
-    ))}
-  </div>
-
-
-
-
-      </div>
-      */}
     </section>
 
   <section className="bg-gray-100 dark:bg-gray-900 p-4">
@@ -333,6 +289,7 @@ const Hero = () => {
     </div>
   </div>
 </section>
+<PlansSection />
 {/* DRIVE TYPE SECTION */}
 <section className="bg-gray-50 py-20 dark:bg-gray-900">
   <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-8">
