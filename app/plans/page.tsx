@@ -1,8 +1,6 @@
 "use client";
-import PlansSection from "./PlansSection";
-
-
+import AllPlansSection from "../components/AllPlansSection";
 
 export default function PlansPage() {
-  return <PlansSection />;
+  return <AllPlansSection />;
 }
