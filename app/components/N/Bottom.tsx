@@ -20,20 +20,20 @@ const FOOTER_LINKS = [
     title: "About Us",
     links: [
       { label: "Company Overview", href: "/about-us" },
-      { label: "Our Mission & Values", href: "/about/mission-values" },
-      { label: "Leadership Team", href: "/loginform" },
+      { label: "Our Mission & Values", href: "/our-mission-values" },
+      { label: "Leadership Team", href: "/leadership-team" },
       { label: "Careers", href: "/careers" },
       { label: "Press & Media", href: "/press-media" },
-    ],
+    ], 
   },
   {
     title: "Our Solutions",
     links: [
-      { label: "Fleet & Logistics", href: "/driverpage/fleetsection" },
+      { label: "Fleet & Logistics", href: "/fleet-logistics-connectivity" },
       { label: "Connectivity", href: "/solutions/connectivity" },
-      { label: "Gig & Delivery Driver Plans", href: "/driverpage/gig" },
+      { label: "Gig & Delivery Driver Plans", href: "/gig-delivery-driver-plans" },
       { label: "Telematics & IoT", href: "/telematics-iot-integrations" },
-      { label: "Integrations", href: "/solutions/integrations" },
+   
       { label: "Become a DriverX Partner", href: "/become-a-driverx-partner" },
     ],
   },

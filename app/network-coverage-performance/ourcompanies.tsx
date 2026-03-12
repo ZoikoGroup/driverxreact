@@ -56,7 +56,7 @@ const features = [
   }
 ];
 
-function NetworkFeatures() {
+function ourcompanies() {
   return (
     <section className="bg-[#f8f9f7] dark:bg-gray-900">
       {/* Green Header Bar */}
@@ -99,4 +99,4 @@ function NetworkFeatures() {
   );
 }
 
-export default NetworkFeatures;
+export default ourcompanies;

@@ -37,8 +37,15 @@ export default function Become() {
         </h2>
 
         <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed max-w-4xl transition-colors duration-300">
-          DriverX Mobile is the connectivity backbone behind today's most advanced
-          telematics fleet management and IoT deployments.
+        DriverX Mobile is America’s premier mobility-first MVNO — engineered to serve the evolving needs of gig drivers, logistics networks, fleet operators, and connected vehicles. But we’re more than a mobile provider — we’re a platform for partners who want to build, scale, and win in the transportation economy.
+        </p>
+
+<br />
+        
+        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed max-w-4xl transition-colors duration-300">
+
+
+          As a DriverX Partner, you’ll gain access to a high-performance telecom stack, trusted brand assets, and purpose-built commercial models designed to help you unlock new revenue, deliver real value, and grow with confidence
         </p>
       </div>
 
@@ -55,7 +62,7 @@ export default function Become() {
             priority
           />
 
-          <div className="absolute bottom-6 right-6 bg-[#5ce024] dark:bg-green-600 p-6 rounded-lg shadow-lg w-[280px] transition-colors duration-300">
+          <div className="absolute bottom-6 right-6 bg-[#38a380] dark:bg-teal   -600 p-6 rounded-lg shadow-lg w-[280px] transition-colors duration-300">
             <h4 className="font-semibold mb-3 text-sm text-black dark:text-white">
               Built for Scale | Trusted Across Industries
             </h4>
@@ -111,27 +118,26 @@ export default function Become() {
         <div className="relative max-w-5xl mx-auto text-center text-white">
 
           <h2 className="text-2xl md:text-3xl font-semibold mb-6">
-            Make Every Asset Intelligent | Every Operation Smarter
+           Let’s Grow Together
           </h2>
 
           <p className="text-sm md:text-base opacity-90 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Whether you're powering an AI-enabled fleet or deploying next-gen sensors
-            across your logistics infrastructure, DriverX Mobile delivers secure,
-            reliable, and intelligent mobile connectivity that scales with your ambitions.
+         Let’s Grow Together
+With DriverX, you’re not just partnering with a mobile carrier. You’re joining a nationwide movement to power the future of transportation — through smarter connectivity, stronger brands, and shared growth.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
 
             <button className="bg-white dark:bg-gray-200 text-[#1f6f63] px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-              Explore Custom IoT Plans
+     Start the Conversation
             </button>
 
             <button className="bg-white dark:bg-gray-200 text-[#1f6f63] px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-              Schedule an Enterprise Demo
+             Download Our Partner Playbook
             </button>
 
             <button className="bg-white dark:bg-gray-200 text-[#1f6f63] px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-              Talk to a Solutions Architect
+             Schedule a Discovery Call
             </button>
 
           </div>

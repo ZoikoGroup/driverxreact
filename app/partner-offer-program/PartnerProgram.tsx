@@ -37,7 +37,7 @@ function PartnerProgram() {
       {/* HERO STRIP */}
       <section className="bg-gradient-to-r from-[#1e6f5c] to-[#2a8a78] dark:from-teal-900 dark:to-teal-800 text-white py-6">
         <div className="max-w-6xl mx-auto text-center px-6">
-          <h1 className="text-xl md:text-2xl font-semibold tracking-wide">
+          <h1 className="text-xl md:text-3xl font-semibold tracking-wide">
             Drive Growth | Deliver Value |{" "}
             <span className="text-yellow-400 font-bold">
               Partner With DriverX
@@ -164,7 +164,44 @@ function PartnerProgram() {
             </div>
           ))}
         </div>
+
+        <br />
+        <br />
+
+ <h1 className="text-center text-lg font-semibold mb-8 text-gray-800 dark:text-white">
+         Sample Offer Types
+        </h1>
+
       </div>
+        <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-3 gap-6 px-6">
+        {[
+          {
+            title: "Telematics App",
+            desc: " 'Activate with DriverX and get 60 days of XYZ Pro free.'  ",
+          },
+          {
+            title: "Vehicle Rental",
+            desc: " ' 10% off your first week when using a DriverX SIM.' ",
+          },
+          {
+            title: "Insurance Platform",
+            desc: " 'Exclusive gig coverage rates for DriverX members.  ' ",
+          },
+        ].map((item, i) => (
+          <div
+            key={i}
+            className="bg-[#f2efe9] dark:bg-gray-900 border-l-4 border-yellow-400 rounded-lg p-6 shadow-sm dark:shadow-lg border dark:border-gray-800 transition-colors"
+          >
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              {item.title}
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
 
       {/* HOW IT WORKS */}
       <div className="max-w-6xl mx-auto mt-20 px-6 text-center">

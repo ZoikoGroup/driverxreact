@@ -12,18 +12,18 @@ const jobs = [
 
 export default function Openings() {
   return (
-    <section className="bg-gray-950 py-16 px-6">
+    <section className="bg-white dark:bg-gray-900 py-16 px-6">
       <div className="max-w-6xl mx-auto text-center">
-        <p className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto">
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
           At Zoiko Healthcare, your skills can thrive in a multitude of areas.
-          We are continuously seeking bright minds across   123 functions such as
+          We are continuously seeking bright minds across 123 functions such as
         </p>
 
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {jobs.map((job, index) => (
             <div
               key={index}
-              className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-between hover:shadow-lg hover:shadow-yellow-500/10 transition duration-300"
+              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 flex flex-col items-center justify-between hover:shadow-lg hover:shadow-yellow-500/10 transition duration-300"
             >
               {/* Icon Box */}
               <div className="w-14 h-14 bg-yellow-500 rounded-lg flex items-center justify-center mb-6">
@@ -35,7 +35,7 @@ export default function Openings() {
               </div>
 
               {/* Title */}
-              <h3 className="text-sm font-semibold text-gray-100 mb-6 text-center leading-snug">
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-300 mb-6 text-center leading-snug">
                 {job.title}
               </h3>
 
@@ -45,7 +45,7 @@ export default function Openings() {
                   pathname: "/applynow",
                   query: { position: job.title },
                 }}
-                className="px-5 py-2 text-sm border border-gray-700 rounded-md text-gray-300 hover:bg-gray-800 hover:text-white transition"
+                className="px-5 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white transition"
               >
                 Apply Now
               </Link>

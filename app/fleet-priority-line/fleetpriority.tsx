@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Loginform from "../loginform/form";
 
 export default function FleetPriorityLine() {
   return (
@@ -173,6 +174,9 @@ export default function FleetPriorityLine() {
           </div>
         </div>
       </div>
+<br />
+<br />
+      <Loginform/>
 
     </section>
   );
