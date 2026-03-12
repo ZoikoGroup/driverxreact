@@ -22,8 +22,8 @@ export default function Navbar() {
 
   const menuData = {
     Solutions: [
-      { label: "Fleet & Logistics Connectivity", href: "/solutions/fleet-logistics" },
-      { label: "Gig & Delivery Driver Plans", href: "/driverpage/gig" },
+      { label: "Fleet & Logistics Connectivity", href: "/fleet-logistics-connectivity" },
+      { label: "Gig & Delivery Driver Plans", href: "/gig-delivery-driver-plans" },
       { label: "Telematics & IoT Integrations", href: "/telematics-iot-integrations" },
       { label: "Become a DriverX Partner", href: "/become-a-driverx-partner" },
     ],

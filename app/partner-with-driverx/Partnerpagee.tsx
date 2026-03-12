@@ -129,36 +129,44 @@ function PartnerWithDriverX() {
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Power The Platforms That Move The World
         </h1>
-        <p className="max-w-3xl mx-auto text-sm md:text-base opacity-90">
-          Where telecom meets logistics, mobility, and gig-tech.
-        </p>
+   
       </section>
 
       {/* INTRO */}
       <section className="max-w-6xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-3xl font-semibold mb-4">
           Partner with DriverX
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
-          We're not just a wireless provider, we're a connectivity engine for fleets,
-          delivery networks, mobility apps, and IoT platforms.
+             <p className="max-w-3xl mx-auto text-sm md:text-base opacity-90">
+      where telecom meets logistics, mobility, and gig-tech. We're not just a wireless provider, we're a connectivity engine for fleets, delivery networks, mobility apps, and IoT platforms.
         </p>
+
+        <br />
 
         <div className="flex justify-center gap-4">
           <button className="bg-teal-600 text-white px-6 py-2 rounded-full">
             Apply to Partner
           </button>
-          <button className="border border-gray-400 dark:border-gray-600 px-6 py-2 rounded-full">
-            Book Discovery Call
-          </button>
+         
         </div>
       </section>
 
       {/* WHO WE PARTNER WITH */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
-        <h3 className="text-center text-xl font-semibold mb-10">
+        <h3 className="text-center text-3xl font-semibold mb-10">
           Who We Partner With
         </h3>
+
+
+              <p className="max-w-3xl mx-auto text-sm md:text-base opacity-90">
+     
+     Join industry leaders across sectors to deliver more value to your customers
+while unlocking new monetization channels.
+              </p>
+
+
+<br />
+
 
         <div className="grid md:grid-cols-3 gap-6">
           {whoWePartnerWith.map((item, i) => (
