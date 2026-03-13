@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import SingleCatPlansSection from "../components/SingleCatPlansSection";
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 async function getPlans() {
@@ -70,54 +70,7 @@ export default function DriverXPlans() {
         />
       </div>
 
-      {/* DATA PLANS */}
-      <div className="max-w-5xl mx-auto px-4 pb-16">
-
-        <h2 className="text-center text-2xl font-semibold mb-10 text-[#2f6f66] dark:text-white">
-          Data-Only SIM Plans
-        </h2>
-
-        <div className="space-y-6">
-
-          {plans.map((plan: any) => (
-            <div
-              key={plan.id}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col md:flex-row justify-between items-center"
-            >
-
-              <div className="space-y-2">
-
-                <h3 className="font-semibold text-lg bg-[#2f6f66] text-white px-4 py-1 rounded-full inline-block">
-                  {plan.name}
-                </h3>
-
-                <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                  <li>✔ {plan.data_allowance}</li>
-                  <li>✔ {plan.iot_access}</li>
-                  <li>✔ {plan.hotspot}</li>
-                  <li>✔ {plan.availability}</li>
-                </ul>
-
-              </div>
-
-              <div className="text-center mt-4 md:mt-0">
-
-                <h3 className="text-2xl font-bold dark:text-white">
-                  ${plan.price}
-                  <span className="text-sm text-gray-500"> /mo</span>
-                </h3>
-
-                <button className="mt-3 bg-[#2f6f66] text-white px-6 py-2 rounded-full hover:bg-[#255a53]">
-                  Buy Plan
-                </button>
-
-              </div>
-
-            </div>
-          ))}
-
-        </div>
-      </div>
+      <SingleCatPlansSection cat="data-only-plans" heading="Data-Only SIM Plans"/>
 
       {/* VOICE BOOST */}
       <div className="bg-gray-200 dark:bg-gray-800 py-14">
