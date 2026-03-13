@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import PlansSection from "./AllPlansSection";
-
+import Link from "next/link";
 
 const mobileFeatures = [
   {   id:1,
@@ -320,7 +320,11 @@ const Hero = () => {
           Fast, reliable support for fleet, ride-hailing & logistics drivers.
         </p>
         <div className="mt-6">
-          <button className="h-10 w-10 rounded-full bg-[#2e7d6f] text-white">→</button>
+          <Link href="/freight-drivers">
+  <button className="h-10 w-10 rounded-full bg-[#2e7d6f] text-white">
+    →
+  </button>
+</Link>
         </div>
       </div>
 
@@ -337,7 +341,11 @@ const Hero = () => {
           Flexible options with no long term commitments.
         </p>
         <div className="mt-6">
-          <button className="h-10 w-10 rounded-full bg-orange-400 text-white">→</button>
+     <Link href="/gig-drivers">
+  <button className="h-10 w-10 rounded-full bg-[#d47910cc] text-white">
+    →
+  </button>
+</Link>
         </div>
       </div>
 
@@ -354,7 +362,11 @@ const Hero = () => {
           Affordable plans, quick help, and essential coverage.
         </p>
         <div className="mt-6">
-          <button className="h-10 w-10 rounded-full bg-red-400 text-white">→</button>
+        <Link href="/daily-commuters">
+  <button className="h-10 w-10 rounded-full bg-[#bb3102] text-white">
+    →
+  </button>
+</Link>
         </div>
       </div>
 
