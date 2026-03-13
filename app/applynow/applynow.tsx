@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import Navbar from "../components/N/Navbar";
+import Navbar from "../components/layout/Header";
 
 export default function ApplyNow() {
   const [fullName, setFullName] = useState("");
