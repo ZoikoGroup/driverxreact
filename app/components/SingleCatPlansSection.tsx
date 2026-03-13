@@ -1,47 +1,17 @@
 "use client";
-import { useState, useEffect, JSX } from "react";
+import { useState, useEffect } from "react";
 import { BuyPlanModal } from "./BuyPlanModal";
 import { EnquiryModal } from "./EnquiryModal";
-import type { Plan } from "./BuyPlanModal"; // shared Plan type lives in BuyPlanModal
+import type { Plan } from "./BuyPlanModal";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-interface AllPlansSectionProps {
+interface SingleCatPlansSectionProps {
+  /** Category slug, e.g. "prepaid-plans" */
+  cat: string;
   heading?: string;
   subHeading?: string;
 }
-
-// ── Constants ─────────────────────────────────────────────────────────────────
-
-const CATEGORY_TABS = [
-  { label: "Prepaid Plans",   slug: "prepaid-plans" },
-  { label: "Postpaid Plans",  slug: "postpaid-plans" },
-  { label: "Business Plans",  slug: "business-plans" },
-  { label: "Data-Only Plans", slug: "data-only-plans" },
-];
-
-const TAB_ICONS: Record<string, JSX.Element> = {
-  "prepaid-plans": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-    </svg>
-  ),
-  "postpaid-plans": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-    </svg>
-  ),
-  "business-plans": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-    </svg>
-  ),
-  "data-only-plans": (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-    </svg>
-  ),
-};
 
 // ── CheckIcon ─────────────────────────────────────────────────────────────────
 
@@ -122,7 +92,7 @@ const PlanCard = ({
           )}
 
           <button
-            onClick={() => plan.final_price === 0 ? onEnquire(plan) : onBuy(plan)}
+            onClick={() => (plan.final_price === 0 ? onEnquire(plan) : onBuy(plan))}
             className={`font-semibold py-2.5 px-5 rounded-full transition-colors duration-200 text-sm whitespace-nowrap ${
               plan.final_price === 0
                 ? "bg-white dark:bg-gray-600 border-2 border-[#1a8a76] text-[#1a8a76] dark:text-white hover:bg-[#f0faf8]"
@@ -143,106 +113,85 @@ const PlanCard = ({
   );
 };
 
-// ── Main Section ──────────────────────────────────────────────────────────────
+// ── Main Component ────────────────────────────────────────────────────────────
 
-export default function PlansSection({
-  heading = "Choose a Plan that's right for you",
-  subHeading = "Choose plan that works best for you, feel free to contact us",
-}: AllPlansSectionProps) {
+export default function SingleCatPlansSection({
+  cat,
+  heading,
+  subHeading,
+}: SingleCatPlansSectionProps) {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState("prepaid-plans");
   const [enquiryPlan, setEnquiryPlan] = useState<Plan | null>(null);
   const [buyPlan, setBuyPlan] = useState<Plan | null>(null);
 
   useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/api/plans/v1/")
+    if (!cat) return;
+    setLoading(true);
+    setError(null);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/plans/v1/category/${cat}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch plans");
         return res.json();
       })
-      .then((data) => { setPlans(data); setLoading(false); })
-      .catch((err) => { setError(err.message); setLoading(false); });
-  }, []);
+      .then((data: Plan[]) => {
+        setPlans(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [cat]);
 
-  const filteredPlans = plans
-    .filter((p) => p.category?.slug === activeTab && p.is_active)
+  const sortedPlans = plans
+    .filter((p) => p.is_active)
     .sort((a, b) => {
+      // Push $0 / enquire plans to the bottom
       if (a.final_price === 0 && b.final_price !== 0) return 1;
       if (a.final_price !== 0 && b.final_price === 0) return -1;
       return a.final_price - b.final_price;
     });
 
-  const availableTabs = CATEGORY_TABS.filter((tab) =>
-    plans.some((p) => p.category?.slug === tab.slug && p.is_active)
-  );
-
   return (
     <section className="bg-[#f5f7f6] dark:bg-gray-800 min-h-screen py-16 px-4 overflow-x-hidden w-full">
       <div className="max-w-6xl xl:max-w-6xl lg:max-w-4xl mx-auto w-full overflow-hidden">
 
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold dark:text-white text-gray-900 mb-2">{heading}</h2>
-          <p className="text-gray-500 text-sm sm:text-base dark:text-gray-400">{subHeading}</p>
-        </div>
-
-        {/* Tabs — mobile grid */}
-        <div className="mb-10">
-          <div className="grid grid-cols-2 gap-3 sm:hidden">
-            {availableTabs.map((tab) => {
-              const isActive = activeTab === tab.slug;
-              return (
-                <button
-                  key={tab.slug}
-                  onClick={() => setActiveTab(tab.slug)}
-                  className={`relative flex flex-col items-center justify-center gap-1.5 py-4 px-3 rounded-2xl font-semibold text-sm transition-all duration-200 border-2 ${
-                    isActive
-                      ? "bg-[#1a4a3f] dark:bg-gray-600 dark:text-gray-900 text-white border-[#1a4a3f] shadow-lg scale-[1.02]"
-                      : "bg-white dark:bg-gray-700 dark:text-gray-100 text-gray-600 border-gray-200 hover:border-[#1a4a3f] hover:text-[#1a4a3f]"
-                  }`}
-                >
-                  <span className={isActive ? "text-white" : "text-[#1a8a76]"}>{TAB_ICONS[tab.slug]}</span>
-                  <span className="leading-tight text-center">{tab.label}</span>
-                  {isActive && <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#4ecdb4]" />}
-                </button>
-              );
-            })}
+        {/* Optional heading block */}
+        {(heading || subHeading) && (
+          <div className="text-center mb-10">
+            {heading && (
+              <h2 className="text-2xl sm:text-3xl font-extrabold dark:text-white text-gray-900 mb-2">
+                {heading}
+              </h2>
+            )}
+            {subHeading && (
+              <p className="text-gray-500 text-sm sm:text-base dark:text-gray-400">{subHeading}</p>
+            )}
           </div>
+        )}
 
-          {/* Tabs — desktop pill */}
-          <div className="hidden sm:flex justify-center">
-            <div className="bg-white dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-full px-2 py-2 flex gap-2 shadow-md w-full max-w-2xl">
-              {availableTabs.map((tab) => (
-                <button
-                  key={tab.slug}
-                  onClick={() => setActiveTab(tab.slug)}
-                  className={`flex-1 py-2.5 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-200 whitespace-nowrap text-center ${
-                    activeTab === tab.slug
-                      ? "bg-[#1a4a3f] dark:bg-[#37C4A0] dark:text-gray-800 text-white shadow-md"
-                      : "bg-transparent text-gray-900 dark:text-gray-300 hover:bg-gray-100 hover:text-gray-900"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Plan list */}
+        {/* States */}
         {loading && (
           <div className="flex justify-center items-center py-24">
             <div className="w-10 h-10 border-4 border-[#1a8a76] border-t-transparent rounded-full animate-spin" />
           </div>
         )}
-        {error && <div className="text-center py-16 text-red-500 font-medium">{error}</div>}
+
+        {error && (
+          <div className="text-center py-16 text-red-500 font-medium">{error}</div>
+        )}
+
         {!loading && !error && (
           <div className="space-y-4">
-            {filteredPlans.length === 0 ? (
-              <p className="text-center text-gray-400 py-16">No plans available in this category.</p>
+            {sortedPlans.length === 0 ? (
+              <p className="text-center text-gray-400 py-16">
+                No plans available in this category.
+              </p>
             ) : (
-              filteredPlans.map((plan) => (
+              sortedPlans.map((plan) => (
                 <PlanCard
                   key={plan.id}
                   plan={plan}
@@ -255,13 +204,9 @@ export default function PlansSection({
         )}
       </div>
 
-      {/* ── Modals (imported from separate modules) ── */}
-      {buyPlan && (
-        <BuyPlanModal plan={buyPlan} onClose={() => setBuyPlan(null)} />
-      )}
-      {enquiryPlan && (
-        <EnquiryModal plan={enquiryPlan} onClose={() => setEnquiryPlan(null)} />
-      )}
+      {/* Modals */}
+      {buyPlan && <BuyPlanModal plan={buyPlan} onClose={() => setBuyPlan(null)} />}
+      {enquiryPlan && <EnquiryModal plan={enquiryPlan} onClose={() => setEnquiryPlan(null)} />}
     </section>
   );
 }
