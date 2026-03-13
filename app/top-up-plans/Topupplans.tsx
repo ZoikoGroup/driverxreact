@@ -41,7 +41,7 @@ const Topupplans = () => {
           </div>
         </div>
       </section>
-<SingleCatPlansSection cat="data-only-plans" heading="top-up-plans"/>
+<SingleCatPlansSection cat="data-only-plans" heading="Topup Plans Designed for Fleets"/>
 
 
 <br />
