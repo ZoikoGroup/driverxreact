@@ -40,7 +40,7 @@ const FOOTER_LINKS = [
   {
     title: "Support & Resources",
     links: [
-      { label: "24/7 Driver Support", href: "/support/driver-support" },
+      { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "Fleet Priority Line", href: "/fleet-priority-line" },
       { label: "Coverage Maps", href: "/support/coverage" },
       { label: "FAQs & Self Service", href: "/support/faqs" },
