@@ -2,13 +2,53 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
-
+import { useRouter, usePathname } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
+import { ShoppingCart } from "lucide-react";
 export default function Navbar() {
+  const router = useRouter();
+    const [cartCount, setCartCount] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
 
+useEffect(() => {
+
+    const updateCartCount = () => {
+
+      try {
+
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        if (!Array.isArray(cart)) {
+
+          setCartCount(0);
+          return;
+
+        }
+
+        const count = cart.reduce(
+          (total, item) => total + Number(item?.formData?.priceQty ?? 1),
+          0
+        );
+
+        setCartCount(count);
+
+      } catch {
+
+        setCartCount(0);
+
+      }
+
+    };
+
+    updateCartCount();
+
+    window.addEventListener("storage", updateCartCount);
+
+    return () => window.removeEventListener("storage", updateCartCount);
+
+  }, []);
   const handleMouseEnter = (menu: string) => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current);
     setActiveMenu(menu);
@@ -28,11 +68,11 @@ export default function Navbar() {
       { label: "Become a DriverX Partner", href: "/become-a-driverx-partner" },
     ],
     Plans: [
-      { label: "Prepaid Plans", href: "/plans/prepaid" },
-      { label: "Postpaid Plans", href: "/plans/postpaid" },
-      { label: "Data-Only Plans", href: "/plans/data-only" },
-      { label: "Business Plans", href: "/plans/business" },
-      { label: "Top-up Plans", href: "/plans/topup" },
+      { label: "Prepaid Plans", href: "/prepaid-plans" },
+      { label: "Postpaid Plans", href: "/postpaid-plans" },
+      { label: "Data-Only Plans", href: "/data-only-plans" },
+      { label: "Business Plans", href: "/business-plans" },
+      { label: "Top-up Plans", href: "/top-up-plans" },
     ],
     "Partner Offers": [
       { label: "Partner with DriverX", href: "/partner-with-driverx" },
@@ -106,6 +146,25 @@ export default function Navbar() {
 
           {/* Desktop Right */}
           <div className="hidden md:flex items-center gap-4">
+            <div
+            className="relative cursor-pointer"
+            onClick={() => router.push("/checkout")}
+          >
+
+            <ShoppingCart className="w-6 h-6" />
+
+            {cartCount > 0 && (
+
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+
+                {cartCount}
+
+              </span>
+
+            )}
+
+          </div>
+
             <Link href="/login" className="text-gray-600 hover:text-black dark:text-gray-300">
               Login
             </Link>

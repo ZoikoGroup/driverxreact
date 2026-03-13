@@ -1,5 +1,5 @@
-import Bottom from "./components/N/Bottom";
-import Navbar from "./components/N/Navbar";
+import Bottom from "./components/layout/Footer";
+import Navbar from "./components/layout/Header";
 import "./globals.css";
 
 export const metadata = {
