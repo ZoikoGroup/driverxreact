@@ -7,15 +7,23 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 async function getPlans() {
   try {
-    const res = await fetch(`${API_BASE}/plans/`);
-    const data = await res.json();
-    return data;
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/plans/`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) {
+      console.error("API returned error:", res.status);
+      return [];
+    }
+
+    return await res.json();
+
   } catch (error) {
     console.error("Error fetching plans:", error);
     return [];
   }
 }
-
 export default function DriverXPlans() {
   const [plans, setPlans] = useState<any[]>([]);
 
