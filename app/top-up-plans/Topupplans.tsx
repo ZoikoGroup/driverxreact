@@ -1,39 +1,7 @@
 "use client";
 
 import Image from "next/image";
-
-
-
-
-
-const plans = [
-  {
-    name: "DriverX RouteBoost",
-    subtitle: "Short shifts, light usage, GPS, ride-hailing apps",
-    price: 8.99,
-    features: [
-      "3GB High-Speed Data (Premium 5G/LTE Tier-1 network access)",
-      "20GB Mobile Hotspot",
-      "Unlimited Talk & Text (U.S., Canada, Mexico only)",
-      "Free International Calls & Texts (to 220+ countries)",
-    ],
-    cta: "Buy Plan",
-  },
-  {
-    name: "DriverX DriveMax",
-    subtitle:
-      "Gig workers, delivery professionals, long-distance drivers",
-    price: 17.99,
-    features: [
-      "6GB High-Speed Data (Premium 5G/LTE Tier-1 network access)",
-      "20GB Mobile Hotspot",
-      "Unlimited Talk & Text (U.S., Canada, Mexico only)",
-      "Free International Calls & Texts (to 220+ countries)",
-    ],
-    cta: "Buy Plan",
-  },
-];
-
+import SingleCatPlansSection from "../components/SingleCatPlansSection";
 
 const Topupplans = () => {
   return (
@@ -73,46 +41,7 @@ const Topupplans = () => {
           </div>
         </div>
       </section>
-<div className="mx-auto max-w-7xl px-6 py-16 grid gap-10 md:grid-cols-2">
-  {plans.map((plan, index) => (
-    <div
-      key={index}
-      className="rounded-3xl border bg-white p-10 shadow-md flex flex-col justify-between"
-    >
-      {/* TOP BAR */}
-      <div className="flex items-center justify-between mb-6">
-        <span className="rounded-full bg-teal-800 px-5 py-2 text-white font-semibold">
-          {plan.name}
-        </span>
-
-        <p className="text-4xl font-bold text-gray-900">
-          ${plan.price}
-          <span className="text-lg font-normal text-gray-500"> /30 Days</span>
-        </p>
-      </div>
-
-      {/* Subtitle */}
-      <p className="text-gray-600 mb-6 font-medium">{plan.subtitle}</p>
-
-      {/* Features */}
-      <ul className="space-y-4 text-gray-700 mb-10">
-        {plan.features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-3">
-            <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-teal-700 text-xs text-white">
-              ✓
-            </span>
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* CTA */}
-      <button className="mx-auto w-[220px] rounded-full bg-gradient-to-r from-teal-500 to-emerald-400 py-3 font-semibold text-white hover:opacity-90 transition">
-        Buy Plan
-      </button>
-    </div>
-  ))}
-</div>
+<SingleCatPlansSection cat="data-only-plans" heading="top-up-plans"/>
 
 
 <br />
