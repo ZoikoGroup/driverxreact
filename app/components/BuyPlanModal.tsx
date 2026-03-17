@@ -350,7 +350,7 @@ export const BuyPlanModal = ({
     }
     setImeiError(null); setChecking(true); setCompatResult(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/device_compatibility_checker/", {
+      const res = await fetch("https://goliteapi.golitemobile.com/api/device_compatibility_checker/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
