@@ -346,24 +346,32 @@ export const BuyPlanModal = ({
   const handleCheckDevice = async () => {
     if (!imei.trim()) { setImeiError("Please enter your IMEI/MEID number."); return; }
     if (!/^\d{14,16}$/.test(imei.replace(/\s/g, ""))) {
-      setImeiError("Please enter a valid 14–16 digit IMEI number."); return;
+      setImeiError("Please enter a valid 14-16 digit IMEI number."); return;
     }
     setImeiError(null); setChecking(true); setCompatResult(null);
     try {
-      const res = await fetch("https://zoiko-atom-api.bequickapps.com/carriers/3/query_device_info", {
+      const res = await fetch("http://127.0.0.1:8000/api/device_compatibility_checker/", {
         method: "POST",
-        headers: { "X-AUTH-TOKEN": process.env.NEXT_PUBLIC_BEQUICK_TOKEN!, "Content-Type": "application/json" },
-        body: JSON.stringify({ device_serial: imei.trim() }),
+        headers: {
+          "Content-Type": "application/json",
+          "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
+        },
+        body: JSON.stringify({ action: "esim_checker", imei: imei.trim() }),
       });
       const data = await res.json();
-      const info = data.device_info ?? {};
+
+      if (!data.success) {
+        setCompatResult({ compatible: false, message: data.error || "Verification failed." });
+        return;
+      }
+
       setCompatResult({
-        compatible: data.compatibility === true,
-        device: info.marketing_name ?? info.name ?? null,
-        manufacturer: info.manufacturer ?? null,
-        lteCompatible: info.lte_device,
-        fiveGCompatible: info.device_5g,
-        esimCompatible: info.esim_compatible,
+        compatible: data.compatible,           // true if attCompatibility === "GREEN"
+        device: data.device ?? null,           // manufacturer.model
+        manufacturer: data.manufacturer ?? null, // manufacturer.make
+        lteCompatible: data.lteCompatible ?? null,
+        fiveGCompatible: null,                 // not in VCare response
+        esimCompatible: data.esimCompatible ?? null, // same as compatible
         message: data.message ?? null,
       });
     } catch (err) {
