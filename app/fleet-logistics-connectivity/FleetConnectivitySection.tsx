@@ -149,7 +149,7 @@ const FleetConnectivitySection = () => {
             visibility, and move with precision.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <div className="flex flex-wrap justify-center gap-4 mt-8 ">
 
             <button className="bg-white text-[#2f6f66] px-6 py-2 rounded-md font-medium hover:opacity-90 transition">
               Explore Fleet Plans

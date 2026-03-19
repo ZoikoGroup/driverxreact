@@ -84,7 +84,7 @@ useEffect(() => {
       { label: "Accessories", href: "/shop/accessories" },
     ],
     Support: [
-      { label: "24/7 Driver Support", href: "/support/driver-support" },
+      { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "DriverX Fleet Priority Line", href: "/fleet-priority-line" },
       { label: "Coverage Maps", href: "/support/coverage" },
       { label: "FAQs & Self Service", href: "/faqs-self-service" },
