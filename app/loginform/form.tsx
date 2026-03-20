@@ -1,8 +1,61 @@
+"use client";
+import { useState } from "react";
+
 function Loginform() {
+
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/contact/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Message sent successfully ");
+        setFormData({
+          first_name: "",
+          last_name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        alert("Error: " + JSON.stringify(data));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong ❌");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div className="dark:bg-gray-900 flex flex-col lg:flex-row w-full">
-      
-      {/* Left Side - Full Height Map Image */}
+
       <div className="w-full lg:w-1/2 h-[300px] lg:h-auto">
         <img
           src="/images/image 232.png"
@@ -11,10 +64,9 @@ function Loginform() {
         />
       </div>
 
-      {/* Right Side - Form Section */}
       <div className="w-full lg:w-1/2 p-6 bg-teal-800 flex items-center px-20">
         <div className="w-full max-w-md">
-          
+
           <h1 className="text-4xl font-bold text-white mb-4">
             Let’s Talk
           </h1>
@@ -23,60 +75,52 @@ function Loginform() {
             Fill up the form our team will get back to you within 24 Hours
           </p>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
 
-            {/* First + Last Name */}
             <div className="flex gap-6">
-              <div className="flex-1">
-                <label className="block text-sm text-white mb-2">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your First Name"
-                  className="w-full px-4 py-3 rounded-md bg-gray-200 focus:outline-none"
-                />
-              </div>
-
-              <div className="flex-1">
-                <label className="block text-sm text-white mb-2">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your Last Name"
-                  className="w-full px-4 py-3 rounded-md bg-gray-200 focus:outline-none"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm text-white mb-2">
-                Email Address
-              </label>
               <input
-                type="email"
-                placeholder="Enter your Email Address"
-                className="w-full px-4 py-3 rounded-md bg-gray-200 focus:outline-none"
+                type="text"
+                name="first_name"
+                placeholder="First Name"
+                value={formData.first_name}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-md bg-gray-200"
+              />
+
+              <input
+                type="text"
+                name="last_name"
+                placeholder="Last Name"
+                value={formData.last_name}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-md bg-gray-200"
               />
             </div>
 
-            {/* Message */}
-            <div>
-              <textarea
-                placeholder="Enter your Messages"
-                rows={5}
-                className="w-full px-4 py-3 rounded-md bg-gray-200 resize-none focus:outline-none"
-              />
-            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-md bg-gray-200"
+            />
 
-            {/* Button */}
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows={5}
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-md bg-gray-200"
+            />
+
             <button
               type="submit"
+              disabled={loading}
               className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-teal-800 transition"
             >
-              Send Messages
+              {loading ? "Sending..." : "Send Message"}
             </button>
 
           </form>
