@@ -32,25 +32,25 @@ const Postpaidplans = () => {
   return (
     <>
       {/* TOP TITLE BAR */}
-      <div className="bg-teal-800 py-12">
-        <h2 className="text-white text-center font-bold text-5xl">
+      <div className="bg-teal-800 py-12 ">
+        <h2 className="text-white text-center font-bold text-5xl   dark:text-white">
           DriverX Post-paid Plans
         </h2>
       </div>
 
       {/* HERO SECTION */}
-      <section className="mx-auto max-w-7xl px-8 py-20">
+      <section className="mx-auto max-w-7xl px-8 py-20  dark:bg-gray-950  dark:text-white">
         <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-          <div className="bg-[#f6fbef] p-12 h-full flex flex-col justify-center">
-            <h3 className="text-4xl font-bold text-gray-900 leading-tight">
+          <div className="bg-[#f6fbef] p-12 h-full flex flex-col justify-center dark:bg-gray-950  dark:text-white">
+            <h3 className="text-4xl font-bold text-gray-900 leading-tight  dark:text-white">
             Postpaid Plans Built for Drivers 
  <br />
             Who Go the Extra Mile
             </h3>
 
-            <p className="mt-6 text-gray-600 text-lg max-w-md">
+            <p className="mt-6 text-gray-600 text-lg max-w-md dark:bg-gray-950  dark:text-white">
              Enjoy the freedom to work first and pay later — with exclusive driver perks, maximum reliability, and flexible credit-friendly options that keep your wheels and business turning
             </p>
           </div>
@@ -81,12 +81,12 @@ const Postpaidplans = () => {
         className="group relative flex flex-col items-center"
       >
         {/* ICON */}
-        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
+        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full dark:bg-gray-950  dark:text-white bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
           {item.icon}
         </div>
 
         {/* CARD */}
-        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center text-white transition group-hover:bg-yellow-400 group-hover:text-black">
+        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center dark:bg-gray-950  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
           <p className="font-semibold leading-snug">
             {item.title}
           </p>
@@ -103,7 +103,7 @@ const Postpaidplans = () => {
 {/* why choose us banners */}
 
 
-<div className="mx-auto max-w-7xl px-6 py-20">
+<div className="mx-auto max-w-7xl px-6 py-20 dark:bg-gray-950  dark:text-white">
   <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start">
 
     {/* LEFT: Image */}
@@ -116,8 +116,8 @@ const Postpaidplans = () => {
     </div>
 
     {/* RIGHT: Content */}
-    <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-gray-900">
+    <div className="space-y-6 dark:bg-gray-950  dark:text-white">
+      <h3 className="text-2xl font-bold   dark:text-white text-gray-900">
         Why Choose DriverX Mobile?
       </h3>
 
@@ -127,7 +127,7 @@ const Postpaidplans = () => {
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-800">
+          <p className="text-gray-800 dark:bg-gray-950  dark:text-white">
             Credit-friendly plans with low deposit options
           </p>
         </div>
@@ -136,7 +136,7 @@ const Postpaidplans = () => {
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:bg-gray-950  dark:text-white">
             PCI & FCC Compliant • Encrypted billing
           </p>
         </div>
@@ -145,7 +145,7 @@ const Postpaidplans = () => {
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:bg-gray-950  dark:text-white">
             Flexible spend caps and no overage shocks
           </p>
         </div>
@@ -154,7 +154,7 @@ const Postpaidplans = () => {
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-800">
+          <p className="text-gray-800 dark:bg-gray-950  dark:text-white">
             Built-in perks that lower your total cost of driving
           </p>
         </div>
@@ -172,15 +172,15 @@ const Postpaidplans = () => {
 
     {/* LEFT: Content */}
     <div className="max-w-lg">
-      <h3 className="text-2xl font-bold text-gray-900 mb-3">
+      <h3 className="text-2xl font-bold dark:bg-gray-950  dark:text-white text-gray-900 mb-3">
         Coverage, Features & Control
       </h3>
 
-      <p className="text-gray-900 font-medium mb-4">
+      <p className="text-gray-900  dark:bg-gray-950  dark:text-white font-medium mb-4">
         Your phone. Your plan. Your way.
       </p>
 
-      <p className="text-gray-600 leading-relaxed">
+      <p className= " dark:bg-gray-950  dark:text-white text-gray-600 leading-relaxed">
        
 Professional drivers trust DriverX Mobile for unmatched connectivity, exclusive cash-back perks, and support designed for the road. It’s more than a plan — it’s your business partner.
       </p>

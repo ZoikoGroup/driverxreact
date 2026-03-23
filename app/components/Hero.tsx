@@ -42,7 +42,7 @@ const Hero = () => {
           <div>
             {/* Badge */}
             <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-4 py-1 text-sm font-semibold text-white">
-               #01 Driver Mobile Network
+               #1 Driver Mobile Network
             </span>
 
             {/* Heading */}
@@ -89,9 +89,12 @@ const Hero = () => {
     View Plans
   </button>
 
-  <button className="w-full sm:w-auto rounded-full border-2 border-teal-500 px-8 py-3 font-semibold text-teal-600 hover:bg-teal-50 transition">
-    Explore Business Plans
+<Link href="/partner-with-driverx">
+<button className="w-full sm:w-auto rounded-full border-2 border-teal-500 px-8 py-3 font-semibold text-teal-600 hover:bg-teal-50 transition">
+   Become a partner
   </button>
+</Link>
+  
 </div>
             {/* Footer text */}
             <p className="mt-6 text-sm text-gray-500 dark:text-gray-200">

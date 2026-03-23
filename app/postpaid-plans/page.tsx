@@ -4,7 +4,7 @@ export default function Plan(){
 
 
     return(
-        <div>
+        <div className="dark:text-white dark:bg-gray-950  ">
    <Postpaidplans/>
         </div>
     );
