@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-
+import SingleCatPlansSection from "../components/SingleCatPlansSection";
 
 
 const benefits = [
@@ -27,60 +27,7 @@ const benefits = [
   },
 ];
 
-const plans = [
-  {
-    name: "DriverX Fleet 10",
-    subtitle: "For startups, local operators, and small fleets",
-    price: 28,
-    features: [
-      "10GB High-Speed Data (Unlimited 2G thereafter)",
-      "5GB Mobile Hotspot",
-      "Unlimited Talk & Text (U.S., Canada, Mexico only)",
-      "Optional GPS tracking and usage monitoring (through the DriverX portal)",
-    ],
-    cta: "Buy Plan",
-  },
-  {
-    name: "DriverX Fleet 25",
-    subtitle:
-      "For expanding teams that need extra power, flexibility, and management tools to support daily operations",
-    price: 58,
-    features: [
-      "25GB High-Speed Data (Unlimited 2G thereafter)",
-      "10GB Mobile Hotspot",
-      "Unlimited Talk & Text (Across North America)",
-      "Full access to the DriverX Portal (Fleet Management Portal with standard GPS tracking)",
-    ],
-    cta: "Buy Plan",
-  },
-  {
-    name: "DriverX Fleet Unlimited",
-    subtitle:
-      "For fleets that need worry-free data access and premium-grade support",
-    price: 110,
-    features: [
-      "Unlimited High-Speed Data",
-      "15GB Mobile Hotspot",
-      "Unlimited Talk & Text (U.S., Canada, Mexico only)",
-      "GPS Tracking and full telematics integration (to 30+ countries)",
-    ],
-    cta: "Buy Plan",
-  },
-  {
-    name: "DriverX Enterprise Custom",
-    subtitle:
-      "For organizations with 50+ lines, DriverX offers fully customizable solutions packages",
-    price: null,
-    priceNote: "Packages typically start around $400 per month",
-    features: [
-      "Custom data selection",
-      "Shared mobile hotspot pools across fleets",
-      "Integration with GPS, telematics, and driver behavior",
-      "Account management with quarterly business reviews",
-    ],
-    cta: "Enquire Plan",
-  },
-];
+
 
 
 const Buisinessplans = () => {
@@ -121,52 +68,7 @@ const Buisinessplans = () => {
           </div>
         </div>
       </section>
-<div className="mx-auto max-w-7xl px-6 py-16 space-y-8">
-  {plans.map((plan, index) => (
-    <div
-      key={index}
-      className="flex flex-col lg:flex-row items-center justify-between gap-8 rounded-2xl border bg-white p-8 shadow-sm"
-    >
-      {/* LEFT SIDE */}
-      <div className="flex-1">
-        {/* Title + subtitle */}
-        <div className="flex flex-col gap-2">
-          <span className="inline-block w-fit rounded-full bg-teal-800 px-4 py-1 text-white font-semibold">
-            {plan.name}
-          </span>
-
-          <p className="text-gray-600 font-medium">
-            {plan.subtitle}
-          </p>
-        </div>
-
-        {/* Features */}
-        <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
-          {plan.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-teal-700 text-xs text-white">
-                ✓
-              </span>
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* RIGHT SIDE (Price box) */}
-      <div className="w-full lg:w-[300px] rounded-xl border p-6 text-center">
-        <p className="text-4xl font-bold">
-          ${plan.price}
-          <span className="text-lg font-normal text-gray-500"> /mo</span>
-        </p>
-
-        <button className="mt-6 w-full rounded-full bg-teal-500 py-3 font-semibold text-white hover:bg-teal-600 transition">
-          Buy Plan
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
+<SingleCatPlansSection cat="business-plans"/>
 
 <section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-20">
   <h2 className="mb-16 text-center text-3xl font-bold text-black">

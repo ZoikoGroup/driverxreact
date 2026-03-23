@@ -56,6 +56,7 @@ const Prepaidplans = () => {
           </div>
         </div>
       </section>
+      
       <SingleCatPlansSection cat="prepaid-plans"/>
     
 
