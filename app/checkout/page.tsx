@@ -1,25 +1,14 @@
 "use client";
-
 import { useEffect, useState, useRef } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
-
-// ── Replace these with your actual imports ────────────────────────────────────
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-// import HeadBar from "../components/HeadBar";
-// import { usStates } from "../utils/usStates";
-// import { processOrderStripe } from "../utils/beQuickStripeWebPaymentApi";
-// import StripePaymentForm from "../components/StripePaymentForm";
+import { usStates } from "../utils/usStates";
+import { processOrderStripe } from "../utils/beQuickStripeWebPaymentApi";
+import StripePaymentForm, { StripePaymentFormRef } from "../components/StripePaymentForm";
 
 // ── Stub data for standalone compilation ──────────────────────────────────────
-const usStates = [
-  { code: "AL", name: "Alabama" },
-  { code: "CA", name: "California" },
-  { code: "NY", name: "New York" },
-  { code: "TX", name: "Texas" },
-];
-const processOrderStripe = async (data: unknown) => ({ status: true, data });
+
+// const processOrderStripe = async (data: unknown) => ({ status: true, data });
 
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -301,7 +290,6 @@ const AddressForm = ({
 );
 
 // ── Modal ─────────────────────────────────────────────────────────────────────
-
 const Modal = ({
   show,
   onClose,
@@ -379,45 +367,48 @@ const CategoryBadge = ({ categoryName, slug }: { categoryName: string; slug: str
 
 // ── Stripe inner form (must be rendered inside <Elements>) ───────────────────
 
-const StripePaymentForm = ({
-  formRef,
-}: {
-  formRef: React.MutableRefObject<{ submitPayment: () => Promise<{ success: boolean; error?: string }> } | null>;
-}) => {
-  const stripe = useStripe();
-  const elements = useElements();
+// const StripePaymentForm = ({
+//   formRef,
+// }: {
+//   formRef: React.MutableRefObject<{ submitPayment: () => Promise<{ success: boolean; error?: string }> } | null>;
+// }) => {
+//   const stripe = useStripe();
+//   const elements = useElements();
 
-  useEffect(() => {
-    formRef.current = {
-      submitPayment: async () => {
-        if (!stripe || !elements) return { success: false, error: "Stripe not loaded" };
-        const { error } = await stripe.confirmPayment({
-          elements,
-          confirmParams: { return_url: `${window.location.origin}/order-confirmed` },
-          redirect: "if_required",
-        });
-        if (error) return { success: false, error: error.message };
-        return { success: true };
-      },
-    };
-  }, [stripe, elements, formRef]);
+//   useEffect(() => {
+//     formRef.current = {
+//       submitPayment: async () => {
+//         if (!stripe || !elements) return { success: false, error: "Stripe not loaded" };
+//         const { error } = await stripe.confirmPayment({
+//           elements,
+//           confirmParams: { return_url: `${window.location.origin}/order-confirmed` },
+//           redirect: "if_required",
+//         });
+//         if (error) return { success: false, error: error.message };
+//         return { success: true };
+//       },
+//     };
+//   }, [stripe, elements, formRef]);
 
-  return (
-    <div className="mt-2">
-      <PaymentElement options={{ layout: "tabs" }} />
-    </div>
-  );
-};
+//   return (
+//     <div className="mt-2">
+//       <PaymentElement options={{ layout: "tabs" }} />
+//     </div>
+//   );
+// };
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
 export default function CheckoutPage() {
+  const stripeFormRef = useRef<StripePaymentFormRef>(null);
+  const [showOrderErrorPopup, setShowOrderErrorPopup] = useState(false);
+const [orderError, setOrderError] = useState("");
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "");
 
   const [clientSecret, setClientSecret] = useState("");
-  const stripeFormRef = useRef<{
-    submitPayment: () => Promise<{ success: boolean; error?: string }>;
-  }>(null);
+  // const stripeFormRef = useRef<{
+  //   submitPayment: () => Promise<{ success: boolean; error?: string }>;
+  // }>(null);
 
   const shippingOptions: ShippingOption[] = [
     { label: "Standard (3-5 Days)", value: 9.99 },
@@ -467,7 +458,7 @@ export default function CheckoutPage() {
         normalizeCartItem
       );
       setCart(normalized);
-      if (typeof window !== "undefined" && localStorage.getItem("zoiko_token")) {
+      if (typeof window !== "undefined" && localStorage.getItem("driverx_token")) {
         setIsLoggedIn(true);
       }
     } catch {
@@ -502,16 +493,22 @@ export default function CheckoutPage() {
   // ── Cart mutations ────────────────────────────────────────────────────────
 
   const handleQuantity = (index: number, delta: number) => {
-    const newCart = [...cart];
-    const curQty = Number(newCart[index].formData?.priceQty || 1);
-    const newQty = Math.max(1, curQty + delta);
-    newCart[index] = {
-      ...newCart[index],
-      formData: { ...newCart[index].formData, priceQty: newQty },
-    };
-    setCart(newCart);
-    localStorage.setItem("driverx_checkout", JSON.stringify(newCart.map((i) => i._raw)));
+  const newCart = [...cart];
+  const curQty = Number(newCart[index].formData?.priceQty || 1);
+  const newQty = Math.max(1, curQty + delta);
+  
+  newCart[index] = {
+    ...newCart[index],
+    formData: { ...newCart[index].formData, priceQty: newQty },
+    _raw: { ...newCart[index]._raw, qty: newQty }, // ← ADD THIS
   };
+  
+  setCart(newCart);
+  localStorage.setItem(
+    "driverx_checkout",
+    JSON.stringify(newCart.map((i) => i._raw))
+  );
+};
 
   const handleRemove = (index: number) => {
     const newCart = [...cart];
@@ -528,7 +525,7 @@ export default function CheckoutPage() {
   // ── Coupon ────────────────────────────────────────────────────────────────
 
   const handleApplyCoupon = async () => {
-    const user = JSON.parse(localStorage.getItem("user") ?? "null");
+    const user = JSON.parse(localStorage.getItem("driverx_user") ?? "null");
     if (!user) {
       setShowLoginPopup(true);
       return;
@@ -540,11 +537,11 @@ export default function CheckoutPage() {
     setLoading(true);
     setCouponMessage("");
     try {
-      const res = await fetch("https://zmapi.zoikomobile.co.uk/api/v1/apply-coupon", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/apply-coupon/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.zoiko_token}`,
+          Authorization: `Bearer ${user.driverx_token}`,
         },
         body: JSON.stringify({ user_id: user.id, email: user.email, coupon_code: coupon }),
       });
@@ -672,55 +669,77 @@ export default function CheckoutPage() {
   // ── Place Order – Stripe ──────────────────────────────────────────────────
 
   const handlePlaceOrderStripe = async () => {
-    if (!agreeTerms) { setShowTermsPopup(true); return; }
-    if (!validateFields()) {
-      alert("Please fill all required fields correctly");
+  if (!agreeTerms) { setShowTermsPopup(true); return; }
+  if (!validateFields()) return;
+
+  try {
+    setLoading(true);
+
+    // 1️⃣ Stripe payment
+    if (stripeFormRef.current) {
+      const result = await stripeFormRef.current.submitPayment();
+      console.log("✅ Stripe result:", result);  // ← ADD
+      if (!result.success) {
+        setOrderError(result.error || "Payment failed.");
+        setShowOrderErrorPopup(true);
+        return;
+      }
+    }
+
+    // 2️⃣ BeQuick order
+    const products = buildProducts();
+    const orderData = {
+      billingAddress,
+      shippingAddress: showShipping ? shippingAddress : billingAddress,
+      shippingOption: hasShippingItem ? { ...selectedShippingOption } : null,
+      coupon: discountData ? { ...discountData } : null,
+      cart: products,
+      totals: { subtotal, shipping: shippingFee, activationFee: activationFeeTotal, discount: discountAmount, total },
+      agreedToTerms: agreeTerms,
+      paymentMethod: "stripe",
+      createdAt: new Date().toISOString(),
+    };
+
+    const response = await processOrderStripe(orderData);
+    console.log("✅ processOrderStripe response:", response);  // ← ADD
+
+    if (!response?.status) {
+      setOrderError(response?.message || "Order processing failed.");
+      setShowOrderErrorPopup(true);
       return;
     }
 
-    try {
-      setLoading(true);
-      if (stripeFormRef.current) {
-        const result = await stripeFormRef.current.submitPayment();
-        if (!result.success) {
-          alert(result.error || "Payment failed");
-          return;
-        }
-      }
-      const products = buildProducts();
-      const orderData = {
-        billingAddress,
-        shippingAddress: showShipping ? shippingAddress : billingAddress,
-        shippingOption: hasShippingItem ? { ...selectedShippingOption } : null,
-        coupon: discountData ? { ...discountData } : null,
-        cart: products,
-        totals: {
-          subtotal,
-          shipping: shippingFee,
-          activationFee: activationFeeTotal,
-          discount: discountAmount,
-          total,
-        },
-        agreedToTerms: agreeTerms,
-        paymentMethod: "stripe",
-        createdAt: new Date().toISOString(),
-      };
-      const response = await processOrderStripe(orderData);
-      const payload = (response as Record<string, unknown>).data ?? response;
-      await fetch("https://zmapi.zoikomobile.co.uk/api/v1/bqorders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      setShowThankYou(true);
-      setCart([]);
-      localStorage.removeItem("driverx_checkout");
-    } catch {
-      alert("Something went wrong while processing your order.");
-    } finally {
-      setLoading(false);
+    const payload = (response as Record<string, unknown>).data ?? response;
+    console.log("✅ payload to Django:", payload);  // ← ADD
+
+    // 3️⃣ Save to Django
+    const orderRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/bqorders/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const orderResData = await orderRes.json().catch(() => ({}));
+    console.log("✅ Django response ok:", orderRes.ok, "status:", orderRes.status, "data:", orderResData);  // ← ADD
+
+    if (!orderRes.ok || !orderResData?.success) {
+      setOrderError(orderResData?.message || "Order could not be saved.");
+      setShowOrderErrorPopup(true);
+      return;
     }
-  };
+    localStorage.removeItem("driverx_checkout");
+    setShowThankYou(true);
+    
+    console.log("✅ showThankYou set to true");  // ← ADD
+
+  } catch (err: any) {
+    console.error("❌ caught error:", err);  // ← ADD
+    setOrderError(err?.message || "Something went wrong.");
+    setShowOrderErrorPopup(true);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const formatDiscount = (value: string | number) => {
     const n = parseFloat(String(value));
@@ -1104,7 +1123,7 @@ export default function CheckoutPage() {
                     },
                   }}
                 >
-                  <StripePaymentForm formRef={stripeFormRef} />
+                  <StripePaymentForm ref={stripeFormRef} />
                 </Elements>
               ) : (
                 <div className="flex items-center justify-center py-6 gap-2 text-sm text-gray-400">
@@ -1226,31 +1245,102 @@ export default function CheckoutPage() {
 
       <Modal
         show={showThankYou}
-        onClose={() => setShowThankYou(false)}
-        title="Order Placed!"
+        onClose={() => {
+          setShowThankYou(false);
+          setCart([]);
+          window.location.href = "/dashboard";
+        }}
+        title=""
       >
-        <div className="text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+        <div className="text-center py-4">
+          <div className="relative w-20 h-20 mx-auto mb-6">
+            <div className="absolute inset-0 bg-green-100 rounded-full animate-ping opacity-30" />
+            <div className="relative w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+              <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
           </div>
-          <h3 className="font-bold text-gray-900 mb-2">Thank You!</h3>
-          <p className="text-gray-500 text-sm mb-6">
-            Your order has been placed successfully. A confirmation email has been sent with
-            your order details.
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-1">Order Placed! 🎉</h2>
+          <p className="text-sm font-medium text-green-600 mb-4">Payment successful</p>
+
+          <div className="border-t border-gray-100 my-4" />
+
+          <div className="bg-gray-50 rounded-xl p-4 mb-5 text-left space-y-2">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-500">Subtotal</span>
+              <span className="font-semibold text-gray-800">${subtotal.toFixed(2)}</span>
+            </div>
+            {shippingFee > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">Shipping</span>
+                <span className="font-semibold text-gray-800">${shippingFee.toFixed(2)}</span>
+              </div>
+            )}
+            {discountAmount > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">Discount</span>
+                <span className="font-semibold text-green-600">−${discountAmount.toFixed(2)}</span>
+              </div>
+            )}
+            <div className="border-t border-gray-200 pt-2 flex justify-between text-base font-bold">
+              <span className="text-gray-900">Total Paid</span>
+              <span className="text-red-500">${total.toFixed(2)}</span>
+            </div>
+          </div>
+
+          <p className="text-xs text-gray-400 mb-5">
+            A confirmation email has been sent to{" "}
+            <span className="font-medium text-gray-600">{billingAddress.email}</span>
           </p>
+
           <button
             onClick={() => {
               setShowThankYou(false);
+              setCart([]);
+              window.location.href = "/dashboard";
+            }}
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg mb-2"
+          >
+            Go to Dashboard →
+          </button>
+          <button
+            onClick={() => {
+              setCart([]);
               window.location.href = "/";
             }}
-            className="w-full py-2.5 rounded-lg bg-green-500 hover:bg-green-600 text-white font-semibold text-sm transition-colors"
+            className="w-full py-2.5 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-50 text-sm font-medium transition-colors"
           >
             Continue Shopping
           </button>
         </div>
       </Modal>
+
+      <Modal
+        show={showOrderErrorPopup}
+        onClose={() => setShowOrderErrorPopup(false)}
+        title="Order Failed"
+      >
+        <div className="text-center">
+          <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p className="text-gray-600 mb-5 text-sm">{orderError}</p>
+          <button
+            onClick={() => setShowOrderErrorPopup(false)}
+            className="w-full py-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white font-semibold text-sm transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </Modal>
+
+
+
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import Bottom from "./components/layout/Footer";
 import Navbar from "./components/layout/Header";
 import "./globals.css";
-
+import AuthProvider from "./components/AuthProvider";
 export const metadata = {
   title: "DriverX",
   description: "DriverX Mobile - Your Ultimate Driving Companion",
@@ -20,13 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-              <Bottom/>
-      </body>
-
-
-      
+        <AuthProvider>
+          <Navbar />
+            {children}
+          <Bottom/>
+        </AuthProvider>
+      </body>      
     </html>
   );
 }
