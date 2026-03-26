@@ -11,18 +11,20 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^5.6.1",
     "@stripe/stripe-js": "^8.11.0",
+    "bootstrap": "^5.3.8",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
     "next-auth": "^4.24.13",
     "next-themes": "^0.4.6",
     "react": "19.2.3",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0",
     "stripe": "^20.4.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^20.19.37",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.24",
