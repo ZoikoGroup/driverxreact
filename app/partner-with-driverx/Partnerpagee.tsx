@@ -122,7 +122,7 @@ function PartnerWithDriverX() {
   ];
 
   return (
-    <div className="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
+    <div className="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
 
       {/* HERO */}
       <section className="bg-teal-700 text-white text-center py-16 px-6">

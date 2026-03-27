@@ -26,7 +26,7 @@ const complianceFeatures = [
 function E911 () {
 
   return (
-    <section className="bg-[#f8f9f7] dark:bg-gray-950">
+    <section className="bg-[#f8f9f7] dark:bg-gray-900">
       {/* Header */}
       <div className="bg-[#1e5d57] dark:bg-[#143f3b] py-6 text-center">
         <h1 className="text-white text-2xl md:text-3xl font-bold">

@@ -36,7 +36,7 @@ const features = [
 
 function TelematicsIntegration() {
   return (
-    <section className="w-full bg-[#f3f4f6] dark:bg-gray-950 py-12">
+    <section className="w-full bg-[#f3f4f6] dark:bg-gray-900 py-12">
 
       {/* Header */}
       <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-5 text-xl font-semibold tracking-wide">

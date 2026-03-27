@@ -1,6 +1,6 @@
 export default function PressMedia() {
   return (
-    <section className="bg-[#f8faf7] dark:bg-gray-950 min-h-screen transition-colors duration-300">
+    <section className="bg-[#f8faf7] dark:bg-gray-900 min-h-screen transition-colors duration-300">
 
       {/* Top Banner */}
       <div className="bg-[#0f766e] dark:bg-teal-900 text-white dark:text-gray-200 text-center py-5 transition-colors duration-300">

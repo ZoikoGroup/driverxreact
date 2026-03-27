@@ -78,7 +78,7 @@ function Gig() {
       </section>
 
       {/* ================= KEY DIFFERENTIATORS ================= */}
-      <section className="bg-gray-100 dark:bg-gray-950 py-20">
+      <section className="bg-gray-100 dark:bg-gray-900 py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">

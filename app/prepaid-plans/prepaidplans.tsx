@@ -29,14 +29,14 @@ const Prepaidplans = () => {
         <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-          <div className="bg-[#f6fbef] dark:bg-gray-950  dark:text-white
+          <div className="bg-[#f6fbef] dark:bg-gray-900  dark:text-white
  p-12 h-full flex flex-col justify-center">
             <h3 className="text-4xl font-bold   dark:text-white text-gray-900 leading-tight">
               Not Just a Plan <br />
               Your Driver Business Advantage
             </h3>
 
-            <p className="mt-6 dark:bg-gray-950  dark:text-white
+            <p className="mt-6 dark:bg-gray-900  dark:text-white
  text-gray-600 text-lg max-w-md">
               Power your earnings with exclusive benefits, unbeatable
               connectivity, and driver-first savings that keep more money
@@ -73,13 +73,13 @@ const Prepaidplans = () => {
         className="group relative flex flex-col items-center"
       >
         {/* ICON */}
-        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full dark:bg-gray-950  dark:text-white
+        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full dark:bg-gray-900  dark:text-white
  bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
           {item.icon}
         </div>
 
         {/* CARD */}
-        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center  dark:bg-gray-950  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
+        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center  dark:bg-gray-900  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
           <p className="font-semibold leading-snug">
             {item.title}
           </p>
@@ -118,7 +118,7 @@ const Prepaidplans = () => {
       <div className="space-y-4">
         <div className="flex items-start gap-4">
           <span className="mt-1 w-6 h-6 rounded-full bg-teal-600 text-white
-                         dark:bg-gray-950  dark:text-white   flex items-center justify-center text-sm font-bold">
+                         dark:bg-gray-900  dark:text-white   flex items-center justify-center text-sm font-bold">
             ✓
           </span>
           <p className="text-gray-800  dark:text-white
