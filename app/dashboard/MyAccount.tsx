@@ -141,7 +141,7 @@ export default function MyAccountPage() {
   // ---------- Card API ----------
   async function fetchCards(): Promise<void> {
     try {
-      const token = localStorage.getItem("zoiko_token");
+      const token = localStorage.getItem("driverx_token");
       if (!token) { setCards([]); return; }
       const response = await fetch("https://zmapi.zoikomobile.co.uk/api/v1/customer/cards", {
         headers: { Authorization: `Bearer ${token}`, Accept: "application/json" },
@@ -166,7 +166,7 @@ export default function MyAccountPage() {
 
     setSavingCard(true);
     try {
-      const token = localStorage.getItem("zoiko_token");
+      const token = localStorage.getItem("driverx_token");
       if (!token) { alert("Please login again!"); return; }
       const response = await fetch("https://zmapi.zoikomobile.co.uk/api/v1/customer/cards", {
         method: "POST",
@@ -191,7 +191,7 @@ export default function MyAccountPage() {
 
   async function useCard(cardId: string | number): Promise<void> {
     try {
-      const token = localStorage.getItem("zoiko_token");
+      const token = localStorage.getItem("driverx_token");
       if (!token) { alert("Please login again!"); return; }
       const response = await fetch("https://zmapi.zoikomobile.co.uk/api/v1/customer/cards/use", {
         method: "POST",
@@ -209,7 +209,7 @@ export default function MyAccountPage() {
   async function deleteCard(cardId: string | number): Promise<void> {
     if (!confirm("Are you sure you want to delete this card?")) return;
     try {
-      const token = localStorage.getItem("zoiko_token");
+      const token = localStorage.getItem("driverx_token");
       if (!token) { alert("Please login again!"); return; }
       const response = await fetch(`https://zmapi.zoikomobile.co.uk/api/v1/customer/cards/${cardId}`, {
         method: "DELETE",
@@ -238,8 +238,9 @@ export default function MyAccountPage() {
     (async () => {
       setLoading(true);
       try {
-        const userData = JSON.parse(localStorage.getItem("user") || "{}");
-        const userEmail: string | undefined = userData?.email;
+        const userData = JSON.parse(localStorage.getItem("driverx_user") || "{}");
+        //const userEmail: string | undefined = userData?.email;
+        const userEmail: string = "info@golitemobile.com";
         setUserName(userData?.name || "Customer");
 
         await fetchCards();
@@ -260,9 +261,9 @@ export default function MyAccountPage() {
         }
 
         // ✅ FIX: SUBSCRIBER_ID is now declared AFTER the null-check above
-        //const SUBSCRIBER_ID = subscriberResult.subscriber_id;
+        const SUBSCRIBER_ID = subscriberResult.subscriber_id;
 
-        const SUBSCRIBER_ID = 55;
+        //const SUBSCRIBER_ID = 55;
 
 
         const subDetails = await beQuick.getSubscriberDetails(SUBSCRIBER_ID) as { subscribers: SubscriberInfo[] };
