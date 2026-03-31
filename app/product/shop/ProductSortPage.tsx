@@ -2,130 +2,177 @@
 
 import React, { useState } from "react";
 
-// Dummy product data
+
+/* ✅ PRODUCT DATA WITH VARIANTS */
 const dummyProducts = [
   {
     id: 1,
     name: "iPhone 13 Pro",
-    price: 482,
-    rating: 4.8,
-    sales: 120,
-    createdAt: "2024-01-10",
-    image: "https://via.placeholder.com/200",
+    image: "/images/iphone-13-pro-mlvw3hn-a-apple-original-imag6vpcvspnzyfy.png",
+
+    options: {
+      storage: ["128GB", "256GB", "512GB"],
+      colors: ["Silver", "Gold", "Graphite"],
+      condition: ["A1", "A2", "A3", "B1", "B2", "C1"],
+    },
+
+    variants: [
+      { storage: "128GB", condition: "A1", price: 500 },
+      { storage: "128GB", condition: "A2", price: 480 },
+      { storage: "256GB", condition: "A1", price: 550 },
+      { storage: "512GB", condition: "A1", price: 600 },
+    ],
   },
+
   {
     id: 2,
     name: "iPhone 12",
-    price: 311,
-    rating: 4.5,
-    sales: 200,
-    createdAt: "2023-12-01",
-    image: "https://via.placeholder.com/200",
+    image: "/images/apple-iphone-12-dummyapplefsn-original-imafwg8dkyh2zgrh.png",
+
+    options: {
+      storage: ["64GB", "128GB", "256GB"],
+      colors: ["Black", "Blue", "White"],
+      condition: ["A1", "A2", "B1", "B2", "C1"],
+    },
+
+    variants: [
+      { storage: "64GB", condition: "A1", price: 300 },
+      { storage: "128GB", condition: "A1", price: 340 },
+      { storage: "128GB", condition: "B1", price: 310 },
+      { storage: "256GB", condition: "A1", price: 380 },
+    ],
   },
+
   {
     id: 3,
     name: "Galaxy Z Flip 4",
-    price: 305,
-    rating: 4.3,
-    sales: 150,
-    createdAt: "2024-02-15",
-    image: "https://via.placeholder.com/200",
+    image: "/images/original-imahfay2yzrfjggn.png",
+
+    options: {
+      storage: ["128GB", "256GB", "512GB"],
+      colors: ["Purple", "Black"],
+      condition: ["A1", "A2", "B1", "C1"],
+    },
+
+    variants: [
+      { storage: "128GB", condition: "A1", price: 400 },
+      { storage: "256GB", condition: "A1", price: 450 },
+      { storage: "256GB", condition: "B1", price: 420 },
+      { storage: "512GB", condition: "A1", price: 500 },
+    ],
   },
 ];
 
-const sortOptions = [
-  { label: "Default sorting", value: "default" },
-  { label: "Sort by popularity", value: "popularity" },
-  { label: "Sort by average rating", value: "rating" },
-  { label: "Sort by latest", value: "latest" },
-  { label: "Sort by price: low to high", value: "price_low" },
-  { label: "Sort by price: high to low", value: "price_high" },
-];
+/* ✅ PRODUCT CARD COMPONENT */
+const ProductCard = ({ item }) => {
+  const [selected, setSelected] = useState({
+    storage: "",
+    color: "",
+    condition: "",
+  });
 
-const sortProducts = (products: typeof dummyProducts, sortType: string) => {
-  const sorted = [...products];
-
-  switch (sortType) {
-    case "price_low":
-      return sorted.sort((a, b) => a.price - b.price);
-
-    case "price_high":
-      return sorted.sort((a, b) => b.price - a.price);
-
-    case "rating":
-      return sorted.sort((a, b) => b.rating - a.rating);
-
-    case "latest":
-      return sorted.sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() -
-          new Date(a.createdAt).getTime()
-      );
-
-    case "popularity":
-      return sorted.sort((a, b) => b.sales - a.sales);
-
-    default:
-      return products;
-  }
-};
-
-export default function ProductSortPage() {
-  const [sortType, setSortType] = useState("default");
-  const [products, setProducts] = useState(dummyProducts);
-
-  const handleSortChange = (value: string) => {
-    setSortType(value);
-    const sorted = sortProducts(dummyProducts, value);
-    setProducts(sorted);
+  const handleChange = (type, value) => {
+    setSelected((prev) => ({ ...prev, [type]: value }));
   };
 
-  return (
-    <div className="p-6 max-w-6xl mx-auto">
-      {/* Top Bar */}
-      <div className="flex justify-between items-center mb-6">
-        <p className="text-gray-600">Showing {products.length} results</p>
+  /* ✅ GET PRICE BASED ON SELECTION */
+  const getPrice = () => {
+    const match = item.variants.find(
+      (v) =>
+        v.storage === selected.storage &&
+        v.condition === selected.condition
+    );
 
+    return match ? match.price : null;
+  };
+
+  const price = getPrice();
+
+  return (
+    <div className="border rounded-xl p-4 shadow-sm hover:shadow-md transition">
+      
+      {/* IMAGE FIXED */}
+      <div className="w-full aspect-square mb-4 bg-gray-100 flex items-center justify-center rounded-md">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="max-h-full max-w-full object-contain"
+        />
+      </div>
+
+      <h3 className="font-semibold text-lg mb-2">{item.name}</h3>
+
+      {/* PRICE */}
+      <p className="text-orange-600 font-bold text-lg mb-3">
+        {price ? `$${price}` : "Select options"}
+      </p>
+
+      {/* STORAGE */}
+      <div className="mb-3">
+        <label className="text-sm font-medium">Storage</label>
         <select
-          value={sortType}
-          onChange={(e) => handleSortChange(e.target.value)}
-          className="border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+          className="w-full mt-1 border rounded-md px-3 py-2 text-sm"
+          onChange={(e) => handleChange("storage", e.target.value)}
         >
-          {sortOptions.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
+          <option value="">Choose an option</option>
+          {item.options.storage.map((s) => (
+            <option key={s}>{s}</option>
           ))}
         </select>
       </div>
 
-      {/* Product Grid */}
+      {/* COLOR */}
+      <div className="mb-3">
+        <label className="text-sm font-medium">Select Colour</label>
+        <select
+          className="w-full mt-1 border rounded-md px-3 py-2 text-sm"
+          onChange={(e) => handleChange("color", e.target.value)}
+        >
+          <option value="">Choose an option</option>
+          {item.options.colors.map((c) => (
+            <option key={c}>{c}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* CONDITION */}
+      <div className="mb-4">
+        <label className="text-sm font-medium">Condition</label>
+        <select
+          className="w-full mt-1 border rounded-md px-3 py-2 text-sm"
+          onChange={(e) => handleChange("condition", e.target.value)}
+        >
+          <option value="">Choose an option</option>
+          {item.options.condition.map((c) => (
+            <option key={c}>{c}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* BUTTON */}
+      <button
+        disabled={!price}
+        className={`w-full py-2 rounded-md ${
+          price
+            ? "bg-orange-500 text-white hover:bg-orange-600"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        }`}
+      >
+        Add to cart
+      </button>
+    </div>
+  );
+};
+
+/* ✅ MAIN PAGE */
+export default function ProductSortPage() {
+  return (
+    <div className="p-6 max-w-6xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6">Products</h1>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.map((item) => (
-          <div
-            key={item.id}
-            className="border rounded-xl p-4 shadow-sm hover:shadow-md transition"
-          >
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-40 object-cover mb-4 rounded-md"
-            />
-
-            <h3 className="font-semibold text-lg">{item.name}</h3>
-
-            <p className="text-gray-500 text-sm mb-2">
-              ⭐ {item.rating} | Sold: {item.sales}
-            </p>
-
-            <p className="text-orange-600 font-bold text-lg">
-              ${item.price}
-            </p>
-
-            <button className="mt-4 w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600">
-              Select options
-            </button>
-          </div>
+        {dummyProducts.map((item) => (
+          <ProductCard key={item.id} item={item} />
         ))}
       </div>
     </div>
