@@ -117,7 +117,7 @@ export default function Navbar() {
       { label: "Contact Enterprise Sales", href: "/contact-enterprise-sales" },
     ],
     Shop: [
-      { label: "Smartphones", href: "/shop/smartphones" },
+      { label: "Smartphones", href: "/product/shop" },
       { label: "Accessories", href: "/shop/accessories" },
     ],
     Support: [
