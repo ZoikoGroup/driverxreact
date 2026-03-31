@@ -7,6 +7,7 @@ import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 import beQuick from "../utils/dasdbeQuickApi";
+import "./Dashboard.css";
 
 // ---------- Types ----------
 interface SubscriberInfo {
@@ -80,6 +81,7 @@ function formatDateAndRemaining(endAt?: string): { formatted: string; remainingD
   const formatted = endDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
   return { formatted, remainingDays };
 }
+
 
 function kbToGb(kb: number): number {
   return kb / 1024 / 1024;
