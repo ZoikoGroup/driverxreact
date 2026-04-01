@@ -451,7 +451,7 @@ export default function MyAccountPage() {
                         </Link>
                       )}
                       <Link href="/dashboard/add-device/">
-                        <button className="btn btn-outline-success btn-sm">Add Device</button>
+                        <button className="btn btn-outline-success btn-sm">Add Device    </button>
                       </Link>
                     </div>
                   </div>
@@ -470,7 +470,7 @@ export default function MyAccountPage() {
                       </div>
                       <div>
                         <h6 className="font-bold mb-0">{nextPayment}</h6>
-                        <small className="text-gray-400">Next Payment</small>
+                        <small className="text-gray-400">Next Payment  </small>
                       </div>
                     </div>
 
@@ -503,7 +503,7 @@ export default function MyAccountPage() {
                       <button className="btn btn-success">Pay Now</button>
                       {subscriber?.id && (
                         <Link href={`/dashboard/billing-payment/${subscriber.id}`} className="btn btn-outline-secondary">
-                          View Invoices
+                          View Invoice
                         </Link>
                       )}
                     </div>
