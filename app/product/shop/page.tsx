@@ -3,6 +3,23 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Link from "next/link";
 
+type Product = {
+  id: number;
+  brand: string;
+  name: string;
+  image: string;
+  options: {
+    storage: string[];
+    colors: string[];
+    condition: string[];
+  };
+  variants: {
+    storage: string;
+    condition: string;
+    price: number;
+  }[];
+};
+
 /* ✅ PRODUCT DATA */
 const dummyProducts = [
   {
@@ -59,9 +76,9 @@ const dummyProducts = [
 ];
 
 /* ✅ CARD */
-const ProductCard = ({ item }) => {
-  const getMinPrice = (product) =>
-    Math.min(...product.variants.map((v) => v.price));
+const ProductCard = ({ item }: { item: Product }) => {
+const getMinPrice = (product: Product) =>
+  Math.min(...product.variants.map((v) => v.price));
 
   return (
     <div className="border rounded-xl p-4 shadow-sm dark:text-white dark:bg-gray-900">
@@ -93,12 +110,12 @@ export default function ProductPage() {
   /* ✅ MOVED HOOKS INSIDE */
   const [search, setSearch] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedColor, setSelectedColor] = useState([]);
-  const [selectedCondition, setSelectedCondition] = useState([]);
+const [selectedColor, setSelectedColor] = useState<string[]>([]);
+const [selectedCondition, setSelectedCondition] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState(1000);
 
-  const getMinPrice = (p) =>
-    Math.min(...p.variants.map((v) => v.price));
+const getMinPrice = (p: Product) =>
+  Math.min(...p.variants.map((v) => v.price));
 
   /* ✅ FILTER */
   const filteredProducts = dummyProducts.filter((p) => {
