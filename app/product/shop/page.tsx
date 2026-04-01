@@ -73,6 +73,40 @@ const dummyProducts = [
       { storage: "512GB", condition: "A1", price: 500 },
     ],
   },
+  {
+    id: 4,
+    brand: "samsung",
+    name: "Galaxy S21 ultra",
+    image: "/images/Galaxy-S21-600x817.jpg",
+    options: {
+      storage: ["128GB", "256GB", "512GB"],
+      colors: ["Purple", "Black"],
+      condition: ["A1", "A2", "B1", "C1"],
+    },
+    variants: [
+      { storage: "128GB", condition: "A1", price: 450 },
+      { storage: "256GB", condition: "A1", price: 500 },
+      { storage: "256GB", condition: "B1", price: 480 },
+      { storage: "512GB", condition: "A1", price: 500 },
+    ],
+  },
+   {
+    id: 5,
+    brand: "apple",
+    name:  "iPhone 12 mini",
+    image: "/images/iPhone_12-600x817.jpg",
+    options: {
+      storage: ["64GB", "128GB", "256GB"],
+      colors: ["Black", "Blue", "White"],
+      condition: ["A1", "A2", "B1", "B2", "C1"],
+    },
+    variants: [
+      { storage: "64GB", condition: "A1", price: 250 },
+      { storage: "128GB", condition: "A1", price: 340 },
+      { storage: "128GB", condition: "B1", price: 310 },
+      { storage: "256GB", condition: "A1", price: 380 },
+    ],
+  },
 ];
 
 /* ✅ CARD */
