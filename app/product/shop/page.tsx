@@ -208,7 +208,7 @@ const getMinPrice = (p: Product) =>
   type="text"
   placeholder="Search products..."
   value={search}
-  className="w-full mb-4 p-2 border rounded"
+  className="w-full mb-4 p-2 border rounded text-gray-950"
   onChange={(e) => setSearch(e.target.value)}
 />
           <h3 className="font-semibold mt-4">Brand</h3>

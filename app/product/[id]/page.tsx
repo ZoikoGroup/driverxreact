@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 
+
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
@@ -92,7 +93,8 @@ const dummyProducts = [
     ],
   },
 ];
-/* PAGE */
+/* SAME DATA */
+
 export default function ProductDetailPage() {
   const { id } = useParams();
 
@@ -100,76 +102,161 @@ export default function ProductDetailPage() {
     (p) => p.id === Number(id)
   );
 
+  const relatedProducts = dummyProducts.filter(
+  (p) => p.id !== product.id && p.brand === product.brand
+);
+
   const [selected, setSelected] = useState({
     storage: "",
     condition: "",
   });
 
+  const [color, setColor] = useState("");
+
+  // ✅ FIX: prevent crash
+  if (!product) return <div>Product not found</div>;
+
+  const getPriceRange = () => {
+    const prices = product.variants.map((v) => v.price);
+    return {
+      min: Math.min(...prices),
+      max: Math.max(...prices),
+    };
+  };
+
   const getPrice = () => {
-    const match = product?.variants.find(
+    if (!selected.storage || !selected.condition) return null;
+
+    const match = product.variants.find(
       (v) =>
         v.storage === selected.storage &&
         v.condition === selected.condition
     );
-    return match?.price;
+
+    return match?.price || null;
   };
 
   const price = getPrice();
-
-  if (!product) return <div>Product not found</div>;
+  const range = getPriceRange();
 
   return (
-    <div className="p-10 grid grid-cols-2 gap-10  dark:text-white dark:bg-gray-900 ">
-      
-
+    <>
+   <div className="w-full p-10 grid grid-cols-2 gap-10 bg-white text-black dark:bg-gray-900 dark:text-white">
       {/* IMAGE */}
-      <img src={product.image} className="w-full" />
+      <div className="flex items-center justify-center h-[500px]">
+        <Image
+          src={product.image}
+          alt={product.name}
+          width={400}
+          height={400}
+          className="object-contain"
+        />
+      </div>
 
       {/* DETAILS */}
       <div>
-        <h1 className="text-2xl font-bold dark:text-white dark:bg-gray-900">{product.name}</h1>
+        <h1 className="text-2xl font-bold">
+          {product.name}
+        </h1>
 
-        <p className="text-teal-600 text-xl mt-2">
-          {price ? `$${price}` : "Select options"}
+        <p className="text-orange-500 text-xl mt-2">
+          {price ? `$${price}` : `$${range.min} - $${range.max}`}
         </p>
 
         {/* STORAGE */}
-     <select
-  onChange={(e) =>
-    setSelected({ ...selected, storage: e.target.value })
-  }
-  className="border p-2 mt-4 w-full dark:text-white dark:bg-gray-900"
->
-  <option value="">Select Storage</option> {/* ✅ FIX */}
-  {product.options.storage.map((s) => (
-    <option key={s} value={s}> {/* ✅ ADD value */}
-      {s}
-    </option>
-  ))}
-</select>
+        <select
+          onChange={(e) =>
+            setSelected({ ...selected, storage: e.target.value })
+          }
+          className="border p-2 mt-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white dark:border-gray-600"
+        >
+          <option value="">Select Storage</option>
+          {product.options.storage.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+
+        {/* COLOR */}
+        <select
+          onChange={(e) => setColor(e.target.value)}
+          className="border p-2 mt-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white dark:border-gray-600"
+        >
+          <option value="">Select Color</option>
+          {product.options.colors.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
 
         {/* CONDITION */}
         <select
-  onChange={(e) =>
-    setSelected({ ...selected, condition: e.target.value })
-  }
-  className="border p-2 mt-4 w-full dark:text-white dark:bg-gray-900" 
->
-  <option value="">Select Condition</option> {/* ✅ FIX */}
-  {product.options.condition.map((c) => (
-    <option key={c} value={c}> {/* ✅ ADD value */}
-      {c}
-    </option>
-  ))}
-</select> 
+          onChange={(e) =>
+            setSelected({ ...selected, condition: e.target.value })
+          }
+          className="border p-2 mt-4 w-full bg-white text-black dark:bg-gray-800 dark:text-white dark:border-gray-600"
+        >
+          <option value="">Select Condition</option>
+          {product.options.condition.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
 
         <button
           disabled={!price}
-          className="mt-6 bg-teal-300 dark:text-white dark:bg-teal-900 text-white px-6 py-2 rounded"
+          className={`mt-6 px-6 py-2 rounded ${
+            price
+              ? "bg-orange-500 text-white"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
         >
           Add to Cart
         </button>
       </div>
     </div>
+
+{/* RELATED PRODUCTS */}
+<div className="mt-20  dark:text-white dark:bg-gray-900">
+  <h2 className="text-xl font-semibold mb-6  dark:text-white dark:bg-gray-900">
+    You may also like
+  </h2>
+
+  <div className="grid grid-cols-4 gap-6  dark:text-white dark:bg-gray-900">
+    {relatedProducts.map((item) => {
+      const prices = item.variants.map(v => v.price);
+      const min = Math.min(...prices);
+      const max = Math.max(...prices);
+
+      return (
+        <div
+          key={item.id}
+          className="border p-4 rounded  dark:text-white dark:bg-gray-900 bg-white dark:bg-gray-800 dark:border-gray-700"
+        >
+          <Image
+            src={item.image}
+            alt={item.name}
+            width={200}
+            height={200}
+            className="mx-auto object-contain  dark:text-white dark:bg-gray-900"
+          />
+
+          <h3 className="mt-4 font-medium text-sm  dark:text-white dark:bg-gray-900">
+            {item.name}
+          </h3>
+
+          <p className="text-orange-500 text-sm">
+            ${min} - ${max}
+          </p>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+</>
   );
 }
