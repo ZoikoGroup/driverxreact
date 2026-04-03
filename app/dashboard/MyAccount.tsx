@@ -476,7 +476,7 @@ export default function MyAccountPage() {
 
                     <p className="text-gray-500 text-sm mb-2">Payment Method</p>
 
-                    <div className="mt-2">
+                    {/* <div className="mt-2">
                       {cards.length === 0 ? (
                         <p className="text-gray-400 text-sm mb-2">No saved cards yet.</p>
                       ) : (
@@ -493,9 +493,9 @@ export default function MyAccountPage() {
                           </div>
                         ))
                       )}
-                    </div>
+                    </div> */}
 
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                       <button className="btn btn-outline-success btn-sm me-2" onClick={() => setShowCardModal(true)}>+ Add Card</button>
                     </div>
 
@@ -506,7 +506,7 @@ export default function MyAccountPage() {
                           View Invoice
                         </Link>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
