@@ -520,8 +520,10 @@ export default function MyAccountPage() {
                     <h6 className="font-semibold text-base mb-1">Account Settings</h6>
                     <p className="text-gray-500 text-sm mb-4">Manage password, contact info, and security</p>
                     <p className="text-sm font-semibold mb-1">Contact Info</p>
-                    <p className="text-gray-400 text-sm mb-0">{subscriber?.email || "info@zoikomobile.com"}</p>
-                    <p className="text-gray-400 text-sm mb-4">{subscriber?.contact_number || "800-988-8116"}</p>
+                    {/* <p className="text-gray-400 text-sm mb-0">{subscriber?.email || "info@zoikomobile.com"}</p> */}
+                    <p className="text-gray-400 text-sm mb-0">info@driverxmobile.com</p>
+                    {/* <p className="text-gray-400 text-sm mb-4">{subscriber?.contact_number || "800-988-8116"}</p> */}
+                    <p className="text-gray-400 text-sm mb-4">+1 (800) 399-0087</p>
                     <p className="text-sm font-semibold mb-1">Security</p>
                     <p className="text-gray-400 text-sm mb-4">
                       Two-factor authentication {subscriber?.two_fa ? "enabled" : "disabled"}
