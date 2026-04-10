@@ -164,7 +164,7 @@ const FleetConnectivitySection = () => {
             </button>
 
             <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
-              Contact Enterprise Sales
+            <a href="/contact-enterprise-sales">  Contact Enterprise Sales</a> 
             </button>
 
           </div>

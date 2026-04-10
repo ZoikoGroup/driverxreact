@@ -4,7 +4,34 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
+type Product = {
+  id: number;
+  brand: string;
+  name: string;
+  image: string;
+  rating: number;
+  popularity: number;
+  createdAt: number;
+  description: string;
 
+  extraInfo?: {
+    label: string;
+    value: string;
+  }[];
+
+  options: {
+    storage: string[];
+    colors: string[];
+    condition: string[];
+  };
+
+  variants: {
+    storage: string;
+    condition: string;
+    price: number;
+    originalPrice?: number;
+  }[];
+};
 
 const dummyProducts: Product[] = [
   {
@@ -393,7 +420,11 @@ export default function ProductDetailPage() {
                   {product.extraInfo?.map((row, i) => (
                     <tr
                       key={row.label}
-                      className={i < product.extraInfo.length - 1 ? "border-b border-gray-200 dark:border-gray-700" : ""}
+                      className={
+  i < (product.extraInfo?.length ?? 0) - 1
+    ? "border-b border-gray-200 dark:border-gray-700"
+    : ""
+}
                     >
                       <td className="py-3 px-4 font-medium text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 w-40">{row.label}</td>
                       <td className="py-3 px-4">{row.value}</td>

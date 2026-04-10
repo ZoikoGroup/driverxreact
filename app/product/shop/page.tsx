@@ -2,20 +2,28 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Link from "next/link";
-
 type Product = {
   id: number;
   brand: string;
   name: string;
   image: string;
-  rating: number;       // average star rating  e.g. 4.5
-  popularity: number;   // higher = more popular (e.g. total sales count)
-  createdAt: number;    // unix timestamp — used for "Sort by latest"
+  rating: number;
+  popularity: number;
+  createdAt: number;
+
+  description: string; 
+
+  extraInfo?: {       
+    label: string;
+    value: string;
+  }[];
+
   options: {
     storage: string[];
     colors: string[];
     condition: string[];
   };
+
   variants: {
     storage: string;
     condition: string;
