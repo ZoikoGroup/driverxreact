@@ -152,11 +152,15 @@ const FleetConnectivitySection = () => {
           <div className="flex flex-wrap justify-center gap-4 mt-8 ">
 
             <button className="bg-white text-[#2f6f66] px-6 py-2 rounded-md font-medium hover:opacity-90 transition">
-              Explore Fleet Plans
+             
+             <a href="/fleet-connectivity-without-compromise"> Explore Fleet Plans</a>
             </button>
 
             <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
-              Request a Demo
+              <a href="/request-a-demo"> 
+              Request a Demo</a>
+              
+              
             </button>
 
             <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">

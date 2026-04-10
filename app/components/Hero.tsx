@@ -85,9 +85,9 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-wrap gap-4">
-  <button className="w-full sm:w-auto rounded-full bg-teal-500 px-8 py-3 font-semibold text-white shadow-lg hover:bg-teal-600 transition">
-    View Plans
-  </button>
+ <button className="w-full sm:w-auto rounded-full bg-teal-500 px-8 py-3 font-semibold text-white shadow-lg hover:bg-teal-600 transition">
+  <a href="#plans" className="scroll-smooth">View Plans</a>
+</button>
 
 <Link href="/partner-with-driverx">
 <button className="w-full sm:w-auto rounded-full border-2 border-teal-500 px-8 py-3 font-semibold text-teal-600 hover:bg-teal-50 transition">
@@ -292,7 +292,11 @@ const Hero = () => {
     </div>
   </div>
 </section>
-<PlansSection />
+
+<div id="plans" className="scroll-smooth">
+  <PlansSection />
+</div>
+
 {/* DRIVE TYPE SECTION */}
 <section className="bg-gray-50 py-20 dark:bg-gray-900">
   <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-8">

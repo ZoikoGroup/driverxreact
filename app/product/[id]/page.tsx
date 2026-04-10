@@ -4,19 +4,17 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
-// Each product has:
-//   description  → shown in the "Description" tab  ← fill in yourself
-//   extraInfo    → extra rows in "Additional information" tab ← fill in yourself
-//                  (Storage / Colour / Condition rows are auto-generated)
-// ─────────────────────────────────────────────────────────────────────────────
 
-const dummyProducts = [
+
+const dummyProducts: Product[] = [
   {
     id: 1,
     brand: "apple",
     name: "iPhone 13 Pro",
     image: "/images/iphone-13-pro-mlvw3hn-a-apple-original-imag6vpcvspnzyfy.png",
+    rating: 4.8,
+    popularity: 320,
+    createdAt: 1700000000,
     description: "GSM Unlocked. iPhone 13 Pro with a stunning Super Retina XDR display.",
     extraInfo: [
       { label: "Network", value: "GSM Unlocked" },
@@ -39,6 +37,9 @@ const dummyProducts = [
     brand: "apple",
     name: "iPhone 12",
     image: "/images/apple-iphone-12-dummyapplefsn-original-imafwg8dkyh2zgrh.png",
+    rating: 4.5,
+    popularity: 280,
+    createdAt: 1690000000,
     description: "GSM Unlocked. iPhone 12 with 5G capability and Ceramic Shield.",
     extraInfo: [
       { label: "Network", value: "GSM Unlocked" },
@@ -61,6 +62,9 @@ const dummyProducts = [
     brand: "samsung",
     name: "Galaxy Z Flip 4",
     image: "/images/original-imahfay2yzrfjggn.png",
+    rating: 4.3,
+    popularity: 210,
+    createdAt: 1695000000,
     description: "GSM Unlocked. Samsung Galaxy Z Flip 4 with foldable AMOLED display.",
     extraInfo: [
       { label: "Network", value: "GSM Unlocked" },
@@ -83,6 +87,9 @@ const dummyProducts = [
     brand: "samsung",
     name: "Galaxy S21 Ultra",
     image: "/images/Galaxy-S21-600x817.jpg",
+    rating: 4.6,
+    popularity: 350,
+    createdAt: 1680000000,
     description: "GSM Unlocked. Samsung Galaxy S21 Ultra with 108MP camera and S Pen support.",
     extraInfo: [
       { label: "Network", value: "GSM Unlocked" },
@@ -105,6 +112,9 @@ const dummyProducts = [
     brand: "apple",
     name: "iPhone 12 Mini",
     image: "/images/iPhone_12-600x817.jpg",
+    rating: 4.2,
+    popularity: 190,
+    createdAt: 1685000000,
     description: "GSM Unlocked. iPhone 12 Mini — the smallest, thinnest 5G iPhone ever.",
     extraInfo: [
       { label: "Network", value: "GSM Unlocked" },
@@ -123,7 +133,6 @@ const dummyProducts = [
     ],
   },
 ];
-
 export default function ProductDetailPage() {
   const { id } = useParams();
 
