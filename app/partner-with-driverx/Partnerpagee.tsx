@@ -145,7 +145,10 @@ function PartnerWithDriverX() {
 
         <div className="flex justify-center gap-4">
           <button className="bg-teal-600 text-white px-6 py-2 rounded-full">
-            Apply to Partner
+
+
+            <a href="/request-a-demo"> Apply to Partner</a>
+            
           </button>
          
         </div>

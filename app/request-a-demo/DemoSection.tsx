@@ -102,7 +102,7 @@
                     <div className="p-3 font-medium  dark:bg-gray-900 dark:text-white text-gray-800">
                       {item.title}
                     </div>
-                    <div className="p-3 dark:bg-gray-900 dark:text-white text-gray-600">
+                    <div className="p-3 dark:bg-gray-900 dark:text-white text-gray-600 border-s-teal-800">
                       {item.desc}
                     </div>
                   </div>
@@ -110,19 +110,28 @@
               </div>
 
               {/* Highlight Goals */}
-              <div className="bg-white p-5 rounded-lg shadow border-2 dark:bg-gray-900 dark:text-white border-blue-500">
-                <h3 className="font-semibold mb-3">
+              <div className="bg-white p-5 rounded-lg shadow border-2 dark:bg-gray-900 dark:text-white border-gray-500">
+                <h3 className="font-semibold mb-3 border-gray-500" >
                   Tailored To Your Deployment Goals
                 </h3>
 
-                <div className="space-y-3 text-sm dark:bg-gray-900 dark:text-white">
-                  {goals.map((item, i) => (
-                    <div key={i}>
-                      <p className="font-medium dark:bg-gray-900 dark:text-white text-gray-800">{item.title}</p>
-                      <p className="text-gray-600 dark:bg-gray-900 dark:text-white">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
+             <div className="space-y-3 text-sm">
+  {goals.map((item, i) => (
+    <div
+      key={i}
+      className="flex gap-3 border-l-4 border-teal-500 pl-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-md"
+    >
+      <div>
+        <p className="font-medium text-gray-800 dark:text-white">
+          {item.title}
+        </p>
+        <p className="text-gray-600 dark:text-gray-400">
+          {item.desc}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
               </div>
 
             </div>
