@@ -2,8 +2,6 @@
 
 import { use, useState } from "react";
 import { useRouter } from "next/navigation";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 
 type PageProps = {
   params: Promise<{
