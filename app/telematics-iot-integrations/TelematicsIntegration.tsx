@@ -134,11 +134,14 @@ function TelematicsIntegration() {
           <div className="flex flex-wrap justify-center gap-4">
 
             <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-              Explore Custom IoT Plans
+              
+              <a href="/custom-iot-plans">Explore Custom IoT Plans</a>
             </button>
 
             <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-              Schedule an Enterprise Demo
+              
+
+              <a href="/request-a-demo">Schedule an Enterprise Demo</a>
             </button>
 
             <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
