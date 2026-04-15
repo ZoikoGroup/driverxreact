@@ -145,7 +145,7 @@ function TelematicsIntegration() {
             </button>
 
             <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-              Talk to a Solutions Architect
+             <a href="/talk-to-a-solution-architect">Talk to a Solutions Architect</a>
             </button>
 
           </div>
