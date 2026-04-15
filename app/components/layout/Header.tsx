@@ -117,7 +117,7 @@ export default function Navbar() {
       { label: "Contact Enterprise Sales", href: "/contact-enterprise-sales" },
     ],
     Shop: [
-      { label: "Smartphones", href: "/shop/smartphones" },
+      { label: "Smartphones", href: "/product/shop" },
       { label: "Accessories", href: "/shop/accessories" },
     ],
     Support: [
@@ -245,7 +245,7 @@ export default function Navbar() {
                   href="/signup"
                   className="bg-black text-white px-5 py-2 rounded-full hover:bg-gray-800 transition"
                 >
-                  Get Started
+                 Register
                 </Link>
               </>
             )}

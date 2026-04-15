@@ -42,7 +42,7 @@ const leaders = [
 
 export default function LeadershipSection() {
   return (
-    <section className="w-full bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-300">
+    <section className="w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-300">
 
       {/* HEADER */}
       <div className="bg-teal-700 text-white text-center py-4 text-xl font-semibold">

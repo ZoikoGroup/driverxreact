@@ -41,7 +41,7 @@ function Daily() {
       </section>
 
       {/* ================= TRUSTED BY ================= */}
-      <section className="bg-gray-100 py-12 border-b dark:bg-gray-950 dark:border-gray-800">
+      <section className="bg-gray-100 py-12 border-b dark:bg-gray-900 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 text-center">
 
           <h3 className="font-semibold text-gray-800 dark:text-white">
@@ -82,7 +82,7 @@ function Daily() {
       </section>
 
       {/* ================= KEY DIFFERENTIATORS ================= */}
-      <section className="bg-gray-100 py-20 dark:bg-gray-950">
+      <section className="bg-gray-100 py-20 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">

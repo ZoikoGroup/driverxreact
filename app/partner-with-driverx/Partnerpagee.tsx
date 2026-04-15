@@ -122,7 +122,7 @@ function PartnerWithDriverX() {
   ];
 
   return (
-    <div className="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
+    <div className="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
 
       {/* HERO */}
       <section className="bg-teal-700 text-white text-center py-16 px-6">
@@ -145,7 +145,10 @@ function PartnerWithDriverX() {
 
         <div className="flex justify-center gap-4">
           <button className="bg-teal-600 text-white px-6 py-2 rounded-full">
-            Apply to Partner
+
+
+            <a href="/request-a-demo"> Apply to Partner</a>
+            
           </button>
          
         </div>

@@ -24,7 +24,8 @@ function Gig() {
 
             <div className="mt-8 flex gap-4">
               <button className="px-6 py-3 rounded-lg bg-white text-[#2f766c] font-semibold hover:bg-gray-100 transition dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
-                View Plans
+               
+                <a href="/prepaid-plans"> View Plans</a>
               </button>
 
               <button className="px-6 py-3 rounded-lg border border-white text-white hover:bg-white hover:text-[#2f766c] transition dark:hover:bg-gray-200 dark:hover:text-black">
@@ -78,7 +79,7 @@ function Gig() {
       </section>
 
       {/* ================= KEY DIFFERENTIATORS ================= */}
-      <section className="bg-gray-100 dark:bg-gray-950 py-20">
+      <section className="bg-gray-100 dark:bg-gray-900 py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">

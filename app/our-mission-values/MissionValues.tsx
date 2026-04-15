@@ -31,7 +31,7 @@ export default function MissionValues() {
   ];
 
   return (
-    <section className="bg-gray-100 dark:bg-gray-950">
+    <section className="bg-gray-100 dark:bg-gray-900">
 
       {/* Top Title */}
       <div className="bg-teal-700 text-white text-center py-3 font-semibold text-lg">
