@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
 
 
 function FleetSection() {
@@ -157,7 +157,7 @@ function FleetSection() {
         </div>
       </section>
 
-    <Loginform/>
+    <RequestForm requestType="Freight Drivers" />
       <br />
     </>
   );

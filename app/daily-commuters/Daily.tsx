@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
 
 
 function Daily() {
@@ -154,7 +154,7 @@ function Daily() {
           </div>
         </div>
       </section>
-<Loginform/>
+      <RequestForm requestType="Daily Commuters" />
       <br />
     </>
   );
