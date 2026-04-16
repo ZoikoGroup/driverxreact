@@ -138,11 +138,21 @@ const Bottom = () => {
                 className="mb-3"
               />
               <h3 className="text-lg font-semibold text-white">
+                
                 {item.title}
               </h3>
-              <p className="mt-1 text-sm text-white/90 max-w-xs">
-                {item.value}
-              </p>
+            {item.title === "Mail us" ? (
+  <a
+    href={`mailto:${item.value}`}
+    className="mt-1 text-sm text-white/90 max-w-xs hover:underline"
+  >
+    {item.value}
+  </a>
+) : (
+  <p className="mt-1 text-sm text-white/90 max-w-xs">
+    {item.value}
+  </p>
+)}
             </div>
           ))}
         </div>

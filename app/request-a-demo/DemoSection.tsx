@@ -142,7 +142,7 @@ export default function DemoSection() {
 
           {/* RIGHT SIDE — STICKY FORM */}
 
-          <div className="sticky top-6 self-start space-y-5">
+          <div className="sticky top-6 self-start space-y-6">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow border border-teal-200 dark:border-teal-900 text-gray-900 dark:text-white">
 
               <div className="bg-teal-700 px-6 py-4 text-center rounded-t-lg">

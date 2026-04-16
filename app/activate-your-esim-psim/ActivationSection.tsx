@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
+
 
 const simTypes = [
   {
@@ -183,7 +184,7 @@ export default function ActivationSection() {
      <h1 className="text-2xl text-center text-gray-900 dark:text-white max-w-xl mx-auto">
   Still having some Questions?
 </h1>
-<Loginform/>
+  <RequestForm requestType="support" />
     </div>
   );
 }

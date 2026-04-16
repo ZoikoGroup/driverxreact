@@ -44,7 +44,7 @@ const features = [
 
 const FleetConnectivitySection = () => {
   return (
-    <section className="w-full dark:bg-gray-900 bg-gray-100 py-16">
+    <section className="w-full dark:bg-gray-900 bg-gray-100 ">
 
       {/* FULL WIDTH TITLE */}
       <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-5 text-xl font-semibold tracking-wide">
@@ -151,21 +151,25 @@ const FleetConnectivitySection = () => {
 
           <div className="flex flex-wrap justify-center gap-4 mt-8 ">
 
-            <button className="bg-white text-[#2f6f66] px-6 py-2 rounded-md font-medium hover:opacity-90 transition">
+           
+                      <a href="/fleet-connectivity-without-compromise"> <button className="bg-white text-[#2f6f66] px-6 py-2 rounded-md font-medium hover:opacity-90 transition">
              
-             <a href="/fleet-connectivity-without-compromise"> Explore Fleet Plans</a>
+   Explore Fleet Plans
             </button>
+            </a>
 
+           
+           
+            <a href="/request-a-demo"> 
+             <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
+             
+              Request a Demo</button>
+</a>
+              <a href="/contact-enterprise-sales">  
             <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
-              <a href="/request-a-demo"> 
-              Request a Demo</a>
-              
-              
+          Contact Enterprise Sales 
             </button>
-
-            <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
-            <a href="/contact-enterprise-sales">  Contact Enterprise Sales</a> 
-            </button>
+            </a>
 
           </div>
         </div>

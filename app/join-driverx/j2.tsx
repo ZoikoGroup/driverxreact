@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
+
 
 const features = [
   "Activate instantly with eSIM or shipped SIM",
@@ -202,7 +203,7 @@ export default function Join() {
         </div>
       </div>
 
-<Loginform/>
+  <RequestForm requestType="support" />
     </div>
   );
 }
