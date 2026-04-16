@@ -160,22 +160,16 @@ const Bottom = () => {
           />
 
           {/* QR + App buttons */}
-          <div className="flex items-center gap-6 justify-center">
-            <div className="relative w-[190px] h-[190px]">
-  <Image
-    src="/images/Group 1597883013.png"
-    alt="QR Code"
-    fill
-    className="border rounded-lg object-contain"
-  />
-
-  <Image
-    src="/images/vector.png"
-    alt="vector"
-    width={30}
-    height={30}
-    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-  />
+          <div className="flex items-center gap-7 justify-center">
+            <div className="relative w-[180px] h-[180px]">
+<Image
+  src="/images/qr.png"
+  alt="QR Code"
+  width={180}
+  height={180}
+  className="border rounded-lg"
+/>
+  
 </div>
 
              

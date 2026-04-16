@@ -154,9 +154,9 @@ function Gig(){
             Activate Your pSIM or eSIM
             </button></a>
 
-            <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
+          <a href="/join-driverx"> <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
              Join the DriverX Communityx
-            </button>
+            </button></a> 
 
           </div>
         </div>
