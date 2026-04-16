@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Lightbulb, Map, User } from "lucide-react";
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
       import Image from "next/image";
 
 export default function ArchitectSection() {
@@ -146,7 +146,7 @@ Your business isn’t off-the-shelf. Your connectivity shouldn’t be either. Wh
       </div>
          
     </div>
-      <Loginform/>
+      <RequestForm requestType="Solution Architect" />
       </>
   );
 }

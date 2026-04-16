@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
 
 const features = [
   {
@@ -164,7 +164,7 @@ Let our enterprise team evaluate your current telecom setup and design a better 
       </div>
       <br />
       <br />
-      <Loginform/>
+      <RequestForm requestType="Fleet Connectivity" />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
 
 export default function Support() {
   return (
@@ -17,7 +17,7 @@ export default function Support() {
         </p>
       </div>
 <br />
-      <Loginform />
+      <RequestForm requestType="support" />
 
     </section>
   );
