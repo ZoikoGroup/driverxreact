@@ -182,9 +182,8 @@ export default function DemoSection() {
                     <select name="orgType" value={form.orgType} onChange={handleChange} required
                       className="w-full h-9 px-3 text-sm bg-gray-50 dark:bg-gray-700 dark:text-white border border-gray-200 dark:border-gray-600 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition appearance-none">
                       <option value="">Select type</option>
-                      <option>Individual / Owner-Operator</option>
-                      <option>Business / Fleet Owner</option>
-                      <option>Enterprise Partner</option>
+                      <option>Individual (Professional Driver / Owner-Operator)</option>
+                      <option>Business (Fleet Owner / Logistics Company / Enterprise Partner)</option>
                     </select>
                   </div>
                   <div className="space-y-1">
