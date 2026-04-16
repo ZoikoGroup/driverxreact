@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Form from "../../loginform/form";
+import RequestForm from "../../components/request-form/form";
 
 function Gig() {
   return (
@@ -141,7 +141,7 @@ function Gig() {
       </section>
 
       <br />
-      <Form/>
+      <RequestForm requestType="Gig Driver" />
     </>
   );
 }

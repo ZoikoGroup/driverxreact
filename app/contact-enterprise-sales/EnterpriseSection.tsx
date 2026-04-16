@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Loginform from "../loginform/form";
+import RequestForm from "../components/request-form/form";
 
 export default function EnterpriseSection() {
   const serveCards = [
@@ -160,7 +160,7 @@ export default function EnterpriseSection() {
         </div>
 
       </section>
-      <Loginform />
+      <RequestForm requestType="Enterprise Sales" />
     </>
   );
 }
