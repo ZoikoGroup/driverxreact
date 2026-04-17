@@ -44,10 +44,10 @@ const features = [
 
 function Gig(){
   return (
-    <section className="w-full dark:bg-gray-900 bg-gray-100 py-16">
+    <section className="w-full dark:bg-gray-900 bg-gray-100 ">
 
       {/* FULL WIDTH TITLE */}
-      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-5 text-xl font-semibold tracking-wide">
+      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-8 text-xl font-semibold tracking-wide">
      DriverX Gig & Delivery Driver Plans
       </div>
 
