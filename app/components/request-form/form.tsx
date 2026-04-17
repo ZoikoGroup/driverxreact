@@ -112,7 +112,7 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
       {/* ----------------------------------------------------------------- */}
       {/* Left side – image (unchanged) */}
       {/* ----------------------------------------------------------------- */}
-      <div className="w-full lg:w-1/2 h-[300px] lg:h-auto">
+      <div className="w-full lg:w-1/2 h-[500px] lg:h-auto">
         <img
           src="/images/image 232.png"
           alt="Map"
@@ -123,7 +123,7 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
       {/* ----------------------------------------------------------------- */}
       {/* Right side – form */}
       {/* ----------------------------------------------------------------- */}
-      <div className="w-full lg:w-1/2 p-6 bg-teal-800 flex items-center px-20">
+      <div className="w-full lg:w-1/2 p-8 bg-teal-800 flex items-center px-20">
         <div className="w-full max-w-md">
           <h1 className="text-4xl font-bold text-white mb-4">Let’s Talk</h1>
 
@@ -131,7 +131,7 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
             Fill up the form – our team will get back to you within 24 hours
           </p>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-12" onSubmit={handleSubmit}>
             {/* ---- Hidden field – will be submitted automatically ---- */}
             <input
               type="hidden"
@@ -139,7 +139,7 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
               value={formData.request_type}
             />
 
-            <div className="flex gap-6">
+            <div className="flex gap-8">
               <input
                 type="text"
                 name="first_name"

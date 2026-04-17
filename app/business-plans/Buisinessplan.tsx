@@ -41,17 +41,17 @@ const Buisinessplans = () => {
       </div>
 
       {/* HERO SECTION */}
-      <section className="mx-auto max-w-7xl px-8 py-20">
+      <section className="mx-auto max-w-7xl px-8 py-20 dark:bg-gray-900 dark:text-white">
         <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-          <div className="bg-[#f6fbef] p-12 h-full flex flex-col justify-center">
-            <h3 className="text-3xl font-bold text-gray-900 leading-tight">
+          <div className="bg-[#f6fbef] p-12 h-full flex flex-col justify-center dark:bg-gray-900 dark:text-white">
+            <h3 className="text-3xl font-bold text-gray-900 leading-tight dark:bg-gray-900 dark:text-white">
            Business Plans Designed for Fleets, 
            <br />Teams & Professional Operations
             </h3>
 
-            <p className="mt-6 text-gray-600 text-lg max-w-md">
+            <p className="mt-6 text-gray-600 text-lg max-w-md dark:bg-gray-900 dark:text-white">
             Scale your transportation, logistics, or field service operation with plans crafted to maximize uptime, lower costs, and keep your entire team connected on America’s most reliable Tier-1 network.
          </p>
           </div>
@@ -71,7 +71,7 @@ const Buisinessplans = () => {
 <SingleCatPlansSection cat="business-plans"/>
 
 <section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-20">
-  <h2 className="mb-16 text-center text-3xl font-bold text-black">
+  <h2 className="mb-16 text-center text-3xl font-bold text-white">
     Benefits of DriverX Post-paid Plans
   </h2>
 
@@ -98,14 +98,13 @@ const Buisinessplans = () => {
     ))}
   </div>
 </section>
-<br />
-<br />
+
 
 {/* why choose us banners */}
 
 
-<div className="mx-auto max-w-7xl px-6 py-20">
-  <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start">
+<div className="mx-auto max-w-7xl px-6 py-20 dark:bg-gray-900 dark:text-white">
+  <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start dark:bg-gray-900 dark:text-white">
 
     {/* LEFT: Image */}
     <div>
@@ -117,18 +116,18 @@ const Buisinessplans = () => {
     </div>
 
     {/* RIGHT: Content */}
-    <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-gray-900">
+    <div className="space-y-6 dark:bg-gray-900 dark:text-white">
+      <h3 className="text-2xl font-bold text-gray-900 dark:bg-gray-900 dark:text-white  ">
         Why Choose DriverX Mobile?
       </h3>
 
-      <div className="space-y-4">
+      <div className="space-y-4 dark:bg-gray-900 dark:text-white">
 
         <div className="flex items-start gap-4">
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-800">
+          <p className="text-gray-800 dark:bg-gray-900 dark:text-white">
             Credit-friendly plans with low deposit options
           </p>
         </div>
@@ -137,7 +136,7 @@ const Buisinessplans = () => {
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:bg-gray-900 dark:text-white">
             PCI & FCC Compliant • Encrypted billing
           </p>
         </div>
@@ -146,7 +145,7 @@ const Buisinessplans = () => {
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:bg-gray-900 dark:text-white">
             Flexible spend caps and no overage shocks
           </p>
         </div>
@@ -155,7 +154,7 @@ const Buisinessplans = () => {
           <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
             ✓
           </span>
-          <p className="text-gray-800">
+          <p className="text-gray-800 dark:bg-gray-900 dark:text-white">
             Built-in perks that lower your total cost of driving
           </p>
         </div>
@@ -168,20 +167,20 @@ const Buisinessplans = () => {
 
 
 
-<div className="w-full py-20">
+<div className="w-full py-20 dark:bg-gray-900 dark:text-white">
   <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center px-6">
 
     {/* LEFT: Content */}
     <div className="max-w-lg">
-      <h3 className="text-2xl font-bold text-gray-900 mb-3">
+      <h3 className="text-2xl font-bold text-gray-900 mb-3 dark:bg-gray-900 dark:text-white">
         Coverage, Features & Control
       </h3>
 
-      <p className="text-gray-900 font-medium mb-4">
+      <p className="text-gray-900 font-medium mb-4 dark:bg-gray-900 dark:text-white">
         Your phone. Your plan. Your way.
       </p>
 
-      <p className="text-gray-600 leading-relaxed">
+      <p className="text-gray-600 leading-relaxed dark:bg-gray-900 dark:text-white">
        
 Professional drivers trust DriverX Mobile for unmatched connectivity, exclusive cash-back perks, and support designed for the road. It’s more than a plan — it’s your business partner.
       </p>

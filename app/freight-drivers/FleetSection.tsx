@@ -25,9 +25,9 @@ function FleetSection() {
             </p>
 
             <div className="mt-8 flex gap-4">
-              <button className="px-6 py-3 rounded-lg bg-white text-[#2f766c] font-semibold hover:bg-gray-100 transition dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
+         <a href="/business-plans">     <button className="px-6 py-3 rounded-lg bg-white text-[#2f766c] font-semibold hover:bg-gray-100 transition dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
                 View Plans
-              </button>
+              </button></a>
 
               <button className="px-6 py-3 rounded-lg border border-white text-white hover:bg-white hover:text-[#2f766c] transition dark:border-gray-500 dark:hover:bg-gray-800 dark:hover:text-white">
                 Check Area Coverage

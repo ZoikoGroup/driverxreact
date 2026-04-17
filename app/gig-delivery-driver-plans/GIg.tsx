@@ -142,17 +142,21 @@ function Gig(){
          
           <div className="flex flex-wrap justify-center gap-4 mt-8 ">
 
-            <button className="bg-white text-[#2f6f66] px-6 py-2 rounded-md font-medium hover:opacity-90 transition">
-          Compare Plans
+            
+             <a href="/compare-plans">  <button className="bg-white text-[#2f6f66] px-6 py-2 rounded-md font-medium hover:opacity-90 transition">
+       
+       Compare Plans
+    
             </button>
+            </a>
 
-            <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
+           <a href="/activate-your-esim-psim"> <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
             Activate Your pSIM or eSIM
-            </button>
+            </button></a>
 
-            <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
+          <a href="/join-driverx"> <button className="border border-white px-6 py-2 rounded-md font-medium hover:bg-white hover:text-[#2f6f66] transition">
              Join the DriverX Communityx
-            </button>
+            </button></a> 
 
           </div>
         </div>

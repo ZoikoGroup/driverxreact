@@ -70,7 +70,7 @@ const Postpaidplans = () => {
 <SingleCatPlansSection cat="postpaid-plans"/>
 
 <section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-20">
-  <h2 className="mb-16 text-center text-3xl font-bold text-black">
+  <h2 className="mb-16 text-center text-3xl font-bold text-white">
     Benefits of DriverX Post-paid Plans
   </h2>
 
@@ -81,12 +81,12 @@ const Postpaidplans = () => {
         className="group relative flex flex-col items-center"
       >
         {/* ICON */}
-        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full dark:bg-gray-900  dark:text-white bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
+        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full   dark:text-white bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
           {item.icon}
         </div>
 
         {/* CARD */}
-        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center dark:bg-gray-900  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
+        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
           <p className="font-semibold leading-snug">
             {item.title}
           </p>

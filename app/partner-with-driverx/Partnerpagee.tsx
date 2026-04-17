@@ -144,13 +144,14 @@ function PartnerWithDriverX() {
         <br />
 
         <div className="flex justify-center gap-4">
-          <button className="bg-teal-600 text-white px-6 py-2 rounded-full">
+          
+          <a href="/request-a-demo"><button className="bg-teal-600 text-white px-6 py-2 rounded-full">
 
 
-            <a href="/request-a-demo"> Apply to Partner</a>
+             Apply to Partner
             
           </button>
-         
+         </a>
         </div>
       </section>
 
@@ -268,12 +269,10 @@ while unlocking new monetization channels.
         </p>
 
         <div className="flex justify-center gap-4">
-          <button className="bg-white text-teal-700 px-6 py-2 rounded-full font-medium">
-            Apply to Become a Partner
-          </button>
-          <button className="border border-white px-6 py-2 rounded-full">
+       
+          <a href="/request-a-demo"><button className="border bg-white hover:bg-teal-700  hover:text-white text-teal-600 border-white px-7 py-3 rounded-full">
             Book a Discovery Call
-          </button>
+          </button></a>
         </div>
       </section>
     </div>

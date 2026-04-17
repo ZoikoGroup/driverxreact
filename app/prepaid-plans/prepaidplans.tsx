@@ -73,13 +73,13 @@ const Prepaidplans = () => {
         className="group relative flex flex-col items-center"
       >
         {/* ICON */}
-        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full dark:bg-gray-900  dark:text-white
+        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full dark:text-white
  bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
           {item.icon}
         </div>
 
         {/* CARD */}
-        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center  dark:bg-gray-900  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
+        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center    dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
           <p className="font-semibold leading-snug">
             {item.title}
           </p>
@@ -115,10 +115,10 @@ const Prepaidplans = () => {
         Why Choose DriverX Mobile?
       </h3>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         <div className="flex items-start gap-4">
           <span className="mt-1 w-6 h-6 rounded-full bg-teal-600 text-white
-                         dark:bg-gray-900  dark:text-white   flex items-center justify-center text-sm font-bold">
+                           flex items-center justify-center text-sm font-bold">
             ✓
           </span>
           <p className="text-gray-800  dark:text-white
@@ -127,7 +127,7 @@ const Prepaidplans = () => {
           </p>
         </div>
 
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-6">
           <span className="mt-1 w-6 h-6 rounded-full bg-teal-600 text-white
                            flex items-center justify-center text-sm font-bold">
             ✓
@@ -138,7 +138,7 @@ const Prepaidplans = () => {
           </p>
         </div>
 
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-6">
           <span className="mt-1 w-6 h-6 rounded-full bg-teal-600 text-white
                            flex items-center justify-center text-sm font-bold">
             ✓
