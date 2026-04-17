@@ -239,13 +239,13 @@ function PartnerProgram() {
           </p>
 
           <div className="flex justify-center gap-4">
-            <button className="bg-white text-teal-700 dark:bg-gray-100 dark:text-teal-900 px-6 py-3 rounded-full font-semibold">
+            <a href="/partner-with-driverx"><button className="bg-white text-teal-700 dark:bg-gray-100 dark:text-teal-900 px-6 py-3 rounded-full font-semibold">
               Submit a Partner Offer
             </button>
-
-            <button className="border border-white px-6 py-3 rounded-full font-semibold">
+</a>
+          <a href="/24-7-driver-support">  <button className="border border-white px-6 py-3 rounded-full font-semibold">
               Book a Call with Our Team
-            </button>
+            </button></a>
           </div>
         </div>
       </div>
