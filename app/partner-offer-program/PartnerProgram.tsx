@@ -32,10 +32,10 @@ const participants = [
 
 function PartnerProgram() {
   return (
-    <section className="bg-[#f5f6f4] dark:bg-gray-900 py-20 transition-colors duration-300">
+    <section className="bg-[#f5f6f4] dark:bg-gray-900  transition-colors duration-300">
 
       {/* HERO STRIP */}
-      <section className="bg-gradient-to-r from-[#1e6f5c] to-[#2a8a78] dark:from-teal-900 dark:to-teal-800 text-white py-6">
+      <section className="bg-gradient-to-r from-[#1e6f5c] to-[#2a8a78] dark:from-teal-900 dark:to-teal-800 text-white py-8">
         <div className="max-w-6xl mx-auto text-center px-6">
           <h1 className="text-xl md:text-3xl font-semibold tracking-wide">
             Drive Growth | Deliver Value |{" "}

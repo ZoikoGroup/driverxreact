@@ -56,8 +56,8 @@ const expectations = [
 
   return (
     <>
-    <div className="bg-gray-100 dark:bg-gray-950 py-12 px-4 md:px-10 rounded-2xl">
-        <div className="bg-[#1e5d57] py-6 text-center">
+    <div className="bg-gray-100 dark:bg-gray-950 md:px-10 rounded-2xl">
+        <div className="bg-[#1e5d57] py-8 text-center">
         <h1 className="text-white text-2xl md:text-3xl font-bold  dark:text-white">
       Talk to a Solution Architect
         </h1>

@@ -125,7 +125,7 @@ function PartnerWithDriverX() {
     <div className="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
 
       {/* HERO */}
-      <section className="bg-teal-700 text-white text-center py-16 px-6">
+      <section className="bg-teal-700 text-white text-center py-8 px-6">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Power The Platforms That Move The World
         </h1>

@@ -34,8 +34,8 @@ const Buisinessplans = () => {
   return (
     <>
       {/* TOP TITLE BAR */}
-      <div className="bg-teal-800 py-12">
-        <h2 className="text-white text-center font-bold text-5xl">
+      <div className="bg-teal-800 py-8">
+        <h2 className="text-white text-center font-bold text-4xl">
           DriverX Buisiness Plans
         </h2>
       </div>

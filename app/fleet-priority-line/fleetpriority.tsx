@@ -7,7 +7,7 @@ export default function FleetPriorityLine() {
     <section className="w-full bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
 
       {/* ================= HEADER BAR ================= */}
-      <div className="bg-[#1f6f63] dark:bg-teal-800 text-white text-center py-4 text-xl font-semibold transition-colors duration-300">
+      <div className="bg-[#1f6f63] dark:bg-teal-800 text-white text-center py-8 text-4xl font-semibold transition-colors duration-300">
         DriverX Fleet Priority Line
       </div>
 
