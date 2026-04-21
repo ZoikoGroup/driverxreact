@@ -3,11 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Modal, Button, Form, Spinner } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 import beQuick from "../utils/dasdbeQuickApi";
-// import "./Dashboard.css"; // TODO: Uncomment when Dashboard.css is created
 
 // ---------- Types ----------
 interface SubscriberInfo {
@@ -82,7 +79,6 @@ function formatDateAndRemaining(endAt?: string): { formatted: string; remainingD
   return { formatted, remainingDays };
 }
 
-
 function kbToGb(kb: number): number {
   return kb / 1024 / 1024;
 }
@@ -113,7 +109,6 @@ async function fetchDevices(planDetailsInfo: PlanDetails | null): Promise<Device
 export default function MyAccountPage() {
   const router = useRouter();
 
-  // BeQuick / UI states
   const [loading, setLoading] = useState(true);
   const [subscriber, setSubscriber] = useState<SubscriberInfo | null>(null);
   const [subscriberNotFound, setSubscriberNotFound] = useState(false);
@@ -241,7 +236,6 @@ export default function MyAccountPage() {
       setLoading(true);
       try {
         const userData = JSON.parse(localStorage.getItem("driverx_user") || "{}");
-        //const userEmail: string | undefined = userData?.email;
         const userEmail: string = "info@golitemobile.com";
         setUserName(userData?.name || "Customer");
 
@@ -253,7 +247,6 @@ export default function MyAccountPage() {
           return;
         }
 
-        // ✅ FIX: declare subscriberResult first, then check, then use SUBSCRIBER_ID
         const subscriberResult = await beQuick.getSubscriberByEmail(userEmail) as { subscriber_id: number };
 
         if (!subscriberResult?.subscriber_id) {
@@ -262,11 +255,7 @@ export default function MyAccountPage() {
           return;
         }
 
-        // ✅ FIX: SUBSCRIBER_ID is now declared AFTER the null-check above
         const SUBSCRIBER_ID = subscriberResult.subscriber_id;
-
-        //const SUBSCRIBER_ID = 55;
-
 
         const subDetails = await beQuick.getSubscriberDetails(SUBSCRIBER_ID) as { subscribers: SubscriberInfo[] };
         const subscriberInfo: SubscriberInfo | undefined = subDetails?.subscribers?.[0];
@@ -353,8 +342,18 @@ export default function MyAccountPage() {
                 Your account is ready. To unlock high-speed 5G data, nationwide talk, and global messaging, let&apos;s choose your perfect plan.
               </p>
               <div className="flex justify-center gap-3">
-                <button className="btn btn-dark px-4" onClick={() => setShowSimModal(true)}>Activate Your SIM</button>
-                <button className="btn btn-danger px-4" onClick={() => router.push("/all-plans")}>View Available Plans</button>
+                <button
+                  className="px-4 py-2 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-700 transition-colors"
+                  onClick={() => setShowSimModal(true)}
+                >
+                  Activate Your SIM
+                </button>
+                <button
+                  className="px-4 py-2 bg-red-600 text-white rounded-md font-medium hover:bg-red-700 transition-colors"
+                  onClick={() => router.push("/all-plans")}
+                >
+                  View Available Plans
+                </button>
               </div>
             </div>
           )}
@@ -362,224 +361,219 @@ export default function MyAccountPage() {
           {/* Loading */}
           {loading && (
             <div className="flex justify-center py-10">
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
+              <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
             </div>
           )}
 
           {/* Error */}
-          {error && <div className="alert alert-danger">{error}</div>}
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          )}
 
           {/* Dashboard */}
           {!loading && !subscriberNotFound && (
             <>
               {/* Welcome banner */}
-              <div className="alert alert-success text-center mb-6 fw-bold">
+              <div className="bg-green-100 border border-green-400 text-green-800 text-center px-4 py-3 rounded mb-6 font-bold">
                 👋 Welcome, {userName}!
               </div>
 
               {/* Row 1 */}
-              <div className="row g-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
 
                 {/* Plans & Usage */}
-                <div className="col-lg-4 col-md-6">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 h-full">
-                    <h6 className="font-semibold text-base mb-1">My Plans &amp; Usage</h6>
-                    <p className="text-gray-500 text-sm mb-4">See active plans, data use and renewal options</p>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+                  <h6 className="font-semibold text-base mb-1">My Plans &amp; Usage</h6>
+                  <p className="text-gray-500 text-sm mb-4">See active plans, data use and renewal options</p>
 
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded p-3 mb-4">
-                      <h6 className="font-bold mb-1">{planDetails?.current_plans?.[0]?.name || "N/A"}</h6>
-                      <small className="text-green-600">Active until: {activeUntil}</small>
-                    </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded p-3 mb-4">
+                    <h6 className="font-bold mb-1">{planDetails?.current_plans?.[0]?.name || "N/A"}</h6>
+                    <small className="text-green-600">Active until: {activeUntil}</small>
+                  </div>
 
-                    {/* Domestic */}
-                    <h6 className="text-sm font-semibold mb-1">Domestic Data</h6>
-                    <div className="flex justify-between text-xs mb-1">
-                      <span>{domesticUsedGB.toFixed(2)} GB Used</span>
-                      <span>{domesticRemainingGB.toFixed(2)} GB Remaining</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-1">
-                      <div className="bg-green-500 h-1.5 rounded-full" style={{ width: `${domesticPercentUsed}%` }} />
-                    </div>
-                    <small className="text-gray-400 block mb-3">
-                      {domesticPercentUsed}% used {remainingDays !== "N/A" && `• Renews in ${remainingDays} days`}
-                    </small>
+                  {/* Domestic */}
+                  <h6 className="text-sm font-semibold mb-1">Domestic Data</h6>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span>{domesticUsedGB.toFixed(2)} GB Used</span>
+                    <span>{domesticRemainingGB.toFixed(2)} GB Remaining</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-1.5 mb-1">
+                    <div className="bg-green-500 h-1.5 rounded-full" style={{ width: `${domesticPercentUsed}%` }} />
+                  </div>
+                  <small className="text-gray-400 block mb-3">
+                    {domesticPercentUsed}% used {remainingDays !== "N/A" && `• Renews in ${remainingDays} days`}
+                  </small>
 
-                    {/* Roaming */}
-                    <h6 className="text-sm font-semibold mb-1">Roaming Data</h6>
-                    <div className="flex justify-between text-xs mb-1">
-                      <span>{intlUsedGB.toFixed(2)} GB Used</span>
-                      <span>{intlRemainingGB.toFixed(2)} GB Remaining</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-1">
-                      <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: `${intlPercentUsed}%` }} />
-                    </div>
-                    <small className="text-gray-400 block mb-4">
-                      {intlPercentUsed}% used {remainingDays !== "N/A" && `• Renews in ${remainingDays} days`}
-                    </small>
+                  {/* Roaming */}
+                  <h6 className="text-sm font-semibold mb-1">Roaming Data</h6>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span>{intlUsedGB.toFixed(2)} GB Used</span>
+                    <span>{intlRemainingGB.toFixed(2)} GB Remaining</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-1.5 mb-1">
+                    <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: `${intlPercentUsed}%` }} />
+                  </div>
+                  <small className="text-gray-400 block mb-4">
+                    {intlPercentUsed}% used {remainingDays !== "N/A" && `• Renews in ${remainingDays} days`}
+                  </small>
 
-                    <div className="flex gap-2">
-                      <Link className="btn btn-success btn-sm" href={`/dashboard/plan-usages/${primaryLineId}`}>View details</Link>
-                      <Link className="btn btn-warning btn-sm text-white" href="/all-plans">Upgrade Plan</Link>
-                    </div>
+                  <div className="flex gap-2 mt-auto">
+                    <Link
+                      className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
+                      href={`/dashboard/plan-usages/${primaryLineId}`}
+                    >
+                      View details
+                    </Link>
+                    <Link
+                      className="px-3 py-1.5 bg-yellow-400 text-white text-sm rounded-md hover:bg-yellow-500 transition-colors"
+                      href="/all-plans"
+                    >
+                      Upgrade Plan
+                    </Link>
                   </div>
                 </div>
 
                 {/* Devices & SIMs */}
-                <div className="col-lg-4 col-md-6">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 h-full">
-                    <h6 className="font-semibold text-base mb-1">My Devices &amp; SIMs</h6>
-                    <p className="text-gray-500 text-sm mb-4">Activate, pause, or switch your pSIM/eSIM</p>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+                  <h6 className="font-semibold text-base mb-1">My Devices &amp; SIMs</h6>
+                  <p className="text-gray-500 text-sm mb-4">Activate, pause, or switch your pSIM/eSIM</p>
 
-                    {devices.map((d, i) => (
-                      <div key={i} className="flex justify-between items-center border-b pb-3 mb-3">
-                        <div>
-                          <strong>{d.label}</strong>
-                          <p className="text-gray-400 text-xs mb-0">{d.note}</p>
-                        </div>
-                        <span className={`badge ${d.status === "Active" ? "bg-success" : "bg-warning text-dark"}`}>
-                          {d.status}
-                        </span>
+                  {devices.map((d, i) => (
+                    <div key={i} className="flex justify-between items-center border-b pb-3 mb-3">
+                      <div>
+                        <strong>{d.label}</strong>
+                        <p className="text-gray-400 text-xs mb-0">{d.note}</p>
                       </div>
-                    ))}
-
-                    <div className="flex gap-2 mt-2">
-                      {subscriber?.id && (
-                        <Link href={`/dashboard/my-devices-sims/${subscriber.id}`}>
-                          <button className="btn btn-success btn-sm">Manage SIMs</button>
-                        </Link>
-                      )}
-                      <Link href="/dashboard/add-device/">
-                        <button className="btn btn-outline-success btn-sm">Add Device    </button>
-                      </Link>
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                        d.status === "Active"
+                          ? "bg-green-600 text-white"
+                          : "bg-yellow-400 text-gray-800"
+                      }`}>
+                        {d.status}
+                      </span>
                     </div>
+                  ))}
+
+                  <div className="flex gap-2 mt-auto pt-2">
+                    {subscriber?.id && (
+                      <Link href={`/dashboard/my-devices-sims/${subscriber.id}`}>
+                        <button className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors">
+                          Manage SIMs
+                        </button>
+                      </Link>
+                    )}
+                    <Link href="/dashboard/add-device/">
+                      <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                        Add Device
+                      </button>
+                    </Link>
                   </div>
                 </div>
 
                 {/* Billing & Payment */}
-                <div className="col-lg-4 col-md-6">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 h-full">
-                    <h6 className="font-semibold text-base mb-1">Billing &amp; Payment</h6>
-                    <p className="text-gray-500 text-sm mb-4">Update payment method or view invoices</p>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+                  <h6 className="font-semibold text-base mb-1">Billing &amp; Payment</h6>
+                  <p className="text-gray-500 text-sm mb-4">Update payment method or view invoices</p>
 
-                    <div className="flex justify-between items-center mb-3">
-                      <div>
-                        <h5 className="font-bold mb-0">${Number(currentBilli).toFixed(2)}</h5>
-                        <small className="text-gray-400">Current Bill</small>
-                      </div>
-                      <div>
-                        <h6 className="font-bold mb-0">{nextPayment}</h6>
-                        <small className="text-gray-400">Next Payment  </small>
-                      </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <div>
+                      <h5 className="font-bold mb-0">${Number(currentBilli).toFixed(2)}</h5>
+                      <small className="text-gray-400">Current Bill</small>
                     </div>
-
-                    <p className="text-gray-500 text-sm mb-2">Payment Method</p>
-
-                    {/* <div className="mt-2">
-                      {cards.length === 0 ? (
-                        <p className="text-gray-400 text-sm mb-2">No saved cards yet.</p>
-                      ) : (
-                        cards.map((card) => (
-                          <div key={card.id} className="flex justify-between items-center border rounded p-2 mb-2">
-                            <div>
-                              <strong>{card.card_holder_name || card.card_holder}</strong>
-                              <p className="mb-0 text-xs text-gray-400">
-                                **** **** **** {card.last4 ?? card.card_number?.slice(-4) ?? "0000"}
-                                &nbsp;&bull; Exp {card.exp_month ?? card.expiry_month}/{card.exp_year ?? card.expiry_year}
-                              </p>
-                            </div>
-                            <button className="btn btn-sm btn-outline-danger" onClick={() => deleteCard(card.id)}>Delete</button>
-                          </div>
-                        ))
-                      )}
-                    </div> */}
-
-                    {/* <div className="mb-3">
-                      <button className="btn btn-outline-success btn-sm me-2" onClick={() => setShowCardModal(true)}>+ Add Card</button>
+                    <div>
+                      <h6 className="font-bold mb-0">{nextPayment}</h6>
+                      <small className="text-gray-400">Next Payment</small>
                     </div>
-
-                    <div className="flex gap-2 mt-3">
-                      <button className="btn btn-success">Pay Now</button>
-                      {subscriber?.id && (
-                        <Link href={`/dashboard/billing-payment/${subscriber.id}`} className="btn btn-outline-secondary">
-                          View Invoice
-                        </Link>
-                      )}
-                    </div> */}
                   </div>
+
+                  <p className="text-gray-500 text-sm mb-2">Payment Method</p>
                 </div>
               </div>
 
               {/* Row 2 */}
-              <div className="row g-4 mt-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 {/* Account Settings */}
-                <div className="col-lg-4 col-md-6">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 h-full">
-                    <h6 className="font-semibold text-base mb-1">Account Settings</h6>
-                    <p className="text-gray-500 text-sm mb-4">Manage password, contact info, and security</p>
-                    <p className="text-sm font-semibold mb-1">Contact Info</p>
-                    {/* <p className="text-gray-400 text-sm mb-0">{subscriber?.email || "info@zoikomobile.com"}</p> */}
-                    <p className="text-gray-400 text-sm mb-0">info@driverxmobile.com</p>
-                    {/* <p className="text-gray-400 text-sm mb-4">{subscriber?.contact_number || "800-988-8116"}</p> */}
-                    <p className="text-gray-400 text-sm mb-4">+1 (800) 399-0087</p>
-                    <p className="text-sm font-semibold mb-1">Security</p>
-                    <p className="text-gray-400 text-sm mb-4">
-                      Two-factor authentication {subscriber?.two_fa ? "enabled" : "disabled"}
-                    </p>
-                    <div className="flex gap-2">
-                      <button className="btn btn-outline-secondary btn-sm">Edit Profile</button>
-                      <button className="btn btn-outline-success btn-sm">Security Settings</button>
-                    </div>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+                  <h6 className="font-semibold text-base mb-1">Account Settings</h6>
+                  <p className="text-gray-500 text-sm mb-4">Manage password, contact info, and security</p>
+                  <p className="text-sm font-semibold mb-1">Contact Info</p>
+                  <p className="text-gray-400 text-sm mb-0">info@driverxmobile.com</p>
+                  <p className="text-gray-400 text-sm mb-4">+1 (800) 399-0087</p>
+                  <p className="text-sm font-semibold mb-1">Security</p>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Two-factor authentication {subscriber?.two_fa ? "enabled" : "disabled"}
+                  </p>
+                  <div className="flex gap-2 mt-auto">
+                    <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                      Edit Profile
+                    </button>
+                    <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                      Security Settings
+                    </button>
                   </div>
                 </div>
 
                 {/* Order History */}
-                <div className="col-lg-4 col-md-6">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 h-full">
-                    <h6 className="font-semibold text-base mb-1">Order History</h6>
-                    <p className="text-gray-500 text-sm mb-4">Track previous orders</p>
-                    {orders.slice(0, 3).map((o, i) => (
-                      <div key={i} className="mb-3">
-                        <p className="text-xs text-gray-400 mb-1">{o.date || o.created_at || ""}</p>
-                        <p>
-                          <strong>Order {o.id || o.order_id || ""} - {o.description || ""}</strong>{" "}
-                          <span className="text-gray-400">${Number(o.amount || o.total || 0).toFixed(2)}</span>
-                        </p>
-                      </div>
-                    ))}
-                    <div className="flex gap-2">
-                      <Link href="/dashboard/orders">
-                        <button className="btn btn-outline-success btn-sm">View All Orders</button>
-                      </Link>
-                      <button className="btn btn-outline-secondary btn-sm">Track Shipment</button>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+                  <h6 className="font-semibold text-base mb-1">Order History</h6>
+                  <p className="text-gray-500 text-sm mb-4">Track previous orders</p>
+                  {orders.slice(0, 3).map((o, i) => (
+                    <div key={i} className="mb-3">
+                      <p className="text-xs text-gray-400 mb-1">{o.date || o.created_at || ""}</p>
+                      <p>
+                        <strong>Order {o.id || o.order_id || ""} - {o.description || ""}</strong>{" "}
+                        <span className="text-gray-400">${Number(o.amount || o.total || 0).toFixed(2)}</span>
+                      </p>
                     </div>
+                  ))}
+                  <div className="flex gap-2 mt-auto">
+                    <Link href="/dashboard/orders">
+                      <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                        View All Orders
+                      </button>
+                    </Link>
+                    <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                      Track Shipment
+                    </button>
                   </div>
                 </div>
 
                 {/* Support */}
-                <div className="col-lg-4 col-md-6">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 h-full">
-                    <h6 className="font-semibold text-base text-red-500 mb-1">Request Support</h6>
-                    <p className="text-gray-500 text-sm mb-4">Instant access to help with account pre-filled</p>
-                    <div className="alert alert-warning py-2 text-sm mb-4">
-                      Need help? Our driver support team is available 24/7
-                    </div>
-                    <div className="d-grid gap-2">
-                      <button className="btn btn-outline-success btn-sm" onClick={openChat}>Live Chat</button>
-                      <Link href="/customer-service">
-                        <button className="btn btn-outline-success btn-sm w-100">Call Support</button>
-                      </Link>
-                      <Link href="/faq">
-                        <button className="btn btn-outline-secondary btn-sm w-100">FAQ</button>
-                      </Link>
-                    </div>
-                    <div className="flex gap-2 mt-3">
-                      <Link href="/contact-us">
-                        <button className="btn btn-success btn-sm">Contact Support</button>
-                      </Link>
-                    </div>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+                  <h6 className="font-semibold text-base text-red-500 mb-1">Request Support</h6>
+                  <p className="text-gray-500 text-sm mb-4">Instant access to help with account pre-filled</p>
+                  <div className="bg-yellow-50 border border-yellow-300 text-yellow-800 px-4 py-2 rounded text-sm mb-4">
+                    Need help? Our driver support team is available 24/7
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <button
+                      className="w-full px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors"
+                      onClick={openChat}
+                    >
+                      Live Chat
+                    </button>
+                    <Link href="/customer-service">
+                      <button className="w-full px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                        Call Support
+                      </button>
+                    </Link>
+                    <Link href="/faq">
+                      <button className="w-full px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                        FAQ
+                      </button>
+                    </Link>
+                  </div>
+                  <div className="flex gap-2 mt-3">
+                    <Link href="/contact-us">
+                      <button className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors">
+                        Contact Support
+                      </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -590,98 +584,157 @@ export default function MyAccountPage() {
       </main>
 
       {/* Add Card Modal */}
-      <Modal show={showCardModal} onHide={() => setShowCardModal(false)} centered>
-        <Form onSubmit={saveCard}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add Payment Card</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Group className="mb-3">
-              <Form.Label>Card Number</Form.Label>
-              <Form.Control type="text" placeholder="1234123412341234" name="card_number"
-                maxLength={16} value={newCard.card_number} onChange={handleNumericInput} required />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Card Holder Name</Form.Label>
-              <Form.Control type="text" placeholder="John Doe" name="card_holder_name"
-                value={newCard.card_holder_name}
-                onChange={(e) => setNewCard({ ...newCard, card_holder_name: e.target.value })} required />
-            </Form.Group>
-            <div className="row">
-              <div className="col-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>Expiry Month (MM)</Form.Label>
-                  <Form.Control type="text" name="exp_month" placeholder="08" maxLength={2}
-                    value={newCard.exp_month} onChange={handleNumericInput} required />
-                </Form.Group>
-              </div>
-              <div className="col-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>Expiry Year (YYYY)</Form.Label>
-                  <Form.Control type="text" name="exp_year" placeholder="2028" maxLength={4}
-                    value={newCard.exp_year} onChange={handleNumericInput} required />
-                </Form.Group>
-              </div>
+      {showCardModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div className="flex justify-between items-center px-6 py-4 border-b">
+              <h5 className="font-semibold text-lg">Add Payment Card</h5>
+              <button
+                onClick={() => setShowCardModal(false)}
+                className="text-gray-400 hover:text-gray-600 text-xl leading-none"
+              >
+                &times;
+              </button>
             </div>
-            <Form.Group className="mb-3">
-              <Form.Label>CVV</Form.Label>
-              <Form.Control type="password" name="cvv" placeholder="123" maxLength={4}
-                value={newCard.cvv} onChange={handleNumericInput} required />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowCardModal(false)} disabled={savingCard}>Cancel</Button>
-            <Button type="submit" variant="success" disabled={savingCard}>
-              {savingCard ? "Saving..." : "Save Card"}
-            </Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
-
-      {/* Activate SIM Modal */}
-      <Modal show={showSimModal} onHide={() => setShowSimModal(false)} centered size="lg">
-        <Modal.Header closeButton className="border-0 pb-0">
-          <div className="w-100 text-center">
-            <h4 className="fw-bold mb-1">Get Your SIM in 3 Simple Steps</h4>
-            <p className="text-gray-400 text-sm mb-0">Quick activation. Seamless connectivity. No paperwork.</p>
-          </div>
-        </Modal.Header>
-        <Modal.Body className="pt-4">
-          <div className="row g-4">
-            {[
-              { step: 1, title: "Choose a Plan", desc: "Pick a plan that fits your needs — Unlimited, Prepaid, Postpaid, Business, or Travel plans available.", full: false },
-              { step: 2, title: "Select SIM Type", desc: "Choose eSIM for instant activation or order a physical SIM delivered to your doorstep.", full: false },
-              { step: 3, title: "Activate & Go", desc: "Complete activation online and enjoy fast, reliable 4G/5G coverage within minutes.", full: true },
-            ].map(({ step, title, desc, full }) => (
-              <div key={step} className={full ? "col-12" : "col-md-6"}>
-                <div className="h-100 p-4 rounded border bg-light">
-                  <div className="d-flex gap-3">
-                    <div style={{
-                      width: 36, height: 36, borderRadius: "50%",
-                      background: "#dc3545", color: "#fff",
-                      display: "flex", alignItems: "center",
-                      justifyContent: "center", fontWeight: "bold",
-                      minWidth: 36, flexShrink: 0,
-                    }}>
-                      {step}
-                    </div>
-                    <div>
-                      <h6 className="font-semibold text-red-500 mb-1">{title}</h6>
-                      <p className="text-gray-400 text-sm mb-0">{desc}</p>
-                    </div>
-                  </div>
+            <form onSubmit={saveCard} className="px-6 py-4 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+                <input
+                  type="text"
+                  placeholder="1234123412341234"
+                  name="card_number"
+                  maxLength={16}
+                  value={newCard.card_number}
+                  onChange={handleNumericInput}
+                  required
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Card Holder Name</label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  name="card_holder_name"
+                  value={newCard.card_holder_name}
+                  onChange={(e) => setNewCard({ ...newCard, card_holder_name: e.target.value })}
+                  required
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Month (MM)</label>
+                  <input
+                    type="text"
+                    name="exp_month"
+                    placeholder="08"
+                    maxLength={2}
+                    value={newCard.exp_month}
+                    onChange={handleNumericInput}
+                    required
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Year (YYYY)</label>
+                  <input
+                    type="text"
+                    name="exp_year"
+                    placeholder="2028"
+                    maxLength={4}
+                    value={newCard.exp_year}
+                    onChange={handleNumericInput}
+                    required
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  />
                 </div>
               </div>
-            ))}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                <input
+                  type="password"
+                  name="cvv"
+                  placeholder="123"
+                  maxLength={4}
+                  value={newCard.cvv}
+                  onChange={handleNumericInput}
+                  required
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div className="flex justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowCardModal(false)}
+                  disabled={savingCard}
+                  className="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={savingCard}
+                  className="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
+                >
+                  {savingCard ? "Saving..." : "Save Card"}
+                </button>
+              </div>
+            </form>
           </div>
-        </Modal.Body>
-        <Modal.Footer className="border-0 justify-content-center pt-3">
-          <button className="btn btn-danger px-5 py-2 fw-semibold"
-            onClick={() => { setShowSimModal(false); router.push("/all-plans"); }}>
-            View Plans &amp; Activate
-          </button>
-        </Modal.Footer>
-      </Modal>
+        </div>
+      )}
+
+      {/* Activate SIM Modal */}
+      {showSimModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl mx-4">
+            <div className="px-6 pt-6 pb-0 border-b pb-4">
+              <div className="flex justify-between items-start">
+                <div className="flex-1 text-center">
+                  <h4 className="font-bold text-xl mb-1">Get Your SIM in 3 Simple Steps</h4>
+                  <p className="text-gray-400 text-sm mb-0">Quick activation. Seamless connectivity. No paperwork.</p>
+                </div>
+                <button
+                  onClick={() => setShowSimModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-xl leading-none ml-4"
+                >
+                  &times;
+                </button>
+              </div>
+            </div>
+            <div className="px-6 py-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { step: 1, title: "Choose a Plan", desc: "Pick a plan that fits your needs — Unlimited, Prepaid, Postpaid, Business, or Travel plans available.", full: false },
+                  { step: 2, title: "Select SIM Type", desc: "Choose eSIM for instant activation or order a physical SIM delivered to your doorstep.", full: false },
+                  { step: 3, title: "Activate & Go", desc: "Complete activation online and enjoy fast, reliable 4G/5G coverage within minutes.", full: true },
+                ].map(({ step, title, desc, full }) => (
+                  <div key={step} className={`${full ? "md:col-span-2" : ""} h-full p-4 rounded-lg border bg-gray-50`}>
+                    <div className="flex gap-3">
+                      <div className="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
+                        {step}
+                      </div>
+                      <div>
+                        <h6 className="font-semibold text-red-500 mb-1">{title}</h6>
+                        <p className="text-gray-400 text-sm mb-0">{desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="px-6 pb-6 flex justify-center">
+              <button
+                className="px-8 py-2.5 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-colors"
+                onClick={() => { setShowSimModal(false); router.push("/all-plans"); }}
+              >
+                View Plans &amp; Activate
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
