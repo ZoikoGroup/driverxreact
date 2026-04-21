@@ -125,7 +125,7 @@ function PartnerWithDriverX() {
     <div className="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
 
       {/* HERO */}
-      <section className="bg-teal-700 text-white text-center py-16 px-6">
+      <section className="bg-teal-700 text-white text-center py-8 px-6">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Power The Platforms That Move The World
         </h1>
@@ -156,7 +156,7 @@ function PartnerWithDriverX() {
       </section>
 
       {/* WHO WE PARTNER WITH */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-12 md:pb-20">
         <h3 className="text-center text-3xl font-semibold mb-10">
           Who We Partner With
         </h3>
@@ -179,7 +179,7 @@ while unlocking new monetization channels.
               className="rounded-lg border p-6 bg-yellow-50 dark:bg-gray-900 border-yellow-400 dark:border-gray-700"
             >
               <h4 className="font-semibold mb-2">{item.title}</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 md:max-w-md">
                 {item.desc}
               </p>
             </div>
@@ -204,7 +204,7 @@ while unlocking new monetization channels.
               </div>
               <div>
                 <h4 className="font-semibold">{item.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 md:max-w-md">
                   {item.desc}
                 </p>
               </div>
@@ -214,7 +214,7 @@ while unlocking new monetization channels.
       </section>
 
       {/* CAPABILITIES */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-12 md:pb-20">
         <h3 className="text-center text-xl font-semibold mb-10">
           Everything You Need to Succeed
         </h3>
@@ -233,7 +233,7 @@ while unlocking new monetization channels.
                 />
               </div>
               <h4 className="font-semibold mb-2">{item.title}</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 md:max-w-md">
                 {item.desc}
               </p>
             </div>
@@ -242,16 +242,16 @@ while unlocking new monetization channels.
       </section>
 
       {/* WHY DRIVER X */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-12 md:pb-20">
         <h3 className="text-center text-2xl font-bold mb-10">
           Why DriverX?
         </h3>
 
         <div className="bg-white dark:bg-gray-900 border dark:border-gray-700 rounded-lg divide-y dark:divide-gray-700">
           {whyDriverX.map((item, i) => (
-            <div key={i} className="flex justify-between p-6">
-              <h4 className="font-bold">{item.title}</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+          <div key={i} className="flex flex-col md:flex-row md:justify-between gap-2 md:gap-6 p-4 md:p-6">
+             <h4 className="font-semibold text-base md:text-lg">{item.title}</h4>
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 md:max-w-md">
                 {item.desc}
               </p>
             </div>

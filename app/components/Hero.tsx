@@ -231,7 +231,7 @@ const Hero = () => {
         <img
           src="/images/Group 1597883025.png"
           alt="Smart Savings"
-          className="h-40 mb-6"
+          className="h-30 mb-10"
         />
         <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
           Smart Savings with AI
