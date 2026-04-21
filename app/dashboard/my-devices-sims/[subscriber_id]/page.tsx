@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import { FaSimCard, FaMobileAlt, FaDatabase } from "react-icons/fa";
 import Link from "next/link";
 import beQuick from "../../../utils/dasdbeQuickApi";
-import "../../Dashboard.css";
 
 // ---------- Types ----------
 interface Device {
@@ -38,7 +37,6 @@ interface PlanDetails {
 
 // ---------- Component ----------
 export default function DevicesPage() {
-  // ✅ FIX: removed unused { params } prop — use useParams() only
   const { subscriber_id } = useParams() as { subscriber_id: string };
 
   const [loading, setLoading] = useState(true);
@@ -92,13 +90,12 @@ export default function DevicesPage() {
     };
 
     fetchDevices();
-  }, [subscriber_id]); // ✅ subscriber_id in deps
+  }, [subscriber_id]);
 
   const handlePauseDevice = (device: Device): void => {
     alert(`Pausing ${device.label}...`);
   };
 
-  // ---------- Data bar percentage helper ----------
   const getDataPct = (used: string, total: string): number => {
     const u = parseFloat(used);
     const t = parseFloat(total);
@@ -114,68 +111,72 @@ export default function DevicesPage() {
           {/* Loading */}
           {loading && (
             <div className="flex justify-center py-10">
-              <div className="spinner-border text-success" role="status">
-                <span className="visually-hidden">Loading...</span>
+              <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             </div>
           )}
 
           {/* Devices */}
           {!loading && (
-            <div className="row g-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {devices.map((d, i) => (
-                <div key={i} className="col-md-6">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 h-full">
+                <div key={i} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex flex-col">
 
-                    {/* Header */}
-                    <div className="flex justify-between items-center mb-3">
-                      <div>
-                        <strong>{d.label}</strong>
-                        <p className="text-gray-400 text-xs mb-0">{d.note}</p>
-                      </div>
-                      <span className={`badge ${d.status === "Active" ? "bg-success" : "bg-warning text-dark"}`}>
-                        {d.status}
-                      </span>
+                  {/* Header */}
+                  <div className="flex justify-between items-center mb-3">
+                    <div>
+                      <strong>{d.label}</strong>
+                      <p className="text-gray-400 text-xs mb-0">{d.note}</p>
                     </div>
-
-                    {/* Info */}
-                    <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1 mb-3">
-                      <p className="mb-1">
-                        <FaSimCard className="inline me-2 text-green-500" />
-                        <strong>SIM Type:</strong> {d.simType}
-                      </p>
-                      <p className="mb-1">
-                        <FaMobileAlt className="inline me-2 text-green-500" />
-                        <strong>Phone Number:</strong> {d.phoneNumber}
-                      </p>
-                      <p className="mb-2">
-                        <FaDatabase className="inline me-2 text-green-500" />
-                        <strong>Data Used:</strong> {d.dataUsed} / {d.dataTotal}
-                      </p>
-
-                      {/* Data bar */}
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-green-500 h-2 rounded-full"
-                          style={{ width: `${getDataPct(d.dataUsed, d.dataTotal)}%` }}
-                        />
-                      </div>
-                    </div>
-
-                    <button
-                      className="btn btn-outline-success btn-sm mt-1 w-100"
-                      onClick={() => handlePauseDevice(d)}
-                    >
-                      Pause Device
-                    </button>
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                      d.status === "Active"
+                        ? "bg-green-600 text-white"
+                        : "bg-yellow-400 text-gray-800"
+                    }`}>
+                      {d.status}
+                    </span>
                   </div>
+
+                  {/* Info */}
+                  <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1 mb-3">
+                    <p className="mb-1 flex items-center gap-2">
+                      <FaSimCard className="text-green-500 flex-shrink-0" />
+                      <strong>SIM Type:</strong> {d.simType}
+                    </p>
+                    <p className="mb-1 flex items-center gap-2">
+                      <FaMobileAlt className="text-green-500 flex-shrink-0" />
+                      <strong>Phone Number:</strong> {d.phoneNumber}
+                    </p>
+                    <p className="mb-2 flex items-center gap-2">
+                      <FaDatabase className="text-green-500 flex-shrink-0" />
+                      <strong>Data Used:</strong> {d.dataUsed} / {d.dataTotal}
+                    </p>
+
+                    {/* Data bar */}
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-green-500 h-2 rounded-full"
+                        style={{ width: `${getDataPct(d.dataUsed, d.dataTotal)}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    className="w-full mt-auto px-3 py-2 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors"
+                    onClick={() => handlePauseDevice(d)}
+                  >
+                    Pause Device
+                  </button>
                 </div>
               ))}
 
               {/* Add Device */}
-              <div className="col-12 mt-2">
+              <div className="col-span-full mt-2">
                 <Link href="/dashboard/add-device/">
-                  <button className="btn btn-success w-100">+ Add New Device</button>
+                  <button className="w-full px-4 py-2 bg-green-600 text-white rounded-md font-medium hover:bg-green-700 transition-colors">
+                    + Add New Device
+                  </button>
                 </Link>
               </div>
             </div>
