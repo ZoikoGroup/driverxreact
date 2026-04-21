@@ -41,12 +41,12 @@ const Buisinessplans = () => {
       </div>
 
       {/* HERO SECTION */}
-      <section className="mx-auto max-w-7xl px-8 py-20 dark:bg-gray-900 dark:text-white">
-        <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
+          <section className="mx-auto max-w-7xl px-4 md:px-8 py-8 md:py-20 dark:bg-gray-900">
+           <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-          <div className="bg-[#f6fbef] p-12 h-full flex flex-col justify-center dark:bg-gray-900 dark:text-white">
-            <h3 className="text-3xl font-bold text-gray-900 leading-tight dark:bg-gray-900 dark:text-white">
+          <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:p-12 flex flex-col justify-center">
+          <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:bgt-gray-900 dark:text-white leading-snug max-w-sm md:max-w-none">
            Business Plans Designed for Fleets, 
            <br />Teams & Professional Operations
             </h3>

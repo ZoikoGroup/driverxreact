@@ -238,12 +238,14 @@ function PartnerProgram() {
             mobility SaaS, and device ecosystems.
           </p>
 
-          <div className="flex justify-center gap-4">
-            <a href="/partner-with-driverx"><button className="bg-white text-teal-700 dark:bg-gray-100 dark:text-teal-900 px-6 py-3 rounded-full font-semibold">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full">
+            <a href="/partner-with-driverx">
+            
+            <button className= " w-full sm:w-auto text-center bg-white text-teal-700 dark:bg-gray-100 dark:text-teal-900 px-5 py-3 rounded-full font-semibold text-sm md:text-base">
               Submit a Partner Offer
             </button>
 </a>
-          <a href="/24-7-driver-support">  <button className="border border-white px-6 py-3 rounded-full font-semibold">
+          <a href="/24-7-driver-support">  <button className="w-full sm:w-auto text-center hover:bg-teal-500 border border-white px-5 py-3 rounded-full font-semibold text-sm md:text-base">
               Book a Call with Our Team
             </button></a>
           </div>

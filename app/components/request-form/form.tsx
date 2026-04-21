@@ -123,15 +123,15 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
       {/* ----------------------------------------------------------------- */}
       {/* Right side – form */}
       {/* ----------------------------------------------------------------- */}
-      <div className="w-full lg:w-1/2 p-8 bg-teal-800 flex items-center px-20">
-        <div className="w-full max-w-md">
-          <h1 className="text-4xl font-bold text-white mb-4">Let’s Talk</h1>
+<div className="w-full lg:w-1/2 p-6 md:p-8 bg-teal-800 flex items-center px-4 md:px-20">
+        <div className="w-full max-w-md mx-auto">
+          <h1 className="text-2xl md:text-4xl font-bold text-white mb-4">Let’s Talk</h1>
 
           <p className="text-gray-200 text-sm mb-10">
             Fill up the form – our team will get back to you within 24 hours
           </p>
 
-          <form className="space-y-12" onSubmit={handleSubmit}>
+          <form className="space-y-6 md:space-y-10" onSubmit={handleSubmit}>
             {/* ---- Hidden field – will be submitted automatically ---- */}
             <input
               type="hidden"
@@ -139,14 +139,14 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
               value={formData.request_type}
             />
 
-            <div className="flex gap-8">
+      <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 name="first_name"
                 placeholder="First Name"
                 value={formData.first_name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-md bg-gray-200"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 text-sm md:text-base"
                 required
               />
 
@@ -156,7 +156,7 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
                 placeholder="Last Name"
                 value={formData.last_name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-md bg-gray-200"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 text-sm md:text-base"
                 required
               />
             </div>
@@ -167,7 +167,7 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
               placeholder="Email Address"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-md bg-gray-200"
+              className="w-full px-4 py-3 rounded-lg bg-gray-200 text-sm md:text-base"
               required
             />
 
@@ -177,14 +177,14 @@ export default function RequestForm({ requestType = "support" }: RequestFormProp
               rows={5}
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-md bg-gray-200"
+              className="w-full px-4 py-3 rounded-lg bg-gray-200 text-sm md:text-base"
               required
             />
 
             <button
               type="submit"
               disabled={loading}
-              className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-teal-800 transition"
+              className="w-full border border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-teal-800 transition"
             >
               {loading ? "Sending…" : "Send Message"}
             </button>
