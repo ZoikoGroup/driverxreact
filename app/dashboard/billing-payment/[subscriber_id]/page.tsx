@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import beQuick from "../../../utils/dasdbeQuickApi";
 import { getPlanDetails } from "../../../utils/dasdbeQuickApi";
-import "../../Dashboard.css";
 
 // ---------- Types ----------
 interface Bill {
@@ -37,7 +36,6 @@ const TOKEN = "09ff2d85-a451-47e6-86bc-aba98e1e4629";
 
 // ---------- Component ----------
 export default function BillingPaymentPage() {
-  // ✅ FIX: use useParams() instead of React.use(params)
   const { subscriber_id } = useParams() as { subscriber_id: string };
 
   const [loading, setLoading] = useState(true);
@@ -210,58 +208,56 @@ export default function BillingPaymentPage() {
           {/* Loading */}
           {loading && (
             <div className="flex justify-center py-10">
-              <div className="spinner-border text-success" role="status">
-                <span className="visually-hidden">Loading...</span>
+              <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             </div>
           )}
 
           {/* Error */}
-          {error && <div className="alert alert-danger text-center">{error}</div>}
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center mb-4">
+              {error}
+            </div>
+          )}
 
           {!loading && !error && (
             <>
               {/* Summary Cards */}
-              <div className="row g-3 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 
                 {/* Current Balance */}
-                <div className="col-md-4">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
-                    <h6 className="text-gray-400 mb-1">Current Balance</h6>
-                    <h4 className="font-bold text-2xl mb-1">{billingData.currentBalance}</h4>
-                    <p className="text-gray-400 text-sm mb-4">
-                      {billingData.daysLeft} days left ({currentPlanName})
-                    </p>
-                    <button
-                      className="btn btn-success w-100"
-                      onClick={() => alert(`Pay Now clicked for plan ${currentPlanId}`)}
-                    >
-                      Pay Now
-                    </button>
-                  </div>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
+                  <h6 className="text-gray-400 mb-1 text-sm">Current Balance</h6>
+                  <h4 className="font-bold text-2xl mb-1">{billingData.currentBalance}</h4>
+                  <p className="text-gray-400 text-sm mb-4">
+                    {billingData.daysLeft} days left ({currentPlanName})
+                  </p>
+                  <button
+                    className="w-full px-4 py-2 bg-green-600 text-white rounded-md font-medium hover:bg-green-700 transition-colors"
+                    onClick={() => alert(`Pay Now clicked for plan ${currentPlanId}`)}
+                  >
+                    Pay Now
+                  </button>
                 </div>
 
                 {/* Recent Summary */}
-                <div className="col-md-4">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
-                    <h6 className="text-gray-400 mb-1">Recent Summary</h6>
-                    <h4 className="font-bold text-2xl mb-1">{billingData.recentSummary}</h4>
-                    <p className="text-green-600 text-sm">✓ Last payment successful</p>
-                  </div>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
+                  <h6 className="text-gray-400 mb-1 text-sm">Recent Summary</h6>
+                  <h4 className="font-bold text-2xl mb-1">{billingData.recentSummary}</h4>
+                  <p className="text-green-600 text-sm">✓ Last payment successful</p>
                 </div>
 
                 {/* Billing Alerts */}
-                <div className="col-md-4">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
-                    <h6 className="text-gray-400 mb-2">Billing Alerts</h6>
-                    {billingData.billingAlerts.length > 0 ? (
-                      billingData.billingAlerts.map((alert, i) => (
-                        <p key={i} className="text-sm mb-1 text-yellow-600">⚠️ {alert}</p>
-                      ))
-                    ) : (
-                      <p className="text-green-600 text-sm mb-0">✓ No pending alerts</p>
-                    )}
-                  </div>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
+                  <h6 className="text-gray-400 mb-2 text-sm">Billing Alerts</h6>
+                  {billingData.billingAlerts.length > 0 ? (
+                    billingData.billingAlerts.map((alert, i) => (
+                      <p key={i} className="text-sm mb-1 text-yellow-600">⚠️ {alert}</p>
+                    ))
+                  ) : (
+                    <p className="text-green-600 text-sm mb-0">✓ No pending alerts</p>
+                  )}
                 </div>
               </div>
 
@@ -269,35 +265,39 @@ export default function BillingPaymentPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
                 <h6 className="font-bold mb-4">Bill History</h6>
 
-                <div className="table-responsive">
-                  <table className="table table-striped align-middle">
-                    <thead className="table-light">
-                      <tr>
-                        <th>#</th>
-                        <th>Service Period</th>
-                        <th>Amount</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm text-left">
+                    <thead>
+                      <tr className="bg-gray-100 dark:bg-gray-700">
+                        <th className="px-4 py-3 font-semibold text-gray-500 uppercase text-xs">#</th>
+                        <th className="px-4 py-3 font-semibold text-gray-500 uppercase text-xs">Service Period</th>
+                        <th className="px-4 py-3 font-semibold text-gray-500 uppercase text-xs">Amount</th>
+                        <th className="px-4 py-3 font-semibold text-gray-500 uppercase text-xs">Due Date</th>
+                        <th className="px-4 py-3 font-semibold text-gray-500 uppercase text-xs">Status</th>
+                        <th className="px-4 py-3 font-semibold text-gray-500 uppercase text-xs">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {currentBills.length > 0 ? (
                         currentBills.map((bill, i) => (
-                          <tr key={i}>
-                            <td>{bill.id}</td>
-                            <td>{bill.period}</td>
-                            <td>{bill.amount}</td>
-                            <td>{bill.due}</td>
-                            <td>
-                              <span className={`badge ${bill.status?.toLowerCase() === "paid" ? "bg-success" : "bg-warning"}`}>
+                          <tr key={i} className="border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <td className="px-4 py-3">{bill.id}</td>
+                            <td className="px-4 py-3">{bill.period}</td>
+                            <td className="px-4 py-3">{bill.amount}</td>
+                            <td className="px-4 py-3">{bill.due}</td>
+                            <td className="px-4 py-3">
+                              <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                                bill.status?.toLowerCase() === "paid"
+                                  ? "bg-green-600 text-white"
+                                  : "bg-yellow-400 text-gray-800"
+                              }`}>
                                 {bill.status}
                               </span>
                             </td>
-                            <td>
+                            <td className="px-4 py-3">
                               {bill.attachmentUrl ? (
                                 <button
-                                  className="btn btn-sm btn-outline-success"
+                                  className="px-3 py-1 border border-green-600 text-green-600 text-xs rounded-md hover:bg-green-50 transition-colors"
                                   onClick={() => handleDownload(bill.id)}
                                 >
                                   Download
@@ -323,7 +323,7 @@ export default function BillingPaymentPage() {
                 {totalPages > 1 && (
                   <div className="flex justify-center items-center gap-3 mt-4">
                     <button
-                      className="btn btn-outline-success btn-sm"
+                      className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1}
                     >
@@ -333,7 +333,7 @@ export default function BillingPaymentPage() {
                       Page {currentPage} of {totalPages}
                     </span>
                     <button
-                      className="btn btn-outline-success btn-sm"
+                      className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       onClick={() => handlePageChange(currentPage + 1)}
                       disabled={currentPage === totalPages}
                     >
