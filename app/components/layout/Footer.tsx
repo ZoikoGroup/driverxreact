@@ -30,7 +30,7 @@ const FOOTER_LINKS = [
     title: "Our Solutions",
     links: [
       { label: "Fleet & Logistics", href: "/fleet-logistics-connectivity" },
-      { label: "Connectivity", href: "/solutions/connectivity" },
+     
       { label: "Gig & Delivery Driver Plans", href: "/gig-delivery-driver-plans" },
       { label: "Telematics & IoT", href: "/telematics-iot-integrations" },
    
@@ -42,7 +42,7 @@ const FOOTER_LINKS = [
     links: [
       { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "Fleet Priority Line", href: "/fleet-priority-line" },
-      { label: "Coverage Maps", href: "/support/coverage" },
+   { label: "Coverage Maps", href: "https://mvnoc.ai/coverage-map", external: true },
       { label: "FAQs & Self Service", href: "/support/faqs" },
       { label: "Accessibility & Language Options", href: "/accessibility-language-options"}
     ],
