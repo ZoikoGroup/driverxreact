@@ -123,7 +123,7 @@ export default function Navbar() {
     Support: [
       { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "DriverX Fleet Priority Line", href: "/fleet-priority-line" },
-      { label: "Coverage Maps", href: "/support/coverage" },
+      { label: "Coverage Maps", href: "https://mvnoc.ai/coverage-map" },
       { label: "FAQs & Self Service", href: "/faqs-self-service" },
       { label: "Accessibility & Language Options", href: "/accessibility-language-options" },
     ],
@@ -242,7 +242,7 @@ export default function Navbar() {
                   Login
                 </Link>
                 <Link
-                  href="/signup"
+                  href="/register"
                   className="bg-black text-white px-5 py-2 rounded-full hover:bg-gray-800 transition"
                 >
                  Register

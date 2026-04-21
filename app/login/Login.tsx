@@ -4,15 +4,17 @@ import { useState, useEffect, Suspense, type SyntheticEvent } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { logout } from "../utils/auth";
-import { signIn } from "next-auth/react";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 function LoginPageContent() {
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const searchParams = useSearchParams();
   const redirect = searchParams?.get("redirect");
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
@@ -21,225 +23,219 @@ function LoginPageContent() {
   const router = useRouter();
 
   useEffect(() => {
-  if (status === "authenticated") {
-    router.push(callbackUrl);
-    return;
-  }
-
-  // Also redirect if logged in via Django API token
-  if (status === "unauthenticated" && typeof window !== "undefined") {
-    const token = localStorage.getItem("driverx_token");
-    if (token) {
+    if (status === "authenticated") {
       router.push(callbackUrl);
+      return;
     }
-  }
-}, [status, callbackUrl]);
 
-  /* =========================
-     EMAIL / PASSWORD LOGIN (DJANGO API)
-     ========================= */
+    if (status === "unauthenticated" && typeof window !== "undefined") {
+      const token = localStorage.getItem("driverx_token");
+      if (token) router.push(callbackUrl);
+    }
+  }, [status, callbackUrl]);
+
   const handleLogin = async (e: SyntheticEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setError(null);
-  setLoading(true);
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
 
-  try {
-    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/accounts/login/`;
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email.trim(),
-        password,
-      }),
-    });
-
-    // ✅ SAFELY read response
-    const text = await response.text();
-
-    let data: any;
     try {
-      data = JSON.parse(text);
-    } catch {
-      console.error("Server returned non-JSON:", text);
-      throw new Error("Server error. Check API URL or CORS.");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/accounts/login/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email.trim(),
+            password,
+          }),
+        }
+      );
+
+      const text = await res.text();
+      let data: any;
+
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("Server error. Check API URL.");
+      }
+
+      if (!res.ok) throw new Error(data?.message || "Invalid credentials");
+
+      localStorage.setItem("driverx_token", data.token);
+      localStorage.setItem("driverx_user", JSON.stringify(data.user));
+
+      router.replace(redirect || "/dashboard");
+    } catch (err: any) {
+      setError(err.message || "Login failed");
+    } finally {
+      setLoading(false);
     }
-
-    if (!response.ok) {
-      throw new Error(data?.message || "Incorrect email or password");
-    }
-
-    // ✅ save
-    localStorage.setItem("driverx_token", data.token);
-    localStorage.setItem("driverx_user", JSON.stringify(data.user));
-
-    router.replace(redirect || "/dashboard");
-
-  } catch (err: any) {
-    setError(err.message || "Login failed");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen bg-[#f4f7f6] flex items-center justify-center px-4 py-10 dark:bg-gray-900 dark:text-white">
+      <div className="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
 
-      <main className="flex-grow flex items-center justify-center dark:bg-gray-900 bg-gray-100 py-12 px-4">
-        <div className="max-w-md w-full bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            Login to Your Account
-          </h2>
+        {/* LEFT */}
+        <div className="w-full max-w-md mx-auto">
 
-          {/* ===== LOGIN FORM ===== */}
-          <form onSubmit={handleLogin} className="space-y-6">
+          {/* Back */}
+          <Link href="/" className="text-sm text-gray-500 mb-4 inline-block dark:bg-gray-900 dark:text-white">
+            ← Back to Site
+          </Link>
+
+          {/* Logo */}
+          <div className="flex items-center gap-3 mb-4">
+            <Image
+              src="/images/Logo.svg.png"
+              alt="DriverX Logo"
+              width={140}
+              height={40}
+              priority
+            />
+          </div>
+
+          <h1 className="text-3xl font-bold text-gray-900 mb-2 dark:bg-gray-900 dark:text-white">
+            Welcome back!
+          </h1>
+
+          <p className="text-gray-500 mb-6 text-sm dark:bg-gray-900 dark:text-white">
+            Enter your credentials to access your account.
+          </p>
+
+          <form onSubmit={handleLogin} className="space-y-5">
+
+            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email Address
+              <label className="text-sm font-medium  dark:text-white text-[#2d6a6a]">
+                Username or Email Address
               </label>
               <input
-                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border rounded-md focus:ring-orange-500 focus:border-orange-500"
+                placeholder="Username or Email"
+                className=" dark:bg-gray-800 dark:text-white w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 focus:ring-2 focus:ring-teal-600"
               />
             </div>
 
+            {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-medium  dark:text-white text-[#2d6a6a]">
+                  Password
+                </label>
+                <Link href="/forgot-password" className="text-sm dark:text-teal-400 text-teal-600">
+                  Forgot Password?
+                </Link>
+              </div>
+
+              <div className="relative mt-1">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="dark:bg-gray-800 dark:text-white w-full px-4 py-3 pr-10 rounded-lg border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-600"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 dark:bg-gray-800 dark:text-white text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? (
+                    // Eye OFF
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9-4-10-7a13.16 13.16 0 012.25-3.592M6.223 6.223A9.956 9.956 0 0112 5c5 0 9 4 10 7a13.16 13.16 0 01-4.043 5.192M15 12a3 3 0 11-6 0 3 3 0 016 0zm6 6L3 3"
+                      />
+                    </svg>
+                  ) : (
+                    // Eye ON
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
 
-            {error && <p className="text-sm text-red-600">{error}</p>}
+            {/* Remember */}
+            <div className="flex items-center gap-2">
+              <input type="checkbox" className="w-4 h-4" />
+              <span className="text-sm text-gray-600  dark:text-white">
+                Remember for 30 days
+              </span>
+            </div>
 
+            {error && (
+              <p className="text-red-500 text-sm">{error}</p>
+            )}
+
+            {/* Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2 px-4 rounded-md text-white bg-orange-500 hover:bg-orange-600 disabled:opacity-60"
+              className="w-full py-3 rounded-lg dark:bg-teal-800 dark:text-white bg-[#2f6f66] text-white font-semibold hover:bg-teal-400"
             >
-              {loading ? "Logging in..." : "Login"}
+              {loading ? "Logging in..." : "Log In"}
             </button>
 
-            {/* REGISTER + FORGOT */}
-            <div className="flex justify-between text-sm">
-              <Link
-                href="/forgot-password"
-                className="text-gray-500 hover:text-gray-700"
-              >
-                Forgot password?
-              </Link>
+            {/* Social */}
+            <div className="space-y-3 mt-4">
 
-              <Link
-                href="/register"
-                className="font-medium text-orange-600 hover:text-orange-700"
+              {/* Facebook */}
+              <button
+                type="button"
+                onClick={() => signIn("facebook", { callbackUrl })}
+                className="w-full flex items-center justify-center gap-2 py-2 rounded-lg dark:bg-gray-800 dark:text-white bg-blue-600 text-white hover:bg-blue-700"
               >
-                Register
-              </Link>
+                Login with Facebook
+              </button>
+
+              {/* Google */}
+              <button
+                type="button"
+                onClick={() => signIn("google", { callbackUrl })}
+                className="dark:bg-gray-800 dark:text-white w-full flex items-center justify-center gap-2 py-2 rounded-lg border hover:bg-orange-500"
+              >
+                Login with Google
+              </button>
+
             </div>
+
+            {/* Footer */}
+            <p className="text-center text-sm dark:text-white text-gray-500 mt-4">
+              Don't have an account?{" "}
+              <Link href="/register" className="text-teal-700 dark:text-teal-400 font-semibold">
+                Sign Up
+              </Link>
+            </p>
+
           </form>
+        </div>
 
-          {/* ===== DIVIDER ===== */}
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-
-            {/* ===== GOOGLE LOGIN ===== */}
-            <div className="mt-4">
-              {(status === "authenticated" || (typeof window !== 'undefined' && !!localStorage.getItem('driverx_token'))) ? (
-                <button
-                  type="button"
-                  onClick={() => logout()}
-                  disabled={loading}
-                  className="w-full inline-flex items-center justify-center py-2 px-4 border rounded-md bg-white hover:bg-gray-50"
-                >
-                  <svg width="20" height="20" viewBox="0 0 48 48">
-                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.6 32.6 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c10 0 19-7 19-20 0-1.3-.1-2.7-.4-3.5z"/>
-                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16.1 18.9 12 24 12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.6 8.4 6.3 14.7z"/>
-                    <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.5-5.3l-6.2-5.1C29.3 35.1 26.8 36 24 36c-5.2 0-9.6-3.4-11.2-8.1l-6.5 5C9.5 39.5 16.2 44 24 44z"/>
-                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 2.7-2.9 5-5.3 6.6l6.2 5.1C40.9 36.6 44 30.8 44 24c0-1.3-.1-2.7-.4-3.5z"/>
-                  </svg> &nbsp;
-                  Logout with Google
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => signIn("google", { callbackUrl })}
-                  disabled={loading}
-                  className="w-full inline-flex items-center justify-center py-2 px-4 border rounded-md bg-white hover:bg-gray-50"
-                >
-                  <svg width="20" height="20" viewBox="0 0 48 48">
-                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.6 32.6 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c10 0 19-7 19-20 0-1.3-.1-2.7-.4-3.5z"/>
-                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16.1 18.9 12 24 12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.6 8.4 6.3 14.7z"/>
-                    <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.5-5.3l-6.2-5.1C29.3 35.1 26.8 36 24 36c-5.2 0-9.6-3.4-11.2-8.1l-6.5 5C9.5 39.5 16.2 44 24 44z"/>
-                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 2.7-2.9 5-5.3 6.6l6.2 5.1C40.9 36.6 44 30.8 44 24c0-1.3-.1-2.7-.4-3.5z"/>
-                  </svg> &nbsp;
-                  Sign in with Google
-                </button>
-              )}
-            </div>
-
-            {/* ===== FACEBOOK LOGIN ===== */}
-            <div className="mt-3">
-              {(status === "authenticated" || (typeof window !== 'undefined' && !!localStorage.getItem('driverx_token'))) ? (
-                <button
-                  type="button"
-                  onClick={() => logout()}
-                  disabled={loading}
-                  className="w-full inline-flex items-center justify-center py-2 px-4 border rounded-md bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="white"
-                    className="w-5 h-5"
-                  >
-                    <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.5 3.4-3.5.98 0 2 .18 2 .18v2.2h-1.13c-1.1 0-1.45.69-1.45 1.4V12h2.46l-.39 2.9h-2.07v7A10 10 0 0022 12z"/>
-                  </svg>&nbsp;
-                  Logout with Facebook
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => signIn("facebook", { callbackUrl })}
-                  disabled={loading}
-                  className="w-full inline-flex items-center justify-center py-2 px-4 border rounded-md bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="white"
-                    className="w-5 h-5"
-                  >
-                    <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.5 3.4-3.5.98 0 2 .18 2 .18v2.2h-1.13c-1.1 0-1.45.69-1.45 1.4V12h2.46l-.39 2.9h-2.07v7A10 10 0 0022 12z"/>
-                  </svg>&nbsp;
-                  Sign in with Facebook
-                </button>
-              )}
-            </div>
+        {/* RIGHT IMAGE */}
+        <div className="hidden md:flex justify-end">
+          <div className="relative w-[420px] h-[560px] rounded-3xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/login-right-scaled.webp"
+              alt="Login"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
-      </main>
 
+      </div>
     </div>
   );
 }
