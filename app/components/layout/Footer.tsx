@@ -30,7 +30,7 @@ const FOOTER_LINKS = [
     title: "Our Solutions",
     links: [
       { label: "Fleet & Logistics", href: "/fleet-logistics-connectivity" },
-      { label: "Connectivity", href: "/solutions/connectivity" },
+     
       { label: "Gig & Delivery Driver Plans", href: "/gig-delivery-driver-plans" },
       { label: "Telematics & IoT", href: "/telematics-iot-integrations" },
    
@@ -42,7 +42,7 @@ const FOOTER_LINKS = [
     links: [
       { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "Fleet Priority Line", href: "/fleet-priority-line" },
-      { label: "Coverage Maps", href: "/support/coverage" },
+   { label: "Coverage Maps", href: "https://mvnoc.ai/coverage-map", external: true },
       { label: "FAQs & Self Service", href: "/support/faqs" },
       { label: "Accessibility & Language Options", href: "/accessibility-language-options"}
     ],
@@ -138,11 +138,21 @@ const Bottom = () => {
                 className="mb-3"
               />
               <h3 className="text-lg font-semibold text-white">
+                
                 {item.title}
               </h3>
-              <p className="mt-1 text-sm text-white/90 max-w-xs">
-                {item.value}
-              </p>
+            {item.title === "Mail us" ? (
+  <a
+    href={`mailto:${item.value}`}
+    className="mt-1 text-sm text-white/90 max-w-xs hover:underline"
+  >
+    {item.value}
+  </a>
+) : (
+  <p className="mt-1 text-sm text-white/90 max-w-xs">
+    {item.value}
+  </p>
+)}
             </div>
           ))}
         </div>
@@ -160,22 +170,16 @@ const Bottom = () => {
           />
 
           {/* QR + App buttons */}
-          <div className="flex items-center gap-6 justify-center">
-            <div className="relative w-[190px] h-[190px]">
-  <Image
-    src="/images/Group 1597883013.png"
-    alt="QR Code"
-    fill
-    className="border rounded-lg object-contain"
-  />
-
-  <Image
-    src="/images/vector.png"
-    alt="vector"
-    width={30}
-    height={30}
-    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-  />
+          <div className="flex items-center gap-7 justify-center">
+            <div className="relative w-[180px] h-[180px]">
+<Image
+  src="/images/qr.png"
+  alt="QR Code"
+  width={180}
+  height={180}
+  className="border rounded-lg"
+/>
+  
 </div>
 
              

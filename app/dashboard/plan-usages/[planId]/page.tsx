@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import beQuick from "../../../utils/dasdbeQuickApi";
-import "../../Dashboard.css";
 import { FaMobileAlt, FaWifi, FaPhoneAlt, FaRegCommentDots } from "react-icons/fa";
 
 // ---------- Types ----------
@@ -74,7 +73,7 @@ function formatDate(dateString?: string): string {
   });
 }
 
-// ---------- Title & Icon maps ----------
+// ---------- Title map ----------
 const titleMap: Record<string, string> = {
   domestic_voice: "Domestic Voice",
   international_voice: "International Voice",
@@ -105,7 +104,6 @@ export default function PlanUsagesPage() {
     async function fetchData() {
       setLoading(true);
       try {
-        // ✅ FIX: pass planId directly (not wrapped in array)
         const data = await beQuick.getPlanDetails(planId, true) as PlanData;
         setFullData(data);
 
@@ -120,7 +118,6 @@ export default function PlanUsagesPage() {
           roaming_data: convert(usageSummary.international_data?.used, usageSummary.international_data?.remaining, true),
         };
 
-        // Billing cycle
         const startDate = data?.service_period?.start_at;
         const endDate = data?.service_period?.end_at;
         const billingCycle =
@@ -143,7 +140,7 @@ export default function PlanUsagesPage() {
     }
 
     fetchData();
-  }, [planId]); // ✅ FIX: added planId to dependency array
+  }, [planId]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -153,14 +150,18 @@ export default function PlanUsagesPage() {
           {/* Loading */}
           {loading && (
             <div className="flex justify-center py-10">
-              <div className="spinner-border text-success" role="status">
-                <span className="visually-hidden">Loading...</span>
+              <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             </div>
           )}
 
           {/* Error */}
-          {error && <div className="alert alert-danger">{error}</div>}
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          )}
 
           {!loading && !error && (
             <>
@@ -170,17 +171,15 @@ export default function PlanUsagesPage() {
                 <span className="text-sm text-gray-500">{usage.billingCycle}</span>
               </div>
 
-              {/* Usage Cards — 3 per row */}
-              <div className="row g-4 mb-6">
+              {/* Usage Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                 {Object.entries(usage.usageBlocks).map(([key, item]) => {
-                  // Icon
                   let Icon = FaMobileAlt;
                   let unit = "";
                   if (key.includes("voice")) { Icon = FaPhoneAlt; unit = "Minutes"; }
                   else if (key.includes("text")) { Icon = FaRegCommentDots; unit = "SMS"; }
                   else if (key.includes("data")) { Icon = FaWifi; unit = Number(item.total) < 1 ? "MB" : "GB"; }
 
-                  // Convert <1GB → MB display
                   let usedLabel: string | number = item.used;
                   let totalLabel: string | number = item.total;
                   let remainingLabel: string | number = item.remaining;
@@ -191,34 +190,31 @@ export default function PlanUsagesPage() {
                   }
 
                   return (
-                    <div className="col-lg-4 col-md-6" key={key}>
-                      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 h-full">
-                        {/* Card Top */}
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="text-green-500 text-xl">
-                            <Icon />
-                          </div>
-                          <h6 className="font-semibold mb-0">{titleMap[key] || key}</h6>
+                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 flex flex-col" key={key}>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="text-green-500 text-xl">
+                          <Icon />
                         </div>
+                        <h6 className="font-semibold mb-0">{titleMap[key] || key}</h6>
+                      </div>
 
-                        {/* Value */}
-                        <div className="mb-2">
-                          <span className="text-2xl font-bold">{usedLabel}</span>
-                          <span className="text-gray-400 text-sm"> / {totalLabel} {unit}</span>
-                        </div>
+                      <div className="mb-2">
+                        <span className="text-2xl font-bold">{usedLabel}</span>
+                        <span className="text-gray-400 text-sm"> / {totalLabel} {unit}</span>
+                      </div>
 
-                        {/* Progress bar */}
-                        <div className="w-full bg-gray-200 rounded-full h-2 mb-1">
-                          <div
-                            className={`h-2 rounded-full ${item.pct > 90 ? "bg-red-500" : item.pct > 70 ? "bg-yellow-400" : "bg-green-500"}`}
-                            style={{ width: `${item.pct}%` }}
-                          />
-                        </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mb-1">
+                        <div
+                          className={`h-2 rounded-full ${
+                            item.pct > 90 ? "bg-red-500" : item.pct > 70 ? "bg-yellow-400" : "bg-green-500"
+                          }`}
+                          style={{ width: `${item.pct}%` }}
+                        />
+                      </div>
 
-                        <div className="flex justify-between text-xs text-gray-400 mt-1">
-                          <span>{item.pct}% used</span>
-                          <span>{remainingLabel} {unit} remaining</span>
-                        </div>
+                      <div className="flex justify-between text-xs text-gray-400 mt-1">
+                        <span>{item.pct}% used</span>
+                        <span>{remainingLabel} {unit} remaining</span>
                       </div>
                     </div>
                   );
@@ -238,15 +234,15 @@ export default function PlanUsagesPage() {
                       {usage.autoRenew ? "Enabled - Your plan will renew automatically" : "Disabled - Your plan will not auto renew"}
                     </p>
                   </div>
-                  <div className="form-check form-switch ms-3">
+                  <label className="relative inline-flex items-center cursor-pointer ml-3 flex-shrink-0">
                     <input
-                      className="form-check-input"
                       type="checkbox"
-                      role="switch"
+                      className="sr-only peer"
                       checked={usage.autoRenew}
                       onChange={() => setUsage((p) => ({ ...p, autoRenew: !p.autoRenew }))}
                     />
-                  </div>
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                  </label>
                 </div>
 
                 {/* Usage Alerts */}
@@ -258,15 +254,15 @@ export default function PlanUsagesPage() {
                       {usage.usageAlerts ? "Alerts at 80% and 95% usage" : "Alerts disabled"}
                     </p>
                   </div>
-                  <div className="form-check form-switch ms-3">
+                  <label className="relative inline-flex items-center cursor-pointer ml-3 flex-shrink-0">
                     <input
-                      className="form-check-input"
                       type="checkbox"
-                      role="switch"
+                      className="sr-only peer"
                       checked={usage.usageAlerts}
                       onChange={() => setUsage((p) => ({ ...p, usageAlerts: !p.usageAlerts }))}
                     />
-                  </div>
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                  </label>
                 </div>
               </div>
 
@@ -274,9 +270,16 @@ export default function PlanUsagesPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
                 <h5 className="font-semibold text-base mb-4">Quick Actions</h5>
                 <div className="flex gap-3 flex-wrap">
-                  <button className="btn btn-success btn-sm">Upgrade Plan</button>
-                  <button className="btn btn-outline-success btn-sm">Buy More Data</button>
-                  <button className="btn btn-outline-secondary btn-sm" onClick={() => window.history.back()}>
+                  <button className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors">
+                    Upgrade Plan
+                  </button>
+                  <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                    Buy More Data
+                  </button>
+                  <button
+                    className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors"
+                    onClick={() => window.history.back()}
+                  >
                     ← Back
                   </button>
                 </div>

@@ -138,68 +138,83 @@ export default function DriverXPlans() {
       </div>
 
       {/* PREMIUM FEATURES */}
-      <div className="bg-[#e7dfc2] dark:bg-gray-900 py-16">
+     <div className="bg-[#e7dfc2] py-12 md:py-16">
 
-        <div className="max-w-6xl mx-auto px-4">
+  <div className="max-w-6xl mx-auto px-4">
 
-          <h3 className="text-center text-2xl font-semibold mb-12 text-[#2f6f66] dark:text-white">
-            Premium Features Across All Plans
-          </h3>
+    <h3 className="text-center text-xl md:text-3xl font-semibold mb-10 md:mb-14 text-[#2f6f66] ">
+      Premium Features Across All Plans
+    </h3>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-12 gap-x-12">
 
-            {[
-              {
-                title: "5G Ultra-Wideband Network",
-                desc: "Nationwide 5G Ultra-Wideband coverage with automatic LTE fallback.",
-              },
-              {
-                title: "IoT Optimisation Mode",
-                desc: "Specially optimised for telematics, GPS tracking and sensors.",
-              },
-              {
-                title: "Data Rollover",
-                desc: "Unused data carries forward on Starter, Essential, and Pro tiers.",
-              },
-              {
-                title: "Fleet Priority Support",
-                desc: "24/7 enterprise-grade support for fleet operators.",
-              },
-              {
-                title: "No Long-Term Contracts",
-                desc: "Upgrade, downgrade or cancel your plan anytime.",
-              },
-              {
-                title: "Driver-Focused Design",
-                desc: "Built specifically for professional drivers and fleet operations.",
-              },
-            ].map((feature, i) => (
+      {
+      [
+        {
+          title: "5G Ultra-Wideband Network",
+          desc: "Nationwide 5G Ultra-Wideband coverage with automatic LTE fallback for seamless connectivity wherever you drive.",
+          icon: "/images/Group (2).png",
+        },
+        {
+          title: "IoT Optimisation Mode",
+          desc: "Specially optimized for telematics, GPS tracking, connected sensors, and smart devices in your vehicle",
+          icon: "/images/Vector (17).png",
+        },
+        {
+          title: "Data Rollover",
+          desc: "Unused data carries forward on Starter, Essential, and Pro tiers - up to your monthly allowance",
+          icon: "/images/Vector (15).png",
+        },
+        {
+          title: "Fleet Priority Support",
+          desc: "24/7 commercial-grade support for Enterprise, Unlimited Plus, and Max Ultra tiers.",
+          icon: "/images/Vector (18).png",
+        },
+        {
+          title: "No Long-Term Contracts",
+          desc: "Complete flexibility to upgrade, downgrade, or cancel your plan anytime without penalties.",
+          icon: "/images/Vector (16).png",
+        },
+        {
+          title: "Driver-Focused Design",
+          desc: "Built specifically for the unique connectivity needs of professional drivers and fleet operations.",
+          icon: "/images/Vector (20).png",
+        },
+      ].map((feature, i) => (
 
-              <div key={i} className="flex gap-4 items-start">
+        <div key={i} className="flex items-start gap-4 md:gap-5">
 
-                <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow">
-                  ✔
-                </div>
+          {/* ICON */}
+         <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white  shadow flex items-center justify-center">
+  <Image
+    src={feature.icon}
+    alt={feature.title}
+    width={25}
+    height={25}
+    className="object-contain"
+  />
+</div>
 
-                <div>
-                  <h4 className="font-semibold dark:text-white">
-                    {feature.title}
-                  </h4>
+          {/* TEXT */}
+          <div className="max-w-md">
+            <h4 className="font-semibold text-gray-900 text-base md:text-lg">
+              {feature.title}
+            </h4>
 
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    {feature.desc}
-                  </p>
-                </div>
-
-              </div>
-
-            ))}
-
+            <p className="text-sm md:text-base text-gray-900  mt-1 leading-relaxed">
+              {feature.desc}
+            </p>
           </div>
 
         </div>
 
-      </div>
+      ))}
+
+    </div>
+
+  </div>
+
+</div>
 
     </section>
   );

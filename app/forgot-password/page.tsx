@@ -60,7 +60,7 @@ export default function ForgotPasswordPage() {
     <div className="flex flex-col min-h-screen">
         {/* extra header removed */}
 
-      <main className="flex-grow flex items-center justify-center dark:bg-gray-900 bg-gray-100 py-12 px-4">
+      <main className="flex-grow flex items-center justify-center dark:bg-gray-900 dark:text-white bg-gray-100 py-12 px-4">
         <div className="max-w-md w-full bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-6 text-center">
             Forgot Your Password?
@@ -70,14 +70,14 @@ export default function ForgotPasswordPage() {
             password.
           </p>
 
-          <form onSubmit={handleForgotPassword} className="space-y-4">
+          <form onSubmit={handleForgotPassword} className="space-y-4 dark:bg-gray-900">
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-3 py-2 border rounded-md"
+              className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white"
             />
 
             {error && <p className="text-red-600 text-sm">{error}</p>}
@@ -86,7 +86,7 @@ export default function ForgotPasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2 px-4 rounded-md text-white bg-orange-500 hover:bg-orange-600 disabled:opacity-60"
+              className="w-full py-2 px-4 rounded-md text-white bg-teal-500 hover:bg-teal-600 disabled:opacity-60"
             >
               {loading ? "Sending..." : "Send Reset Link"}
             </button>

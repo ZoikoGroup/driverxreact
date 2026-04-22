@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import "../Dashboard.css";
 
 // ---------- Types ----------
 interface DeviceOption {
@@ -122,29 +121,37 @@ export default function AddDevicePage() {
       <h4 className="font-bold text-xl mb-2">Device Selection</h4>
       <p className="text-gray-400 text-sm mb-5">Choose the type of device you want to add to your plan.</p>
 
-      <div className="row g-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {DEVICES.map((device) => (
-          <div className="col-md-6 col-lg-3" key={device.id}>
-            <div
-              onClick={() => setSelectedDevice(device.id)}
-              className={`border rounded-lg p-4 text-center h-full cursor-pointer transition-all ${
-                selectedDevice === device.id
-                  ? "border-green-500 bg-green-50"
-                  : "border-gray-200 bg-white"
-              }`}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="text-4xl mb-2">{device.icon}</div>
-              <h6 className="font-semibold mb-1">{device.title}</h6>
-              <p className="text-gray-400 text-xs mb-0">{device.desc}</p>
-            </div>
+          <div
+            key={device.id}
+            onClick={() => setSelectedDevice(device.id)}
+            className={`border rounded-lg p-4 text-center cursor-pointer transition-all ${
+              selectedDevice === device.id
+                ? "border-green-500 bg-green-50 dark:bg-green-900/20"
+                : "border-gray-200 bg-white dark:bg-gray-700 hover:border-green-300"
+            }`}
+          >
+            <div className="text-4xl mb-2">{device.icon}</div>
+            <h6 className="font-semibold mb-1 text-sm">{device.title}</h6>
+            <p className="text-gray-400 text-xs mb-0">{device.desc}</p>
           </div>
         ))}
       </div>
 
       <div className="flex justify-end gap-3">
-        <button className="btn btn-outline-secondary px-4" onClick={() => window.history.back()}>Cancel</button>
-        <button className="btn btn-success px-4" onClick={handleNext}>Continue to Device Info →</button>
+        <button
+          className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+          onClick={() => window.history.back()}
+        >
+          Cancel
+        </button>
+        <button
+          className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+          onClick={handleNext}
+        >
+          Continue to Device Info →
+        </button>
       </div>
     </div>
   );
@@ -162,18 +169,19 @@ export default function AddDevicePage() {
         </p>
 
         <div className="mb-4">
-          <label className="form-label fw-semibold">Device IMEI or EID Number</label>
-          <div className="d-flex gap-2">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+            Device IMEI or EID Number
+          </label>
+          <div className="flex gap-2">
             <input
               type="text"
               value={imei}
               onChange={(e) => setImei(e.target.value)}
-              className="form-control"
+              className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               placeholder="Enter 15/16-digit IMEI or 32-digit EID"
-              style={{ width: "70%" }}
             />
             <button
-              className="btn btn-success fw-semibold"
+              className="px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={validateAndCheckDevice}
               disabled={!isValidIMEI || loading}
             >
@@ -204,9 +212,14 @@ export default function AddDevicePage() {
         </p>
 
         <div className="flex justify-between mt-5">
-          <button className="btn btn-outline-secondary" onClick={handleBack}>← Back</button>
           <button
-            className="btn btn-success px-4"
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+            onClick={handleBack}
+          >
+            ← Back
+          </button>
+          <button
+            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleNext}
             disabled={!apiResult || !apiResult.compatible}
           >
@@ -223,7 +236,7 @@ export default function AddDevicePage() {
       <p className="text-gray-400 text-sm mb-1">Step 3 of 3</p>
       <h4 className="font-bold text-xl mb-4">Review &amp; Confirm</h4>
 
-      <div className="bg-gray-50 border rounded-lg p-4 mb-4 text-sm">
+      <div className="bg-gray-50 dark:bg-gray-700 border rounded-lg p-4 mb-4 text-sm">
         <p className="mb-1"><strong>Device Type:</strong> {selectedDevice}</p>
         <p className="mb-0"><strong>IMEI/EID:</strong> {imei}</p>
       </div>
@@ -231,8 +244,18 @@ export default function AddDevicePage() {
       <p className="text-gray-400 text-sm mb-5">Please confirm your device details before activation.</p>
 
       <div className="flex justify-between">
-        <button className="btn btn-outline-secondary" onClick={handleBack}>← Back</button>
-        <button className="btn btn-success" onClick={handleConfirmActivate}>Confirm &amp; Activate</button>
+        <button
+          className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+          onClick={handleBack}
+        >
+          ← Back
+        </button>
+        <button
+          className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+          onClick={handleConfirmActivate}
+        >
+          Confirm &amp; Activate
+        </button>
       </div>
     </div>
   );
@@ -242,10 +265,10 @@ export default function AddDevicePage() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow dark:bg-gray-900 bg-gray-100 py-12 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="row">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
             {/* Main Steps */}
-            <div className="col-lg-8">
+            <div className="lg:col-span-2">
               <ProgressBar />
               {step === 1 && renderStep1()}
               {step === 2 && renderStep2()}
@@ -253,19 +276,19 @@ export default function AddDevicePage() {
             </div>
 
             {/* Help Sidebar */}
-            <div className="col-lg-4 mt-4 mt-lg-0">
+            <div>
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
                 <h5 className="font-semibold mb-3">Finding Your IMEI/EID</h5>
 
                 <p className="text-sm font-semibold mb-1">For Smartphones &amp; Tablets:</p>
-                <ul className="text-gray-400 text-sm ps-3 mb-4">
+                <ul className="text-gray-400 text-sm list-disc pl-4 mb-4 space-y-1">
                   <li>Dial *#06# to display IMEI</li>
                   <li>Go to Settings → About → IMEI</li>
                   <li>Check device box or SIM tray</li>
                 </ul>
 
                 <p className="text-sm font-semibold mb-1">For eSIM devices:</p>
-                <ul className="text-gray-400 text-sm ps-3 mb-4">
+                <ul className="text-gray-400 text-sm list-disc pl-4 mb-4 space-y-1">
                   <li>Look for EID in Settings → Cellular</li>
                   <li>EID is 32 digits long</li>
                 </ul>
@@ -275,7 +298,10 @@ export default function AddDevicePage() {
                   <p className="text-gray-400 text-sm mb-3">
                     Our support team is available 24/7. Chat with us for help with device compatibility or activation.
                   </p>
-                  <button className="btn btn-warning w-100 fw-semibold" onClick={openChat}>
+                  <button
+                    className="w-full px-4 py-2 bg-yellow-400 text-gray-800 font-semibold rounded-md hover:bg-yellow-500 transition-colors"
+                    onClick={openChat}
+                  >
                     Chat with Support
                   </button>
                 </div>

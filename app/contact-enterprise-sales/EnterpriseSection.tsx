@@ -55,7 +55,7 @@ export default function EnterpriseSection() {
       <section className="w-full bg-[#f5f5f5] dark:bg-gray-900 transition-colors duration-300">
 
         {/* HERO */}
-        <div className="bg-[#1f5f55] dark:bg-teal-900 py-20 text-center text-white font-semibold text-5xl">
+        <div className="bg-[#1f5f55] dark:bg-teal-900 py-8 text-center text-white font-semibold text-4xl">
           Engineer The Future Of Mobility With DriverX
         </div>
 

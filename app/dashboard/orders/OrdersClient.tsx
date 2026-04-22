@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { Spinner, Form } from "react-bootstrap";
 import beQuick from "../../utils/dasdbeQuickApi";
 
 // ---------- Types ----------
@@ -33,9 +32,7 @@ export default function OrdersPage() {
       try {
         setLoading(true);
 
-        // ✅ FIX: use driverx_user key
         const userData = JSON.parse(localStorage.getItem("driverx_user") || "{}");
-        //const userEmail: string = userData?.email || "info@golitemobile.com"; // ✅ static fallback
         const userEmail: string = "info@golitemobile.com";
 
         if (!userEmail) {
@@ -101,19 +98,21 @@ export default function OrdersPage() {
 
           {/* Filters */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 mb-6">
-            <div className="row g-3">
-              <div className="col-md-6">
-                <Form.Control
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <input
                   type="text"
                   placeholder="🔍 Search orders..."
                   value={search}
                   onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
-              <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-                <Form.Select
+              <div className="md:max-w-xs">
+                <select
                   value={statusFilter}
                   onChange={(e) => { setStatusFilter(e.target.value); setCurrentPage(1); }}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 >
                   <option value="all">All Status</option>
                   <option value="completed">Completed</option>
@@ -122,7 +121,7 @@ export default function OrdersPage() {
                   <option value="pending">Pending</option>
                   <option value="failed">Failed</option>
                   <option value="cancelled">Cancelled</option>
-                </Form.Select>
+                </select>
               </div>
             </div>
           </div>
@@ -130,14 +129,18 @@ export default function OrdersPage() {
           {/* Loading */}
           {loading && (
             <div className="flex justify-center py-10">
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
+              <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
             </div>
           )}
 
           {/* Error */}
-          {error && <div className="alert alert-danger">{error}</div>}
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          )}
 
           {/* Empty */}
           {!loading && !error && filteredOrders.length === 0 && (
@@ -148,41 +151,38 @@ export default function OrdersPage() {
           )}
 
           {/* Orders Grid */}
-          <div className="row g-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paginatedOrders.map((order, i) => {
               const status = (order.status || "").toLowerCase();
               const badgeClass =
-                status === "completed" ? "bg-success" :
-                status === "processing" ? "bg-info text-dark" :
-                status === "pending" ? "bg-warning text-dark" :
-                status === "failed" ? "bg-danger" :
-                "bg-secondary";
+                status === "completed" ? "bg-green-600 text-white" :
+                status === "processing" ? "bg-sky-400 text-gray-800" :
+                status === "pending" ? "bg-yellow-400 text-gray-800" :
+                status === "failed" ? "bg-red-600 text-white" :
+                "bg-gray-400 text-white";
 
               return (
-                <div className="col-md-6 col-lg-4" key={i}>
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-5 h-full flex flex-col">
-
-                    <div className="flex justify-between items-center mb-2">
-                      <h6 className="font-bold mb-0">
-                        Order #{order.id || order.order_id}
-                      </h6>
-                      <span className={`badge ${badgeClass}`}>
-                        {status || "unknown"}
-                      </span>
-                    </div>
-
-                    <small className="text-gray-400 mb-2 block">
-                      {order.date || order.created_at || "-"}
-                    </small>
-
-                    <p className="text-gray-500 flex-grow mb-3">
-                      {order.description || "Plan Purchase"}
-                    </p>
-
-                    <h5 className="text-green-600 font-bold mb-0">
-                      ${Number(order.amount || order.total || 0).toFixed(2)}
-                    </h5>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-5 flex flex-col" key={i}>
+                  <div className="flex justify-between items-center mb-2">
+                    <h6 className="font-bold mb-0">
+                      Order #{order.id || order.order_id}
+                    </h6>
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${badgeClass}`}>
+                      {status || "unknown"}
+                    </span>
                   </div>
+
+                  <small className="text-gray-400 mb-2 block">
+                    {order.date || order.created_at || "-"}
+                  </small>
+
+                  <p className="text-gray-500 flex-grow mb-3">
+                    {order.description || "Plan Purchase"}
+                  </p>
+
+                  <h5 className="text-green-600 font-bold mb-0">
+                    ${Number(order.amount || order.total || 0).toFixed(2)}
+                  </h5>
                 </div>
               );
             })}
@@ -192,7 +192,7 @@ export default function OrdersPage() {
           {totalPages > 1 && (
             <div className="flex justify-center mt-8 gap-2 flex-wrap">
               <button
-                className="btn btn-outline-secondary btn-sm"
+                className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage((p) => p - 1)}
               >
@@ -202,7 +202,11 @@ export default function OrdersPage() {
               {[...Array(totalPages)].map((_, i) => (
                 <button
                   key={i}
-                  className={`btn btn-sm ${currentPage === i + 1 ? "btn-success" : "btn-outline-secondary"}`}
+                  className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+                    currentPage === i + 1
+                      ? "bg-green-600 text-white"
+                      : "border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }`}
                   onClick={() => setCurrentPage(i + 1)}
                 >
                   {i + 1}
@@ -210,7 +214,7 @@ export default function OrdersPage() {
               ))}
 
               <button
-                className="btn btn-outline-secondary btn-sm"
+                className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage((p) => p + 1)}
               >

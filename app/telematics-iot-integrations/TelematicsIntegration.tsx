@@ -36,10 +36,10 @@ const features = [
 
 function TelematicsIntegration() {
   return (
-    <section className="w-full bg-[#f3f4f6] dark:bg-gray-900 py-12">
+    <section className="w-full bg-[#f3f4f6] dark:bg-gray-900">
 
       {/* Header */}
-      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-5 text-xl font-semibold tracking-wide">
+      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-8 text-xl font-semibold tracking-wide">
      DriverX Telematics & IoT Integrations
       </div>
 
@@ -133,20 +133,23 @@ function TelematicsIntegration() {
 
           <div className="flex flex-wrap justify-center gap-4">
 
-            <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
+           <a href="/custom-iot-plans">  <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
               
-              <a href="/custom-iot-plans">Explore Custom IoT Plans</a>
+             Explore Custom IoT Plans
             </button>
+</a>
 
-            <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
+
+            <a href="/request-a-demo"><button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
               
 
-              <a href="/request-a-demo">Schedule an Enterprise Demo</a>
+              Schedule an Enterprise Demo
             </button>
+            </a>
 
-            <button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-             <a href="/talk-to-a-solution-architect">Talk to a Solutions Architect</a>
-            </button>
+              <a href="/talk-to-a-solution-architect"><button className="bg-white text-[#1f6f63] dark:bg-gray-800 dark:text-white px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
+           Talk to a Solutions Architect
+            </button></a>
 
           </div>
         </div>
