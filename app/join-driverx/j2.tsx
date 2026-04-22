@@ -156,7 +156,7 @@ export default function Join() {
       {/* STEPS */}
       <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl p-6">
         <h2 className="text-lg font-semibold mb-6">
-          How to Join in 03 Steps
+          How to Join in 3 Steps
         </h2>
 
       <div className="grid md:grid-cols-3 gap-6">
