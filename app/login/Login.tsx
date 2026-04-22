@@ -211,28 +211,53 @@ function LoginPageContent() {
               {loading ? "Logging in..." : "Log In"}
             </button>
 
-            {/* Social */}
-            <div className="space-y-3 mt-4">
+           {/* Social */}
+<div className="space-y-3 mt-6">
 
-              {/* Facebook */}
-              <button
-                type="button"
-                onClick={() => signIn("facebook", { callbackUrl })}
-                className="w-full flex items-center justify-center gap-2 py-2 rounded-lg dark:bg-gray-800 dark:text-white bg-blue-600 text-white hover:bg-blue-700"
-              >
-                Login with Facebook
-              </button>
+  {/* Divider */}
+  <div className="flex items-center gap-3">
+    <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700" />
+    <span className="text-xs text-gray-500 dark:text-gray-400">OR</span>
+    <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700" />
+  </div>
 
-              {/* Google */}
-              <button
-                type="button"
-                onClick={() => signIn("google", { callbackUrl })}
-                className="dark:bg-gray-800 dark:text-white w-full flex items-center justify-center gap-2 py-2 rounded-lg border hover:bg-orange-500"
-              >
-                Login with Google
-              </button>
+{/* Google */}
+  <button
+    type="button"
+    onClick={() => signIn("google", { callbackUrl })}
+    className="w-full flex items-center justify-center gap-3 py-3 rounded-xl
+               border border-gray-300 dark:border-gray-700
+               bg-white dark:bg-gray-800
+               text-gray-700 dark:text-white font-medium
+               hover:bg-gray-100 dark:hover:bg-gray-700
+               transition shadow-sm hover:shadow-md"
+  >
+    <svg width="20" height="20" viewBox="0 0 48 48">
+      <path fill="#EA4335" d="M24 9.5c3.54 0 6.73 1.22 9.23 3.6l6.85-6.85C35.9 2.43 30.36 0 24 0 14.64 0 6.4 5.48 2.6 13.44l7.98 6.2C12.5 13.1 17.8 9.5 24 9.5z"/>
+      <path fill="#4285F4" d="M46.5 24c0-1.6-.14-3.13-.4-4.6H24v9.2h12.7c-.55 2.96-2.2 5.46-4.7 7.13l7.28 5.67C43.96 37.2 46.5 31.1 46.5 24z"/>
+      <path fill="#FBBC05" d="M10.58 28.36A14.5 14.5 0 019.5 24c0-1.52.26-2.98.72-4.36l-7.98-6.2A23.94 23.94 0 000 24c0 3.9.94 7.58 2.6 10.56l7.98-6.2z"/>
+      <path fill="#34A853" d="M24 48c6.36 0 11.9-2.1 15.87-5.7l-7.28-5.67c-2.02 1.36-4.6 2.17-8.6 2.17-6.2 0-11.5-3.6-13.42-8.86l-7.98 6.2C6.4 42.52 14.64 48 24 48z"/>
+    </svg>
+    Continue with Google
+  </button>
+  {/* Facebook */}
+  <button
+    type="button"
+    onClick={() => signIn("facebook", { callbackUrl })}
+    className="w-full flex items-center justify-center gap-3 py-3 rounded-xl
+               bg-[#1877F2] text-white font-medium
+               hover:bg-[#166fe5] transition
+               shadow-sm hover:shadow-md"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 12.073C22 6.503 17.523 2 12 2S2 6.503 2 12.073c0 5.022 3.657 9.184 8.438 9.928v-7.026H7.898v-2.902h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.902h-2.33V22c4.78-.744 8.437-4.906 8.437-9.927z"/>
+    </svg>
+    Continue with Facebook
+  </button>
 
-            </div>
+  
+
+</div>
 
             {/* Footer */}
             <p className="text-center text-sm dark:text-white text-gray-500 mt-4">
