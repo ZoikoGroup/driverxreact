@@ -32,25 +32,26 @@ const Postpaidplans = () => {
   return (
     <>
       {/* TOP TITLE BAR */}
-      <div className="bg-teal-800 py-12 ">
-        <h2 className="text-white text-center font-bold text-5xl   dark:text-white">
+      <div className="bg-teal-800 py-8 ">
+        <h2 className="text-white text-center font-bold text-4xl   dark:text-white">
           DriverX Post-paid Plans
         </h2>
       </div>
 
       {/* HERO SECTION */}
-      <section className="mx-auto max-w-7xl px-8 py-20  dark:bg-gray-900  dark:text-white">
-        <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
+    <section className="mx-auto max-w-7xl px-4 md:px-8 py-8 md:py-20">
+  
+         <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-          <div className="bg-[#f6fbef] p-12 h-full flex flex-col justify-center dark:bg-gray-900  dark:text-white">
-            <h3 className="text-4xl font-bold text-gray-900 leading-tight  dark:text-white">
+    <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:p-12 flex flex-col justify-center">
+            
+  <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white leading-snug max-w-sm md:max-w-none">
             Postpaid Plans Built for Drivers 
  <br />
             Who Go the Extra Mile
             </h3>
-
-            <p className="mt-6 text-gray-600 text-lg max-w-md dark:bg-gray-900  dark:text-white">
+  <p className="mt-4 md:mt-6 text-sm md:text-lg text-gray-600 dark:text-white max-w-md">
              Enjoy the freedom to work first and pay later — with exclusive driver perks, maximum reliability, and flexible credit-friendly options that keep your wheels and business turning
             </p>
           </div>
@@ -70,7 +71,7 @@ const Postpaidplans = () => {
 <SingleCatPlansSection cat="postpaid-plans"/>
 
 <section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-20">
-  <h2 className="mb-16 text-center text-3xl font-bold text-black">
+  <h2 className="mb-16 text-center text-3xl font-bold text-white">
     Benefits of DriverX Post-paid Plans
   </h2>
 
@@ -81,12 +82,12 @@ const Postpaidplans = () => {
         className="group relative flex flex-col items-center"
       >
         {/* ICON */}
-        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full dark:bg-gray-900  dark:text-white bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
+        <div className="z-10 flex h-20 w-20 items-center justify-center rounded-full   dark:text-white bg-white text-3xl shadow-lg transition group-hover:bg-yellow-400">
           {item.icon}
         </div>
 
         {/* CARD */}
-        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center dark:bg-gray-900  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
+        <div className="mt-[-20px] w-full rounded-xl bg-teal-900 px-6 py-8 text-center  dark:text-white text-white transition group-hover:bg-yellow-400 group-hover:text-black">
           <p className="font-semibold leading-snug">
             {item.title}
           </p>

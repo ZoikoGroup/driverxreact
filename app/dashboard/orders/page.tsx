@@ -1,6 +1,5 @@
 import OrdersClient from "./OrdersClient";
 
-// ✅ META works here (NO "use client")
 export const metadata = {
   title: "My Orders | Zoiko Mobile Dashboard",
   description:

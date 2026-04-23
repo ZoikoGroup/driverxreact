@@ -133,10 +133,7 @@ With DriverX, you’re not just partnering with a mobile carrier. You’re joini
      <a href="/24-7-driver-support">Start the Conversation</a>
             </button>
 
-            <button className="bg-white dark:bg-gray-200 text-[#1f6f63] px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
-             Download Our Partner Playbook
-            </button>
-
+     
             <button className="bg-white dark:bg-gray-200 text-[#1f6f63] px-6 py-3 rounded-full text-sm font-medium shadow hover:scale-105 transition">
              
              <a href="/request-a-demo">Schedule a Discovery Call</a>

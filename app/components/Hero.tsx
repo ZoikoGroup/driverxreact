@@ -231,7 +231,7 @@ const Hero = () => {
         <img
           src="/images/Group 1597883025.png"
           alt="Smart Savings"
-          className="h-40 mb-6"
+          className="h-30 mb-10"
         />
         <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
           Smart Savings with AI
@@ -275,9 +275,9 @@ const Hero = () => {
           solutions via mobile.
         </p>
 
-        <button className="bg-white text-[#1e5f4f] px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+       <a href="/24-7-driver-support"> <button className="bg-white text-[#1e5f4f] px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
           Contact us
-        </button>
+        </button></a>
       </div>
 
       {/* Right Coin Image */}

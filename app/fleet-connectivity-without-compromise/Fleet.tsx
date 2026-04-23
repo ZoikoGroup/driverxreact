@@ -63,7 +63,7 @@ export default function Fleet() {
       
       {/* Header */}
       <div className="max-w-7xl mx-auto">
-        <div className="bg-teal-700 text-white text-center py-8 rounded-t-md font-semibold">
+        <div className="bg-teal-700 text-white text-center text-4xl py-8 rounded-t-md font-semibold">
           Fleet Connectivity Without Compromise
         </div>
 

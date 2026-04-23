@@ -10,7 +10,6 @@ export default function ProductDetailPage() {
 
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
 
   const [selected, setSelected] = useState({
@@ -25,7 +24,9 @@ export default function ProductDetailPage() {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
 
-  // ✅ Fetch product
+  const CART_KEY = "driverx_checkout";
+
+  // ================= FETCH PRODUCT =================
   useEffect(() => {
     if (!slug) return;
 
@@ -46,38 +47,38 @@ export default function ProductDetailPage() {
     fetchProduct();
   }, [slug]);
 
+  // ================= RELATED =================
   useEffect(() => {
-  const fetchRelated = async () => {
-    try {
-      const res = await fetch("https://api.driverxmobile.com/api/products/");
-      const data = await res.json();
+    const fetchRelated = async () => {
+      try {
+        const res = await fetch(
+          "https://api.driverxmobile.com/api/products/"
+        );
+        const data = await res.json();
 
-      // exclude current product
-      const filtered = data.results.filter(
-        (p: any) => p.slug !== slug
-      );
+        const filtered = data.results.filter(
+          (p: any) => p.slug !== slug
+        );
 
-      setRelatedProducts(filtered);
-    } catch (err) {
-      console.error("Related API error:", err);
-    }
-  };
+        setRelatedProducts(filtered);
+      } catch (err) {
+        console.error("Related API error:", err);
+      }
+    };
 
-  fetchRelated();
-}, [slug]);
+    fetchRelated();
+  }, [slug]);
 
-  // ✅ Loading / error
   if (loading) return <div className="p-10">Loading...</div>;
   if (!product) return <div className="p-10">Product not found</div>;
 
-  // ✅ FIXED IMAGE LOGIC
+  // ================= IMAGE =================
   const mainImage =
     product.images?.find((img: any) => img.is_primary)?.image ||
     product.images?.[0]?.image ||
     "/images/placeholder.png";
 
-
-  // ✅ Extract options dynamically
+  // ================= OPTIONS =================
   const getOptions = (slug: string) => {
     return (
       product.attribute_options.find((a: any) => a.slug === slug)?.options || []
@@ -86,9 +87,8 @@ export default function ProductDetailPage() {
 
   const storageOptions = getOptions("storage");
   const colorOptions = getOptions("color");
-  const conditionOptions = getOptions("condition");
 
-  // ✅ Map variants
+  // ================= VARIANTS =================
   const variants = product.variants.map((v: any) => ({
     storage: v.attributes_dict?.Storage,
     color: v.attributes_dict?.Color,
@@ -96,7 +96,17 @@ export default function ProductDetailPage() {
     price: Number(v.price),
   }));
 
-  // ✅ Get selected variant
+  // ================= CONDITION FILTER (FIX) =================
+  const conditionOptions = variants
+    .filter(
+      (v: any) =>
+        (!selected.storage || v.storage === selected.storage) &&
+        (!selected.color || v.color === selected.color)
+    )
+    .map((v: any) => v.condition)
+    .filter((v: any, i: number, arr: any[]) => arr.indexOf(v) === i);
+
+  // ================= GET VARIANT =================
   const getVariant = () => {
     return variants.find(
       (v: any) =>
@@ -108,164 +118,181 @@ export default function ProductDetailPage() {
 
   const variant = getVariant();
 
-  const range = {
-    min: product.price_min,
-    max: product.price_max,
-  };
-
   const isValid =
     selected.storage && selected.color && selected.condition;
 
-  const tabs = [
-    { key: "description", label: "Description" },
-    { key: "additional", label: "Additional information" },
-    { key: "reviews", label: "Reviews (0)" },
-  ];
+  // ================= CART =================
+  const saveToCart = (item: any) => {
+    const existing = localStorage.getItem(CART_KEY);
+    const cart = existing ? JSON.parse(existing) : [];
 
+    cart.push(item);
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  };
+
+
+  const buildCartItem = () => ({
+  // ✅ MUST MATCH CHECKOUT STRUCTURE
+  planId: product.id,
+  bqPlanID: product.id, // fallback if not available
+  planSlug: product.slug,
+
+  // ✅ IMPORTANT (THIS FIXES "Unnamed Plan")
+  planName: product.name,
+
+  // ✅ pricing
+  price: variant?.price || product.price_min,
+  salePrice: null,
+  price24: null,
+  finalPrice: variant?.price || product.price_min,
+
+  //durationDays: 30, // default if not available
+  isPopular: false,
+
+  // ✅ category (avoid N/A)
+  category: {
+    id: product.category?.id || 0,
+    name: product.category?.name || "Phones",
+    slug: product.category?.slug || "phones",
+  },
+
+  // ✅ VERY IMPORTANT → this replaces "features"
+  features: [
+    { id: 1, title: `Storage: ${selected.storage}` },
+    { id: 2, title: `Color: ${selected.color}` },
+    { id: 3, title: `Condition: ${selected.condition}` },
+  ],
+
+  // ✅ required by checkout UI
+  simType: "NA",
+  setupType: "NA",
+
+  // optional
+  quantity,
+  image: mainImage,
+
+  timestamp: Date.now(),
+});
+
+
+
+  const handleAddToCart = () => {
+  if (!isValid) return;
+
+  saveToCart(buildCartItem());
+  alert("Added to cart ✅");
+};
+
+const handleCheckout = () => {
+  if (!isValid) return;
+
+  saveToCart(buildCartItem());
+  window.location.href = "/checkout";
+};
+
+  const handleCheckout99 = () => {
+    if (!isValid) return;
+
+    saveToCart(buildCartItem());
+    window.location.href = "/checkout";
+  };
+
+  // ================= UI =================
   return (
     <div className="bg-white text-black dark:bg-gray-900 dark:text-white min-h-screen">
 
       {/* Breadcrumb */}
-      <div className="px-10 pt-6 text-sm text-gray-500 dark:text-gray-400">
-        <Link href="/" className="text-purple-600 hover:underline">Home</Link>
-        {" » "}
-        <Link href="/shop" className="text-purple-600 hover:underline">Shop</Link>
-        {" » "}
-        <span>{product.name}</span>
+      <div className="px-10 pt-6 text-sm text-gray-500">
+        <Link href="/">Home</Link> » <Link href="/shop">Shop</Link> » {product.name}
       </div>
 
       {/* Main */}
       <div className="px-10 py-8 grid grid-cols-2 gap-12">
 
         {/* Image */}
-        <div className="flex items-center justify-center border rounded-lg h-[480px] bg-white dark:bg-gray-800">
-          {(product?.images?.find((img: any) => img.is_primary)?.image ||
-  product?.images?.[0]?.image) ? (
-  <Image
-    src={
-      product.images.find((img: any) => img.is_primary)?.image ||
-      product.images[0]?.image
-    }
-    alt={product.name}
-    width={380}
-    height={380}
-    className="object-contain max-h-[440px]"
-  />
-) : (
-  <Image
-    src="/images/placeholder.png"
-    alt="placeholder"
-    width={380}
-    height={380}
-  />
-)}
+        <div className="flex items-center justify-center border rounded-lg h-[480px]">
+          <Image src={mainImage} alt={product.name} width={380} height={380} />
         </div>
 
         {/* Details */}
         <div>
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
 
-          {/* Price */}
-          <div className="mb-6">
-            {variant ? (
-              <span className="text-purple-600 text-2xl font-semibold">
-                ${variant.price}
-              </span>
-            ) : (
-              <span className="text-purple-600 text-2xl font-semibold">
-                ${range.min} – ${range.max}
-              </span>
-            )}
+          <div className="mb-6 text-purple-600 text-2xl font-semibold">
+            ${variant?.price || `${product.price_min} – ${product.price_max}`}
           </div>
 
           {/* Storage */}
-          <div className="mb-4">
-            <label className="block mb-1 text-sm">Storage</label>
-            <select
-              value={selected.storage}
-              onChange={(e) =>
-                setSelected({ ...selected, storage: e.target.value })
-              }
-              className="w-full border rounded px-3 py-2 text-sm"
-            >
-              <option value="">Choose</option>
-              {storageOptions.map((s: string) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={selected.storage}
+            onChange={(e) =>
+              setSelected({
+                storage: e.target.value,
+                color: "",
+                condition: "",
+              })
+            }
+            className="w-full mb-3 border p-2"
+          >
+            <option value="">Storage</option>
+            {storageOptions.map((s: string) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
 
           {/* Color */}
-          <div className="mb-4">
-            <label className="block mb-1 text-sm">Color</label>
-            <select
-              value={selected.color}
-              onChange={(e) =>
-                setSelected({ ...selected, color: e.target.value })
-              }
-              className="w-full border rounded px-3 py-2 text-sm"
-            >
-              <option value="">Choose</option>
-              {colorOptions.map((c: string) => (
-                <option key={c}>{c}</option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={selected.color}
+            onChange={(e) =>
+              setSelected({
+                ...selected,
+                color: e.target.value,
+                condition: "",
+              })
+            }
+            className="w-full mb-3 border p-2"
+          >
+            <option value="">Color</option>
+            {colorOptions.map((c: string) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
 
           {/* Condition */}
-          <div className="mb-4">
-            <label className="block mb-1 text-sm">Condition</label>
-            <select
-              value={selected.condition}
-              onChange={(e) =>
-                setSelected({ ...selected, condition: e.target.value })
-              }
-              className="w-full border rounded px-3 py-2 text-sm"
-            >
-              <option value="">Choose</option>
-              {conditionOptions.map((c: string) => (
-                <option key={c}>{c}</option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={selected.condition}
+            onChange={(e) =>
+              setSelected({ ...selected, condition: e.target.value })
+            }
+            className="w-full mb-3 border p-2"
+          >
+            <option value="">Condition</option>
+            {conditionOptions.map((c: string) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
 
           {/* Quantity */}
-          <div className="flex items-center gap-3 mt-6">
-            <button
-              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              className="px-3 py-1 border"
-            >
-              -
-            </button>
+          <div className="flex gap-3 mt-4">
+            <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>-</button>
             <span>{quantity}</span>
-            <button
-              onClick={() => setQuantity((q) => q + 1)}
-              className="px-3 py-1 border"
-            >
-              +
-            </button>
+            <button onClick={() => setQuantity((q) => q + 1)}>+</button>
           </div>
 
           {/* Buttons */}
           <div className="flex gap-3 mt-6">
             <button
               disabled={!isValid}
-              className={`px-5 py-2 rounded ${
-                isValid
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-300 text-gray-500"
-              }`}
+              onClick={handleAddToCart}
+              className="px-5 py-2 bg-purple-600 text-white rounded disabled:bg-gray-300"
             >
-              Add to cart
+              Add to Cart
             </button>
 
             <button
               disabled={!isValid}
-              className={`px-5 py-2 rounded ${
-                isValid
-                  ? "bg-purple-800 text-white"
-                  : "bg-gray-300 text-gray-500"
-              }`}
+              onClick={handleCheckout}
+              className="px-5 py-2 bg-purple-800 text-white rounded disabled:bg-gray-300"
             >
               Proceed to Checkout
             </button>
@@ -273,119 +300,26 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="px-10 mt-6">
-        <div className="flex border-b">
-          {tabs.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`px-4 py-2 ${
-                activeTab === tab.key
-                  ? "border-b-2 border-purple-600"
-                  : ""
-              }`}
-            >
-              {tab.label}
-            </button>
+      {/* Related */}
+      <div className="px-10 py-10">
+        <h2 className="text-xl mb-4">Related Products</h2>
+
+        <div className="grid grid-cols-4 gap-4">
+          {relatedProducts.map((item: any) => (
+            <Link key={item.id} href={`/product/${item.slug}`}>
+              <div className="border p-3 rounded">
+                <Image
+                  src={item.primary_image || "/images/placeholder.png"}
+                  alt={item.name}
+                  width={200}
+                  height={200}
+                />
+                <p>{item.name}</p>
+              </div>
+            </Link>
           ))}
         </div>
-
-        <div className="py-6">
-          {activeTab === "description" && (
-            <p className="text-sm text-gray-600">
-              {product.description || "No description available"}
-            </p>
-          )}
-
-          {activeTab === "additional" && (
-            <table className="w-full text-sm border">
-              <tbody>
-                <tr>
-                  <td className="p-2 font-medium">Brand</td>
-                  <td className="p-2">{product.category?.name}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-medium">Network</td>
-                  <td className="p-2">{product.network || "-"}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-medium">OS</td>
-                  <td className="p-2">{product.os || "-"}</td>
-                </tr>
-              </tbody>
-            </table>
-          )}
-
-          {activeTab === "reviews" && (
-            <div>
-              <p>No reviews yet</p>
-
-              <div className="flex gap-1 mt-2">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    onClick={() => setRating(star)}
-                    onMouseEnter={() => setHoverRating(star)}
-                    onMouseLeave={() => setHoverRating(0)}
-                    className={`text-2xl ${
-                      star <= (hoverRating || rating)
-                        ? "text-yellow-400"
-                        : "text-gray-300"
-                    }`}
-                  >
-                    ★
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
       </div>
-
-      {/* Related Products */}
-<div className="px-10 py-10">
-  <h2 className="text-2xl font-semibold mb-6">Related Products</h2>
-
-  <div className="grid grid-cols-4 gap-6">
-    {relatedProducts.map((item: any) => (
-      <Link
-        key={item.id}
-        href={`/product/${item.slug}`}
-        className="border rounded-lg p-4 hover:shadow-lg transition bg-white dark:bg-gray-800"
-      >
-        {/* Image */}
-        <div className="flex items-center justify-center h-[200px] mb-4">
-          {item.primary_image ? (
-            <Image
-              src={item.primary_image}
-              alt={item.name}
-              width={200}
-              height={200}
-              className="object-contain max-h-[180px]"
-            />
-          ) : (
-            <Image
-              src="/images/placeholder.png"
-              alt="placeholder"
-              width={200}
-              height={200}
-            />
-          )}
-        </div>
-
-        {/* Name */}
-        <h3 className="text-sm font-medium mb-2">{item.name}</h3>
-
-        {/* Price */}
-        <p className="text-purple-600 font-semibold text-sm">
-          ${item.price_min} – ${item.price_max}
-        </p>
-      </Link>
-    ))}
-  </div>
-</div>
-
     </div>
   );
 }
