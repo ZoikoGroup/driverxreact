@@ -34,19 +34,19 @@ console.log(process.env.NEXT_PUBLIC_API_BASE_URL)
 const Hero = () => {
   return (
     <>
-    <section className="relative overflow-hidden dark:bg-gradient-to-br dark:from-[#0c1a18] dark:to-[#0a1412] bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8]">
-      <div className="mx-auto max-w-7xl px-6 py-20">
+    <section className="relative overflow-hidden dark:bg-gradient-to-br md:grid-cols-2 dark:from-[#0c1a18] dark:to-[#0a1412] bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8]">
+      <div className="mx-auto max-w-7xl px-6 py-12 md:py-5">
         <div className="grid items-center gap-16 md:grid-cols-2">
 
           {/* LEFT CONTENT */}
           <div>
             {/* Badge */}
-            <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-4 py-1 text-sm font-semibold text-white">
+            <span className="inline-flex items-center gap-1 rounded-full  bg-orange-500 px-4 py-1 text-sm font-semibold text-white">
                #1 Driver Mobile Network
             </span>
 
             {/* Heading */}
-            <h1 className="mt-6 text-4xl font-extrabold leading-tight dark:text-white text-gray-900 md:text-5xl">
+            <h1 className="mt-6 text-4xl font-extrabold leading-tight dark:text-white text-gray-900 md:text-3xl">
               Connectivity That <br />
               Works as{" "}
               <span className="text-teal-500">Hard as</span>{" "}
