@@ -35,13 +35,13 @@ const Hero = () => {
   return (
     <>
     <section className="relative overflow-hidden dark:bg-gradient-to-br md:grid-cols-2 dark:from-[#0c1a18] dark:to-[#0a1412] bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8]">
-      <div className="mx-auto max-w-7xl px-6 py-12 md:py-5">
+      <div className="mx-auto max-w-7xl px-6 py-8 md:py-2">
         <div className="grid items-center gap-16 md:grid-cols-2">
 
           {/* LEFT CONTENT */}
           <div>
             {/* Badge */}
-            <span className="inline-flex items-center gap-1 rounded-full  bg-orange-500 px-4 py-1 text-sm font-semibold text-white">
+            <span className="inline-flex items-center gap-3 rounded-full  bg-orange-500 px-4 py-2 text-sm font-semibold text-white">
                #1 Driver Mobile Network
             </span>
 

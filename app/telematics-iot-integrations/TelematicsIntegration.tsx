@@ -45,7 +45,7 @@ function TelematicsIntegration() {
 
 
       {/* Intro */}
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-6xl mx-auto px-6 py-5">
         <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mb-4">
           Real-Time Visibility | Zero Downtime | Scalable Intelligence
         </h2>

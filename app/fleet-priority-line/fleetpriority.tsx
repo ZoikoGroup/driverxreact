@@ -12,7 +12,7 @@ export default function FleetPriorityLine() {
       </div>
 
       {/* ================= SUPPORT SECTION ================= */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-6 py-5">
         <h3 className="text-center text-sm tracking-widest font-semibold text-gray-500 dark:text-gray-400 mb-10 transition-colors duration-300">
           ENTERPRISE-GRADE SUPPORT
         </h3>

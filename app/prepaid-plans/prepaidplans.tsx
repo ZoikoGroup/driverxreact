@@ -24,12 +24,12 @@ const Prepaidplans = () => {
 </div>
 
       {/* HERO SECTION */}
-     <section className="mx-auto max-w-7xl px-4 md:px-8 py-8 md:py-20">
+     <section className="mx-auto max-w-7xl px-4 md:px-8 py-2 md:py-2">
   
-        <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
+        <div className="grid items-center gap-8 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-         <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:p-12 flex flex-col justify-center">
+         <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:py-5 flex flex-col justify-center">
   
   <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white leading-snug max-w-sm md:max-w-none">
     Not Just a Plan

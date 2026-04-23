@@ -105,7 +105,7 @@ export default function DevicesPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow dark:bg-gray-900 bg-gray-100 py-12 px-4">
+      <main className="flex-grow dark:bg-gray-900 bg-gray-100 py-8 px-4">
         <div className="max-w-5xl mx-auto">
 
           {/* Loading */}

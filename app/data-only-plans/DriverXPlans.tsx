@@ -73,9 +73,9 @@ export default function DriverXPlans() {
       <SingleCatPlansSection cat="data-only-plans" heading="Data-Only SIM Plans"/>
 
       {/* VOICE BOOST */}
-      <div className="bg-gray-200 dark:bg-gray-800 py-14">
+      <div className="bg-gray-200 dark:bg-gray-800 py-1">
 
-        <div className="max-w-4xl mx-auto text-center border border-gray-300 dark:border-gray-700 p-10 rounded-lg">
+        <div className="max-w-4xl mx-auto text-center border border-gray-300 dark:border-gray-700 py-5 rounded-lg">
 
           <h3 className="text-lg font-semibold mb-2 dark:text-white">
             Voice Boost Top-Ups
@@ -138,7 +138,7 @@ export default function DriverXPlans() {
       </div>
 
       {/* PREMIUM FEATURES */}
-     <div className="bg-[#e7dfc2] py-12 md:py-16">
+     <div className="bg-[#e7dfc2] py-8 md:py-16">
 
   <div className="max-w-6xl mx-auto px-4">
 
