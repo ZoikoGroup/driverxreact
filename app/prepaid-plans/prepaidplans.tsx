@@ -97,16 +97,16 @@ const Prepaidplans = () => {
 
 {/* why choose us banners */}
 
-
-<div className="mx-auto max-w-7xl px-6 py-20">
-  <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start">
+   <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-14">
+        <div className="relative rounded-xl overflow-hidden shadow">
 
     {/* LEFT: Image */}
     <div>
       <img
         src="/images/Frame 1707483045.png"
         alt="DriverX city scene"
-        className="rounded-2xl w-full object-cover"
+        className="w-full h-[220px] sm:h-[300px] md:h-[400px] lg:h-[500px] object-cover object-center"
+            
       />
     </div>
 
@@ -156,7 +156,7 @@ const Prepaidplans = () => {
 </div>
 
 
-<div className="w-full py-20">
+<div className="w-full py-8">
   <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center px-6">
 
     {/* LEFT: Content */}

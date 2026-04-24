@@ -272,7 +272,7 @@ export default function Navbar() {
                   <Link
                     key={index}
                     href={item.href}
-                    className="block text-gray-600 hover:text-black dark:text-gray-400"
+                    className="block text-gray-600 hover:text-teal-400 dark:text-gray-200"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}

@@ -13,7 +13,7 @@ function Daily() {
 
           {/* LEFT CONTENT */}
           <div className="text-white">
-            <h2 className="text-4xl font-bold leading-tight">
+            <h2 className="text-4xl font-bold leading-tight max-w-xl mx-auto md:mx-0">
               Affordable Mobile for Everyday Driving
             </h2>
 

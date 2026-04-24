@@ -604,7 +604,7 @@ export const BuyPlanModal = ({
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3">
+        <div className=" flex-col flex items-center md:flex-row  justify-between gap-3">
           <button onClick={onClose} className="px-6 py-2.5 rounded-full border-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold text-sm hover:border-gray-300 transition-colors">
             Cancel
           </button>
