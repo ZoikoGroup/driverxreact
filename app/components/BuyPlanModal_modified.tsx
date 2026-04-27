@@ -385,113 +385,90 @@ export const BuyPlanModal = ({
   // };
 
   const handleCheckDevice = async () => {
-  const cleanedImei = imei.replace(/\s/g, "").trim();
+      const cleanedImei = imei.replace(/\s/g, "").trim();
 
-  // -------------------------------
-  // Validation
-  // -------------------------------
-  if (!cleanedImei) {
-    setImeiError("Please enter your IMEI/MEID number.");
-    return;
-  }
-
-  if (!/^\d{14,16}$/.test(cleanedImei)) {
-    setImeiError("Please enter a valid 14-16 digit IMEI number.");
-    return;
-  }
-
-  setImeiError(null);
-  setChecking(true);
-  setCompatResult(null);
-
-  try {
-    // =========================================================
-    // STEP 1: CHECK LOCAL STORAGE FIRST
-    // =========================================================
-    const storageKeys = Object.keys(localStorage).filter((key) =>
-      key.startsWith("device_serial_")
-    );
-
-    let localMatch: any = null;
-
-    for (const key of storageKeys) {
-      const item = localStorage.getItem(key);
-      if (!item) continue;
-
-      const parsed = JSON.parse(item);
-
-      if (parsed.device_serial === cleanedImei) {
-        localMatch = parsed;
-        break;
-      }
-    }
-
-    // =========================================================
-    // IF FOUND IN LOCAL STORAGE
-    // =========================================================
-    if (localMatch) {
-      setCompatResult({
-        compatible: localMatch.esim_compatible,
-        device: localMatch.model || null,
-        manufacturer: localMatch.manufacturer || null,
-        lteCompatible: localMatch.lte_device ?? null,
-        fiveGCompatible: localMatch.device_5g ?? null,
-        esimCompatible: localMatch.esim_compatible ?? null,
-        message: "Loaded from saved device history.",
-      });
-
-      setChecking(false);
+    // -------------------------------
+    // Validation
+    // -------------------------------
+    if (!cleanedImei) {
+      setImeiError("Please enter your IMEI/MEID number.");
       return;
     }
-
-    // =========================================================
-    // STEP 2: CALL BEQUICK API
-    // =========================================================
-    const bequickRes = await fetch(
-      "https://zoiko-atom-api.bequickapps.com/carriers/3/query_device_info",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-AUTH-TOKEN": "09ff2d85-a451-47e6-86bc-aba98e1e4629",
-        },
-        body: JSON.stringify({
-          device_serial: cleanedImei,
-        }),
-      }
-    );
-
-    const bequickData = await bequickRes.json();
-
-    if (!bequickData.success) {
-      setCompatResult({
-        compatible: false,
-        message: "Unable to verify device.",
-      });
+    if (!/^\d{14,16}$/.test(cleanedImei)) {
+      setImeiError("Please enter a valid 14-16 digit IMEI number.");
       return;
     }
+    setImeiError(null);
+    setChecking(true);
+    setCompatResult(null);
 
-    // =========================================================
-    // STEP 3: SAVE IN LOCAL STORAGE
-    // =========================================================
-    const nextIndex = storageKeys.length + 1;
+    try {
+      // =========================================================
+      // STEP 1: CHECK LOCAL STORAGE FIRST
+      // =========================================================
+      const storageKeys = Object.keys(localStorage).filter((key) =>
+        key.startsWith("device_serial_")
+      );
 
-    localStorage.setItem(
-      `device_serial_${nextIndex}`,
-      JSON.stringify({
-        device_serial: cleanedImei,
-        esim_compatible: bequickData.esim_compatible,
-        manufacturer: bequickData.manufacturer,
-        model: bequickData.model,
-        lte_device: bequickData.lte_device,
-        device_5g: bequickData.device_5g,
-      })
-    );
+      let localMatch: any = null;
+      for (const key of storageKeys) {
+        const item = localStorage.getItem(key);
+        if (!item) continue;
+        const parsed = JSON.parse(item);
+        if (parsed.device_serial === cleanedImei) {
+          localMatch = parsed;
+          break;
+        }
+      }
 
-    // =========================================================
-    // STEP 4: IF ESIM TRUE => CALL GOLITE API
-    // =========================================================
-    if (bequickData.esim_compatible === true) {
+      // IF FOUND IN LOCAL STORAGE — show result and stop
+      if (localMatch) {
+        setCompatResult({
+          compatible: localMatch.esim_compatible,
+          device: localMatch.model ?? null,
+          manufacturer: localMatch.manufacturer ?? null,
+          lteCompatible: localMatch.lte_device ?? null,
+          fiveGCompatible: localMatch.device_5g ?? null,
+          esimCompatible: localMatch.esim_compatible ?? null,
+          message: "Loaded from saved device history.",
+        });
+        return; // stop here, no API calls needed
+      }
+
+      // =========================================================
+      // STEP 2: NOT IN LOCAL STORAGE — CALL BEQUICK API
+      // =========================================================
+      const bequickRes = await fetch(
+        "https://zoiko-atom-api.bequickapps.com/carriers/3/query_device_info",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-AUTH-TOKEN": process.env.NEXT_PUBLIC_BEQUICK_TOKEN!,
+          },
+          body: JSON.stringify({ device_serial: cleanedImei }),
+        }
+      );
+
+      const bequickData = await bequickRes.json();
+      console.log("Bequick API response:", bequickData);
+      const info = bequickData.device_info ?? {};
+
+      if (!bequickData.success) {
+        setCompatResult({
+          compatible: false,
+          message: bequickData.message ?? "Unable to verify device.",
+        });
+        return;
+      }
+
+      const isEsimCompatible = bequickData.compatibility === true;
+
+      // =========================================================
+      // STEP 3: CALL GOLITE API
+      // esim_compatible=true  → action: "esim_update"
+      // esim_compatible=false → action: "esim_check"
+      // =========================================================
       await fetch(
         "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
         {
@@ -501,37 +478,53 @@ export const BuyPlanModal = ({
             "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
           },
           body: JSON.stringify({
-            action: "esim_update",
+            action: isEsimCompatible ? "esim_update" : "esim_check",
             imei: cleanedImei,
           }),
         }
       );
-    }
 
-    // =========================================================
-    // STEP 5: SHOW RESULT
-    // =========================================================
-    setCompatResult({
-      compatible: bequickData.esim_compatible,
-      device: bequickData.model ?? null,
-      manufacturer: bequickData.manufacturer ?? null,
-      lteCompatible: bequickData.lte_device ?? null,
-      fiveGCompatible: bequickData.device_5g ?? null,
-      esimCompatible: bequickData.esim_compatible ?? null,
-      message: bequickData.message ?? null,
-    });
-  } catch (err) {
-    setCompatResult({
-      compatible: false,
-      message:
-        err instanceof Error
-          ? err.message
-          : "Unable to verify device. Please try again.",
-    });
-  } finally {
-    setChecking(false);
-  }
-};
+      // =========================================================
+      // STEP 4: SAVE TO LOCAL STORAGE
+      // =========================================================
+      const nextIndex = storageKeys.length + 1;
+      localStorage.setItem(
+        `device_serial_${nextIndex}`,
+        JSON.stringify({
+          device_serial: cleanedImei,
+          esim_compatible: isEsimCompatible,
+          manufacturer: info.manufacturer ?? null,
+          model: info.marketing_name ?? info.name ?? null,
+          lte_device: info.lte_device ?? null,
+          device_5g: info.device_5g ?? null,
+        })
+      );
+
+      // =========================================================
+      // STEP 5: SHOW RESULT
+      // =========================================================
+      setCompatResult({
+        compatible: isEsimCompatible,
+        device: info.marketing_name ?? info.name ?? null,
+        manufacturer: info.manufacturer ?? null,
+        lteCompatible: info.lte_device ?? null,
+        fiveGCompatible: info.device_5g ?? null,
+        esimCompatible: isEsimCompatible,
+        message: bequickData.message ?? null,
+      });
+
+    } catch (err) {
+      setCompatResult({
+        compatible: false,
+        message:
+          err instanceof Error
+            ? err.message
+            : "Unable to verify device. Please try again.",
+      });
+    } finally {
+      setChecking(false);
+    };
+  };
 
 
 
