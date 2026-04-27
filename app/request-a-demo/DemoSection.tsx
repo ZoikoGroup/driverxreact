@@ -89,7 +89,7 @@ export default function DemoSection() {
       setForm({ firstName: "", lastName: "", email: "", company: "", orgType: "", deploymentSize: "", updates: false });
     } catch {
       setErrorMsg("Network error. Please try again.");
-      setStatus("error");
+      setStatus("error");   
     }
   };
 
@@ -248,7 +248,7 @@ export default function DemoSection() {
                 {/* Success message */}
                 {status === "success" && (
                   <p className="text-xs text-teal-700 dark:text-teal-400 bg-teal-50 dark:bg-teal-900/20 px-3 py-2 rounded-lg">
-                    ✓ Demo booked! We'll be in touch shortly.
+                     Demo booked! We'll be in touch shortly.
                   </p>
                 )}
 
