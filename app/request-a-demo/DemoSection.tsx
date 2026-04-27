@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 
+
 const features = [
   "Fleet Managers & IT Leads",
   "Telematics & IoT OEMs",
@@ -35,6 +36,7 @@ export default function DemoSection() {
     deploymentSize: "",
     updates: false,
   });
+  const [errors, setErrors] = useState<{ email?: string }>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -45,9 +47,26 @@ export default function DemoSection() {
       [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
   };
+ const validate = () => {
+  const newErrors: { email?: string } = {};
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!form.email) {
+    newErrors.email = "Email is required";
+  } else if (!emailRegex.test(form.email)) {
+    newErrors.email = "Enter a valid email (example@domain.com)";
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validate()) return;
+
     setStatus("loading");
     setErrorMsg("");
 
@@ -164,11 +183,25 @@ export default function DemoSection() {
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-500 dark:text-gray-400">Work email <span className="text-red-500">*</span></label>
-                  <input name="email" value={form.email} onChange={handleChange} type="email" placeholder="you@company.com" required
-                    className="w-full h-9 px-3 text-sm bg-gray-50 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 border border-gray-200 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition" />
-                </div>
+             <div className="space-y-1">
+  <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
+    Work email <span className="text-red-500">*</span>
+  </label>
+
+  <input
+    name="email"
+    value={form.email}
+    onChange={handleChange}
+    type="email"
+    placeholder="you@company.com"
+    required
+    className="w-full h-9 px-3 text-sm bg-gray-50 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 border border-gray-200 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+  />
+
+  {errors.email && (
+    <p className="text-xs text-red-500 mt-1">{errors.email}</p>
+  )}
+</div>
 
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-gray-500 dark:text-gray-400">Company name</label>
