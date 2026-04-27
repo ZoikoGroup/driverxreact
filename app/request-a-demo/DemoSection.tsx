@@ -36,7 +36,7 @@ export default function DemoSection() {
     deploymentSize: "",
     updates: false,
   });
-  const [errors, setErrors] = useState<{ email?: string }>({});
+const [errors, setErrors] = useState<{ email?: string; updates?: string }>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -48,14 +48,18 @@ export default function DemoSection() {
     }));
   };
  const validate = () => {
-  const newErrors: { email?: string } = {};
+  const newErrors: { email?: string; updates?: string } = {};
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!form.email) {
     newErrors.email = "Email is required";
   } else if (!emailRegex.test(form.email)) {
-    newErrors.email = "Enter a valid email (example@domain.com)";
+    newErrors.email = "Enter a valid email";
+  }
+
+  if (!form.updates) {
+    newErrors.updates = "You must accept updates to continue";
   }
 
   setErrors(newErrors);
@@ -232,13 +236,32 @@ export default function DemoSection() {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-100 dark:border-gray-700 pt-3 flex items-start gap-2.5">
-                  <input type="checkbox" id="updates" name="updates" checked={form.updates} onChange={handleChange}
-                    className="mt-0.5 w-4 h-4 accent-teal-600 cursor-pointer flex-shrink-0" />
-                  <label htmlFor="updates" className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed cursor-pointer">
-                    Send me updates about DriverX products and industry insights
-                  </label>
-                </div>
+              <div className="border-t border-gray-100 dark:border-gray-700 pt-3 flex flex-col gap-1">
+  
+  <div className="flex items-start gap-2.5">
+    <input
+      type="checkbox"
+      id="updates"
+      name="updates"
+      checked={form.updates}
+      onChange={handleChange}
+      className="mt-0.5 w-4 h-4 accent-teal-600 cursor-pointer flex-shrink-0"
+    />
+
+    <label
+      htmlFor="updates"
+      className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed cursor-pointer"
+    >
+      Send me updates about DriverX products and industry insights
+    </label>
+  </div>
+
+  {/* Error message for checkbox */}
+  {errors.updates && (
+    <p className="text-xs text-red-500 mt-1">{errors.updates}</p>
+  )}
+
+</div>
 
                 {/* Error message */}
                 {status === "error" && (
