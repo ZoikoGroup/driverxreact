@@ -24,26 +24,6 @@ function LoginPageContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  const handleLogin = async (e: SyntheticEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setError(null);
-  setLoading(true);
-
-  const res = await signIn("credentials", {
-    redirect: false,
-    email,
-    password,
-  });
-
-  if (res?.error) {
-    setError("Invalid credentials");
-    setLoading(false);
-    return;
-  }
-
-  router.push("/dashboard");
-};
-
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -57,45 +37,45 @@ function LoginPageContent() {
     }
   }, [status, callbackUrl]);
 
-  // const handleLogin = async (e: SyntheticEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setError(null);
-  //   setLoading(true);
+  const handleLogin = async (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
 
-  //   try {
-  //     const res = await fetch(
-  //       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/accounts/login/`,
-  //       {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify({
-  //           email: email.trim(),
-  //           password,
-  //         }),
-  //       }
-  //     );
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/accounts/login/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email.trim(),
+            password,
+          }),
+        }
+      );
 
-  //     const text = await res.text();
-  //     let data: any;
+      const text = await res.text();
+      let data: any;
 
-  //     try {
-  //       data = JSON.parse(text);
-  //     } catch {
-  //       throw new Error("Server error. Check API URL.");
-  //     }
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("Server error. Check API URL.");
+      }
 
-  //     if (!res.ok) throw new Error(data?.message || "Invalid credentials");
+      if (!res.ok) throw new Error(data?.message || "Invalid credentials");
 
-  //     localStorage.setItem("driverx_token", data.token);
-  //     localStorage.setItem("driverx_user", JSON.stringify(data.user));
+      localStorage.setItem("driverx_token", data.token);
+      localStorage.setItem("driverx_user", JSON.stringify(data.user));
 
-  //     router.replace(redirect || "/dashboard");
-  //   } catch (err: any) {
-  //     setError(err.message || "Login failed");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+      router.replace(redirect || "/dashboard");
+    } catch (err: any) {
+      setError(err.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#f4f7f6] flex items-center justify-center px-4 py-10 dark:bg-gray-900 dark:text-white">
