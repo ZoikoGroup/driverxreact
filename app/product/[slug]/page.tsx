@@ -20,7 +20,6 @@ export default function ProductDetailPage() {
 
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
-
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
 
@@ -29,12 +28,9 @@ export default function ProductDetailPage() {
   // ================= FETCH PRODUCT =================
   useEffect(() => {
     if (!slug) return;
-
     const fetchProduct = async () => {
       try {
-        const res = await fetch(
-          `https://api.driverxmobile.com/api/products/${slug}/`
-        );
+        const res = await fetch(`https://api.driverxmobile.com/api/products/${slug}/`);
         const data = await res.json();
         setProduct(data);
       } catch (err) {
@@ -43,7 +39,6 @@ export default function ProductDetailPage() {
         setLoading(false);
       }
     };
-
     fetchProduct();
   }, [slug]);
 
@@ -90,10 +85,10 @@ export default function ProductDetailPage() {
 
   // ================= VARIANTS =================
   const variants = product.variants.map((v: any) => ({
-    storage: v.attributes_dict?.Storage,
-    color: v.attributes_dict?.Color,
+    storage:   v.attributes_dict?.Storage,
+    color:     v.attributes_dict?.Color,
     condition: v.attributes_dict?.Condition,
-    price: Number(v.price),
+    price:     Number(v.price),
   }));
 
   // ================= CONDITION FILTER (FIX) =================
@@ -200,14 +195,17 @@ const handleCheckout = () => {
   // ================= UI =================
   return (
     <div className="bg-white text-black dark:bg-gray-900 dark:text-white min-h-screen">
-
+<div>
       {/* Breadcrumb */}
       <div className="px-10 pt-6 text-sm text-gray-500">
         <Link href="/">Home</Link> » <Link href="/shop">Shop</Link> » {product.name}
       </div>
 
-      {/* Main */}
-      <div className="px-10 py-8 grid grid-cols-2 gap-12">
+      {/* ── Main grid ────────────────────────────────────────────────────────
+          Mobile:  single column (image on top, details below)
+          Desktop: two columns side by side
+      */}
+      <div className="px-4 sm:px-10 py-6 sm:py-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12">
 
         {/* Image */}
         <div className="flex items-center justify-center border rounded-lg h-[480px]">
@@ -216,7 +214,9 @@ const handleCheckout = () => {
 
         {/* Details */}
         <div>
-          <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 leading-snug">
+            {product.name}
+          </h1>
 
           <div className="mb-6 text-purple-600 text-2xl font-semibold">
             ${variant?.price || `${product.price_min} – ${product.price_max}`}
@@ -232,7 +232,7 @@ const handleCheckout = () => {
                 condition: "",
               })
             }
-            className="w-full mb-3 border p-2"
+            className="w-full mb-3 border p-2 dark:bg-gray-900 dark:text-white"
           >
             <option value="">Storage</option>
             {storageOptions.map((s: string) => (
@@ -250,7 +250,7 @@ const handleCheckout = () => {
                 condition: "",
               })
             }
-            className="w-full mb-3 border p-2"
+            className="w-full mb-3 border p-2  dark:bg-gray-900 dark:text-white"
           >
             <option value="">Color</option>
             {colorOptions.map((c: string) => (
@@ -264,7 +264,7 @@ const handleCheckout = () => {
             onChange={(e) =>
               setSelected({ ...selected, condition: e.target.value })
             }
-            className="w-full mb-3 border p-2"
+            className="w-full mb-3 border p-2  dark:bg-gray-900 dark:text-white"
           >
             <option value="">Condition</option>
             {conditionOptions.map((c: string) => (
@@ -279,8 +279,22 @@ const handleCheckout = () => {
             <button onClick={() => setQuantity((q) => q + 1)}>+</button>
           </div>
 
-          {/* Buttons */}
-          <div className="flex gap-3 mt-6">
+            {/* Quantity stepper */}
+            <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded overflow-hidden self-start">
+              <button
+                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-lg leading-none"
+              >−</button>
+              <span className="px-4 py-2 text-sm font-medium border-x border-gray-300 dark:border-gray-600">
+                {quantity}
+              </span>
+              <button
+                onClick={() => setQuantity((q) => q + 1)}
+                className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-lg leading-none"
+              >+</button>
+            </div>
+
+            {/* Add to cart — full width on mobile */}
             <button
               disabled={!isValid}
               onClick={handleAddToCart}
@@ -289,6 +303,7 @@ const handleCheckout = () => {
               Add to Cart
             </button>
 
+            {/* Checkout — full width on mobile */}
             <button
               disabled={!isValid}
               onClick={handleCheckout}
@@ -301,25 +316,47 @@ const handleCheckout = () => {
       </div>
 
       {/* Related */}
-      <div className="px-10 py-10">
-        <h2 className="text-xl mb-4">Related Products</h2>
+      <div className="px-4 py-8 sm:px-10 sm:py-10">
+  <h2 className="text-2xl font-semibold mb-6">Related Products</h2>
 
-        <div className="grid grid-cols-4 gap-4">
-          {relatedProducts.map((item: any) => (
-            <Link key={item.id} href={`/product/${item.slug}`}>
-              <div className="border p-3 rounded">
-                <Image
-                  src={item.primary_image || "/images/placeholder.png"}
-                  alt={item.name}
-                  width={200}
-                  height={200}
-                />
-                <p>{item.name}</p>
-              </div>
-            </Link>
-          ))}
+  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+    {relatedProducts.map((item: any) => (
+      <Link
+        key={item.id}
+        href={`/product/${item.slug}`}
+        className="border rounded-lg p-3 sm:p-4 hover:shadow-lg transition bg-white dark:bg-gray-800"
+      >
+        {/* Image */}
+        <div className="flex items-center justify-center h-[140px] sm:h-[200px] mb-3 sm:mb-4">
+          {item.primary_image ? (
+            <Image
+              src={item.primary_image}
+              alt={item.name}
+              width={200}
+              height={200}
+              className="object-contain max-h-[120px] sm:max-h-[180px]"
+            />
+          ) : (
+            <Image
+              src="/images/placeholder.png"
+              alt="placeholder"
+              width={200}
+              height={200}
+            />
+          )}
         </div>
-      </div>
+
+        {/* Name */}
+        <h3 className="text-xs sm:text-sm font-medium mb-1 sm:mb-2 line-clamp-2">{item.name}</h3>
+
+        {/* Price */}
+        <p className="text-purple-600 font-semibold text-xs sm:text-sm">
+          ${item.price_min} – ${item.price_max}
+        </p>
+      </Link>
+    ))}
+  </div>
+</div>
     </div>
   );
 }

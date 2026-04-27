@@ -47,14 +47,14 @@ const FleetConnectivitySection = () => {
     <section className="w-full dark:bg-gray-900 bg-gray-100 ">
 
       {/* FULL WIDTH TITLE */}
-      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-8 text-xl font-semibold tracking-wide">
+      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-8 text-2xl font-semibold tracking-wide">
         DriverX Fleet & Logistics Connectivity
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-3xl mx-auto px-6 md:py-2">
 
         {/* Hero Section */}
-        <div className="mt-12">
+        <div className="mt-6">
 
           <h2 className="text-3xl font-semibold dark:text-white text-black mb-6">
             Smart Mobility Infrastructure for Moving America
@@ -137,9 +137,9 @@ const FleetConnectivitySection = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 bg-[#2f6f66] rounded-xl p-12 text-center  dark:bg-gray-900 dark:text-white text-white">
+        <div className="mt-8 bg-[#2f6f66] rounded-xl py-5 text-center  dark:bg-gray-900 dark:text-white text-white">
 
-          <h3 className="text-2xl font-semibold dark:text-white">
+          <h3 className="text-3xl font-semibold dark:text-white">
             Put Your Fleet in Motion The Smart Way
           </h3>
 

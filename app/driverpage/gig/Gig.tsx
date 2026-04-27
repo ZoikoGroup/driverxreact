@@ -40,7 +40,7 @@ function Gig() {
       </section>
 
       {/* ================= TRUSTED BY ================= */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-12 border-b dark:border-gray-800">
+      <section className="bg-gray-100 dark:bg-gray-900 py-8 border-b dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 text-center">
 
           <h3 className="font-semibold text-gray-800 dark:text-white">Trusted By</h3>

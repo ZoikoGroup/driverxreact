@@ -156,8 +156,8 @@ export default function Navbar() {
     ],
     Shop: [
       { label: "Smartphones", href: "/product/shop" },
-      { label: "Accessories", href: "/shop/accessories" },
-    ],
+      
+    ],    
     Support: [
       { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "DriverX Fleet Priority Line", href: "/fleet-priority-line" },

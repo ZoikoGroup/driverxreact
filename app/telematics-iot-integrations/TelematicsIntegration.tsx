@@ -45,7 +45,7 @@ function TelematicsIntegration() {
 
 
       {/* Intro */}
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-6xl mx-auto px-6 py-5">
         <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mb-4">
           Real-Time Visibility | Zero Downtime | Scalable Intelligence
         </h2>
@@ -58,19 +58,25 @@ function TelematicsIntegration() {
       </div>
 
       {/* Image Section */}
-      <div className="max-w-6xl mx-auto px-6 pb-14">
+<div className="max-w-6xl mx-auto px-4 sm:px-6 pb-14">
         <div className="relative rounded-xl overflow-hidden shadow">
 
+          {/* Image */}
           <Image
             src="/images/iot.png"
             alt="IoT Fleet"
-            width={1400}
-            height={500}
-            className="w-full h-[400px] object-cover"
-            priority
+            width={1800}
+            height={900}
+        
+    className="object-cover object-center"
           />
 
-          <div className="absolute bottom-6 right-6 bg-[#7dc9b2] dark:bg-teal-500 p-6 rounded-lg shadow-lg w-[280px] dark:text-gray-200">
+         <div className="
+            static w-full rounded-b-xl
+            md:absolute md:bottom-6 md:right-6 md:w-[280px] md:rounded-lg
+            bg-[#7dc9b2] dark:bg-teal-500
+            p-4 sm:p-6 shadow-lg dark:text-gray-200
+          ">
             <h4 className="font-semibold mb-3 text-sm">
               Built for Scale | Trusted Across Industries
             </h4>
@@ -117,13 +123,13 @@ function TelematicsIntegration() {
       </div>
 
       {/* CTA Section */}
-      <div className="relative bg-[#1f6f63] dark:bg-[#103a35] py-16 px-6 overflow-hidden">
+      <div className="relative bg-[#1f6f63] dark:bg-[#103a35] py-3 px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="w-full h-full bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:18px_18px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center text-white">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6 dark:text-gray-100">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-3 dark:text-gray-100">
             Make Every Asset Intelligent | Every Operation Smarter
           </h2>
 

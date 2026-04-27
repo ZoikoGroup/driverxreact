@@ -24,12 +24,12 @@ const Prepaidplans = () => {
 </div>
 
       {/* HERO SECTION */}
-     <section className="mx-auto max-w-7xl px-4 md:px-8 py-8 md:py-20">
+     <section className="mx-auto max-w-7xl px-4 md:px-8 py-2 md:py-2">
   
-        <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
+        <div className="grid items-center gap-8 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-         <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:p-12 flex flex-col justify-center">
+         <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:py-5 flex flex-col justify-center">
   
   <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white leading-snug max-w-sm md:max-w-none">
     Not Just a Plan
@@ -97,16 +97,16 @@ const Prepaidplans = () => {
 
 {/* why choose us banners */}
 
-
-<div className="mx-auto max-w-7xl px-6 py-20">
-  <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start">
+   <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-14">
+        <div className="relative rounded-xl overflow-hidden shadow">
 
     {/* LEFT: Image */}
     <div>
       <img
         src="/images/Frame 1707483045.png"
         alt="DriverX city scene"
-        className="rounded-2xl w-full object-cover"
+        className="w-full h-[220px] sm:h-[300px] md:h-[400px] lg:h-[500px] object-cover object-center"
+            
       />
     </div>
 
@@ -156,7 +156,7 @@ const Prepaidplans = () => {
 </div>
 
 
-<div className="w-full py-20">
+<div className="w-full py-8">
   <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center px-6">
 
     {/* LEFT: Content */}
