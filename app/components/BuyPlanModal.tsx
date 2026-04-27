@@ -570,7 +570,7 @@ export const BuyPlanModal = ({
             {setupChoice === "keep-number" && (
               <div className="mt-4 border-t border-[#1a4a3f]/20 pt-4" onClick={(e) => e.stopPropagation()}>
                 <p className="text-sm font-bold text-gray-800 dark:text-white mb-3">Check If Eligible to Port</p>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="tel"
                     value={mdn}

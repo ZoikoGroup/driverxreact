@@ -62,7 +62,7 @@ const Prepaidplans = () => {
       <SingleCatPlansSection cat="prepaid-plans"/>
     
 
-<section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-20">
+<section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-8">
   <h2 className="mb-16 text-center text-3xl font-bold  dark:text-white
  text-black">
     Benefits of DriverX Prepaid Plans

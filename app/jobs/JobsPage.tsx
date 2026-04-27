@@ -48,7 +48,7 @@ export default function JobsPage() {
   }, [query, location]);
 
   return (
-    <section className="py-20 px-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <section className="py-8 px-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-300 text-center mb-6">
         Job Openings
       </h1>
