@@ -5,7 +5,7 @@ import ApplyNow from "./applynow";
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="text-center py-20">Loading...</div>}>
+    <Suspense fallback={<div className="text-center py-8">Loading...</div>}>
     <ApplyNow/>
     </Suspense>
   );

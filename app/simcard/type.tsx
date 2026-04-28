@@ -3,7 +3,7 @@ import { dirxml } from "console";
 function Simcard(){
 
     return(
-           <section className="w-full py-20 bg-gradient-to-r from-yellow-50 via-green-50 to-green-100">
+           <section className="w-full py-8 bg-gradient-to-r from-yellow-50 via-green-50 to-green-100">
       <div className="max-w-5xl mx-auto text-center px-4">
 
         {/* Heading */}

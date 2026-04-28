@@ -47,7 +47,7 @@ const Hero = () => {
                 #1 Driver Mobile Network
               </span>
 
-              <h1 className="mt-6 md:[.3rem] sm:text-4xl md:text-3xl lg:text-4xl font-extrabold leading-tight text-gray-900 dark:text-white">
+              <h1 className="mt-6 md:[.3rem]  md:text-3xl lg:text-4xl font-extrabold leading-tight text-gray-900 dark:text-white">
                 Connectivity That <br />
                 Works as <span className="text-teal-500">Hard as</span>{" "}
                 <span className="text-teal-500">You Do</span>
@@ -282,7 +282,7 @@ const Hero = () => {
       </div>
 
       {/* DRIVE TYPE SECTION */}
-      <section className="bg-gray-50 py-20 dark:bg-gray-900">
+      <section className="bg-gray-50 py-8 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-8">
 
           {/* LEFT PANEL */}

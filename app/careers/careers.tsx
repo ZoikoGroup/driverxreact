@@ -33,15 +33,15 @@ export default function CareersSection() {
   return (
     <section className="w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-300">
       {/* HERO SECTION */}
-      <div className="bg-gradient-to-r from-[#1f3d38] to-[#122624] px-6 md:px-16 py-16">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div className="bg-gradient-to-r from-[#1f3d38] to-[#122624] px-6 md:px-16 py-5">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
           
           <div>
-            <span className="inline-block bg-yellow-500 text-black dark:text-gray-300 font-semibold px-4 py-1 rounded-md mb-6">
+            <span className="inline-block bg-yellow-500 dark:text-black text-black dark:text-gray-300 font-semibold px-4 py-1 rounded-md mb-2">
               Careers
             </span>
 
-            <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6 dark:text-gray-300 text-white">
+            <h1 className="text-2xl md:text-4xl font-bold leading-tight mb-6 dark:text-gray-300 text-white">
               Drive the Movement | Build What Moves the World
             </h1>
 

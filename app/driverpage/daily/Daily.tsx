@@ -7,7 +7,7 @@ function Daily() {
   return (
     <>
       {/* ================= HERO ================= */}
-      <section className="bg-[#2f766c] py-20 dark:bg-gray-900">
+      <section className="bg-[#2f766c] py-8 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-12">
 
           {/* LEFT CONTENT */}
@@ -81,7 +81,7 @@ function Daily() {
       </section>
 
       {/* ================= KEY DIFFERENTIATORS ================= */}
-      <section className="bg-gray-100 py-20 dark:bg-gray-900">
+      <section className="bg-gray-100 py-8 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">

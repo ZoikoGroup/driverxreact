@@ -70,7 +70,7 @@ const Buisinessplans = () => {
       </section>
 <SingleCatPlansSection cat="business-plans"/>
 
-<section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-20">
+<section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-8">
   <h2 className="mb-16 text-center text-3xl font-bold text-white">
     Benefits of DriverX Post-paid Plans
   </h2>
@@ -103,7 +103,7 @@ const Buisinessplans = () => {
 {/* why choose us banners */}
 
 
-<div className="mx-auto max-w-7xl px-6 py-20 dark:bg-gray-900 dark:text-white">
+<div className="mx-auto max-w-7xl px-6 py-8 dark:bg-gray-900 dark:text-white">
   <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start dark:bg-gray-900 dark:text-white">
 
     {/* LEFT: Image */}

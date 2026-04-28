@@ -5,7 +5,7 @@ export default function Plan(){
 
 
     return(
-        <div>
+        <div className="dark:bg-gray-950">
 <Topupplans/>
         </div>
     );

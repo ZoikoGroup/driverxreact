@@ -47,7 +47,7 @@ const FleetConnectivitySection = () => {
     <section className="w-full dark:bg-gray-900 bg-gray-100 ">
 
       {/* FULL WIDTH TITLE */}
-      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-8 text-2xl font-semibold tracking-wide">
+      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-8 text-xl font-semibold tracking-wide">
         DriverX Fleet & Logistics Connectivity
       </div>
 
@@ -56,13 +56,13 @@ const FleetConnectivitySection = () => {
         {/* Hero Section */}
         <div className="mt-6">
 
-          <h2 className="text-3xl font-semibold dark:text-white text-black mb-6">
+          <h2 className="text-2xl md:text-2xl font-semibold dark:text-white text-black mb-3">
             Smart Mobility Infrastructure for Moving America
           </h2>
 
-          <div className="max-w-4xl dark:text-white
+          <div className="max-w-4xl  dark:text-white
           
-          text-gray-600 space-y-4">
+          text-gray-600 space-y-">
             <p>
               DriverX Mobile powers the connectivity backbone for logistics
               operators, freight haulers, courier fleets, and last-mile carriers
