@@ -58,7 +58,7 @@ Cookie Preferences & Opt-Out
       </div>
 
       {/* Content */}
-      <div className=" dark:text-gray-300 max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700">
+      <div className=" dark:text-gray-300 max-w-4xl mx-auto px-6 py-8 space-y-10 text-gray-700">
         {features.map((section, i) => (
           <div key={i}>
             <h2 className="text-lg font-semibold dark:text-gray-300 text-gray-900 mb-2">

@@ -160,17 +160,18 @@ const Bottom = () => {
 
       {/* ===== 2️⃣ location-icon-footer + QR + SOCIAL ===== */}
       <div className="dark:bg-gray-900 bg-white border-t">
-        <div className="mx-auto max-w-7xl px-6 py-10 grid gap-10 md:grid-cols-3 items-center">
+        <div className="mx-auto max-w-7xl px-6 py-10 grid gap-10 md:grid-cols-3 items-center text-center md:text-left">
           {/* location-icon-footer */}
           <Image
             src="/images/Logo.svg.png"
             alt="DriverX Mobile"
             width={180}
             height={50}
+              className="mx-auto md:mx-0"
           />
 
           {/* QR + App buttons */}
-          <div className="flex items-center gap-7 justify-center">
+       <div className="flex flex-col md:flex-row items-center gap-6 justify-center">
             <div className="relative w-[180px] h-[180px]">
 <Image
   src="/images/qr.png"
@@ -183,7 +184,7 @@ const Bottom = () => {
 </div>
 
              
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <Image
                 src="/images/Group 691314729.png"
                 alt="App Store"
@@ -200,9 +201,9 @@ const Bottom = () => {
           </div>
 
           {/* Social */}
-          <div className="text-center md:text-right">
-            <h4 className="text-teal-700 font-semibold mb-3">
-              Connect With Us
+      <div className="flex flex-col items-center md:items-end py-2">
+  <h4 className="text-teal-700 text-center font-semibold mb-3  md:text-right">
+    Connect With Us
             </h4>
             <div className="flex justify-center md:justify-end gap-3">
              <a href="https://www.facebook.com/DriverXMobile/"> <SocialIcon Icon={FaFacebookF} /></a>
@@ -217,7 +218,7 @@ const Bottom = () => {
 
       {/* ===== 3️⃣ FOOTER LINKS ===== */}
       <div className="bg-white dark:bg-gray-900 border-t">
-        <div className="mx-auto max-w-7xl px-6 py-12 grid gap-8 sm:grid-cols-2 md:grid-cols-5 text-sm">
+        <div className="mx-auto max-w-7xl px-6 py-8 grid gap-8 sm:grid-cols-2 md:grid-cols-5 text-sm">
           {FOOTER_LINKS.map((section: FooterSection) => (
             <div key={section.title}>
               <h5 className="text-teal-700 dark:text-teal-500 font-semibold mb-4">

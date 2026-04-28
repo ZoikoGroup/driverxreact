@@ -5,7 +5,7 @@ function Simcard() {
   const [selectedOption, setSelectedOption] = useState("");
 
   return (
-    <section className="w-full py-20 bg-gradient-to-r from-yellow-50 via-green-50 to-green-100">
+    <section className="w-full py-8 bg-gradient-to-r from-yellow-50 via-green-50 to-green-100">
       <div className="max-w-4xl mx-auto px-4">
 
         {/* Dynamic Heading */}

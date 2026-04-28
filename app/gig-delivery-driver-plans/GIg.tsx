@@ -47,22 +47,22 @@ function Gig(){
     <section className="w-full dark:bg-gray-900 bg-gray-100 ">
 
       {/* FULL WIDTH TITLE */}
-      <div className="w-full bg-[#2f6f66] dark:text-white text-white text-center py-8 text-xl font-semibold tracking-wide">
+      <div className="w-full bg-[#2f6f66]  dark:text-white text-white text-center py-8 text-xl font-semibold tracking-wide">
      DriverX Gig & Delivery Driver Plans
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Hero Section */}
-        <div className="mt-12">
+        <div className="mt-4">
 
-          <h2 className="text-3xl font-semibold dark:text-white text-black mb-6">
+          <h2 className="text-2xl font-semibold md:[.3rem] dark:text-white text-black mb-3">
             Built for Drivers | Powered by You
           </h2>
 
-          <div className="max-w-4xl dark:text-white
+          <div className="max-w-2xl dark:text-white
           
-          text-gray-600 space-y-4">
+          text-gray-600 space-y-2 ">
             <p>
               At DriverX Mobile, we know your mobile phone isn’t just a tool — it’s your office, your dispatch system, your income lifeline
             </p>
@@ -129,7 +129,7 @@ function Gig(){
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 bg-[#2f6f66] rounded-xl p-12 text-center  dark:bg-gray-900 dark:text-white text-white">
+        <div className="mt-8 bg-[#2f6f66] rounded-xl p-6 text-center  dark:bg-gray-900 dark:text-white text-white">
 
           <h3 className="text-2xl font-semibold dark:text-white">
            Your Hustle Deserves Better Wireless

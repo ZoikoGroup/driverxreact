@@ -204,7 +204,7 @@ export default function RegisterPage() {
               />
               <p className="text-sm dark:text-white text-gray-600">
                 I agree to the{" "}
-                <Link href="/terms" className="dark:text-teal-400 text-teal-700 font-medium">
+                <Link href="/privacy-policy" className="dark:text-teal-400 text-teal-700 font-medium">
                   terms & policy
                 </Link>
               </p>
@@ -358,7 +358,7 @@ export default function RegisterPage() {
 //     <div className="flex min-h-screen">
 
 //       {/* LEFT — Form */}
-//       <div className="flex-1 flex items-center justify-center bg-white px-8 py-12 md:px-16 lg:px-24">
+//       <div className="flex-1 flex items-center justify-center bg-white px-8 py-8 md:px-16 lg:px-24">
 //         <div className="w-full max-w-md">
 
 //           <h1 className="text-3xl font-extrabold text-gray-900 mb-8">

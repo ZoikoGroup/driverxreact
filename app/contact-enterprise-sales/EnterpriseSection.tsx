@@ -55,21 +55,19 @@ export default function EnterpriseSection() {
       <section className="w-full bg-[#f5f5f5] dark:bg-gray-900 transition-colors duration-300">
 
         {/* HERO */}
-        <div className="bg-[#1f5f55] dark:bg-teal-900 py-8 text-center text-white font-semibold text-4xl">
+        <div className="bg-[#1f5f55] dark:bg-teal-900 py-8 text-center text-white font-semibold text-3xl">
           Engineer The Future Of Mobility With DriverX
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 py-12 text-center">
-          <div className="rounded-xl overflow-hidden shadow-md dark:shadow-none">
-            <Image
-              src="/images/portrait-of-multi-cultural-freight-haulage-team-st-2024-10-22-13-29-16-utc 1.png"
-              alt="Enterprise Mobility"
-              width={1200}
-              height={600}
-              className="w-full h-[420px] object-cover"
-            />
-          </div>
-
+        <div className="max-w-6xl mx-auto px-6 py-8 text-center">
+         <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden shadow-md">
+  <Image
+     src="/images/portrait-of-multi-cultural-freight-haulage-team-st-2024-10-22-13-29-16-utc 1.png"
+    alt="Enterprise Mobility"
+    fill
+    className="object-cover object-center"
+  />
+</div>
           <h3 className="mt-6 text-lg font-semibold text-gray-800 dark:text-white">
             We Power the Infrastructure Behind Modern Mobility
           </h3>
@@ -148,9 +146,9 @@ export default function EnterpriseSection() {
                 key={i}
                 className="flex items-center gap-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-5 transition-colors"
               >
-                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1f5f55] dark:bg-teal-700 text-white font-semibold text-sm">
-                  {i + 1}
-                </div>
+                <div className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full bg-[#1f5f55] dark:bg-teal-700 text-white font-semibold text-sm shrink-0">
+  {i + 1}
+</div>
                 <div className="text-gray-700 dark:text-gray-300 font-medium">
                   {step}
                 </div>

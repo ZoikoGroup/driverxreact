@@ -9,7 +9,7 @@ function Gig() {
   return (
     <>
       {/* ================= HERO ================= */}
-      <section className="bg-[#2f766c] dark:bg-[#1f4f48] py-20">
+      <section className="bg-[#2f766c] dark:bg-[#1f4f48] py-8">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-12">
 
           {/* LEFT CONTENT */}
@@ -23,12 +23,12 @@ function Gig() {
             </p>
 
             <div className="mt-8 flex gap-4">
-              <button className="px-6 py-3 rounded-lg bg-white text-[#2f766c] font-semibold hover:bg-gray-100 transition dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
+              <button className="px-6 py-2 rounded-lg bg-white text-[#2f766c] font-semibold hover:bg-gray-100 transition dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
                
                 <a href="/prepaid-plans"> View Plans</a>
               </button>
 
-              <button className="px-6 py-3 rounded-lg border border-white text-white hover:bg-white hover:text-[#2f766c] transition dark:hover:bg-gray-200 dark:hover:text-black">
+              <button className="px-6 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-[#2f766c] transition dark:hover:bg-gray-200 dark:hover:text-black">
                 Check Area Coverage
               </button>
             </div>
@@ -43,7 +43,7 @@ function Gig() {
       </section>
 
       {/* ================= TRUSTED BY ================= */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-12 border-b dark:border-gray-800">
+      <section className="bg-gray-100 dark:bg-gray-900 py-8 border-b dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 text-center">
 
           <h3 className="font-semibold text-gray-800 dark:text-white">Trusted By</h3>
@@ -79,7 +79,7 @@ function Gig() {
       </section>
 
       {/* ================= KEY DIFFERENTIATORS ================= */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-20">
+      <section className="bg-gray-100 dark:bg-gray-900 py-2">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">
@@ -92,7 +92,7 @@ function Gig() {
           <div className="mt-12 grid md:grid-cols-4 gap-8">
 
             {/* Card 1 */}
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition border dark:border-gray-800">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl py-2 shadow-sm hover:shadow-md transition border dark:border-gray-800">
               <div className="h-14 w-14 bg-[#2f766c] text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl">
                 <img src="/images/mynaui_mobile-signal-five.png" alt="icon" className="h-10 w-auto" />
               </div>

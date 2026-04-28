@@ -343,6 +343,47 @@ export const BuyPlanModal = ({
 
   // ── IMEI check ─────────────────────────────────────────────────────────────
 
+  // const handleCheckDevice = async () => {
+  //   if (!imei.trim()) { setImeiError("Please enter your IMEI/MEID number."); return; }
+  //   if (!/^\d{14,16}$/.test(imei.replace(/\s/g, ""))) {
+  //     setImeiError("Please enter a valid 14-16 digit IMEI number."); return;
+  //   }
+  //   setImeiError(null); setChecking(true); setCompatResult(null);
+
+    
+
+
+
+  //   try {
+  //     const res = await fetch("https://goliteapi.golitemobile.com/api/device_compatibility_checker/", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
+  //       },
+  //       body: JSON.stringify({ action: "esim_checker", imei: imei.trim() }),
+  //     });
+  //     const data = await res.json();
+
+  //     if (!data.success) {
+  //       setCompatResult({ compatible: false, message: data.error || "Verification failed." });
+  //       return;
+  //     }
+
+  //     setCompatResult({
+  //       compatible: data.compatible,           // true if attCompatibility === "GREEN"
+  //       device: data.device ?? null,           // manufacturer.model
+  //       manufacturer: data.manufacturer ?? null, // manufacturer.make
+  //       lteCompatible: data.lteCompatible ?? null,
+  //       fiveGCompatible: null,                 // not in VCare response
+  //       esimCompatible: data.esimCompatible ?? null, // same as compatible
+  //       message: data.message ?? null,
+  //     });
+  //   } catch (err) {
+  //     setCompatResult({ compatible: false, message: err instanceof Error ? err.message : "Unable to verify device. Please try again." });
+  //   } finally { setChecking(false); }
+  // };
+
   const handleCheckDevice = async () => {
       const cleanedImei = imei.replace(/\s/g, "").trim();
 
@@ -484,6 +525,8 @@ export const BuyPlanModal = ({
       setChecking(false);
     };
   };
+
+
 
   // ── Checkout ───────────────────────────────────────────────────────────────
 
@@ -671,7 +714,7 @@ export const BuyPlanModal = ({
             {setupChoice === "keep-number" && (
               <div className="mt-4 border-t border-[#1a4a3f]/20 pt-4" onClick={(e) => e.stopPropagation()}>
                 <p className="text-sm font-bold text-gray-800 dark:text-white mb-3">Check If Eligible to Port</p>
-                <div className="flex flex-col sm:flex-row gap-2">
+                <div className="flex gap-2">
                   <input
                     type="tel"
                     value={mdn}
@@ -710,7 +753,7 @@ export const BuyPlanModal = ({
           </div>
         </div>
 
-        <div className=" flex-col flex items-center md:flex-row  justify-between gap-3">
+        <div className="flex items-center justify-between gap-3">
           <button onClick={onClose} className="px-6 py-2.5 rounded-full border-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold text-sm hover:border-gray-300 transition-colors">
             Cancel
           </button>

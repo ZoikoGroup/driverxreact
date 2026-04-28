@@ -25,7 +25,7 @@ export default function Become() {
 
       {/* Header */}
       <div className="bg-[#1e5d57] dark:bg-teal-700 py-6 text-center transition-colors duration-300">
-        <h1 className="text-white text-2xl md:text-3xl font-bold">
+        <h1 className="text-white text-xl md:text-2xl font-bold">
           Become a DriverX Partner
         </h1>
       </div>
@@ -58,11 +58,16 @@ export default function Become() {
             alt="IoT Fleet"
             width={1400}
             height={500}
-            className="w-full h-[400px] object-cover"
+           className="w-full h-[220px] sm:h-[300px] md:h-[400px] lg:h-[500px] object-cover object-center"
             priority
           />
 
-          <div className="absolute bottom-6 right-6 bg-[#38a380] dark:bg-teal   -600 p-6 rounded-lg shadow-lg w-[280px] transition-colors duration-300">
+           <div className="
+            static w-full rounded-b-xl
+            md:absolute md:bottom-6 md:right-6 md:w-[280px] md:rounded-lg
+            bg-[#7dc9b2] dark:bg-teal-500
+            p-4 sm:p-6 shadow-lg dark:text-gray-200
+          ">
             <h4 className="font-semibold mb-3 text-sm text-black dark:text-white">
               Built for Scale | Trusted Across Industries
             </h4>
