@@ -298,12 +298,12 @@ export default function AddDevicePage() {
                   <p className="text-gray-400 text-sm mb-3">
                     Our support team is available 24/7. Chat with us for help with device compatibility or activation.
                   </p>
-                  <button
+              <a href="https://driverxchatbot-722985113446.europe-west1.run.app/">    <button
                     className="w-full px-4 py-2 bg-yellow-400 text-gray-800 font-semibold rounded-md hover:bg-yellow-500 transition-colors"
                     onClick={openChat}
                   >
                     Chat with Support
-                  </button>
+                  </button></a>
                 </div>
               </div>
             </div>
