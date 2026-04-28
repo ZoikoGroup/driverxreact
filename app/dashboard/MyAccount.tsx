@@ -562,14 +562,14 @@ export default function MyAccountPage() {
                         Call Support
                       </button>
                     </Link>
-                    <Link href="/faq">
+                    <Link href="/faqs-self-service">
                       <button className="w-full px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
                         FAQ
                       </button>
                     </Link>
                   </div>
                   <div className="flex gap-2 mt-3">
-                    <Link href="/contact-us">
+                    <Link href="/24-7-driver-support">
                       <button className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors">
                         Contact Support
                       </button>

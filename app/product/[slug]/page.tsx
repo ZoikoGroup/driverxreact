@@ -273,14 +273,10 @@ const handleCheckout = () => {
           </select>
 
           {/* Quantity */}
-          <div className="flex gap-3 mt-4">
-            <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>-</button>
-            <span>{quantity}</span>
-            <button onClick={() => setQuantity((q) => q + 1)}>+</button>
-          </div>
+    
 
             {/* Quantity stepper */}
-            <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded overflow-hidden self-start">
+            <div className="flex items-center border  border-gray-300 dark:border-gray-600 rounded overflow-hidden self-start">
               <button
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                 className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-lg leading-none"
@@ -294,23 +290,27 @@ const handleCheckout = () => {
               >+</button>
             </div>
 
-            {/* Add to cart — full width on mobile */}
-            <button
-              disabled={!isValid}
-              onClick={handleAddToCart}
-              className="px-5 py-2 bg-purple-600 text-white rounded disabled:bg-gray-300"
-            >
-              Add to Cart
-            </button>
+       <div className="flex flex-col sm:flex-row gap-3 py-5">
+  
+  {/* Add to cart */}
+  <button
+    disabled={!isValid}
+    onClick={handleAddToCart}
+    className="w-full sm:w-auto px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+  >
+    Add to Cart
+  </button>
 
-            {/* Checkout — full width on mobile */}
-            <button
-              disabled={!isValid}
-              onClick={handleCheckout}
-              className="px-5 py-2 bg-purple-800 text-white rounded disabled:bg-gray-300"
-            >
-              Proceed to Checkout
-            </button>
+  {/* Checkout */}
+  <button
+    disabled={!isValid}
+    onClick={handleCheckout}
+    className="w-full sm:w-auto px-5 py-2.5 bg-purple-800 hover:bg-purple-900 text-white font-semibold rounded-xl disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+  >
+    Proceed to Checkout
+  </button>
+
+</div>
           </div>
         </div>
       </div>
