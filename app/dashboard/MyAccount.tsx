@@ -551,17 +551,17 @@ export default function MyAccountPage() {
                     Need help? Our driver support team is available 24/7
                   </div>
                   <div className="flex flex-col gap-2">
-                  <a href="https://driverxchatbot-722985113446.europe-west1.run.app">  <button
+                    {/* <button
                       className="w-full px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors"
                       onClick={openChat}
                     >
                       Live Chat
-                    </button></a>
-                    <a href="tel:+18003990087">
-  <button className="w-full px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
-    Call Support
-  </button>
-</a>
+                    </button>
+                    <Link href="/customer-service">
+                      <button className="w-full px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                        Call Support
+                      </button>
+                    </Link> */}
                     <Link href="/faqs-self-service">
                       <button className="w-full px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
                         FAQ
