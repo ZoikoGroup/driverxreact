@@ -106,7 +106,7 @@ const ProductCard = ({ item }: { item: Product }) => {
 
       <Link
         href={`/product/${item.slug}`}
-        className="mt-3 w-full border border-gray-300 dark:border-gray-600 text-xs sm:text-sm py-1.5 rounded text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        className="mt-3 w-full border border-gray-300 dark:border-gray-600 text-sm py-1.5 rounded text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
       >
         Select options
       </Link>
