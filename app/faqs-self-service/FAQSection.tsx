@@ -610,6 +610,8 @@ export default function FAQSection() {
  
       </div>
 
+      <br />
+
        <RequestForm requestType="support" />
     </section>
     </>

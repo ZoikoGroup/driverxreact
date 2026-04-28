@@ -43,7 +43,7 @@ const FOOTER_LINKS = [
       { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "Fleet Priority Line", href: "/fleet-priority-line" },
    { label: "Coverage Maps", href: "https://mvnoc.ai/coverage-map", external: true },
-      { label: "FAQs & Self Service", href: "/support/faqs" },
+      { label: "FAQs & Self Service", href: "/faqs-self-service" },
       { label: "Accessibility & Language Options", href: "/accessibility-language-options"}
     ],
   },

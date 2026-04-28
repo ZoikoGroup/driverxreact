@@ -208,8 +208,8 @@ const handleCheckout = () => {
       <div className="px-4 sm:px-10 py-6 sm:py-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12">
 
         {/* Image */}
-        <div className="flex items-center justify-center border rounded-lg h-[480px]">
-          <Image src={mainImage} alt={product.name} width={380} height={380} />
+        <div className="flex items-center justify-center border rounded-lg h-[580px]">
+          <Image src={mainImage} alt={product.name} width={380} height={280} />
         </div>
 
         {/* Details */}
