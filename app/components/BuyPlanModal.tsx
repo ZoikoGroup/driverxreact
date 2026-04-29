@@ -394,7 +394,7 @@ export const BuyPlanModal = ({
       if (localMatch && localMatch.esim_compatible === false) {
         setCompatResult({
           compatible: false,
-          message: cleanedImei +" is not compatible with eSIM1.",
+          message: cleanedImei +" is not compatible with eSIM.",
         });
         return; // stop here, no API calls needed        
       }
@@ -524,7 +524,7 @@ export const BuyPlanModal = ({
         );
         setCompatResult({
           compatible: false,
-          message: cleanedImei +" is not compatible with eSIM2.",
+          message: cleanedImei +" is not compatible with eSIM.",
         });
       } 
 
