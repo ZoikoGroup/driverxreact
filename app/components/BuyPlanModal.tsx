@@ -380,22 +380,59 @@ export const BuyPlanModal = ({
         }
       }
 
+      const nextIndex = storageKeys.length + 1;
+      
       // IF FOUND IN LOCAL STORAGE — show result and stop
-      if (localMatch) {
+      if (localMatch && localMatch.esim_compatible === true) {
         setCompatResult({
-          compatible: localMatch.esim_compatible,
-          device: localMatch.model ?? null,
-          manufacturer: localMatch.manufacturer ?? null,
-          lteCompatible: localMatch.lte_device ?? null,
-          fiveGCompatible: localMatch.device_5g ?? null,
-          esimCompatible: localMatch.esim_compatible ?? null,
-          message: "Loaded from saved device history.",
+          compatible: true,
+          message: cleanedImei +" is compatible with eSIM.",
         });
         return; // stop here, no API calls needed
       }
+      
+      if (localMatch && localMatch.esim_compatible === false) {
+        setCompatResult({
+          compatible: false,
+          message: cleanedImei +" is not compatible with eSIM.",
+        });
+        return; // stop here, no API calls needed        
+      }
 
+      const goliteEsimTblSrchResponse = await fetch(
+        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
+          },
+          body: JSON.stringify({
+            action: "esim_check",
+            imei: cleanedImei,
+          }),
+        }
+      );
+
+      const goliteEsimTblSrchData = await goliteEsimTblSrchResponse.json();
+      if (goliteEsimTblSrchData.compatible === true) {
+        setCompatResult({
+          compatible: true,
+          message: cleanedImei +" is compatible with eSIM.",
+        });
+        localStorage.setItem(
+          `device_serial_${nextIndex}`,
+          JSON.stringify({
+            device_serial: cleanedImei,
+            esim_compatible: true,
+          })
+        );
+        return; // stop here, no API calls needed        
+      }
+
+      
       // =========================================================
-      // STEP 2: NOT IN LOCAL STORAGE — CALL BEQUICK API
+      // STEP 2: NOT IN LOCAL STORAGE — AND NOT IN GOLITE DB EITHER — SO CALL BEQUICK API
       // =========================================================
       const bequickRes = await fetch(
         "https://zoiko-atom-api.bequickapps.com/carriers/3/query_device_info",
@@ -411,24 +448,41 @@ export const BuyPlanModal = ({
 
       const bequickData = await bequickRes.json();
       console.log("Bequick API response:", bequickData);
-      const info = bequickData.device_info ?? {};
+      const info = bequickData ?? {};      
+      const isEsimCompatible = info.esim_compatible;    
 
-      if (!bequickData.success) {
+      if (isEsimCompatible === true) {
         setCompatResult({
-          compatible: false,
-          message: bequickData.message ?? "Unable to verify device.",
+          compatible: true,
+          message: cleanedImei +" is compatible with eSIM.",
         });
-        return;
-      }
+        
+        localStorage.setItem(
+          `device_serial_${nextIndex}`,
+          JSON.stringify({
+            device_serial: cleanedImei,
+            esim_compatible: isEsimCompatible,
+          })
+        );
 
-      const isEsimCompatible = bequickData.compatibility === true;
+        await fetch(
+          "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
+            },
+            body: JSON.stringify({
+              action: "esim_update",
+              imei: cleanedImei,
+            }),
+          }
+        );
+        return; // stop here, no further API calls needed
+      } 
 
-      // =========================================================
-      // STEP 3: CALL GOLITE API
-      // esim_compatible=true  → action: "esim_update"
-      // esim_compatible=false → action: "esim_check"
-      // =========================================================
-      await fetch(
+      const goliteVResponse = await fetch(
         "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
         {
           method: "POST",
@@ -437,40 +491,42 @@ export const BuyPlanModal = ({
             "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
           },
           body: JSON.stringify({
-            action: isEsimCompatible ? "esim_update" : "esim_check",
+            action: "esim_v_check",
             imei: cleanedImei,
           }),
         }
       );
 
-      // =========================================================
-      // STEP 4: SAVE TO LOCAL STORAGE
-      // =========================================================
-      const nextIndex = storageKeys.length + 1;
-      localStorage.setItem(
-        `device_serial_${nextIndex}`,
-        JSON.stringify({
-          device_serial: cleanedImei,
-          esim_compatible: isEsimCompatible,
-          manufacturer: info.manufacturer ?? null,
-          model: info.marketing_name ?? info.name ?? null,
-          lte_device: info.lte_device ?? null,
-          device_5g: info.device_5g ?? null,
-        })
-      );
+      const goliteVData = await goliteVResponse.json();
 
-      // =========================================================
-      // STEP 5: SHOW RESULT
-      // =========================================================
-      setCompatResult({
-        compatible: isEsimCompatible,
-        device: info.marketing_name ?? info.name ?? null,
-        manufacturer: info.manufacturer ?? null,
-        lteCompatible: info.lte_device ?? null,
-        fiveGCompatible: info.device_5g ?? null,
-        esimCompatible: isEsimCompatible,
-        message: bequickData.message ?? null,
-      });
+      if(goliteVData.esimCompatible === true) {
+        setCompatResult({
+          compatible: true,
+          message: cleanedImei +" is compatible with eSIM.",
+        });
+
+        localStorage.setItem(
+          `device_serial_${nextIndex}`,
+          JSON.stringify({
+            device_serial: cleanedImei,
+            esim_compatible: true,
+          })
+        );
+        return; 
+      }else { 
+
+        localStorage.setItem(
+          `device_serial_${nextIndex}`,
+          JSON.stringify({
+            device_serial: cleanedImei,
+            esim_compatible: false,
+          })
+        );
+        setCompatResult({
+          compatible: false,
+          message: cleanedImei +" is not compatible with eSIM.",
+        });
+      } 
 
     } catch (err) {
       setCompatResult({
@@ -581,14 +637,7 @@ export const BuyPlanModal = ({
           }`}>
             {compatResult.compatible ? (
               <>
-                <p className="font-bold text-green-800 dark:text-green-400 mb-1.5">Great! Your device is compatible.</p>
-                <div className="space-y-0.5 text-green-900 dark:text-green-300 text-xs">
-                  {compatResult.device && <p><span className="font-semibold">Device:</span> {compatResult.device}</p>}
-                  {compatResult.manufacturer && <p><span className="font-semibold">Manufacturer:</span> {compatResult.manufacturer}</p>}
-                  {compatResult.lteCompatible != null && <p><span className="font-semibold">LTE:</span> {compatResult.lteCompatible ? "Yes" : "No"}</p>}
-                  {compatResult.fiveGCompatible != null && <p><span className="font-semibold">5G:</span> {compatResult.fiveGCompatible ? "Yes" : "No"}</p>}
-                  {compatResult.esimCompatible != null && <p><span className="font-semibold">eSIM:</span> {compatResult.esimCompatible ? "Yes" : "No"}</p>}
-                </div>
+                <p className="font-bold text-green-800 dark:text-green-400 mb-1.5">{compatResult.message}</p>
               </>
             ) : (
               <p className="text-red-700 dark:text-red-400 font-medium">

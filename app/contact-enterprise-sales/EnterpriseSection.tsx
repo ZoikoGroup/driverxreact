@@ -158,7 +158,8 @@ export default function EnterpriseSection() {
         </div>
 
       </section>
-      <RequestForm requestType="Enterprise Sales" />
+      <RequestForm requestType="EnterpriseSales" />
+      
     </>
   );
 }
