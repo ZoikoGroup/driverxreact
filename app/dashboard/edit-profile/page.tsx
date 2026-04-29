@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { FaUser, FaLock, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 
-const BASE_URL = "https://api.driverxmobile.com/api/editprofile/";
+//const BASE_URL = "https://api.driverxmobile.com/api/editprofile/";
+
+const BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/editprofile/`;
 
 interface NameForm {
   first_name: string;

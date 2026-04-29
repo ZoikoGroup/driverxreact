@@ -75,9 +75,7 @@ const [errors, setErrors] = useState<{ email?: string; updates?: string }>({});
     setErrorMsg("");
 
     try {
-
-      const res = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/form/request-a-demo/", {
-
+      const res = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/form/request-a-demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
