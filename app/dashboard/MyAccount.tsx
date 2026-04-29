@@ -466,11 +466,11 @@ export default function MyAccountPage() {
                         </button>
                       </Link>
                     )}
-                    <Link href="/dashboard/add-device/">
+                    {/* <Link href="/dashboard/add-device/">
                       <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
                         Add Device
                       </button>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
 
@@ -509,9 +509,11 @@ export default function MyAccountPage() {
                     Two-factor authentication {subscriber?.two_fa ? "enabled" : "disabled"}
                   </p>
                   <div className="flex gap-2 mt-auto">
-                    <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                    <Link href="dashboard/edit-profile"
+                      className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors"
+                    >
                       Edit Profile
-                    </button>
+                    </Link>
                     <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
                       Security Settings
                     </button>
