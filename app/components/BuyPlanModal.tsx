@@ -400,7 +400,7 @@ export const BuyPlanModal = ({
       }
 
       const goliteEsimTblSrchResponse = await fetch(
-        "http://127.0.0.1:8000/api/device_compatibility_checker/",
+        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
         {
           method: "POST",
           headers: {
@@ -466,7 +466,7 @@ export const BuyPlanModal = ({
         );
 
         await fetch(
-          "http://127.0.0.1:8000/api/device_compatibility_checker/",
+          "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
           {
             method: "POST",
             headers: {
@@ -483,7 +483,7 @@ export const BuyPlanModal = ({
       } 
 
       const goliteVResponse = await fetch(
-        "http://127.0.0.1:8000/api/device_compatibility_checker/",
+        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
         {
           method: "POST",
           headers: {
