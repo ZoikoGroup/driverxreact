@@ -236,7 +236,10 @@ export default function MyAccountPage() {
       setLoading(true);
       try {
         const userData = JSON.parse(localStorage.getItem("driverx_user") || "{}");
-        const userEmail: string = "info@golitemobile.com";
+
+        const userEmail: string = userData?.email || "";
+
+        //const userEmail: string = "info@golitemobile.com";
         setUserName(userData?.name || "Customer");
 
         await fetchCards();
@@ -514,9 +517,9 @@ export default function MyAccountPage() {
                     >
                       Edit Profile
                     </Link>
-                    <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                    {/* <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
                       Security Settings
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -539,9 +542,9 @@ export default function MyAccountPage() {
                         View All Orders
                       </button>
                     </Link>
-                    <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                    {/* <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
                       Track Shipment
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
