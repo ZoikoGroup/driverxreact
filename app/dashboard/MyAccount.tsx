@@ -433,7 +433,7 @@ export default function MyAccountPage() {
                     </Link>
                     <Link
                       className="px-3 py-1.5 bg-yellow-400 text-white text-sm rounded-md hover:bg-yellow-500 transition-colors"
-                      href="/all-plans"
+                      href="/plans"
                     >
                       Upgrade Plan
                     </Link>
