@@ -80,7 +80,7 @@ const plans = [
           Scale Your IoT Vision Without Limits
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
+        <div className="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-8 items-center">
 
           {/* LEFT */}
           <div>

@@ -65,7 +65,7 @@ function Refund() {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 
+      <div className="max-w-4xl mx-auto px-6 py-8 space-y-10 
                       text-gray-700 dark:text-gray-300">
         
         {features.map((section, i) => (

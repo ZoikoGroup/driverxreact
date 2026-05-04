@@ -49,7 +49,9 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <Navbar />
-            {children}
+        <div className="w-full overflow-hidden">
+  {children}
+</div>
           <Bottom/>
         </AuthProvider>
       </body>      

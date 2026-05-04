@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 
+
 const features = [
   "Fleet Managers & IT Leads",
   "Telematics & IoT OEMs",
@@ -35,6 +36,7 @@ export default function DemoSection() {
     deploymentSize: "",
     updates: false,
   });
+const [errors, setErrors] = useState<{ email?: string; updates?: string }>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -45,14 +47,35 @@ export default function DemoSection() {
       [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
   };
+ const validate = () => {
+  const newErrors: { email?: string; updates?: string } = {};
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!form.email) {
+    newErrors.email = "Email is required";
+  } else if (!emailRegex.test(form.email)) {
+    newErrors.email = "Enter a valid email";
+  }
+
+  if (!form.updates) {
+    newErrors.updates = "You must accept updates to continue";
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validate()) return;
+
     setStatus("loading");
     setErrorMsg("");
 
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/form/request-a-demo/", {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/form/request-a-demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -70,7 +93,7 @@ export default function DemoSection() {
       setForm({ firstName: "", lastName: "", email: "", company: "", orgType: "", deploymentSize: "", updates: false });
     } catch {
       setErrorMsg("Network error. Please try again.");
-      setStatus("error");
+      setStatus("error");   
     }
   };
 
@@ -164,11 +187,25 @@ export default function DemoSection() {
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-500 dark:text-gray-400">Work email <span className="text-red-500">*</span></label>
-                  <input name="email" value={form.email} onChange={handleChange} type="email" placeholder="you@company.com" required
-                    className="w-full h-9 px-3 text-sm bg-gray-50 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 border border-gray-200 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition" />
-                </div>
+             <div className="space-y-1">
+  <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
+    Work email <span className="text-red-500">*</span>
+  </label>
+
+  <input
+    name="email"
+    value={form.email}
+    onChange={handleChange}
+    type="email"
+    placeholder="you@company.com"
+    required
+    className="w-full h-9 px-3 text-sm bg-gray-50 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 border border-gray-200 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+  />
+
+  {errors.email && (
+    <p className="text-xs text-red-500 mt-1">{errors.email}</p>
+  )}
+</div>
 
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-gray-500 dark:text-gray-400">Company name</label>
@@ -199,13 +236,32 @@ export default function DemoSection() {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-100 dark:border-gray-700 pt-3 flex items-start gap-2.5">
-                  <input type="checkbox" id="updates" name="updates" checked={form.updates} onChange={handleChange}
-                    className="mt-0.5 w-4 h-4 accent-teal-600 cursor-pointer flex-shrink-0" />
-                  <label htmlFor="updates" className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed cursor-pointer">
-                    Send me updates about DriverX products and industry insights
-                  </label>
-                </div>
+              <div className="border-t border-gray-100 dark:border-gray-700 pt-3 flex flex-col gap-1">
+  
+  <div className="flex items-start gap-2.5">
+    <input
+      type="checkbox"
+      id="updates"
+      name="updates"
+      checked={form.updates}
+      onChange={handleChange}
+      className="mt-0.5 w-4 h-4 accent-teal-600 cursor-pointer flex-shrink-0"
+    />
+
+    <label
+      htmlFor="updates"
+      className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed cursor-pointer"
+    >
+      Send me updates about DriverX products and industry insights
+    </label>
+  </div>
+
+  {/* Error message for checkbox */}
+  {errors.updates && (
+    <p className="text-xs text-red-500 mt-1">{errors.updates}</p>
+  )}
+
+</div>
 
                 {/* Error message */}
                 {status === "error" && (
@@ -215,7 +271,7 @@ export default function DemoSection() {
                 {/* Success message */}
                 {status === "success" && (
                   <p className="text-xs text-teal-700 dark:text-teal-400 bg-teal-50 dark:bg-teal-900/20 px-3 py-2 rounded-lg">
-                    ✓ Demo booked! We'll be in touch shortly.
+                     Demo booked! We'll be in touch shortly.
                   </p>
                 )}
 

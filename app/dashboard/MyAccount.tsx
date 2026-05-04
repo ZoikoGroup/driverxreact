@@ -236,7 +236,10 @@ export default function MyAccountPage() {
       setLoading(true);
       try {
         const userData = JSON.parse(localStorage.getItem("driverx_user") || "{}");
-        const userEmail: string = "info@golitemobile.com";
+
+        const userEmail: string = userData?.email || "";
+
+        //const userEmail: string = "info@golitemobile.com";
         setUserName(userData?.name || "Customer");
 
         await fetchCards();
@@ -330,7 +333,7 @@ export default function MyAccountPage() {
   // ---------- Render ----------
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow dark:bg-gray-900 bg-gray-100 py-12 px-4">
+      <main className="flex-grow dark:bg-gray-900 dark:text-white bg-gray-100 py-8 px-4">
         <div className="max-w-7xl mx-auto">
 
           {/* Subscriber not found */}
@@ -430,7 +433,7 @@ export default function MyAccountPage() {
                     </Link>
                     <Link
                       className="px-3 py-1.5 bg-yellow-400 text-white text-sm rounded-md hover:bg-yellow-500 transition-colors"
-                      href="/all-plans"
+                      href="/plans"
                     >
                       Upgrade Plan
                     </Link>
@@ -466,11 +469,11 @@ export default function MyAccountPage() {
                         </button>
                       </Link>
                     )}
-                    <Link href="/dashboard/add-device/">
+                    {/* <Link href="/dashboard/add-device/">
                       <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
                         Add Device
                       </button>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
 
@@ -509,12 +512,14 @@ export default function MyAccountPage() {
                     Two-factor authentication {subscriber?.two_fa ? "enabled" : "disabled"}
                   </p>
                   <div className="flex gap-2 mt-auto">
-                    <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                    <Link href="dashboard/edit-profile"
+                      className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors"
+                    >
                       Edit Profile
-                    </button>
-                    <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                    </Link>
+                    {/* <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
                       Security Settings
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -537,9 +542,9 @@ export default function MyAccountPage() {
                         View All Orders
                       </button>
                     </Link>
-                    <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                    {/* <button className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
                       Track Shipment
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -551,7 +556,7 @@ export default function MyAccountPage() {
                     Need help? Our driver support team is available 24/7
                   </div>
                   <div className="flex flex-col gap-2">
-                    <button
+                    {/* <button
                       className="w-full px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors"
                       onClick={openChat}
                     >
@@ -561,15 +566,15 @@ export default function MyAccountPage() {
                       <button className="w-full px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
                         Call Support
                       </button>
-                    </Link>
-                    <Link href="/faq">
+                    </Link> */}
+                    <Link href="/faqs-self-service">
                       <button className="w-full px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
                         FAQ
                       </button>
                     </Link>
                   </div>
                   <div className="flex gap-2 mt-3">
-                    <Link href="/contact-us">
+                    <Link href="/24-7-driver-support">
                       <button className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors">
                         Contact Support
                       </button>

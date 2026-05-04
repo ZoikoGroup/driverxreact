@@ -949,7 +949,7 @@ const [orderError, setOrderError] = useState("");
                 <button
                   onClick={handleApplyCoupon}
                   disabled={loading}
-                  className="px-4 py-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm font-semibold transition-colors disabled:opacity-50"
+                  className="px-4 flex-row md:flex-col py-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm font-semibold transition-colors disabled:opacity-50"
                 >
                   {loading ? "Applying…" : "Apply"}
                 </button>
@@ -957,7 +957,7 @@ const [orderError, setOrderError] = useState("");
                   <button
                     onClick={handleCancelCoupon}
                     disabled={loading}
-                    className="px-4 py-2.5 rounded-lg border border-red-200 text-red-500 text-sm font-semibold hover:bg-red-50 transition-colors disabled:opacity-50"
+                    className="px-4 flex-row md:flex-col py-2.5 rounded-lg border border-red-200 text-red-500 text-sm font-semibold hover:bg-red-50 transition-colors disabled:opacity-50"
                   >
                     Remove
                   </button>

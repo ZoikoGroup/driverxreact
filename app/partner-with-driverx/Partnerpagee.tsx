@@ -133,7 +133,7 @@ function PartnerWithDriverX() {
       </section>
 
       {/* INTRO */}
-      <section className="max-w-6xl mx-auto px-6 py-16 text-center">
+      <section className="max-w-6xl mx-auto px-6 py-2 text-center">
         <h2 className="text-3xl font-semibold mb-4">
           Partner with DriverX
         </h2>
@@ -156,7 +156,7 @@ function PartnerWithDriverX() {
       </section>
 
       {/* WHO WE PARTNER WITH */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-12 md:pb-20">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:pb-20">
         <h3 className="text-center text-3xl font-semibold mb-10">
           Who We Partner With
         </h3>

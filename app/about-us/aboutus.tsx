@@ -29,10 +29,10 @@ function Aboutus() {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8] dark:from-[#1e2421] dark:to-[#2b3a2f] py-12 md:py-16 px-4 md:px-6">
+      <section className="bg-gradient-to-br from-[#f6fbef] to-[#e9f7e8] dark:from-[#1e2421] dark:to-[#2b3a2f] py-5 md:py-8 px-4 md:px-6">
 
         {/* COMPANY OVERVIEW TEXT */}
-        <div className="max-w-6xl mx-auto text-center mb-10 md:mb-12">
+        <div className="max-w-6xl mx-auto text-center mb-10 md:mb-8">
           <h2 className="text-xl md:text-2xl font-bold text-[#1e6f5c] mb-4 md:mb-6 dark:text-[#a0d9c8] tracking-wider">
             COMPANY OVERVIEW
           </h2>
@@ -65,7 +65,7 @@ function Aboutus() {
 
         </div>
       </section>
-      <section className="bg-gray-100 dark:bg-gray-800 py-12 md:py-16 px-4 md:px-6">
+      <section className="bg-gray-100 dark:bg-gray-800 py-8 md:py-16 px-4 md:px-6">
 
         {/* DRIVERPLUS ADVANTAGE */}
         <div className="max-w-7xl mx-auto text-center mb-10 md:mb-14">
@@ -128,7 +128,7 @@ function Aboutus() {
           ))}
         </div>
 </section>
-<section className="bg-white dark:bg-gray-900 py-12 md:py-16 px-4 md:px-6">
+<section className="bg-white dark:bg-gray-900 py-8 md:py-16 px-4 md:px-6">
         {/* WHY CHOOSE US SECTION */}
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 mb-16 md:mb-24">
 
@@ -153,7 +153,7 @@ function Aboutus() {
 
       </section>
         {/* GREEN QUOTE SECTION */}
-      <div className="bg-[#1e6f5c] dark:bg-gray-900 text-white py-12 md:py-20">
+      <div className="bg-[#1e6f5c] dark:bg-gray-900 text-white py-8 md:py-8">
 
         {/* Inner content container */}
         <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-12 text-center md:text-left">

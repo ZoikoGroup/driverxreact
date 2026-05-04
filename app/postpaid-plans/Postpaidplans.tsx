@@ -33,18 +33,18 @@ const Postpaidplans = () => {
     <>
       {/* TOP TITLE BAR */}
       <div className="bg-teal-800 py-8 ">
-        <h2 className="text-white text-center font-bold text-4xl   dark:text-white">
+        <h2 className="text-white text-center font-bold text-3xl  dark:text-white">
           DriverX Post-paid Plans
         </h2>
       </div>
 
       {/* HERO SECTION */}
-    <section className="mx-auto max-w-7xl px-4 md:px-8 py-8 md:py-20">
+    <section className="mx-auto max-w-7xl px-4 md:px-8 py-2 md:py-2">
   
          <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-    <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:p-12 flex flex-col justify-center">
+    <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:py-2 flex flex-col justify-center">
             
   <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white leading-snug max-w-sm md:max-w-none">
             Postpaid Plans Built for Drivers 
@@ -70,7 +70,7 @@ const Postpaidplans = () => {
       </section>
 <SingleCatPlansSection cat="postpaid-plans"/>
 
-<section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-20">
+<section className="relative bg-gradient-to-br from-teal-800 to-teal-600 py-8">
   <h2 className="mb-16 text-center text-3xl font-bold text-white">
     Benefits of DriverX Post-paid Plans
   </h2>
@@ -104,7 +104,7 @@ const Postpaidplans = () => {
 {/* why choose us banners */}
 
 
-<div className="mx-auto max-w-7xl px-6 py-20 dark:bg-gray-900  dark:text-white">
+<div className="mx-auto max-w-7xl px-6 py-8 dark:bg-gray-900  dark:text-white">
   <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start">
 
     {/* LEFT: Image */}
@@ -168,12 +168,12 @@ const Postpaidplans = () => {
 
 
 
-<div className="w-full py-20">
-  <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center px-6">
+<div className="w-full py-2">
+  <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-2 items-center px-6">
 
     {/* LEFT: Content */}
     <div className="max-w-lg">
-      <h3 className="text-2xl font-bold dark:bg-gray-900  dark:text-white text-gray-900 mb-3">
+      <h3 className="text-2xl font-bold dark:bg-gray-900  dark:text-white text-gray-900 mb-2">
         Coverage, Features & Control
       </h3>
 
