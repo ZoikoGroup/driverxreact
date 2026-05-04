@@ -51,18 +51,18 @@ const FleetConnectivitySection = () => {
         DriverX Fleet & Logistics Connectivity
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-3xl mx-auto px-6 md:py-2">
 
         {/* Hero Section */}
-        <div className="mt-12">
+        <div className="mt-6">
 
-          <h2 className="text-3xl font-semibold dark:text-white text-black mb-6">
+          <h2 className="text-2xl md:text-2xl font-semibold dark:text-white text-black mb-3">
             Smart Mobility Infrastructure for Moving America
           </h2>
 
-          <div className="max-w-4xl dark:text-white
+          <div className="max-w-4xl  dark:text-white
           
-          text-gray-600 space-y-4">
+          text-gray-600 space-y-">
             <p>
               DriverX Mobile powers the connectivity backbone for logistics
               operators, freight haulers, courier fleets, and last-mile carriers
@@ -137,9 +137,9 @@ const FleetConnectivitySection = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 bg-[#2f6f66] rounded-xl p-12 text-center  dark:bg-gray-900 dark:text-white text-white">
+        <div className="mt-8 bg-[#2f6f66] rounded-xl py-5 text-center  dark:bg-gray-900 dark:text-white text-white">
 
-          <h3 className="text-2xl font-semibold dark:text-white">
+          <h3 className="text-3xl font-semibold dark:text-white">
             Put Your Fleet in Motion The Smart Way
           </h3>
 

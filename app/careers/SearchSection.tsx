@@ -43,7 +43,7 @@ export default function SearchSection() {
   }
 
   return (
-    <section className="py-20 px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-300">
+    <section className="py-8 px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-300">
       <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-300 text-center mb-10">
         Check out our Open Positions to see where you fit in
       </h2>

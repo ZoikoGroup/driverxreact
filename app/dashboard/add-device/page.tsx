@@ -520,6 +520,7 @@ export default function AddDevicePage() {
 
   // ---------- Render ----------
   return (
+
     <>
       
       <div className="dashboard-container container py-4">
@@ -559,6 +560,50 @@ export default function AddDevicePage() {
                 >
                   Chat with Support
                 </button>
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-grow dark:bg-gray-900 dark:text-white bg-gray-100 py-8 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            {/* Main Steps */}
+            <div className="lg:col-span-2">
+              <ProgressBar />
+              {step === 1 && renderStep1()}
+              {step === 2 && renderStep2()}
+              {step === 3 && renderStep3()}
+            </div>
+
+            {/* Help Sidebar */}
+            <div>
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
+                <h5 className="font-semibold mb-3">Finding Your IMEI/EID</h5>
+
+                <p className="text-sm font-semibold mb-1">For Smartphones &amp; Tablets:</p>
+                <ul className="text-gray-400 text-sm list-disc pl-4 mb-4 space-y-1">
+                  <li>Dial *#06# to display IMEI</li>
+                  <li>Go to Settings → About → IMEI</li>
+                  <li>Check device box or SIM tray</li>
+                </ul>
+
+                <p className="text-sm font-semibold mb-1">For eSIM devices:</p>
+                <ul className="text-gray-400 text-sm list-disc pl-4 mb-4 space-y-1">
+                  <li>Look for EID in Settings → Cellular</li>
+                  <li>EID is 32 digits long</li>
+                </ul>
+
+                <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-4">
+                  <h6 className="font-semibold text-gray-800 mb-2">Need Assistance?</h6>
+                  <p className="text-gray-400 text-sm mb-3">
+                    Our support team is available 24/7. Chat with us for help with device compatibility or activation.
+                  </p>
+              <a href="https://driverxchatbot-722985113446.europe-west1.run.app/">    <button
+                    className="w-full px-4 py-2 bg-yellow-400 text-gray-800 font-semibold rounded-md hover:bg-yellow-500 transition-colors"
+                    onClick={openChat}
+                  >
+                    Chat with Support
+                  </button></a>
+                </div>
+
               </div>
             </div>
           </div>

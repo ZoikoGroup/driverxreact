@@ -5,6 +5,9 @@ import { useParams } from "next/navigation";
 import beQuick from "../../../utils/dasdbeQuickApi";
 import { FaMobileAlt, FaWifi, FaPhoneAlt, FaRegCommentDots } from "react-icons/fa";
 
+import Link from "next/link";
+
+
 // ---------- Types ----------
 interface UsageBlock {
   used: string | number;
@@ -144,7 +147,7 @@ export default function PlanUsagesPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow dark:bg-gray-900 bg-gray-100 py-12 px-4">
+      <main className="flex-grow dark:bg-gray-900 dark:text-white bg-gray-100 py-8 px-4">
         <div className="max-w-5xl mx-auto">
 
           {/* Loading */}
@@ -270,12 +273,18 @@ export default function PlanUsagesPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
                 <h5 className="font-semibold text-base mb-4">Quick Actions</h5>
                 <div className="flex gap-3 flex-wrap">
-                  <button className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors">
-                    Upgrade Plan
-                  </button>
-                  <button className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors">
+                  
+                  <Link className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
+                                        href="/plans"
+                                      >
+                                        Upgrade Plan
+                    </Link>
+
+                  <Link className="px-3 py-1.5 border border-green-600 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors"
+                    href="/top-up-plans"
+                  >
                     Buy More Data
-                  </button>
+                  </Link>
                   <button
                     className="px-3 py-1.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors"
                     onClick={() => window.history.back()}

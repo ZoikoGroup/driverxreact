@@ -47,7 +47,7 @@ function PartnerProgram() {
       </section>
 
       {/* IMAGE + INTRO */}
-      <section className="bg-[#f5f6f4] dark:bg-gray-900 py-14 transition-colors">
+      <section className="bg-[#f5f6f4] dark:bg-gray-900 py-2 transition-colors">
         <div className="max-w-6xl mx-auto text-center px-6">
           <p className="text-gray-600 dark:text-gray-400 font-medium mb-8 max-w-3xl mx-auto">
             Join a high-performance ecosystem purpose-built for the fleet economy,
@@ -204,7 +204,7 @@ function PartnerProgram() {
 
 
       {/* HOW IT WORKS */}
-      <div className="max-w-6xl mx-auto mt-20 px-6 text-center">
+      <div className="max-w-2xl mx-auto  py-8 mt-22 px-2 md:px-2 text-center">
         <h3 className="text-lg font-semibold mb-12 text-gray-800 dark:text-white">
           How It Works
         </h3>
@@ -228,7 +228,7 @@ function PartnerProgram() {
       </div>
 
       {/* FINAL CTA */}
-      <div className="mt-20 bg-[#1e6f5c] dark:bg-teal-900 text-white py-16 px-6 transition-colors">
+      <div className="mt-10 bg-[#1e6f5c] dark:bg-teal-900 text-white py-5 px-6 transition-colors">
         <div className="max-w-5xl mx-auto text-center">
           <h3 className="text-2xl font-semibold mb-4">
             Let’s Drive Value Together

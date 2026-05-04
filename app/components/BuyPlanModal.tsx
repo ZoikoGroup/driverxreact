@@ -720,7 +720,7 @@ export const BuyPlanModal = ({
             {setupChoice === "keep-number" && (
               <div className="mt-4 border-t border-[#1a4a3f]/20 pt-4" onClick={(e) => e.stopPropagation()}>
                 <p className="text-sm font-bold text-gray-800 dark:text-white mb-3">Check If Eligible to Port</p>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="tel"
                     value={mdn}
@@ -759,7 +759,7 @@ export const BuyPlanModal = ({
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3">
+        <div className=" flex-col flex items-center md:flex-row  justify-between gap-3">
           <button onClick={onClose} className="px-6 py-2.5 rounded-full border-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold text-sm hover:border-gray-300 transition-colors">
             Cancel
           </button>

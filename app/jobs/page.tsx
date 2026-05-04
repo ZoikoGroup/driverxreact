@@ -3,7 +3,7 @@ import JobsPage from "./JobsPage";
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="text-center py-20">Loading jobs...</div>}>
+    <Suspense fallback={<div className="text-center py-8">Loading jobs...</div>}>
       <JobsPage />
     </Suspense>
   );

@@ -35,7 +35,7 @@ function E911 () {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 text-gray-700 dark:text-gray-300">
+      <div className="max-w-4xl mx-auto px-6 py-8 space-y-10 text-gray-700 dark:text-gray-300">
         {complianceFeatures.map((section, i) => (
           <div key={i}>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">

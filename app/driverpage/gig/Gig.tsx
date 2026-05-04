@@ -7,7 +7,7 @@ function Gig() {
   return (
     <>
       {/* ================= HERO ================= */}
-      <section className="bg-[#2f766c] dark:bg-[#1f4f48] py-20">
+      <section className="bg-[#2f766c] dark:bg-[#1f4f48] py-8">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-12">
 
           {/* LEFT CONTENT */}
@@ -40,7 +40,7 @@ function Gig() {
       </section>
 
       {/* ================= TRUSTED BY ================= */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-12 border-b dark:border-gray-800">
+      <section className="bg-gray-100 dark:bg-gray-900 py-8 border-b dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 text-center">
 
           <h3 className="font-semibold text-gray-800 dark:text-white">Trusted By</h3>
@@ -76,7 +76,7 @@ function Gig() {
       </section>
 
       {/* ================= KEY DIFFERENTIATORS ================= */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-20">
+      <section className="bg-gray-100 dark:bg-gray-900 py-8">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">

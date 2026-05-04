@@ -8,12 +8,12 @@ function Daily() {
   return (
     <>
       {/* ================= HERO ================= */}
-      <section className="bg-[#2f766c] py-20 dark:bg-gray-900">
+      <section className="bg-[#2f766c] py-2 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-12">
 
           {/* LEFT CONTENT */}
           <div className="text-white">
-            <h2 className="text-4xl font-bold leading-tight">
+            <h2 className="text-4xl font-bold leading-tight max-w-xl mx-auto md:mx-0">
               Affordable Mobile for Everyday Driving
             </h2>
 
@@ -22,11 +22,11 @@ function Daily() {
             </p>
 
             <div className="mt-8 flex gap-4">
-            <a href="/postpaid-plans"> <button className="px-6 py-3 rounded-lg bg-white text-[#2f766c] font-semibold hover:bg-gray-100 transition dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
+            <a href="/postpaid-plans"> <button className="px-6 py-2 rounded-lg bg-white text-[#2f766c] font-semibold hover:bg-gray-100 transition dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
                 View Plans
               </button></a> 
 
-              <button className="px-6 py-3 rounded-lg border border-white text-white hover:bg-white hover:text-[#2f766c] transition dark:border-gray-500 dark:hover:bg-gray-800 dark:hover:text-white">
+              <button className="px-6 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-[#2f766c] transition dark:border-gray-500 dark:hover:bg-gray-800 dark:hover:text-white">
                 Check Area Coverage
               </button>
             </div>
@@ -41,7 +41,7 @@ function Daily() {
       </section>
 
       {/* ================= TRUSTED BY ================= */}
-      <section className="bg-gray-100 py-12 border-b dark:bg-gray-900 dark:border-gray-800">
+      <section className="bg-gray-100 py-8 border-b dark:bg-gray-900 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 text-center">
 
           <h3 className="font-semibold text-gray-800 dark:text-white">
@@ -82,7 +82,7 @@ function Daily() {
       </section>
 
       {/* ================= KEY DIFFERENTIATORS ================= */}
-      <section className="bg-gray-100 py-20 dark:bg-gray-900">
+      <section className="bg-gray-100 py-2 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">
@@ -96,7 +96,7 @@ function Daily() {
           <div className="mt-12 grid md:grid-cols-4 gap-8">
 
             {/* Card 1 */}
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl py-2 shadow-sm hover:shadow-md transition">
               <div className="h-14 w-14 bg-[#2f766c] text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl">
                 <img src="/images/mynaui_mobile-signal-five.png" alt="Lyft" className="h-10 w-auto" />
               </div>
@@ -155,7 +155,7 @@ function Daily() {
         </div>
       </section>
       <RequestForm requestType="Daily Commuters" />
-      <br />
+   
     </>
   );
 }

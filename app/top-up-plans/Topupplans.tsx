@@ -5,21 +5,21 @@ import SingleCatPlansSection from "../components/SingleCatPlansSection";
 
 const Topupplans = () => {
   return (
-    <>
+    <div className="dark:bg-gray-800">
       {/* TOP TITLE BAR */}
       <div className="bg-teal-800 py-8">
-        <h2 className="text-white text-center font-bold text-4xl">
+        <h2 className="text-white text-center font-bold text-2xl">
           DriverX Topup Plans
         </h2>
       </div>
 
       {/* HERO SECTION */}
-     <section className="mx-auto max-w-7xl px-4 md:px-8 py-8 md:py-20 dark:bg-gray-900">
+     <section className="mx-auto max-w-7xl px-4 md:px-8 py-8 md:py-2 dark:bg-gray-800">
      <div className="grid items-center gap-10 md:grid-cols-2 rounded-3xl overflow-hidden">
           
           {/* LEFT CONTENT */}
-           <div className="bg-[#f6fbef] dark:bg-gray-900 p-5 md:p-12 flex flex-col justify-center">
-          <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:bgt-gray-900 dark:text-white leading-snug max-w-sm md:max-w-none">
+           <div className="bg-[#f6fbef] dark:bg-gray-800 p-5 md:py-2 flex flex-col justify-center">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:bg-gray-800 dark:text-white leading-snug max-w-sm md:max-w-none">
            Topup Plans Designed for Fleets, 
            <br />Teams & Professional Operations
             </h3>
@@ -43,13 +43,11 @@ const Topupplans = () => {
       </section>
 <SingleCatPlansSection cat="data-only-plans" heading="Topup Plans Designed for Fleets"/>
 
-
-
 {/* why choose us banners */}
 
 
-<div className="mx-auto max-w-7xl px-6 py-20  dark:bg-gray-800 dark:text-white">
-  <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-16 items-start">
+<div className="mx-auto max-w-7xl px-6 dark:bg-gray-800 dark:text-white">
+  <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-2 items-start">
 
     {/* LEFT: Image */}
     <div>
@@ -103,8 +101,8 @@ const Topupplans = () => {
 </div>
 
 
-<div className="w-full py-20  dark:bg-gray-800 dark:text-white">
-  <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center px-6">
+<div className="w-full dark:bg-gray-800 dark:text-white">
+  <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-2 items-center px-6">
 
     {/* LEFT: Content */}
     <div className="max-w-lg">
@@ -138,7 +136,7 @@ const Topupplans = () => {
 
 
 
-    </>
+    </div>
   );
 };
 

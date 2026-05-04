@@ -3,18 +3,18 @@ export default function PressMedia() {
     <section className="bg-[#f8faf7] dark:bg-gray-900 min-h-screen transition-colors duration-300">
 
       {/* Top Banner */}
-      <div className="bg-[#0f766e] dark:bg-teal-900 text-white dark:text-gray-200 text-center py-5 transition-colors duration-300">
+      <div className="bg-[#0f766e] dark:bg-teal-900 text-white dark:text-gray-200 text-center py-8 transition-colors duration-300">
         <h1 className="text-2xl md:text-3xl font-semibold">
           Press & Media
         </h1>
       </div>
 
       {/* Content Container */}
-      <div className="max-w-4xl mx-auto px-6 py-12 text-gray-700 dark:text-gray-300 space-y-10 transition-colors duration-300">
+      <div className="max-w-4xl mx-auto px-6 py-4 md:py-2 text-gray-700 dark:text-gray-300 space-y-2 transition-colors duration-300">
 
         {/* Intro */}
         <div>
-          <h2 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
+          <h2 className="font-semibold text-lg mb-1 text-gray-900 dark:text-white">
             Welcome to the DriverX Mobile Media Room
           </h2>
           <p className="text-sm leading-relaxed">

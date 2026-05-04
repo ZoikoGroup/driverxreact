@@ -156,8 +156,8 @@ export default function Navbar() {
     ],
     Shop: [
       { label: "Smartphones", href: "/product/shop" },
-      { label: "Accessories", href: "/shop/accessories" },
-    ],
+      
+    ],    
     Support: [
       { label: "24/7 Driver Support", href: "/24-7-driver-support" },
       { label: "DriverX Fleet Priority Line", href: "/fleet-priority-line" },
@@ -228,9 +228,9 @@ export default function Navbar() {
                 className="relative cursor-pointer"
                 onClick={() => router.push("/checkout")}
               >
-                <ShoppingCart className="w-6 h-6" />
+                <ShoppingCart className="w-6 h-6 text-gray-700 dark:text-white" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-red-500 dark:text-white text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
@@ -256,7 +256,7 @@ export default function Navbar() {
                   </button>
 
                   {userMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden">
+                    <div className="absolute right-0 mt-2 w-48 bg-white dark:text-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden">
                       <Link
                         href="/dashboard"
                         onClick={() => setUserMenuOpen(false)}
@@ -299,9 +299,9 @@ export default function Navbar() {
                 className="relative cursor-pointer"
                 onClick={() => router.push("/checkout")}
               >
-                <ShoppingCart className="w-5 h-5 text-gray-700" />
+                <ShoppingCart className="w-5 h-5 dark:text-white text-gray-700" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-red-500 dark:text-white text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
@@ -311,7 +311,7 @@ export default function Navbar() {
                 className="p-1.5 rounded-lg hover:bg-gray-100 transition"
                 aria-label="Open menu"
               >
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className="w-6 h-6 text-gray-700 dark:text-white text-gray-700" />
               </button>
             </div>
           </div>
