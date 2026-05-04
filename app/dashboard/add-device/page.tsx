@@ -564,7 +564,6 @@ export default function AddDevicePage() {
           </div>
         </div>
       </div>
-      
     </>
   );
 }
