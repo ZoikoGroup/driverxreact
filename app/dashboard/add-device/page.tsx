@@ -53,14 +53,18 @@ export default function AddDevicePage() {
   const [activating, setActivating] = useState(false);
   const [activationResult, setActivationResult] = useState<ActivationResult | null>(null);
   const [linesInfo, setLinesInfo] = useState<LineInfo[]>([]);
-
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const userMail: string = user.email || "";
+  const [userMail, setUserMail] = useState<string>("");
 
   useEffect(() => {
+    // localStorage is only available client-side — read it here to avoid SSR errors
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const email: string = user.email || "";
+    setUserMail(email);
+
     const fetchLines = async () => {
+      if (!email) return;
       try {
-        const id = await getSubscriberByEmail(userMail);
+        const id = await getSubscriberByEmail(email);
         const response = await getLinesBySubscriberID(id);
         const rawLines: LineInfo[] = Array.isArray(response)
           ? response
