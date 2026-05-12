@@ -1,11 +1,15 @@
 import Accessibility from "./Accessibility";
 
-export default function plan(){
+export const metadata = {
+  title: "Accessibility & Language Options | DriverX Mobile",
+  description:
+    "DriverX Mobile offers accessibility and multilingual options to ensure every user can navigate, communicate, and manage their services with ease and clarity.",
+};
 
-    return(
-        <>
-        <Accessibility/>
-        
-        </>
-    );
+export default function AccessibilityPage() {
+  return (
+    <>
+      <Accessibility />
+    </>
+  );
 }
