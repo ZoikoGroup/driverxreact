@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google-site-verification" content="V09UHbN4_cHq8c5pEpIg1BqXInfxVE2ZSeKZfEqqpfY" />
         <Script id="facebook-sdk" strategy="afterInteractive">
           {`
             window.fbAsyncInit = function() {
