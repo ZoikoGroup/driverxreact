@@ -1,20 +1,15 @@
-import { Form } from "lucide-react";
 import Gig from "./Gig";
 
+export const metadata = {
+  title: "Gig & Delivery Driver Phone Plans | DriverX Mobile",
+  description:
+    "DriverX offers the best value for gig and delivery driver phone plans. Enjoy 5G speeds, hotspot & rewards. Plans start at just $29/month—no contract required.",
+};
 
-function Plan(){
-
-
-    return(
-<div>
-
-<Gig/>
-
-
-          
-</div>
-    );
+export default function GigPlansPage() {
+  return (
+    <>
+      <Gig />
+    </>
+  );
 }
-
-
-export default Plan;
