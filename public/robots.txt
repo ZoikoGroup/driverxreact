@@ -1,0 +1,78 @@
+# robots.txt for https://driverxmobile.com/
+
+# ==========================================
+# 1. Default Rule – Allow All Crawlers
+# ==========================================
+User-agent: *
+Allow: /
+
+# ==========================================
+# 2. Major Search Engines
+# ==========================================
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ==========================================
+# 3. AI Crawlers – Explicitly Allowed
+# ==========================================
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ==========================================
+# 4. Block Private / Customer Areas
+# ==========================================
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login/
+Disallow: /register/
+Disallow: /account/
+Disallow: /my-account/
+Disallow: /user/
+Disallow: /billing/
+Disallow: /payments/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /order/
+Disallow: /cgi-bin/
+
+# WordPress (if applicable)
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+# ==========================================
+# 5. Sitemap
+# ==========================================
+Sitemap: https://driverxmobile.com/sitemap.xml
