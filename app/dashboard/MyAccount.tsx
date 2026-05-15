@@ -732,7 +732,7 @@ export default function MyAccountPage() {
             <div className="px-6 pb-6 flex justify-center">
               <button
                 className="px-8 py-2.5 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-colors"
-                onClick={() => { setShowSimModal(false); router.push("/all-plans"); }}
+                onClick={() => { setShowSimModal(false); router.push("/plans"); }}
               >
                 View Plans &amp; Activate
               </button>
