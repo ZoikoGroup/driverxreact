@@ -353,7 +353,7 @@ export default function MyAccountPage() {
                 </button>
                 <button
                   className="px-4 py-2 bg-red-600 text-white rounded-md font-medium hover:bg-red-700 transition-colors"
-                  onClick={() => router.push("/all-plans")}
+                  onClick={() => router.push("/plans")}
                 >
                   View Available Plans
                 </button>
