@@ -31,8 +31,13 @@ export async function generateMetadata({
 
   return {
     title: meta?.title || "DriverX Mobile",
+
     description:
       meta?.description || "DriverX Mobile Products",
+
+    alternates: {
+      canonical: `https://driverxmobile.com/product/${slug}`,
+    },
   };
 }
 
