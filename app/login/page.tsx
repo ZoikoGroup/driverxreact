@@ -2,9 +2,10 @@ import { Metadata } from "next";
 import Login from "./Login";
 
 export const metadata: Metadata = {
-  title: "DriverX Mobile | Login to Manage Your Services",
+  title: "DriverX Mobile Login | Secure Driver Account Access",
   description:
-    "Log in to your DriverX Mobile account now to manage your services, view and pay bills, track your usage & enjoy full control over your mobile plan & features.",
+    "Log in to DriverX Mobile to securely access your driver account, manage trips, view updates, and use the driver dashboard and tools anytime."
+
 };
 
 export default function Page() {
