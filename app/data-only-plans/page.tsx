@@ -3,8 +3,7 @@ import DriverXPlans from "./DriverXPlans";
 export const metadata = {
   title: "Premium Data Only SIM Plans for Drivers | DriverX Mobile",
   description:
-    "DriverX offers data only SIM plans for drivers with high-speed connectivity, flexible pricing, and reliable nationwide coverage—perfect for GPS, IoT, and fleet operations.",
-  keywords: ["data only sim plans", "DriverX data plans", "SIM for GPS tracking", "fleet data SIM"],
+    "DriverX Mobile data only sim plans offer fast, flexible data with 5G, hotspot, and IoT features starting at $19. Perfect for gig drivers & connected devices."
 };
 
 export default function DataOnlyPlansPage() {

@@ -1,9 +1,9 @@
 import Gig from "./Gig";
 
 export const metadata = {
-  title: "Gig & Delivery Driver Phone Plans | DriverX Mobile",
+  title: "Best Mobile Plans for Gig Drivers | DriverX Mobile",
   description:
-    "DriverX offers the best value for gig and delivery driver phone plans. Enjoy 5G speeds, hotspot & rewards. Plans start at just $29/month—no contract required.",
+    "Get the best mobile plans for gig drivers with DriverX Mobile. Instant eSIM/pSIM setup, nationwide Tier-1 coverage, no contracts, and app-ready performance."
 };
 
 export default function GigPlansPage() {
