@@ -824,7 +824,7 @@ export const BuyPlanModal = ({
         <>
           <StepIndicator currentStep={currentStepNumber} totalSteps={totalSteps} />
           <h2 className="text-xl font-extrabold text-gray-900 dark:text-white text-center mb-1">Check Device Compatibility</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-6">Verify your device supports eSIM on our network</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-6">Verify your device supports eSIM — or skip and continue</p>
 
           <div className="space-y-3 mb-4">
             {renderImeiBlock()}
@@ -859,15 +859,13 @@ export const BuyPlanModal = ({
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               Back
             </button>
-            {compatResult?.compatible && (
-              <button
-                onClick={isPortFlow ? handlePortEsimCheckout : handleNewSimEsimCheckout}
-                className="flex items-center gap-2 px-7 py-2.5 bg-[#1a4a3f] hover:bg-[#133830] text-white font-semibold text-sm rounded-full transition-colors duration-200"
-              >
-                Continue to Checkout
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-              </button>
-            )}
+            <button
+            onClick={isPortFlow ? handlePortEsimCheckout : handleNewSimEsimCheckout}
+            className="flex items-center gap-2 px-7 py-2.5 bg-[#1a4a3f] hover:bg-[#133830] text-white font-semibold text-sm rounded-full transition-colors duration-200"
+            >
+            {compatResult?.compatible ? "Continue to Checkout" : "Skip & Continue"}
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
           </div>
         </>
       );
