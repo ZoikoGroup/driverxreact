@@ -1145,7 +1145,7 @@ const [orderError, setOrderError] = useState("");
                 />
                 <span className="text-sm text-gray-600">
                   I have read and agree to the website{" "}
-                  <a href="/terms-and-conditions" className="text-red-500 hover:underline">
+                  <a href="/terms-of-service-legal" className="text-red-500 hover:underline">
                     terms and conditions
                   </a>
                   .
