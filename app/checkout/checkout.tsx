@@ -772,8 +772,8 @@ const handleQuantity = (index: number, delta: number) => {
           {[
             { href: "/prepaid-plans",  label: "Prepaid Plans" },
             { href: "/postpaid-plans", label: "Postpaid Plans" },
-            { href: "/business-deals", label: "Business Deals" },
-            { href: "/travel-plans",   label: "Travel Plans" },
+            { href: "/business-plans", label: "Business Deals" },
+            { href: "/top-up-plans",   label: "Top-up Plans" },
           ].map((link) => (
             <a
               key={link.href}
@@ -1151,7 +1151,7 @@ const handleQuantity = (index: number, delta: number) => {
                 />
                 <span className="text-sm text-gray-600">
                   I have read and agree to the website{" "}
-                  <a href="/terms-and-conditions" className="text-red-500 hover:underline">
+                  <a href="/terms-of-service-legal" className="text-red-500 hover:underline">
                     terms and conditions
                   </a>
                   .

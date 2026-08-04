@@ -1,5 +1,5 @@
 export const usStates = [
-  { code: "", name: "Select State" },
+  
   { code: "AL", name: "Alabama" },
   { code: "AK", name: "Alaska" },
   { code: "AZ", name: "Arizona" },
