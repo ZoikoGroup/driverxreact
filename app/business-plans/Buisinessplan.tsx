@@ -36,7 +36,7 @@ const Buisinessplans = () => {
       {/* TOP TITLE BAR */}
       <div className="bg-teal-800 py-8">
         <h2 className="text-white text-center font-bold text-2xl">
-          DriverX Buisiness Plans
+          DriverX Business Plans
         </h2>
       </div>
 
