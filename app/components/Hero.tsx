@@ -73,7 +73,7 @@ const Hero = () => {
               </ul>
 
               <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4">
-                <a href="#plans" className="w-full sm:w-auto scroll-smooth">
+                <a href="/plans" className="w-full sm:w-auto scroll-smooth">
                   <button className="w-full rounded-full bg-teal-500 px-8 py-3 font-semibold text-white shadow-lg hover:bg-teal-600 transition">
                     View Plans
                   </button>
