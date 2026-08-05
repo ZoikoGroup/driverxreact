@@ -1,5 +1,5 @@
 const API_BASE = "https://zoiko-atom-api.bequickapps.com";
-const BEQUICK_TOKEN = "d678fcd9-2a4a-40c1-9849-523f36d5bdbf";
+const BEQUICK_TOKEN = "09ff2d85-a451-47e6-86bc-aba98e1e4629";
 
 /* -------------------- Core Request Wrapper -------------------- */
 async function beQuickRequest(url, method = "GET", data = {}, headers = {}, timeout = 30) {
@@ -275,25 +275,25 @@ console.log("Creating draft order with postData:", postData.cart);
       orderDetailsAttributes.push({
         product_id: ESIM_PRODUCT_ID,
         line_id: parseInt(postData.line_id),
-        warehouse_id : 2,
+        warehouse_id : 3,
       });
       simCount++;
       orderDetailsAttributes.push({
         product_id: parseInt(product.bqPlanID),
         line_id: parseInt(postData.line_id),
-        warehouse_id : 2,
+        warehouse_id : 3,
       });
       // console.log("Added eSIM:", orderDetailsAttributes);
     } else if (simType === "pSIM") {
         orderDetailsAttributes.push({
           product_id: parseInt(product.bqPlanID),
           line_id: parseInt(postData.line_id),
-          warehouse_id : 1,
+          warehouse_id : 3,
         });
         orderDetailsAttributes.push({
           product_id: PSIM_PRODUCT_ID,
           line_id: parseInt(postData.line_id),
-          warehouse_id : 1,
+          warehouse_id : 3,
         });
         simCount++;
         console.log("Added pSIM:", orderDetailsAttributes);
@@ -301,6 +301,7 @@ console.log("Creating draft order with postData:", postData.cart);
       orderDetailsAttributes.push({
         product_id: parseInt(product.bqPlanID),
         line_id: parseInt(postData.line_id),
+        warehouse_id : 3,
       });
       simCount++;
       console.log("Added Device_Protection:", orderDetailsAttributes);
