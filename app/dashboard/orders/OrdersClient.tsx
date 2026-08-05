@@ -50,7 +50,7 @@ export default function OrdersPage() {
         const SUBSCRIBER_ID = subscriberResult.subscriber_id;
 
         const ord = await beQuick.getOrders(SUBSCRIBER_ID) as { orders?: Order[]; data?: Order[] };
-        setOrders(ord?.orders || ord?.data || []);
+        setOrders(ord?.orders?.reverse() || ord?.data || []);
       } catch (err) {
         console.error("Orders fetch error:", err);
         setError("Failed to load orders");
