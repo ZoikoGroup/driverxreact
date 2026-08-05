@@ -33,7 +33,7 @@ export default function OrdersPage() {
         setLoading(true);
 
         const userData = JSON.parse(localStorage.getItem("driverx_user") || "{}");
-        const userEmail: string = "info@golitemobile.com";
+        const userEmail: string = userData?.email || userData?.email || "";
 
         if (!userEmail) {
           setError("User not found");
