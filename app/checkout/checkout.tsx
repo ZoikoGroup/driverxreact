@@ -492,17 +492,23 @@ const [orderError, setOrderError] = useState("");
 
   // ── Cart mutations ────────────────────────────────────────────────────────
 
-  const handleQuantity = (index: number, delta: number) => {
+const handleQuantity = (index: number, delta: number) => {
+  const curQty = Number(cart[index].formData?.priceQty || 1);
+  const newQty = curQty + delta;
+
+  // pressing − at quantity 1 removes the item entirely
+  if (newQty < 1) {
+    handleRemove(index);
+    return;
+  }
+
   const newCart = [...cart];
-  const curQty = Number(newCart[index].formData?.priceQty || 1);
-  const newQty = Math.max(1, curQty + delta);
-  
   newCart[index] = {
     ...newCart[index],
     formData: { ...newCart[index].formData, priceQty: newQty },
-    _raw: { ...newCart[index]._raw, qty: newQty }, // ← ADD THIS
+    _raw: { ...newCart[index]._raw, qty: newQty },
   };
-  
+
   setCart(newCart);
   localStorage.setItem(
     "driverx_checkout",
@@ -766,8 +772,8 @@ const [orderError, setOrderError] = useState("");
           {[
             { href: "/prepaid-plans",  label: "Prepaid Plans" },
             { href: "/postpaid-plans", label: "Postpaid Plans" },
-            { href: "/business-deals", label: "Business Deals" },
-            { href: "/travel-plans",   label: "Travel Plans" },
+            { href: "/business-plans", label: "Business Deals" },
+            { href: "/top-up-plans",   label: "Top-up Plans" },
           ].map((link) => (
             <a
               key={link.href}

@@ -32,7 +32,7 @@ interface SubscriberInfo {
 }
 
 // ---------- Constants ----------
-const TOKEN = "09ff2d85-a451-47e6-86bc-aba98e1e4629";
+const TOKEN = "d678fcd9-2a4a-40c1-9849-523f36d5bdbf";
 
 // ---------- Component ----------
 export default function BillingPaymentPage() {
