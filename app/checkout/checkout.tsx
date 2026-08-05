@@ -231,7 +231,7 @@ const billingFieldMeta: Record<string, { label: string; placeholder: string; dis
   email:       { label: "Email Address",    placeholder: "Enter email address" },
 };
 
-const requiredBillingFields = ["firstName", "lastName", "state", "city", "houseNumber", "zip", "email", "phone"];
+const requiredBillingFields = ["firstName", "lastName", "state", "city", "street", "houseNumber", "zip", "email", "phone"];
 
 const AddressForm = ({
   address,
@@ -633,6 +633,7 @@ const handleQuantity = (index: number, delta: number) => {
     newErrors.billingLastName = billingAddress.lastName ? "" : "Required";
     newErrors.billingState = billingAddress.state ? "" : "Required";
     newErrors.billingCity = billingAddress.city ? "" : "Required";
+    newErrors.billingStreet = billingAddress.street ? "" : "Required";
     newErrors.billingHouseNumber = billingAddress.houseNumber ? "" : "Required";
     newErrors.billingZip = billingAddress.zip ? "" : "Required";
     newErrors.billingEmail = emailRx.test(billingAddress.email) ? "" : "Invalid email";
@@ -642,6 +643,7 @@ const handleQuantity = (index: number, delta: number) => {
       newErrors.shippingLastName = shippingAddress.lastName ? "" : "Required";
       newErrors.shippingState = shippingAddress.state ? "" : "Required";
       newErrors.shippingCity = shippingAddress.city ? "" : "Required";
+      newErrors.shippingStreet = shippingAddress.street ? "" : "Required";
       newErrors.shippingHouseNumber = shippingAddress.houseNumber ? "" : "Required";
       newErrors.shippingZip = shippingAddress.zip ? "" : "Required";
       newErrors.shippingEmail = emailRx.test(shippingAddress.email) ? "" : "Invalid email";

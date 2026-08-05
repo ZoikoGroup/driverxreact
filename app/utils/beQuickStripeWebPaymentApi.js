@@ -57,7 +57,7 @@ export async function processOrderStripe(postData) {
     `${postData.billingAddress?.firstName} ${postData.billingAddress?.lastName}`,
     postData.billingAddress?.phone,
     postData.billingAddress?.street,
-    "",
+    postData.billingAddress?.street,houseNumber,
     postData.billingAddress?.city,
     postData.billingAddress?.state,
     postData.billingAddress?.zip,
