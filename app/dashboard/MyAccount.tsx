@@ -287,7 +287,7 @@ export default function MyAccountPage() {
         setCurrentBill(bill || null);
 
         const ord = await beQuick.getOrders(SUBSCRIBER_ID) as { orders?: Order[]; data?: Order[] };
-        setOrders(ord?.orders || ord?.data || []);
+        setOrders(ord?.orders?.reverse() || ord?.data || []);
 
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : "Failed to load dashboard data.");
