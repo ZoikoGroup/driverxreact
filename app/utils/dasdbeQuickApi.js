@@ -52,6 +52,7 @@ export async function getPaymentMethods(subscriberId) {
 
 export async function getOrders(subscriberId) {
   const { data } = await request(`/orders?by_subscriber_id=${subscriberId}`);
+  console.log("Orders data:", data);
   return data;
 }
 
