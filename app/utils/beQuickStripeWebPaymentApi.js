@@ -1,5 +1,5 @@
 const API_BASE = "https://zoiko-atom-api.bequickapps.com";
-const BEQUICK_TOKEN = "09ff2d85-a451-47e6-86bc-aba98e1e4629";
+const BEQUICK_TOKEN = process.env.NEXT_PUBLIC_BEQUICK_TOKEN;
 
 /* -------------------- Core Request Wrapper -------------------- */
 async function beQuickRequest(url, method = "GET", data = {}, headers = {}, timeout = 30) {
@@ -50,7 +50,6 @@ export async function processOrderStripe(postData) {
     const customerResponse = await createSubscriberAndFetch(postData);
     if (!customerResponse.status) return customerResponse;
     postData.subscriber_id = customerResponse.subscriber_id;
-
 
     const addrResponse = await storeServiceAddress(
     postData.subscriber_id,
