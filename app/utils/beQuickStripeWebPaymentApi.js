@@ -145,7 +145,7 @@ export async function storeServiceAddress(
         ...validateResp,
       },
     };
-    console.log("Store Address validate Data skm:", data);
+    console.log("Store Address validate Data :", data);
     const response = await beQuickRequest("/addresses", "POST", data);
     if (response?.errors){
       return { status: false, message: "Failed to store address", error: response.errors };
@@ -284,25 +284,25 @@ console.log("Creating draft order with postData:", postData.cart);
       orderDetailsAttributes.push({
         product_id: ESIM_PRODUCT_ID,
         line_id: parseInt(postData.line_id),
-        warehouse_id : 2,
+        warehouse_id : 3,
       });
       simCount++;
       orderDetailsAttributes.push({
         product_id: parseInt(product.bqPlanID),
         line_id: parseInt(postData.line_id),
-        warehouse_id : 2,
+        warehouse_id : 3,
       });
       // console.log("Added eSIM:", orderDetailsAttributes);
     } else if (simType === "pSIM") {
         orderDetailsAttributes.push({
           product_id: parseInt(product.bqPlanID),
           line_id: parseInt(postData.line_id),
-          warehouse_id : 1,
+          warehouse_id : 3,
         });
         orderDetailsAttributes.push({
           product_id: PSIM_PRODUCT_ID,
           line_id: parseInt(postData.line_id),
-          warehouse_id : 1,
+          warehouse_id : 3,
         });
         simCount++;
         console.log("Added pSIM:", orderDetailsAttributes);
