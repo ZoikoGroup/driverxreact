@@ -56,7 +56,7 @@ export async function processOrderStripe(postData) {
     `${postData.billingAddress?.firstName} ${postData.billingAddress?.lastName}`,
     postData.billingAddress?.phone,
     postData.billingAddress?.street,
-    postData.billingAddress?.street,houseNumber,
+    postData.billingAddress?.houseNumber,
     postData.billingAddress?.city,
     postData.billingAddress?.state,
     postData.billingAddress?.zip,
@@ -97,10 +97,12 @@ if (!addrResponse.status) return addrResponse;
       orderresponse: submitResponse,
     };
   } catch (error) {
+    console.error("processOrderStripe fatal error:", error, error?.stack);
     return {
       status: false,
       message: "Unexpected error while processing order",
       error: error.message,
+      stack: error.stack, // remove once diagnosed — helps pinpoint the exact line/file
     };
   }
 }
@@ -121,6 +123,14 @@ export async function storeServiceAddress(
   try {
     const validateData = { address1, address2, city, state, zip };
     const validateResp = await beQuickRequest("/addresses/validate", "POST", validateData);
+
+    if (validateResp?.errors) {
+      return {
+        status: false,
+        message: "Address validation failed",
+        error: validateResp.errors,
+      };
+    }
 
     const data = {
       address: {
