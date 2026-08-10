@@ -167,8 +167,16 @@ export async function createSubscriberAndFetch(postData) {
     const email = postData.billingAddress?.email || postData.shippingAddress?.email;
     const firstName = postData.billingAddress?.firstName || "Unknown";
     const lastName = postData.billingAddress?.lastName || "Unknown";
-    const phone = postData.billingAddress?.phone || "9999999999";
-
+    const phone = postData.billingAddress?.phone || postData.shippingAddress?.phone || "0000000000";
+    const cartItem = postData.cart?.[0];
+    let companyId = 5; // Assuming a default company ID; adjust as necessary
+    if(cartItem && cartItem.planType === "prepaid-plans") {
+      companyId = 6; // Set company ID for prepaid plans
+    }else if(cartItem && cartItem.planType === "postpaid-plans") {
+      companyId = 5; // Set company ID for postpaid plans
+    }else{
+      companyId = 7; // Default to 7 if no specific plan type is found
+    }
     // Try fetch
     let found = await getSubscriberByEmail(email);
     if (found && found.subscriber_id) return { status: true, subscriber_id: found.subscriber_id };
@@ -180,7 +188,7 @@ export async function createSubscriberAndFetch(postData) {
         first_name: firstName,
         last_name: lastName,
         email,
-        company_id: 1,
+        company_id: companyId,
         phone,
         addresses_attributes:[
           {

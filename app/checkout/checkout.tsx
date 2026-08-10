@@ -182,6 +182,56 @@ function normalizeCartItem(raw: RawCartItem): CartItem {
   };
 }
 
+// ── Single-plan-type enforcement ──────────────────────────────────────────────
+// The cart may hold at most ONE plan family at a time. Prepaid / postpaid /
+// business plans are mutually exclusive — adding a plan of a different family
+// clears the previously-added plans. Devices are NOT plans, so they are left
+// untouched and can coexist with whichever plan family is active.
+
+export type PlanFamily = "prepaid" | "postpaid" | "business" | "other";
+
+/** Map a cart item to its plan family, using the category slug/name. */
+export function planTypeFamily(item: CartItem): PlanFamily {
+  const t = `${item.planType ?? ""} ${item.planCategory ?? ""}`.toLowerCase();
+  if (t.includes("prepaid")) return "prepaid";
+  if (t.includes("postpaid")) return "postpaid";
+  if (t.includes("business")) return "business";
+  return "other";
+}
+
+/** True for plan items (subject to the single-type rule); false for devices. */
+function isPlanItem(item: CartItem): boolean {
+  return item.type !== "device";
+}
+
+/**
+ * Enforce "one plan family per cart".
+ *
+ * The winning family is that of the most-recently-added plan (highest `_raw.timestamp`,
+ * ties broken by later position in the array). Every plan of a different family is
+ * dropped; device items are always preserved.
+ *
+ * Returns a NEW array — the input is not mutated.
+ */
+export function enforceSinglePlanType(items: CartItem[]): CartItem[] {
+  const plans = items.filter(isPlanItem);
+  if (plans.length === 0) return items;
+
+  // Newest plan wins.
+  let newest = plans[0];
+  let newestTs = Number(newest._raw.timestamp ?? 0);
+  for (const p of plans) {
+    const ts = Number(p._raw.timestamp ?? 0);
+    if (ts >= newestTs) {
+      newest = p;
+      newestTs = ts;
+    }
+  }
+
+  const keep = planTypeFamily(newest);
+  return items.filter((i) => !isPlanItem(i) || planTypeFamily(i) === keep);
+}
+
 // ── Small reusable components ─────────────────────────────────────────────────
 
 const InputField = ({
@@ -457,7 +507,22 @@ const [orderError, setOrderError] = useState("");
       const normalized: CartItem[] = (Array.isArray(storedCart) ? storedCart : []).map(
         normalizeCartItem
       );
-      setCart(normalized);
+
+      // Only ONE plan family is allowed per cart. If storage contains mixed
+      // plan types (e.g. a stale prepaid plan alongside a newly-added postpaid
+      // one), keep only the most-recently-added family and drop the rest.
+      const pruned = enforceSinglePlanType(normalized);
+      setCart(pruned);
+
+      // If we dropped mismatched plans, persist the cleaned cart back so the
+      // rest of the app (and a page refresh) stays consistent.
+      if (pruned.length !== normalized.length) {
+        localStorage.setItem(
+          "driverx_checkout",
+          JSON.stringify(pruned.map((i) => i._raw))
+        );
+      }
+
       if (typeof window !== "undefined" && localStorage.getItem("driverx_token")) {
         setIsLoggedIn(true);
       }
@@ -674,6 +739,7 @@ const handleQuantity = (index: number, delta: number) => {
         Number(item.formData?.priceQty ?? 1),
     }));
 
+    console.log("✅ buildProducts output:", buildProducts());  // ← ADD
   // ── Place Order – Stripe ──────────────────────────────────────────────────
 
   const handlePlaceOrderStripe = async () => {
