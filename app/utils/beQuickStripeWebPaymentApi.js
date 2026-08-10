@@ -169,7 +169,7 @@ export async function createSubscriberAndFetch(postData) {
     const lastName = postData.billingAddress?.lastName || "Unknown";
     const phone = postData.billingAddress?.phone || postData.shippingAddress?.phone || "0000000000";
     const cartItem = postData.cart?.[0];
-    let companyId = NULL; // Assuming a default company ID; adjust as necessary
+    let companyId = 5; // Assuming a default company ID; adjust as necessary
     if(cartItem && cartItem.planType === "prepaid-plans") {
       companyId = 6; // Set company ID for prepaid plans
     }else if(cartItem && cartItem.planType === "postpaid-plans") {
