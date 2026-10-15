@@ -1,4 +1,5 @@
-import Blog4 from "../blogs/Blog4";
+import Blog4 from "../Blog4";
+import Link from "next/link";
 
 export const metadata = {
   title: "Delivery Driver Mobile Service: Choose the Right Plan",
@@ -132,6 +133,19 @@ export default function ReliableDeliveryDriverMobileServicePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <div className="bg-[#0b544e] text-white py-2.5 px-4 sm:px-6 border-b border-teal-800/40">
+        <div className="max-w-4xl mx-auto flex items-center justify-between text-xs">
+          <Link
+            href="/blogs"
+            className="text-teal-200 hover:text-white font-semibold inline-flex items-center gap-1.5 transition"
+          >
+            <span>←</span> Back to All Guides
+          </Link>
+          <span className="text-teal-300/80 uppercase tracking-wider text-[11px] font-medium hidden sm:inline">
+            GIG DRIVER GUIDES
+          </span>
+        </div>
+      </div>
       <Blog4 />
     </>
   );
