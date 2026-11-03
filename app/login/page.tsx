@@ -1,17 +1,13 @@
 import { Metadata } from "next";
-import { Login } from "../components/auth";
-// import Login from "./Login";
+import Login from "./Login";
 
 export const metadata: Metadata = {
   title: "DriverX Mobile Login | Secure Driver Account Access",
   description:
-    "Log in to DriverX Mobile to securely access your driver account, manage trips, view updates, and use the driver dashboard and tools anytime.",
+    "Log in to DriverX Mobile to securely access your driver account, manage trips, view updates, and use the driver dashboard and tools anytime."
+
 };
 
 export default function Page() {
-  return (
-    <main>
-      <Login />
-    </main>
-  );
+  return <Login />;
 }
