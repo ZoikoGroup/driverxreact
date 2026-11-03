@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Plus, Minus, ArrowUpRight } from "lucide-react";
 
 export default function FAQSection() {
@@ -90,7 +91,7 @@ export default function FAQSection() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 sm:px-6 pb-6 pt-0 text-xs sm:text-sm text-gray-300 leading-relaxed font-normal border-t border-white/5 mt-1 pt-4">
+                    <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-gray-300 leading-relaxed font-normal border-t border-white/5 mt-1 pt-4">
                       {faq.answer}
                     </div>
                   )}
@@ -124,15 +125,15 @@ export default function FAQSection() {
                 Help Center.
               </p>
 
-              <a
-                href="#"
+              <Link
+                href="/faqs-self-service"
                 className="inline-flex items-center justify-between gap-3 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-xl w-full sm:w-auto"
               >
                 <span>Visit Help Center</span>
                 <div className="w-6 h-6 rounded-full bg-[#0E2131] text-white flex items-center justify-center">
                   <ArrowUpRight className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ export default function Navbar() {
           <Link href="/" aria-label="DriverX Mobile home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/logo.svg.png"
+              src="/logo.png"
               alt="DriverX Mobile"
               className="h-10 w-auto"
             />

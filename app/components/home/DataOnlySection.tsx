@@ -111,7 +111,7 @@ export default function DataOnlySection() {
             {/* CTA Button */}
             <div>
               <a
-                href="#"
+                href="/data-only-plans"
                 className="inline-flex items-center justify-center gap-3 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-lg"
               >
                 <span>See data-only plans</span>

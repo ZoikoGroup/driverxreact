@@ -1,9 +1,22 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
 export default function GetConnectedSection() {
   const [simType, setSimType] = useState<"esim" | "physical">("esim");
+
+  const esimRequirements = [
+    "A phone that supports eSIM and is unlocked",
+    "A Wi-Fi or data connection to install the eSIM",
+    "Your current account number and transfer PIN, if you're keeping your number",
+  ];
+
+  const physicalSimRequirements = [
+    "An unlocked phone with a physical SIM tray",
+    "Your DriverX physical SIM card package",
+    "Your current account details if transferring an existing line",
+  ];
 
   return (
     <section className="relative w-full bg-[#132B40] py-16 sm:py-20 lg:py-24 text-white overflow-hidden">
@@ -58,13 +71,13 @@ export default function GetConnectedSection() {
               </p>
             </div>
 
-            <a
-              href="#"
+            <Link
+              href="/plans"
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#FACC15] hover:underline mt-6"
             >
               <span>Compare plans</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
 
           {/* Step 2 Card (Highlighted White Card with Chamfered Bottom-Right Corner) */}
@@ -93,13 +106,13 @@ export default function GetConnectedSection() {
               </p>
             </div>
 
-            <a
-              href="#"
+            <Link
+              href="/product/shop"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0E2131] hover:underline mt-6"
             >
               <span>Shop phones</span>
               <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-            </a>
+            </Link>
           </div>
 
           {/* Step 3 Card (Dark Navy) */}
@@ -122,13 +135,13 @@ export default function GetConnectedSection() {
               </p>
             </div>
 
-            <a
-              href="#"
+            <Link
+              href="/register"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#FACC15] hover:underline mt-6"
             >
               <span>Start activation</span>
               <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -145,7 +158,7 @@ export default function GetConnectedSection() {
                 <button
                   type="button"
                   onClick={() => setSimType("esim")}
-                  className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 ${
+                  className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
                     simType === "esim"
                       ? "bg-[#FACC15] text-[#0E2131] shadow-sm"
                       : "text-gray-300 hover:text-white"
@@ -156,7 +169,7 @@ export default function GetConnectedSection() {
                 <button
                   type="button"
                   onClick={() => setSimType("physical")}
-                  className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 ${
+                  className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
                     simType === "physical"
                       ? "bg-[#FACC15] text-[#0E2131] shadow-sm"
                       : "text-gray-300 hover:text-white"
@@ -174,29 +187,34 @@ export default function GetConnectedSection() {
               </h4>
 
               <ul className="space-y-2.5">
-                <li className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-200">
-                  <Check className="w-4 h-4 text-[#FACC15] shrink-0" />
-                  <span>A phone that supports eSIM and is unlocked</span>
-                </li>
-                <li className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-200">
-                  <Check className="w-4 h-4 text-[#FACC15] shrink-0" />
-                  <span>A Wi-Fi or data connection to install the eSIM</span>
-                </li>
-                <li className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-200">
-                  <Check className="w-4 h-4 text-[#FACC15] shrink-0" />
-                  <span>
-                    Your current account number and transfer PIN, if you&apos;re
-                    keeping your number
-                  </span>
-                </li>
+                {(simType === "esim"
+                  ? esimRequirements
+                  : physicalSimRequirements
+                ).map((req, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-200"
+                  >
+                    <Check className="w-4 h-4 text-[#FACC15] shrink-0" />
+                    <span>{req}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
 
           {/* Footnote text inside box */}
-          <div className="pt-6 mt-6 border-t border-white/10 text-[11px] text-gray-400 font-medium">
-            Keep your current service active until your number transfer is
-            complete. Transfer timing depends on your previous carrier.
+          <div className="pt-6 mt-6 border-t border-white/10 text-[11px] text-gray-400 font-medium flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span>
+              Keep your current service active until your number transfer is
+              complete. Transfer timing depends on your previous carrier.
+            </span>
+            <Link
+              href="/faqs-self-service"
+              className="text-[#FACC15] hover:underline font-bold whitespace-nowrap"
+            >
+              Learn about porting
+            </Link>
           </div>
         </div>
       </div>

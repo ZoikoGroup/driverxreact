@@ -31,7 +31,7 @@ export default function NextSection() {
 
             <div>
               <a
-                href="#"
+                href="/plans"
                 className="inline-flex items-center justify-between gap-3 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-lg"
               >
                 <span>Explore Plans</span>
@@ -66,7 +66,7 @@ export default function NextSection() {
 
             <div className="pl-4 sm:pl-8">
               <a
-                href="#"
+                href="/contact-enterprise-sales"
                 className="inline-flex items-center justify-between gap-3 bg-[#0E2131] hover:bg-[#07131D] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-xl"
               >
                 <span>Talk to Sales</span>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   Gift,
   RotateCw,
@@ -16,6 +17,7 @@ export default function DriverBenefitsSection() {
         "Offers from approved partners, each shown with eligibility, region and expiry.",
       ctaText: "View partner offers",
       ctaType: "external",
+      href: "/partner-offer-program",
       icon: Gift,
       isHighlighted: false,
     },
@@ -25,6 +27,7 @@ export default function DriverBenefitsSection() {
         "Top up, change or compare plans as your workload changes, under your plan's terms.",
       ctaText: "See Top-Up plans",
       ctaType: "external",
+      href: "/top-up-plans",
       icon: RotateCw,
       isHighlighted: true,
     },
@@ -34,6 +37,7 @@ export default function DriverBenefitsSection() {
         "Check usage, manage your plan and handle billing in My DriverX.",
       ctaText: "About My DriverX",
       ctaType: "internal",
+      href: "/dashboard",
       icon: Sliders,
       isHighlighted: false,
     },
@@ -43,6 +47,7 @@ export default function DriverBenefitsSection() {
         "Guides for switching, activation, coverage and fleet operations.",
       ctaText: "Read the guides",
       ctaType: "internal",
+      href: "/faqs-self-service",
       icon: BookOpen,
       isHighlighted: false,
     },
@@ -128,8 +133,8 @@ export default function DriverBenefitsSection() {
                   </div>
 
                   {/* Bottom CTA Link */}
-                  <a
-                    href="#"
+                  <Link
+                    href={card.href}
                     className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all duration-200 mt-6 ${
                       card.isHighlighted
                         ? "text-[#0E2131] hover:underline"
@@ -142,7 +147,7 @@ export default function DriverBenefitsSection() {
                     ) : (
                       <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                     )}
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

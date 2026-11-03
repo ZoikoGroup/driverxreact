@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Check, ArrowRight, MapPin, Phone } from "lucide-react";
 
 export default function WhyDriverXSection() {
@@ -9,11 +10,58 @@ export default function WhyDriverXSection() {
   >("driver-first");
 
   const tabs = [
-    { id: "driver-first", label: "Driver-first plans" },
-    { id: "coverage", label: "Coverage checks" },
-    { id: "sim", label: "SIM & eSIM" },
-    { id: "fleet", label: "Fleet connectivity" },
+    {
+      id: "driver-first",
+      label: "Driver-first plans",
+      href: "/gig-delivery-driver-plans",
+    },
+    {
+      id: "coverage",
+      label: "Coverage checks",
+      href: "https://mvnoc.ai/coverage-map",
+    },
+    { id: "sim", label: "SIM & eSIM", href: "/product/shop" },
+    {
+      id: "fleet",
+      label: "Fleet connectivity",
+      href: "/fleet-logistics-connectivity",
+    },
   ] as const;
+
+  const tabContent = {
+    "driver-first": {
+      description:
+        "Plan journeys start with the work you do, so you compare options that make sense for driving, not a generic phone catalog.",
+      bullets: [
+        "Rideshare, delivery and logistics paths",
+        "Terms and labels shown up front",
+      ],
+      ctaHref: "/prepaid-plans",
+    },
+    coverage: {
+      description:
+        "Verify 5G and 4G LTE signal maps across your primary driving corridors before committing to service.",
+      bullets: ["ZIP code coverage lookups", "Honest predicted signal models"],
+      ctaHref: "https://mvnoc.ai/coverage-map",
+    },
+    sim: {
+      description:
+        "Instant activation via digital eSIM or standard physical SIM delivery—keep your current phone and phone number.",
+      bullets: ["Zero-downtime number porting", "Instant digital eSIM setup"],
+      ctaHref: "/product/shop",
+    },
+    fleet: {
+      description:
+        "Multi-line plans, telematics integration, and centralized management for commercial vehicles and delivery fleets.",
+      bullets: [
+        "Dedicated fleet management dashboard",
+        "IoT and telematics line support",
+      ],
+      ctaHref: "/fleet-logistics-connectivity",
+    },
+  };
+
+  const currentContent = tabContent[activeTab];
 
   return (
     <section className="relative w-full bg-[#0E2131] py-16 sm:py-20 lg:py-24 text-white overflow-hidden">
@@ -92,7 +140,7 @@ export default function WhyDriverXSection() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as any)}
-                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                       isActive
                         ? "bg-[#FACC15] text-[#0E2131] shadow-md"
                         : "text-gray-300 hover:text-white hover:bg-white/5"
@@ -107,26 +155,29 @@ export default function WhyDriverXSection() {
             {/* Content & Floating Phone/Callout Box */}
             <div className="space-y-6 mb-8">
               <p className="text-gray-200 text-xs sm:text-sm leading-relaxed font-medium">
-                Plan journeys start with the work you do, so you compare options
-                that make sense for driving, not a generic phone catalog.
+                {currentContent.description}
               </p>
 
               {/* Bullet Points & Support Card Row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
                 {/* Bullet Points */}
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-200">
-                    <Check className="w-4 h-4 text-[#FACC15] shrink-0 mt-0.5" />
-                    <span>Rideshare, delivery and logistics paths</span>
-                  </li>
-                  <li className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-200">
-                    <Check className="w-4 h-4 text-[#FACC15] shrink-0 mt-0.5" />
-                    <span>Terms and labels shown up front</span>
-                  </li>
+                  {currentContent.bullets.map((bullet, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-200"
+                    >
+                      <Check className="w-4 h-4 text-[#FACC15] shrink-0 mt-0.5" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
                 </ul>
 
                 {/* Floating Support Callout Box */}
-                <div className="bg-white text-gray-900 rounded-2xl p-4 shadow-xl border-2 border-[#FACC15] flex items-center gap-3">
+                <a
+                  href="tel:+18003990087"
+                  className="bg-white text-gray-900 rounded-2xl p-4 shadow-xl border-2 border-[#FACC15] flex items-center gap-3 hover:bg-gray-50 transition-colors"
+                >
                   <div className="p-2.5 rounded-xl bg-[#E6F4EA] text-[#137333] shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
@@ -138,7 +189,7 @@ export default function WhyDriverXSection() {
                       +1 (800) 399-0087
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -152,23 +203,23 @@ export default function WhyDriverXSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#"
+              <Link
+                href="/plans"
                 className="inline-flex items-center justify-center gap-2 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-xl"
               >
                 <span>Explore Plans</span>
                 <div className="w-6 h-6 rounded-full bg-[#0E2131] text-white flex items-center justify-center">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
-              </a>
+              </Link>
 
-              <a
-                href="#"
+              <Link
+                href="https://mvnoc.ai/coverage-map"
                 className="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-white/40 transition-all duration-200"
               >
                 <MapPin className="w-4 h-4 text-white" />
                 <span>Check Coverage</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   Search,
   Phone,
@@ -15,6 +16,7 @@ export default function SupportSection() {
       title: "Help Center",
       description: "Answers on plans, billing, coverage and setup.",
       icon: LifeBuoy,
+      href: "/faqs-self-service",
       cardBg: "bg-white text-gray-900",
       iconBg: "bg-[#FACC15] text-[#0E2131]",
       arrowBg: "bg-[#E6F4EA] text-[#137333]",
@@ -25,6 +27,7 @@ export default function SupportSection() {
       title: "Activate SIM / eSIM",
       description: "Step-by-step activation for new service.",
       icon: Smartphone,
+      href: "/product/shop",
       cardBg: "bg-white text-gray-900",
       iconBg: "bg-[#FACC15] text-[#0E2131]",
       arrowBg: "bg-[#E6F4EA] text-[#137333]",
@@ -35,6 +38,7 @@ export default function SupportSection() {
       title: "Billing & account",
       description: "Sign in to view bills, payments and plan details.",
       icon: CreditCard,
+      href: "/dashboard",
       cardBg: "bg-white text-gray-900",
       iconBg: "bg-[#FACC15] text-[#0E2131]",
       arrowBg: "bg-[#E6F4EA] text-[#137333]",
@@ -45,6 +49,7 @@ export default function SupportSection() {
       title: "Contact Support",
       description: "Email our team and we'll help you get back on the road.",
       icon: Mail,
+      href: "/24-7-driver-support",
       cardBg: "bg-[#0A4138] text-white",
       iconBg: "bg-[#FACC15] text-[#0E2131]",
       arrowBg: "bg-white/10 text-white",
@@ -87,15 +92,15 @@ export default function SupportSection() {
                   placeholder='Search questions, like "eSIM"'
                   className="w-full bg-transparent border-0 px-3 py-2 text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none"
                 />
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all duration-200 shadow-sm cursor-pointer shrink-0"
+                <Link
+                  href="/faqs-self-service"
+                  className="inline-flex items-center gap-2 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all duration-200 shadow-sm shrink-0"
                 >
                   <span>Search</span>
                   <div className="w-5 h-5 rounded-full bg-white text-[#0E2131] flex items-center justify-center">
                     <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
                   </div>
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -106,7 +111,7 @@ export default function SupportSection() {
             {/* Contact Details */}
             <div className="space-y-3.5 pt-2">
               <a
-                href="#"
+                href="tel:+18003990087"
                 className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white hover:text-[#FACC15] transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#FACC15] shrink-0" />
@@ -114,7 +119,7 @@ export default function SupportSection() {
               </a>
 
               <a
-                href="#"
+                href="mailto:info@driverxmobile.com"
                 className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white hover:text-[#FACC15] transition-colors"
               >
                 <Mail className="w-4 h-4 text-[#FACC15] shrink-0" />
@@ -128,9 +133,9 @@ export default function SupportSection() {
             {supportCards.map((card, idx) => {
               const IconComponent = card.icon;
               return (
-                <a
+                <Link
                   key={idx}
-                  href="#"
+                  href={card.href}
                   className={`group relative rounded-2xl p-6 sm:p-7 shadow-xl flex flex-col justify-between min-h-[190px] transition-all duration-300 hover:-translate-y-1 block ${card.cardBg}`}
                 >
                   {/* Top Bar with Icon and Arrow Button */}
@@ -161,7 +166,7 @@ export default function SupportSection() {
                       {card.description}
                     </p>
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Car, Package, Truck, Users, ChevronRight } from "lucide-react";
 
 export default function BuiltForSection() {
@@ -8,21 +9,25 @@ export default function BuiltForSection() {
       title: "Rideshare Drivers",
       image: "/images/home/1.png",
       icon: Car,
+      href: "/gig-delivery-driver-plans",
     },
     {
       title: "Delivery Pros",
       image: "/images/home/2.png",
       icon: Package,
+      href: "/gig-delivery-driver-plans",
     },
     {
       title: "Trucking & Logistics",
       image: "/images/home/3.png",
       icon: Truck,
+      href: "/fleet-logistics-connectivity",
     },
     {
       title: "Fleets & Businesses",
       image: "/images/home/4.png",
       icon: Users,
+      href: "/business-plans",
     },
   ] as const;
 
@@ -63,9 +68,9 @@ export default function BuiltForSection() {
             {cards.map((card, idx) => {
               const IconComponent = card.icon;
               return (
-                <a
+                <Link
                   key={idx}
-                  href="#"
+                  href={card.href}
                   className="group relative h-36 rounded-2xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 block"
                 >
                   {/* Card Background Image */}
@@ -89,7 +94,7 @@ export default function BuiltForSection() {
                     </div>
                     <ChevronRight className="w-4 h-4 text-white/80 transition-transform duration-200 group-hover:translate-x-1" />
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>

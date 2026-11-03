@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function BusinessFleetSection() {
@@ -56,9 +57,9 @@ export default function BusinessFleetSection() {
 
         {/* Main Grid: Left Images Collage vs Right Callback Form Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Image Collage (Mirrored first image as requested) */}
+          {/* Left Column: Image Collage */}
           <div className="lg:col-span-7 flex flex-col gap-4">
-            {/* Top Large Image (Mirrored horizontally using scale-x-[-1]) */}
+            {/* Top Large Image */}
             <div className="relative w-full h-[280px] sm:h-[340px] rounded-2xl overflow-hidden shadow-xl border border-white/10">
               <Image
                 src="/images/home/8.png"
@@ -191,9 +192,12 @@ export default function BusinessFleetSection() {
                 >
                   I agree that DriverX Mobile may contact me about business
                   wireless service. See our{" "}
-                  <a href="#" className="text-[#0E2131] font-bold underline">
+                  <Link
+                    href="/privacy-policy"
+                    className="text-[#0E2131] font-bold underline"
+                  >
                     Privacy Policy
-                  </a>
+                  </Link>
                   .
                 </label>
               </div>

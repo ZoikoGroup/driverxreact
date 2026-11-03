@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Car, Package, Truck, Users, Check, ArrowUpRight } from "lucide-react";
 
 export default function DriveTypeSection() {
@@ -17,6 +18,7 @@ export default function DriveTypeSection() {
       headingColor: "text-gray-900",
       ctaText: "Explore driver plans",
       ctaColor: "text-[#0E2131] hover:underline",
+      href: "/gig-delivery-driver-plans",
       bullets: [
         "Plans for full-time and part-time driving",
         "Check coverage on your usual routes",
@@ -36,6 +38,7 @@ export default function DriveTypeSection() {
       headingColor: "text-white bg-[#0E2131]",
       ctaText: "Explore delivery plans",
       ctaColor: "text-[#0E2131] font-bold hover:underline",
+      href: "/gig-delivery-driver-plans",
       bullets: [
         "Prepaid and postpaid options",
         "Top up when a busy week needs more",
@@ -55,6 +58,7 @@ export default function DriveTypeSection() {
       headingColor: "text-gray-900",
       ctaText: "Explore logistics",
       ctaColor: "text-[#0E2131] hover:underline",
+      href: "/fleet-logistics-connectivity",
       bullets: [
         "Voice and data-only lines",
         "Options for tablets and hotspots",
@@ -74,6 +78,7 @@ export default function DriveTypeSection() {
       headingColor: "text-gray-900",
       ctaText: "Explore business plans",
       ctaColor: "text-[#0E2131] hover:underline",
+      href: "/business-plans",
       bullets: [
         "Business plans for your team",
         "Help planning deployments",
@@ -172,13 +177,13 @@ export default function DriveTypeSection() {
 
                 {/* Footer CTA Link */}
                 <div className="p-5 pt-0">
-                  <a
-                    href="#"
+                  <Link
+                    href={card.href}
                     className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold transition-colors ${card.ctaColor}`}
                   >
                     <span>{card.ctaText}</span>
                     <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

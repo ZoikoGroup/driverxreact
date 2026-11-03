@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export default function ResourcesSection() {
@@ -11,8 +12,9 @@ export default function ResourcesSection() {
       title: "eSIM setup guide",
       description:
         "Check eSIM support on your phone, install your eSIM and confirm service before your next shift.",
-      image: "/images/home/6.png", // or /images/home/10.png
+      image: "/images/home/6.png",
       imagePosition: "left",
+      href: "/product/shop",
     },
     {
       badge: "Devices",
@@ -21,8 +23,9 @@ export default function ResourcesSection() {
       title: "Bring-your-own-phone checklist",
       description:
         "Unlock status, compatibility and what to have ready before you switch.",
-      image: "/images/home/1.png", // or /images/home/11.png
+      image: "/images/home/1.png",
       imagePosition: "right",
+      href: "/faqs-self-service",
     },
     {
       badge: "Coverage",
@@ -31,8 +34,9 @@ export default function ResourcesSection() {
       title: "Coverage basics for drivers",
       description:
         "What coverage maps predict, why indoor service differs, and how to check the routes you drive.",
-      image: "/images/home/bg.png", // or /images/home/12.png
+      image: "/images/home/bg.png",
       imagePosition: "right",
+      href: "https://mvnoc.ai/coverage-map",
     },
     {
       badge: "Fleets",
@@ -41,8 +45,9 @@ export default function ResourcesSection() {
       title: "Fleet connectivity guide",
       description:
         "Plan lines, devices and data for delivery teams, field crews and logistics operations.",
-      image: "/images/home/4.png", // or /images/home/13.png
+      image: "/images/home/4.png",
       imagePosition: "left",
+      href: "/fleet-logistics-connectivity",
     },
   ] as const;
 
@@ -77,10 +82,10 @@ export default function ResourcesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {articles.map((item, idx) => {
             return (
-              <a
+              <Link
                 key={idx}
-                href="#"
-                className="group  border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col sm:flex-row hover:border-white/20 transition-all duration-300 hover:-translate-y-1 block"
+                href={item.href}
+                className="group border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col sm:flex-row hover:border-white/20 transition-all duration-300 hover:-translate-y-1 block"
               >
                 {/* Conditional Image Order based on imagePosition */}
                 {item.imagePosition === "left" ? (
@@ -164,7 +169,7 @@ export default function ResourcesSection() {
                     </div>
                   </>
                 )}
-              </a>
+              </Link>
             );
           })}
         </div>

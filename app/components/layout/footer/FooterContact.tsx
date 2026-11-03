@@ -9,9 +9,9 @@ const ICON_BOX =
 export default function FooterContact() {
   return (
     <div className="grid grid-cols-1 items-center gap-6 border-b border-white/10 py-6 md:grid-cols-[auto_1fr_1fr_1fr] md:gap-0">
-      <Link href="#" aria-label="DriverX Mobile home" className="md:pr-8">
+      <Link href="/" aria-label="DriverX Mobile home" className="md:pr-8">
         <Image
-          src="/images/logo.svg.png"
+          src="/logo.png"
           alt="DriverX Mobile"
           width={140}
           height={48}

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ChevronRight,
   MapPin,
@@ -10,21 +11,29 @@ import {
   BarChart3,
   Layers,
   CreditCard,
-  CardSim,
+  CreditCard as CardSim, // Keeping import safe for your icon alias
 } from "lucide-react";
 
 const features = [
-  { Icon: Radio, label: ["Coverage checks", "by ZIP code"] },
-  { Icon: Zap, label: ["Flexible", "plan options"] },
-  { Icon: CardSim, label: ["SIM & eSIM", "activation"] },
-  { Icon: Headphones, label: ["Driver-focused", "support"] },
+  {
+    Icon: Radio,
+    label: ["Coverage checks", "by ZIP code"],
+    href: "https://mvnoc.ai/coverage-map",
+  },
+  { Icon: Zap, label: ["Flexible", "plan options"], href: "/prepaid-plans" },
+  { Icon: CardSim, label: ["SIM & eSIM", "activation"], href: "/product/shop" },
+  {
+    Icon: Headphones,
+    label: ["Driver-focused", "support"],
+    href: "/24-7-driver-support",
+  },
 ];
 
 const menuItems = [
-  { Icon: BarChart3, label: "Usage & Data" },
-  { Icon: Layers, label: "Manage Plan" },
-  { Icon: Smartphone, label: "SIM / eSIM" },
-  { Icon: CreditCard, label: "Billing & Payments" },
+  { Icon: BarChart3, label: "Usage & Data", href: "/dashboard" },
+  { Icon: Layers, label: "Manage Plan", href: "/dashboard" },
+  { Icon: Smartphone, label: "SIM / eSIM", href: "/product/shop" },
+  { Icon: CreditCard, label: "Billing & Payments", href: "/dashboard" },
 ];
 
 export default function HeroSection() {
@@ -133,29 +142,30 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 mb-10">
-              <a
-                href="#"
+              <Link
+                href="/prepaid-plans"
                 className="inline-flex items-center justify-center gap-2 bg-[#FACC15] hover:bg-[#e3b810] text-[#0A2E28] font-bold text-sm px-7 py-3.5 rounded-full transition-all duration-200 shadow-lg"
               >
                 <span>Explore Plans</span>
                 <ChevronRight className="w-4 h-4 stroke-[3]" />
-              </a>
+              </Link>
 
-              <a
-                href="#"
+              <Link
+                href="https://mvnoc.ai/coverage-map"
                 className="inline-flex items-center justify-center gap-2 bg-[#0A2E28]/40 hover:bg-white/10 text-white font-semibold text-sm px-7 py-3.5 rounded-full border border-white/70 transition-all duration-200 backdrop-blur-sm"
               >
                 <MapPin className="w-4 h-4 text-white" />
                 <span>Check Coverage</span>
-              </a>
+              </Link>
             </div>
 
             {/* Feature row */}
             <div className="flex flex-wrap sm:flex-nowrap items-center gap-y-4 max-w-[560px]">
-              {features.map(({ Icon, label }, i) => (
-                <div
+              {features.map(({ Icon, label, href }, i) => (
+                <Link
                   key={i}
-                  className={`flex items-center gap-2.5 pr-4 ${
+                  href={href}
+                  className={`flex items-center gap-2.5 pr-4 hover:opacity-80 transition-opacity ${
                     i !== 0 ? "pl-4" : ""
                   } ${
                     i !== features.length - 1
@@ -172,7 +182,7 @@ export default function HeroSection() {
                     <br />
                     {label[1]}
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -194,7 +204,7 @@ export default function HeroSection() {
                 {/* Logo */}
                 <div className="relative h-7 w-32 mb-2">
                   <Image
-                    src="/images/logo.svg.png"
+                    src="/images/Logo.svg.png"
                     alt="DriverX Mobile"
                     fill
                     className="object-contain object-left"
@@ -206,7 +216,10 @@ export default function HeroSection() {
                 </div>
 
                 {/* Plan card */}
-                <div className="bg-gradient-to-br from-[#1B6B5A] to-[#0D4D41] text-white p-3.5 rounded-2xl mb-3 relative overflow-hidden shadow-md">
+                <Link
+                  href="/dashboard"
+                  className="block bg-gradient-to-br from-[#1B6B5A] to-[#0D4D41] text-white p-3.5 rounded-2xl mb-3 relative overflow-hidden shadow-md hover:opacity-95 transition-opacity"
+                >
                   <div className="text-[9px] text-gray-200 font-medium">
                     My Plan
                   </div>
@@ -222,14 +235,14 @@ export default function HeroSection() {
                     <span className="w-[4px] h-5 bg-[#FACC15] rounded-[2px]" />
                     <span className="w-[4px] h-6 bg-[#FACC15] rounded-[2px]" />
                   </div>
-                </div>
+                </Link>
 
                 {/* Menu */}
                 <div className="space-y-2">
-                  {menuItems.map(({ Icon, label }) => (
-                    <a
+                  {menuItems.map(({ Icon, label, href }) => (
+                    <Link
                       key={label}
-                      href="#"
+                      href={href}
                       className="flex items-center justify-between px-3 py-2.5 rounded-xl border border-gray-100 bg-white shadow-sm hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex items-center gap-2.5">
@@ -239,7 +252,7 @@ export default function HeroSection() {
                         </span>
                       </div>
                       <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-                    </a>
+                    </Link>
                   ))}
                 </div>
 

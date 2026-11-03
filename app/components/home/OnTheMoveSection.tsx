@@ -104,7 +104,7 @@ export default function OnTheMoveSection() {
 
               {/* CTA Button */}
               <a
-                href="#"
+                href="/gig-delivery-driver-plans"
                 className="inline-flex items-center justify-center gap-3 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-xl"
               >
                 <span>Compare driver plans</span>

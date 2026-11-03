@@ -1,8 +1,28 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Map, FileText, Smartphone, LifeBuoy, Search } from "lucide-react";
 
 export default function CoverageSection() {
+  const [zipCode, setZipCode] = useState("");
+  const router = useRouter();
+
+  const handleCoverageSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (zipCode.trim()) {
+      // Directs to the external coverage map tool passing the zip code query if needed
+      window.open(
+        `https://mvnoc.ai/coverage-map?zip=${encodeURIComponent(zipCode.trim())}`,
+        "_blank",
+      );
+    } else {
+      window.open("https://mvnoc.ai/coverage-map", "_blank");
+    }
+  };
+
   return (
     <section className="relative w-full bg-[#0E2131] py-16 sm:py-20 lg:py-24 text-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
@@ -30,7 +50,10 @@ export default function CoverageSection() {
             </p>
 
             {/* ZIP Code Input Box */}
-            <div className="bg-[#142A3E] border border-white/10 rounded-2xl p-5 sm:p-6 shadow-xl mb-8">
+            <form
+              onSubmit={handleCoverageSearch}
+              className="bg-[#142A3E] border border-white/10 rounded-2xl p-5 sm:p-6 shadow-xl mb-8"
+            >
               <label className="block text-xs font-bold text-gray-200 mb-2.5">
                 Your ZIP code
               </label>
@@ -39,13 +62,16 @@ export default function CoverageSection() {
                 <div className="relative flex-1">
                   <input
                     type="text"
+                    value={zipCode}
+                    onChange={(e) => setZipCode(e.target.value)}
                     placeholder="e.g. 10001"
+                    maxLength={5}
                     className="w-full bg-[#0A1A26] border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#FACC15] transition-colors"
                   />
                 </div>
 
                 <button
-                  type="button"
+                  type="submit"
                   className="inline-flex items-center justify-center gap-2 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-6 py-3 rounded-xl transition-all duration-200 shadow-md cursor-pointer shrink-0"
                 >
                   <span>Check Coverage</span>
@@ -56,7 +82,7 @@ export default function CoverageSection() {
               <p className="text-[11px] text-gray-400 mt-2.5 font-medium">
                 5-digit U.S. ZIP code. We don&apos;t ask for your location.
               </p>
-            </div>
+            </form>
 
             {/* 2x2 Grid of Info Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -125,12 +151,12 @@ export default function CoverageSection() {
                   </div>
                   <p className="text-xs text-gray-300 leading-relaxed font-normal">
                     Our support team can talk through the routes you drive.{" "}
-                    <a
-                      href="#"
+                    <Link
+                      href="/24-7-driver-support"
                       className="text-[#FACC15] font-bold hover:underline"
                     >
                       Contact support
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </div>

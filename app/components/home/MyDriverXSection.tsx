@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   TrendingUp,
   Layers,
@@ -86,23 +87,23 @@ export default function MyDriverXSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#"
+              <Link
+                href="/login"
                 className="inline-flex items-center justify-center gap-2 bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-xl"
               >
                 <span>Log in to My DriverX</span>
                 <div className="w-6 h-6 rounded-full bg-[#0E2131] text-white flex items-center justify-center">
                   <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
-              </a>
+              </Link>
 
-              <a
-                href="#"
+              <Link
+                href="/register"
                 className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#FACC15] hover:underline"
               >
                 <span>Activate SIM / eSIM</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -159,18 +160,18 @@ export default function MyDriverXSection() {
                   </div>
 
                   {/* Yellow Log In Button */}
-                  <a
-                    href="#"
-                    className="block w-full bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs py-2.5 rounded-full transition-colors shadow-sm"
+                  <Link
+                    href="/login"
+                    className="block w-full bg-[#FACC15] hover:bg-[#e3b810] text-[#0E2131] font-bold text-xs py-2.5 rounded-full transition-colors shadow-sm text-center"
                   >
                     Log In
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Account Links */}
                 <div className="space-y-2">
-                  <a
-                    href="#"
+                  <Link
+                    href="/dashboard"
                     className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-100 shadow-2xs hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
@@ -180,10 +181,10 @@ export default function MyDriverXSection() {
                       </span>
                     </div>
                     <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    href="/dashboard"
                     className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-100 shadow-2xs hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
@@ -193,10 +194,10 @@ export default function MyDriverXSection() {
                       </span>
                     </div>
                     <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    href="/dashboard"
                     className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-100 shadow-2xs hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
@@ -206,10 +207,10 @@ export default function MyDriverXSection() {
                       </span>
                     </div>
                     <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    href="/product/shop"
                     className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-100 shadow-2xs hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
@@ -219,7 +220,7 @@ export default function MyDriverXSection() {
                       </span>
                     </div>
                     <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Subtitle Label */}

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Truck, Users, Cpu, Gift, Handshake, ArrowUpRight } from "lucide-react";
 
 export default function PartnerBannerSection() {
@@ -73,24 +74,24 @@ export default function PartnerBannerSection() {
 
           <div className="flex flex-col gap-3 w-full pl-4 lg:pl-6">
             {/* Primary CTA Button */}
-            <a
-              href="#"
+            <Link
+              href="/become-a-driverx-partner"
               className="inline-flex items-center justify-between gap-3 bg-[#0E2131] hover:bg-[#07131D] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-200 shadow-xl w-fit"
             >
               <span>Become a Partner</span>
               <div className="w-6 h-6 rounded-full bg-[#FACC15] text-[#0E2131] flex items-center justify-center">
                 <ArrowUpRight className="w-3.5 h-3.5 stroke-[3]" />
               </div>
-            </a>
+            </Link>
 
             {/* Secondary Link */}
-            <a
-              href="#"
+            <Link
+              href="/contact-enterprise-sales"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#0E2131] hover:underline pt-1"
             >
               <span>Contact enterprise sales</span>
               <ArrowUpRight className="w-4 h-4 stroke-[3]" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
