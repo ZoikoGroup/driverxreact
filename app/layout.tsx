@@ -1,13 +1,14 @@
 import Bottom from "./components/layout/Footer";
-import Navbar from "./components/layout/Header";
 import "./globals.css";
 import AuthProvider from "./components/AuthProvider";
 import Script from "next/script";
+import Navbar from "./components/layout/navbar/Navbar";
+import Footer from "./components/layout/footer/Footer";
 export const metadata = {
   title: "DriverX",
   description: "DriverX Mobile - Your Ultimate Driving Companion",
   icons: {
-    icon: "/favicon.ico",        // standard favicon
+    icon: "/favicon.ico", // standard favicon
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
@@ -22,7 +23,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="google-site-verification" content="V09UHbN4_cHq8c5pEpIg1BqXInfxVE2ZSeKZfEqqpfY" />
+        <meta
+          name="google-site-verification"
+          content="V09UHbN4_cHq8c5pEpIg1BqXInfxVE2ZSeKZfEqqpfY"
+        />
         <Script id="facebook-sdk" strategy="afterInteractive">
           {`
             window.fbAsyncInit = function() {
@@ -50,12 +54,10 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <Navbar />
-        <div className="w-full overflow-hidden">
-  {children}
-</div>
-          <Bottom/>
+          <div className="w-full overflow-hidden">{children}</div>
+          <Footer />
         </AuthProvider>
-      </body>      
+      </body>
     </html>
   );
 }
