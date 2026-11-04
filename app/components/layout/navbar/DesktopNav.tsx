@@ -31,7 +31,7 @@ export default function DesktopNav() {
         <Link href="/" aria-label="DriverX Mobile home" className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/logo.svg.png"
+            src="/logo.png"
             alt="DriverX Mobile"
             className="h-11 w-auto"
           />

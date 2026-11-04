@@ -204,7 +204,7 @@ export default function HeroSection() {
                 {/* Logo */}
                 <div className="relative h-7 w-32 mb-2">
                   <Image
-                    src="/images/Logo.svg.png"
+                    src="/logo.png"
                     alt="DriverX Mobile"
                     fill
                     className="object-contain object-left"
