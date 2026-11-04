@@ -7,7 +7,7 @@ export default function FooterCta() {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-[#0B5A58]">
       <Image
-        src="/images/footer/bg.png"
+        src="/images/footer/fbg.png"
         alt=""
         fill
         sizes="(min-width: 1440px) 1340px, 100vw"
