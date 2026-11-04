@@ -1,5 +1,22 @@
-import Hero from "./components/Hero";
-
+import {
+  HeroSection,
+  BuiltForSection,
+  DriveTypeSection,
+  PlansSection,
+  CoverageSection,
+  GetConnectedSection,
+  DataOnlySection,
+  OnTheMoveSection,
+  BusinessFleetSection,
+  PartnerBannerSection,
+  DriverBenefitsSection,
+  MyDriverXSection,
+  WhyDriverXSection,
+  SupportSection,
+  FAQSection,
+  ResourcesSection,
+  NextSection,
+} from "./components/home";
 export const metadata = {
   title: "DriverX Mobile | AI-Powered Data Plans for Drivers",
   description:
@@ -8,8 +25,24 @@ export const metadata = {
 
 export default function Home() {
   return (
-  
-    <Hero/>
-  
+    <main>
+      <HeroSection />
+      <BuiltForSection />
+      <DriveTypeSection />
+      <PlansSection />
+      <CoverageSection />
+      <GetConnectedSection />
+      <DataOnlySection />
+      <OnTheMoveSection />
+      <BusinessFleetSection />
+      <PartnerBannerSection />
+      <DriverBenefitsSection />
+      <MyDriverXSection />
+      <WhyDriverXSection />
+      <SupportSection />
+      <FAQSection />
+      <ResourcesSection />
+      <NextSection />
+    </main>
   );
 }

@@ -26,11 +26,7 @@ export default function Navbar() {
         <div className="flex h-[72px] items-center justify-between px-4 sm:px-6 lg:hidden">
           <Link href="/" aria-label="DriverX Mobile home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.png"
-              alt="DriverX Mobile"
-              className="h-10 w-auto"
-            />
+            <img src="/logo.png" alt="DriverX Mobile" className="h-10 w-auto" />
           </Link>
           <button
             type="button"
