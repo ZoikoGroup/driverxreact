@@ -26,9 +26,9 @@ export const metadata = {
 export default function Home() {
   return (
     <main>
-      <DriveTypeSection />
       <HeroSection />
       <BuiltForSection />
+      <DriveTypeSection />
       <PlansSection />
       <CoverageSection />
       <GetConnectedSection />
