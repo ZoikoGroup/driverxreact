@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, User } from "lucide-react";
@@ -9,7 +9,26 @@ import MegaPanel from "./MegaPanel";
 
 export default function DesktopNav() {
   const [active, setActive] = useState<string | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
+
+  const cancelClose = () => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+      timer.current = null;
+    }
+  };
+
+  const open = (key: string) => {
+    cancelClose();
+    setActive(key);
+  };
+
+  // Short delay so the cursor can cross the small gap between header and panel.
+  const scheduleClose = () => {
+    cancelClose();
+    timer.current = setTimeout(() => setActive(null), 120);
+  };
 
   useEffect(() => {
     setActive(null);
@@ -20,43 +39,46 @@ export default function DesktopNav() {
       if (e.key === "Escape") setActive(null);
     };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      cancelClose();
+    };
   }, []);
 
   const current = DROPDOWNS.find((d) => d.key === active) ?? null;
 
   return (
-    <div onMouseLeave={() => setActive(null)} className="hidden lg:block">
-      <div className="mx-auto flex h-[72px] max-w-[1368px] items-center justify-between px-8">
+    <div className="hidden lg:block">
+      <div
+        onMouseEnter={cancelClose}
+        onMouseLeave={scheduleClose}
+        className="mx-auto flex h-[72px] max-w-[1368px] items-center justify-between px-8"
+      >
         <Link href="/" aria-label="DriverX Mobile home" className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo.png"
-            alt="DriverX Mobile"
-            className="h-11 w-auto"
-          />
+          <img src="/logo.png" alt="DriverX Mobile" className="h-11 w-auto" />
         </Link>
 
         <nav aria-label="Primary">
           <ul className="flex items-center gap-2">
             {DROPDOWNS.map((d) => {
-              const open = active === d.key;
+              const isOpen = active === d.key;
               return (
-                <li key={d.key} onMouseEnter={() => setActive(d.key)}>
+                <li key={d.key} onMouseEnter={() => open(d.key)}>
                   <button
                     type="button"
-                    aria-expanded={open}
+                    aria-expanded={isOpen}
                     aria-controls={`mega-${d.key}`}
-                    onFocus={() => setActive(d.key)}
+                    onFocus={() => open(d.key)}
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
-                      open
+                      isOpen
                         ? "bg-[#FCD018] text-[#10263B]"
                         : "text-white hover:bg-white/10"
                     }`}
                   >
                     {d.label}
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
+                      className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
                       aria-hidden="true"
                     />
                   </button>
@@ -87,12 +109,18 @@ export default function DesktopNav() {
       </div>
 
       {current ? (
-        <div className="absolute inset-x-0 top-full z-40 pt-[6px]">
-          <MegaPanel
-            item={current}
-            id={`mega-${current.key}`}
-            onClose={() => setActive(null)}
-          />
+        <div className="pointer-events-none absolute inset-x-0 top-full z-40 pt-[6px]">
+          <div
+            onMouseEnter={cancelClose}
+            onMouseLeave={scheduleClose}
+            className="pointer-events-auto mx-auto w-full max-w-[1296px]"
+          >
+            <MegaPanel
+              item={current}
+              id={`mega-${current.key}`}
+              onClose={() => setActive(null)}
+            />
+          </div>
         </div>
       ) : null}
     </div>

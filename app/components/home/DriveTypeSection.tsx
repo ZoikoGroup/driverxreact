@@ -88,7 +88,7 @@ export default function DriveTypeSection() {
   ] as const;
 
   return (
-    <section className="relative w-full bg-[#0E2131] py-16 sm:py-20 lg:py-24 text-white overflow-hidden">
+    <section className="relative w-full bg-[#0E2131] py-16 sm:py-20 lg:py-12 text-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Top Header */}
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
@@ -125,7 +125,7 @@ export default function DriveTypeSection() {
               >
                 <div>
                   {/* Card Image */}
-                  <div className="relative h-48 w-full">
+                  <div className="relative h-44 w-full">
                     <Image
                       src={card.image}
                       alt={card.title}
@@ -151,13 +151,13 @@ export default function DriveTypeSection() {
                   {/* Body Content */}
                   <div className="p-5">
                     <p
-                      className={`text-xs sm:text-sm leading-relaxed mb-6 ${card.textColor}`}
+                      className={`text-xs sm:text-sm leading-relaxed mb-4 ${card.textColor}`}
                     >
                       {card.description}
                     </p>
 
                     {/* Bullet Points */}
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-3 mb-4 sm:mb-2">
                       {card.bullets.map((bullet, bIdx) => (
                         <li
                           key={bIdx}

@@ -8,7 +8,7 @@ export type FooterColumn = {
 export const CTA = {
   title: "Stay connected",
   highlight: "wherever work takes you.",
-  primary: { label: "Explore plans", href: "/prepaid-plans" },
+  primary: { label: "Explore plans", href: "/plans" },
   secondary: { label: "Check coverage", href: "https://mvnoc.ai/coverage-map" },
 } as const;
 
@@ -34,7 +34,7 @@ export const COLUMNS: readonly FooterColumn[] = [
   {
     title: "Plans & Pricing",
     links: [
-      { label: "Compare All Plans", href: "/prepaid-plans" },
+      { label: "Compare All Plans", href: "/plans" },
       { label: "Prepaid Plans", href: "/prepaid-plans" },
       { label: "Postpaid Plans", href: "/postpaid-plans" },
       { label: "Business Plans", href: "/business-plans" },
@@ -55,7 +55,7 @@ export const COLUMNS: readonly FooterColumn[] = [
   {
     title: "Driver Benefits",
     links: [
-      { label: "Driver-Focused Plans", href: "/gig-delivery-driver-plans" },
+      { label: "Driver-Focused Plans", href: "/gig-drivers" },
       { label: "Partner Offers", href: "/partner-offer-program" },
       {
         label: "Coverage & Connectivity",
@@ -82,9 +82,9 @@ export const COLUMNS: readonly FooterColumn[] = [
     title: "Shop",
     links: [
       { label: "Phones & Accessories", href: "/product/shop" },
-      { label: "Compare Wireless Plans", href: "/prepaid-plans" },
+      { label: "Compare Wireless Plans", href: "/plans" },
       { label: "Top-Ups", href: "/top-up-plans" },
-      { label: "SIM & eSIM Activation", href: "/product/shop" },
+      { label: "SIM & eSIM Activation", href: "/activate-your-esim-psim" },
       { label: "Get Connected", href: "/register" },
     ],
   },
