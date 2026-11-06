@@ -1,6 +1,7 @@
 export { default as HeroSection } from "./HeroSection";
 export { default as BuiltForSection } from "./BuiltForSection";
 export { default as DriveTypeSection } from "./DriveTypeSection";
+export { default as PlansPricing } from "./PlansPricing";
 export { default as PlansSection } from "./PlansSection";
 export { default as CoverageSection } from "./CoverageSection";
 export { default as GetConnectedSection } from "./GetConnectedSection";

@@ -1,6 +1,7 @@
 import {
   HeroSection,
   BuiltForSection,
+  PlansPricing,
   DriveTypeSection,
   PlansSection,
   CoverageSection,
@@ -28,8 +29,9 @@ export default function Home() {
     <main>
       <HeroSection />
       <BuiltForSection />
+      <PlansPricing />
       <DriveTypeSection />
-      <PlansSection />
+      {/* <PlansSection /> */}
       <CoverageSection />
       <GetConnectedSection />
       <DataOnlySection />
