@@ -88,7 +88,7 @@ export default function DriveTypeSection() {
   ] as const;
 
   return (
-    <section className="relative w-full bg-[#0E2131] py-16 sm:py-20 lg:py-12 text-white overflow-hidden">
+    <section className="relative w-full bg-[#132B40] py-16 sm:py-20 lg:py-12 text-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Top Header */}
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">

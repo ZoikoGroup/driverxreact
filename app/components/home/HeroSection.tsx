@@ -143,7 +143,7 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <Link
-                href="/prepaid-plans"
+                href="/plans"
                 className="inline-flex items-center justify-center gap-2 bg-[#FACC15] hover:bg-[#e3b810] text-[#0A2E28] font-bold text-sm px-7 py-3.5 rounded-full transition-all duration-200 shadow-lg"
               >
                 <span>Explore Plans</span>
