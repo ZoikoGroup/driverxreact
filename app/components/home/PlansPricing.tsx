@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check, SignalHigh } from "lucide-react";
@@ -11,82 +13,280 @@ const AUDIENCES = [
 ] as const;
 
 const TABS = [
-  { label: "Prepaid", href: "/prepaid-plans", active: true },
-  { label: "Postpaid", href: "/postpaid-plans", active: false },
-  { label: "Data-Only", href: "/data-only-plans", active: false },
-  {
-    label: "Business & Fleet",
-    href: "/business-plans",
-    active: false,
-  },
+  { label: "Prepaid", key: "/prepaid-plans" },
+  { label: "Postpaid", key: "/postpaid-plans" },
+  { label: "Data-Only", key: "/data-only-plans" },
+  { label: "Business & Fleet", key: "/business-plans" },
 ] as const;
 
-const PLANS = [
-  {
-    name: "DriverX Starter 5",
-    tagline: "For lighter workweeks",
-    price: "$16",
-    data: "5 GB",
-    thereafter: "Unlimited 2G data thereafter",
-    features: [
-      { text: "1 GB mobile hotspot", sub: null },
-      { text: "Unlimited U.S. talk & text", sub: null },
-      { text: "Calls & texts to 100+ countries", sub: null },
-    ],
-    cta: "Choose Starter 5",
-    href: "/prepaid-plans",
-    details: "/prepaid-plans",
-    featured: false,
-  },
-  {
-    name: "DriverX Cruise 15",
-    tagline: "For regular gig drivers",
-    price: "$38",
-    data: "15 GB",
-    thereafter: "Unlimited 2G data thereafter",
-    features: [
-      { text: "5 GB mobile hotspot", sub: null },
-      { text: "Unlimited talk & text", sub: "U.S., Canada & Mexico" },
-      { text: "Calls & texts to 100+ countries", sub: null },
-    ],
-    cta: "Choose Cruise 15",
-    href: "/prepaid-plans",
-    details: "/prepaid-plans",
-    featured: false,
-  },
-  {
-    name: "DriverX Power 25",
-    tagline: "For multi-app workdays",
-    price: "$57",
-    data: "25 GB",
-    thereafter: "Unlimited 2G data thereafter",
-    features: [
-      { text: "15 GB mobile hotspot", sub: null },
-      { text: "Unlimited talk & text", sub: "U.S., Canada & Mexico" },
-      { text: "International calls, texts & roaming", sub: null },
-    ],
-    cta: "Choose Power 25",
-    href: "/prepaid-plans",
-    details: "/prepaid-plans",
-    featured: true,
-  },
-  {
-    name: "DriverX Unlimited",
-    tagline: "For full-time drivers",
-    price: "$70",
-    data: "35 GB",
-    thereafter: "Unlimited 2G data thereafter",
-    features: [
-      { text: "20 GB mobile hotspot", sub: null },
-      { text: "Unlimited talk & text", sub: "U.S., Canada & Mexico" },
-      { text: "Calls & texts to 220+ countries", sub: null },
-    ],
-    cta: "Choose Unlimited",
-    href: "/prepaid-plans",
-    details: "/prepaid-plans",
-    featured: false,
-  },
-] as const;
+const PLANS_MAP: Record<string, any[]> = {
+  "/prepaid-plans": [
+    {
+      name: "DriverX Starter 5",
+      tagline: "For lighter workweeks",
+      price: "$16",
+      data: "5 GB",
+      thereafter: "Unlimited 2G data thereafter",
+      features: [
+        { text: "1 GB mobile hotspot", sub: null },
+        { text: "Unlimited U.S. talk & text", sub: null },
+        { text: "Calls & texts to 100+ countries", sub: null },
+      ],
+      cta: "Choose Starter 5",
+      href: "/prepaid-plans",
+      details: "/prepaid-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Cruise 15",
+      tagline: "For regular gig drivers",
+      price: "$38",
+      data: "15 GB",
+      thereafter: "Unlimited 2G data thereafter",
+      features: [
+        { text: "5 GB mobile hotspot", sub: null },
+        { text: "Unlimited talk & text", sub: "U.S., Canada & Mexico" },
+        { text: "Calls & texts to 100+ countries", sub: null },
+      ],
+      cta: "Choose Cruise 15",
+      href: "/prepaid-plans",
+      details: "/prepaid-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Power 25",
+      tagline: "For multi-app workdays",
+      price: "$57",
+      data: "25 GB",
+      thereafter: "Unlimited 2G data thereafter",
+      features: [
+        { text: "15 GB mobile hotspot", sub: null },
+        { text: "Unlimited talk & text", sub: "U.S., Canada & Mexico" },
+        { text: "International calls, texts & roaming", sub: null },
+      ],
+      cta: "Choose Power 25",
+      href: "/prepaid-plans",
+      details: "/prepaid-plans",
+      featured: true,
+    },
+    {
+      name: "DriverX Unlimited",
+      tagline: "For full-time drivers",
+      price: "$70",
+      data: "35 GB",
+      thereafter: "Unlimited 2G data thereafter",
+      features: [
+        { text: "20 GB mobile hotspot", sub: null },
+        { text: "Unlimited talk & text", sub: "U.S., Canada & Mexico" },
+        { text: "Calls & texts to 220+ countries", sub: null },
+      ],
+      cta: "Choose Unlimited",
+      href: "/prepaid-plans",
+      details: "/prepaid-plans",
+      featured: false,
+    },
+  ],
+  "/postpaid-plans": [
+    {
+      name: "DriverX Flex 7",
+      tagline: "Light app usage, part-time drivers",
+      price: "$29",
+      data: "7 GB",
+      thereafter: "Unlimited 2G thereafter",
+      features: [
+        { text: "2GB Mobile Hotspot", sub: null },
+        { text: "Unlimited Talk & Text (U.S. Canada, Mexico only)", sub: null },
+        {
+          text: "Free International Calls & Texts (to 100+ countries)",
+          sub: null,
+        },
+      ],
+      cta: "Buy Plan",
+      href: "/postpaid-plans",
+      details: "/postpaid-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Essential",
+      tagline: "Daily rideshare & delivery drivers",
+      price: "$40",
+      data: "17 GB",
+      thereafter: "Unlimited 2G thereafter",
+      features: [
+        { text: "7GB Mobile Hotspot", sub: null },
+        { text: "Unlimited Talk & Text (U.S, Canada, Mexico only)", sub: null },
+        { text: "International Roaming (Select countries)", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/postpaid-plans",
+      details: "/postpaid-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Infinite",
+      tagline: "Full-time Uber, Lyft, truckers & multi-app drivers",
+      price: "$55",
+      data: "Unlimited",
+      thereafter: "High-Speed Data",
+      features: [
+        { text: "10GB Mobile Hotspot", sub: null },
+        {
+          text: "Unlimited Talk & Text (U.S., Canada, Mexico only)",
+          sub: null,
+        },
+        { text: "Free International Calls & Texts (10+ Countries)", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/postpaid-plans",
+      details: "/postpaid-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Elite",
+      tagline: "High-earning, multi-platform gig drivers, truckers",
+      price: "$70",
+      data: "Unlimited",
+      thereafter: "High-Speed Data",
+      features: [
+        { text: "25GB Mobile Hotspot", sub: null },
+        {
+          text: "Unlimited Talk & Text (U.S., Canada, Mexico only)",
+          sub: null,
+        },
+        { text: "Free Global Roaming (to 30+ Countries)", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/postpaid-plans",
+      details: "/postpaid-plans",
+      featured: true,
+    },
+  ],
+  "/data-only-plans": [
+    {
+      name: "Flex 10 Starter",
+      tagline: "Data-Only SIM Plan",
+      price: "$19",
+      data: "10 GB",
+      thereafter: "Data Allowance",
+      features: [
+        { text: "2GB Hotspot", sub: null },
+        { text: "5G Access & IoT Mode", sub: null },
+        { text: "Available in Prepaid and Postpaid Plans", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/data-only-plans",
+      details: "/data-only-plans",
+      featured: false,
+    },
+    {
+      name: "Flex 20 Essential",
+      tagline: "Data-Only SIM Plan",
+      price: "$37",
+      data: "20 GB",
+      thereafter: "Data Allowance",
+      features: [
+        { text: "5GB Mobile Hotspot", sub: null },
+        { text: "5G Access & IoT Mode", sub: null },
+        { text: "Available in Prepaid and Postpaid Plans", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/data-only-plans",
+      details: "/data-only-plans",
+      featured: false,
+    },
+    {
+      name: "Flex 50 Pro",
+      tagline: "Data-Only SIM Plan",
+      price: "$78",
+      data: "50 GB",
+      thereafter: "Data Allowance",
+      features: [
+        { text: "15GB Mobile Hotspot", sub: null },
+        { text: "5G Access & IoT Mode", sub: null },
+        { text: "Available in Prepaid and Postpaid Plans", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/data-only-plans",
+      details: "/data-only-plans",
+      featured: true,
+    },
+  ],
+  "/business-plans": [
+    {
+      name: "DriverX Fleet 10",
+      tagline: "For startups, local operators, and small fleets",
+      price: "$28",
+      data: "10 GB",
+      thereafter: "Unlimited 2G thereafter",
+      features: [
+        { text: "5GB Mobile Hotspot", sub: null },
+        { text: "Unlimited Talk & Text (U.S. Canada, Mexico only)", sub: null },
+        { text: "Optional GPS tracking and usage monitoring", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/business-plans",
+      details: "/business-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Fleet 25",
+      tagline: "For expanding teams that need extra power & flexibility",
+      price: "$58",
+      data: "25 GB",
+      thereafter: "Unlimited 2G thereafter",
+      features: [
+        { text: "10GB Mobile Hotspot", sub: null },
+        { text: "Unlimited Talk & Text (Across North America)", sub: null },
+        { text: "Full access to the DriverX Portal", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/business-plans",
+      details: "/business-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Fleet Unlimited",
+      tagline: "For fleets that need worry-free data access",
+      price: "$110",
+      data: "Unlimited",
+      thereafter: "High-Speed Data",
+      features: [
+        { text: "15GB Mobile Hotspot", sub: null },
+        {
+          text: "Unlimited Talk & Text (U.S., Canada, Mexico only)",
+          sub: null,
+        },
+        { text: "GPS Tracking and full telematics integration", sub: null },
+      ],
+      cta: "Buy Plan",
+      href: "/business-plans",
+      details: "/business-plans",
+      featured: false,
+    },
+    {
+      name: "DriverX Enterprise Custom",
+      tagline: "For organizations with 50+ lines",
+      price: "$400",
+      data: "Custom",
+      thereafter: "Custom Data Selection",
+      features: [
+        { text: "Shared mobile hotspot pools across fleets", sub: null },
+        {
+          text: "Integration with GPS, telematics, and driver behavior",
+          sub: null,
+        },
+        {
+          text: "Account management with quarterly business reviews",
+          sub: null,
+        },
+      ],
+      cta: "Enquire Plan",
+      href: "/business-plans",
+      details: "/business-plans",
+      featured: true,
+    },
+  ],
+};
 
 const FOOTER_LINKS = [
   { label: "Check coverage", href: "https://mvnoc.ai/coverage-map" },
@@ -94,6 +294,11 @@ const FOOTER_LINKS = [
 ] as const;
 
 export default function PlansPricing() {
+  const [activeTab, setActiveTab] = useState<string>("/prepaid-plans");
+
+  const currentPlans = PLANS_MAP[activeTab] || PLANS_MAP["/prepaid-plans"];
+  const isDataOnly = activeTab === "/data-only-plans";
+
   return (
     <section className="w-full overflow-x-hidden bg-[#0f1f33] px-6 py-10 text-white sm:px-8 lg:px-10">
       <div className="mx-auto max-w-[1350px]">
@@ -146,24 +351,34 @@ export default function PlansPricing() {
           aria-label="Plan categories"
           className="mt-8 flex flex-wrap items-center gap-3 border-b border-white/10 pb-5"
         >
-          {TABS.map((tab) => (
-            <Link
-              key={tab.label}
-              href={tab.href}
-              className={
-                tab.active
-                  ? "rounded-full bg-[#f9c80e] px-4 py-2 text-sm font-semibold text-[#0f1f33]"
-                  : "rounded-full border border-white/10 bg-[#1d3250] px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors"
-              }
-            >
-              {tab.label}
-            </Link>
-          ))}
+          {TABS.map((tab) => {
+            const isActive = tab.key === activeTab;
+            return (
+              <button
+                key={tab.label}
+                type="button"
+                onClick={() => setActiveTab(tab.key)}
+                className={
+                  isActive
+                    ? "rounded-full bg-[#f9c80e] px-4 py-2 text-sm font-semibold text-[#0f1f33] cursor-pointer"
+                    : "rounded-full border border-white/10 bg-[#1d3250] px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors cursor-pointer"
+                }
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </nav>
 
-        {/* Plans */}
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {PLANS.map((plan) => (
+        {/* Plans Grid */}
+        <ul
+          className={`mt-8 grid gap-5 sm:grid-cols-2 ${
+            isDataOnly
+              ? "mx-auto max-w-5xl lg:grid-cols-3"
+              : "w-full lg:grid-cols-4"
+          }`}
+        >
+          {currentPlans.map((plan: any) => (
             <li
               key={plan.name}
               className={
@@ -196,7 +411,7 @@ export default function PlansPricing() {
               </div>
 
               <ul className="mt-5 flex-1 space-y-3 border-t border-[#e3e8f0] pt-5">
-                {plan.features.map((feature) => (
+                {plan.features.map((feature: any) => (
                   <li key={feature.text} className="flex items-start gap-2">
                     <Check
                       className="mt-0.5 h-4 w-4 shrink-0 text-[#1f6b5c]"
