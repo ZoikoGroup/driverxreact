@@ -16,3 +16,4 @@ export { default as SupportSection } from "./SupportSection";
 export { default as FAQSection } from "./FAQSection";
 export { default as ResourcesSection } from "./ResourcesSection";
 export { default as NextSection } from "./NextSection";
+export { default as BlackFridayPopup } from "./BlackFridayPopup";

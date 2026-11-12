@@ -17,6 +17,7 @@ import {
   FAQSection,
   ResourcesSection,
   NextSection,
+  BlackFridayPopup,
 } from "./components/home";
 export const metadata = {
   title: "DriverX Mobile | AI-Powered Data Plans for Drivers",
@@ -45,6 +46,7 @@ export default function Home() {
       <FAQSection />
       <ResourcesSection />
       <NextSection />
+      <BlackFridayPopup />
     </main>
   );
 }
