@@ -4,6 +4,7 @@ import AuthProvider from "./components/AuthProvider";
 import Script from "next/script";
 import Navbar from "./components/layout/navbar/Navbar";
 import Footer from "./components/layout/footer/Footer";
+import { SalePopup } from "./black-friday/components/SalePopup";
 export const metadata = {
   title: "DriverX",
   description: "DriverX Mobile - Your Ultimate Driving Companion",
@@ -56,6 +57,7 @@ export default function RootLayout({
           <Navbar />
           <div className="w-full overflow-hidden">{children}</div>
           <Footer />
+          <SalePopup />
         </AuthProvider>
       </body>
     </html>
