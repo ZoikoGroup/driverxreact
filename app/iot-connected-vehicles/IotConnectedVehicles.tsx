@@ -3,10 +3,23 @@
 import { useState } from "react";
 import Link from "next/link";
 import * as Icons from "lucide-react";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import {
   tabs, images, solutions, deviceTypes, deviceScales, locations, dataUse,
   proposalCovers, deployment, rollout, faqs,
 } from "./data";
+
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-barlow",
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-barlow-condensed",
+});
 
 const Icon = ({ name, size = 24 }: { name: string; size?: number }) => {
   const C = (Icons as any)[name] ?? Icons.Circle;
@@ -102,7 +115,7 @@ export default function IotConnectedVehicles() {
   const goProposal = () => document.getElementById("proposal")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="bg-[#0f2133] text-white">
+    <div className={`${barlow.variable} ${barlowCondensed.variable} font-figma bg-[#0f2133] text-white`}>
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-to-r from-[#0f2133] to-[#12433f]">
         <div className="absolute inset-y-0 right-0 hidden w-3/5 md:block">
@@ -129,12 +142,20 @@ export default function IotConnectedVehicles() {
         </div>
       </section>
 
-      {/* TABS */}
-      <nav className="bg-[#0b1a2a] border-b border-white/10">
-        <ul className="mx-auto flex max-w-7xl overflow-x-auto px-4 md:justify-center">
-          {tabs.map((t) => (
-            <li key={t.label} className="shrink-0">
-              <Link href={t.href} className={`block border-b-2 px-5 py-4 text-xs font-semibold ${t.active ? "border-[#37C4A0] text-[#f5c518]" : "border-transparent text-white/90 hover:text-white"}`}>
+      {/* ── CATEGORY TABS ───────────────────────────────────────────── */}
+      <nav className="bg-white dark:bg-gray-800 border-b border-[#b2d8d1]">
+        <ul className="mx-auto flex justify-center items-center overflow-x-auto scrollbar-hide px-4">
+          {tabs.map((t, i) => (
+            <li key={t.label} className="flex items-center shrink-0">
+              {i > 0 && <span className="h-4 w-px bg-[#aac8d3] self-center shrink-0" />}
+              <Link
+                href={t.href}
+                className={`relative block px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center transition-colors ${
+                  t.active
+                    ? "text-[#1d6c5c] font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:bg-[#1d6c5c] after:rounded-t-[2px]"
+                    : "text-[#0f2133] dark:text-gray-200 hover:text-[#1d6c5c]"
+                }`}
+              >
                 {t.label}
               </Link>
             </li>

@@ -152,7 +152,20 @@ import {
   CreditCard, Lock, Info, ChevronRight, LifeBuoy, MapPin, MessageSquare,
   CheckCircle2, Plus, Minus,
 } from "lucide-react";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import SingleCatPlansSection from "../components/SingleCatPlansSection";
+
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-barlow",
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-barlow-condensed",
+});
 
 const tabs = [
   { label: "Prepaid", href: "/prepaid-plans" },
@@ -201,37 +214,48 @@ const Topupplans = () => {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="bg-[#f1f6f4] dark:bg-gray-900 text-[#0f2133] dark:text-white">
-      {/* HERO */}
-      <section className="bg-[#0f2133] overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-2 items-center">
-          <div className="py-14 md:py-24">
-            <p className="text-[#f5c518] font-bold tracking-wide text-sm">TOP-UPS &amp; REFILLS</p>
-            <h1 className="mt-4 text-white font-extrabold text-4xl md:text-5xl leading-tight">
-              Stay connected.<br />Keep moving.
-            </h1>
-            <p className="mt-4 text-white/90 max-w-sm">
-              Renew plans or add eligible services without interrupting your workday.
-            </p>
-          </div>
-          <div className="relative h-[260px] md:h-[360px] md:mt-12">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/new/image (44).png" alt="Driver checking phone beside a van" className="w-full h-full object-cover object-top" />
-            <div className="hidden md:block absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-[#0f2133] to-transparent" />
-          </div>
+    <div className={`${barlow.variable} ${barlowCondensed.variable} font-figma bg-[#f1f6f4] dark:bg-gray-900 text-[#0f2133] dark:text-white`}>
+      {/* ── HERO ──────────────────────────────────────────────────────── */}
+      <section className="bg-[#0f2133] overflow-hidden min-h-[256px] relative">
+        {/* Background image: right half, full height */}
+        <div className="absolute inset-y-0 right-0 w-[55%] hidden md:block">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/new/image (44).png"
+            alt="Driver checking phone beside a van"
+            className="w-full h-full object-cover object-[center_top]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f2133] via-[#0f2133]/40 to-transparent" />
+        </div>
+
+        {/* Content */}
+        <div className="relative mx-auto max-w-[1280px] px-4 md:px-8 py-10 md:py-12 z-10 flex flex-col justify-center min-h-[256px]">
+          <p className="text-[#f5c518] text-xs sm:text-sm font-bold uppercase tracking-wider">
+            TOP-UPS &amp; REFILLS
+          </p>
+          <h1 className="mt-3 text-white text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+            Stay connected.
+            <br />
+            Keep moving.
+          </h1>
+          <p className="mt-3 text-[#d1d5db] text-xs sm:text-sm font-normal leading-relaxed max-w-sm">
+            Renew plans or add eligible services without interrupting your workday.
+          </p>
         </div>
       </section>
 
-      {/* TABS */}
-      <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <ul className="mx-auto max-w-7xl px-4 flex justify-start md:justify-center overflow-x-auto">
+      {/* ── CATEGORY TABS ───────────────────────────────────────────── */}
+      <nav className="bg-white dark:bg-gray-800 border-b border-[#b2d8d1]">
+        <ul className="mx-auto flex justify-center items-center overflow-x-auto scrollbar-hide px-4">
           {tabs.map((t, i) => (
             <li key={t.label} className="flex items-center shrink-0">
-              {i > 0 && <span className="h-4 w-px bg-gray-300" />}
+              {i > 0 && <span className="h-4 w-px bg-[#aac8d3] self-center shrink-0" />}
               <Link
                 href={t.href}
-                className={`block px-5 py-4 text-sm font-semibold border-b-2 ${
-                  t.active ? "text-[#1d5c52] border-[#1d5c52]" : "border-transparent hover:text-[#1d5c52]"
+                className={`relative block px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center transition-colors ${
+                  t.active
+                    ? "text-[#1d6c5c] font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:bg-[#1d6c5c] after:rounded-t-[2px]"
+                    : "text-[#0f2133] dark:text-gray-200 hover:text-[#1d6c5c]"
                 }`}
               >
                 {t.label}
@@ -243,8 +267,8 @@ const Topupplans = () => {
 
       <div className="mx-auto max-w-6xl px-4 md:px-8">
         {/* CHOOSE */}
-        <h2 className="pt-10 text-3xl font-extrabold">Choose what you need today.</h2>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+        <h2 className="pt-10 text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight">Choose what you need today.</h2>
+        <p className="mt-1 text-sm sm:text-base text-gray-600 dark:text-gray-300">
           Renew your service, add eligible extras, or manage your lines in one place.
         </p>
 
@@ -293,7 +317,7 @@ const Topupplans = () => {
       <div className="mx-auto max-w-6xl px-4 md:px-8">
         {/* BUILT FOR DRIVERS */}
         <section className="mt-10 rounded-2xl bg-gradient-to-r from-[#0f2133] from-50% to-[#1f7164] p-6 md:p-8 text-white">
-          <h2 className="text-2xl md:text-3xl font-extrabold">Built for drivers. Ready when you are.</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight">Built for drivers. Ready when you are.</h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {driverPoints.map(({ icon: Icon, title, desc }, i) => (
               <div key={title} className={`flex gap-3 ${i > 0 ? "lg:border-l lg:border-white/20 lg:pl-5" : ""}`}>
@@ -326,7 +350,7 @@ const Topupplans = () => {
 
       {/* FAQ */}
       <section className="mx-auto max-w-6xl px-4 md:px-8 py-10">
-        <h2 className="text-3xl font-extrabold">Frequently asked questions</h2>
+        <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight">Frequently asked questions</h2>
         <div className="mt-5 space-y-3">
           {faqs.map((f, i) => (
             <div key={f.q} className="rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">

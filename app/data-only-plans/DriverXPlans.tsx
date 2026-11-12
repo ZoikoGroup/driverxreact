@@ -347,7 +347,7 @@ export default function DriverXPlans() {
           <h1 className="mt-1 text-white font-extrabold text-4xl sm:text-5xl leading-[1.08] tracking-tight max-w-[641px]">
             Keep your devices connected.
           </h1>
-          <p className="mt-2 text-[#e8eeec] text-lg sm:text-xl font-normal leading-7 max-w-[452px]">
+          <p className="mt-3 text-[#e8eeec] text-base sm:text-lg font-normal leading-7 max-w-[480px]">
             Compare data and hotspot allowances for your
             <br className="hidden sm:block" />
             connected workday.
@@ -357,16 +357,16 @@ export default function DriverXPlans() {
 
       {/* ── CATEGORY TABS ───────────────────────────────────────────── */}
       <nav className="bg-white dark:bg-gray-800 border-b border-[#b2d8d1]">
-        <ul className="mx-auto max-w-[1440px] flex justify-start md:justify-center overflow-x-auto scrollbar-hide">
+        <ul className="mx-auto flex justify-center items-center overflow-x-auto scrollbar-hide px-4">
           {tabs.map((t, i) => (
             <li key={t.label} className="flex items-center shrink-0">
-              {i > 0 && <span className="h-5 w-px bg-[#aac8d3] self-center" />}
+              {i > 0 && <span className="h-4 w-px bg-[#aac8d3] self-center shrink-0" />}
               <Link
                 href={t.href}
-                className={`relative block px-6 sm:px-7 py-3 text-lg sm:text-xl leading-8 min-h-14 flex items-center transition-colors ${
+                className={`relative block px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center transition-colors ${
                   t.active
-                    ? "text-[#1d6c5c] font-extrabold after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[5px] after:bg-[#1d6c5c] after:rounded-t-[5px]"
-                    : "text-[#0f2133] dark:text-gray-200 font-semibold hover:text-[#1d6c5c]"
+                    ? "text-[#1d6c5c] font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:bg-[#1d6c5c] after:rounded-t-[2px]"
+                    : "text-[#0f2133] dark:text-gray-200 hover:text-[#1d6c5c]"
                 }`}
               >
                 {t.label}
@@ -403,10 +403,10 @@ export default function DriverXPlans() {
         {/* Header row with Title & Toggle */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h2 className="text-[#0f2133] dark:text-white text-3xl sm:text-5xl font-extrabold leading-10 tracking-tight">
+            <h2 className="text-[#0f2133] dark:text-white text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight">
               Choose your data allowance.
             </h2>
-            <p className="text-[#4a6a7a] dark:text-gray-400 text-base font-normal mt-1 leading-7">
+            <p className="text-[#4a6a7a] dark:text-gray-400 text-sm sm:text-base font-normal mt-1 leading-6">
               All three plans offer prepaid and postpaid options.
             </p>
           </div>
@@ -425,7 +425,7 @@ export default function DriverXPlans() {
         {/* Plan Cards Grid */}
         {loading && <p className="py-10 text-center text-[#4a6a7a]">Loading plans…</p>}
         {!loading && error && <p className="py-10 text-center text-red-500 font-medium">{error}</p>}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-3">
+        <div className="flex flex-wrap justify-center items-stretch gap-5 pt-4">
           {plans.map((plan) => {
             const dataAllowance = getDataAllowance(plan);
             const hotspotAllowance = getHotspotAllowance(plan);
@@ -435,26 +435,31 @@ export default function DriverXPlans() {
             return (
               <div
                 key={plan.id}
-                className="bg-white dark:bg-gray-800 rounded-2xl border border-[#c8e3de] p-5 shadow-[0px_6px_18px_-12px_rgba(16,38,59,0.35)] flex flex-col justify-between hover:shadow-md transition-shadow duration-200"
+                className="w-full sm:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] lg:max-w-[305px] min-h-[580px] bg-white dark:bg-gray-800 rounded-2xl border border-[#c8e3de] p-5 shadow-[0px_6px_18px_-12px_rgba(16,38,59,0.35)] flex flex-col justify-between hover:shadow-md transition-shadow duration-200"
               >
                 <div>
                   {/* Card Title */}
-                  <h3 className="text-[#0f2133] dark:text-white text-2xl font-extrabold leading-7 tracking-tight">
+                  <h3 className="text-[#0f2133] dark:text-white text-2xl font-extrabold leading-7 tracking-tight min-h-[32px]">
                     {plan.name}
                   </h3>
 
+                  {/* Subtitle placeholder for consistent vertical alignment */}
+                  <p className="mt-1 text-[#4a6a7a] dark:text-gray-400 text-sm font-normal leading-5 min-h-[40px] flex items-center">
+                    {plan.short_description || "High-speed dedicated data for all your connected devices."}
+                  </p>
+
                   {/* Price */}
-                  <div className="pt-2.5 flex items-baseline gap-1">
+                  <div className="pt-2 flex items-baseline gap-1 h-12">
                     <span className="text-[#0f2133] dark:text-white text-5xl font-extrabold leading-[48px]">
                       ${displayPrice}
                     </span>
-                    <span className="text-[#4a6a7a] dark:text-gray-400 text-xl font-normal leading-8">
+                    <span className="text-[#4a6a7a] dark:text-gray-400 text-base font-normal leading-7">
                       /mo
                     </span>
                   </div>
 
                   {/* Pricing & Terms */}
-                  <div className="pt-1 pb-1">
+                  <div className="pt-1 pb-1 h-7 flex items-center">
                     <button
                       type="button"
                       onClick={() =>
@@ -464,7 +469,7 @@ export default function DriverXPlans() {
                             "Monthly service renews every 30 days. High-speed data is throttled to 2G speeds after monthly allotment is used. No multi-year contracts or termination penalties apply. Taxes and regulatory fees are calculated at checkout based on billing address.",
                         })
                       }
-                      className="text-[#1d6c5c] text-base font-normal underline leading-6 cursor-pointer text-left hover:text-[#155a4c]"
+                      className="text-[#1d6c5c] text-sm font-normal underline leading-6 cursor-pointer text-left hover:text-[#155a4c]"
                     >
                       Pricing &amp; terms
                     </button>
@@ -476,7 +481,7 @@ export default function DriverXPlans() {
                     <div className="text-[#1d6c5c] dark:text-[#37C4A0] text-5xl font-extrabold leading-10">
                       {dataAllowance}
                     </div>
-                    <div className="text-[#0f2133] dark:text-gray-200 text-base font-normal leading-7">
+                    <div className="text-[#0f2133] dark:text-gray-200 text-sm font-normal leading-6">
                       data allowance
                     </div>
                   </div>
@@ -487,22 +492,22 @@ export default function DriverXPlans() {
                     {/* Hotspot */}
                     {hotspotAllowance && (
                     <div className="h-11 flex items-center gap-3 border-b border-[#e5eeec] dark:border-gray-700">
-                      <div className="w-6 h-6 flex items-center justify-center text-[#1d6c5c] dark:text-[#37C4A0] shrink-0">
-                        <Wifi size={18} strokeWidth={2.2} />
+                      <div className="w-5 h-5 flex items-center justify-center text-[#1d6c5c] dark:text-[#37C4A0] shrink-0">
+                        <Wifi size={17} strokeWidth={2.2} />
                       </div>
-                      <div className="text-[#0f2133] dark:text-gray-200 text-base leading-5">
+                      <div className="text-[#0f2133] dark:text-gray-200 text-sm leading-5">
                         <span className="font-bold">{hotspotAllowance}</span>{" "}
-                        <span className="font-normal">mobile hotspot</span>
+                        <span className="font-normal text-[#4a6a7a] dark:text-gray-400">mobile hotspot</span>
                       </div>
                     </div>
                     )}
 
                     {/* 5G Access & IoT Mode */}
                     <div className="h-11 flex items-center gap-3">
-                      <div className="w-6 h-6 flex items-center justify-center text-[#1d6c5c] dark:text-[#37C4A0] shrink-0">
-                        <Radio size={18} strokeWidth={2.2} />
+                      <div className="w-5 h-5 flex items-center justify-center text-[#1d6c5c] dark:text-[#37C4A0] shrink-0">
+                        <Radio size={17} strokeWidth={2.2} />
                       </div>
-                      <div className="text-[#0f2133] dark:text-gray-200 text-base font-bold leading-5">
+                      <div className="text-[#0f2133] dark:text-gray-200 text-sm font-bold leading-5">
                         5G access &amp; IoT mode
                       </div>
                     </div>
@@ -533,11 +538,11 @@ export default function DriverXPlans() {
                             "Provides high-speed data for connected vehicles, tablets, telematics, and hotspot devices. Features include automated failover, 5G Ultra-Wideband access, IoT connectivity optimization, and flexible monthly renewals.",
                         })
                       }
-                      className="text-[#1d6c5c] text-base font-normal underline leading-6 cursor-pointer hover:text-[#155a4c]"
+                      className="text-[#1d6c5c] text-sm font-normal underline leading-6 cursor-pointer hover:text-[#155a4c]"
                     >
                       Plan details
                     </button>
-                    <span className="text-[#aac8d3] text-base font-normal">|</span>
+                    <span className="text-[#aac8d3] text-sm font-normal">|</span>
                     <button
                       type="button"
                       onClick={() =>
@@ -546,7 +551,7 @@ export default function DriverXPlans() {
                           content: `Broadband Consumer Facts:\n• Provider: DriverX Mobile\n• Monthly Base Charge: $${plan.final_price}\n• Typical Download Speeds: 75–250 Mbps on 5G\n• Typical Upload Speeds: 10–40 Mbps\n• Network Management: No data limits, throttled to 2G after monthly allotment\n• Privacy & Security: Fully FCC & PCI compliant`,
                         })
                       }
-                      className="text-[#1d6c5c] text-base font-normal underline leading-6 cursor-pointer hover:text-[#155a4c]"
+                      className="text-[#1d6c5c] text-sm font-normal underline leading-6 cursor-pointer hover:text-[#155a4c]"
                     >
                       Broadband label
                     </button>
