@@ -162,13 +162,13 @@ const Postpaidplans = () => {
         </div>
 
         <div className="relative mx-auto max-w-[1280px] px-8 py-10 flex flex-col justify-center min-h-[288px]">
-          <p className="text-[#f5c518] font-extrabold tracking-widest text-xl uppercase leading-9">
+          <p className="text-[#f5c518] font-extrabold tracking-wider text-xl uppercase leading-9">
             Postpaid plans
           </p>
-          <h1 className="mt-1.5 text-white font-extrabold text-5xl leading-[1.05] tracking-tight max-w-[640px]">
+          <h1 className="mt-1 text-white font-extrabold text-4xl sm:text-5xl leading-[1.08] tracking-tight max-w-[640px]">
             Work connected. Choose<br />confidently.
           </h1>
-          <p className="mt-3 text-[#e8eeec] text-xl font-normal leading-7 max-w-[452px]">
+          <p className="mt-3 text-[#e8eeec] text-base sm:text-lg font-normal leading-7 max-w-[480px]">
             Monthly plans for the way you drive. Compare data,<br className="hidden md:block" /> hotspot and international features.
           </p>
         </div>
@@ -176,16 +176,16 @@ const Postpaidplans = () => {
 
       {/* ── TABS ──────────────────────────────────────────────────────── */}
       <nav className="bg-white dark:bg-gray-800 border-b border-[#b2d8d1]">
-        <ul className="mx-auto max-w-[1440px] flex justify-start overflow-x-auto">
+        <ul className="mx-auto flex justify-center items-center overflow-x-auto scrollbar-hide px-4">
           {tabs.map((t, i) => (
             <li key={t.label} className="flex items-center shrink-0">
-              {i > 0 && <span className="h-5 w-px bg-[#aac8d3] self-center" />}
+              {i > 0 && <span className="h-4 w-px bg-[#aac8d3] self-center shrink-0" />}
               <Link
                 href={t.href}
-                className={`relative block px-7 py-3 text-xl leading-8 min-h-14 flex items-center ${
+                className={`relative block px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center transition-colors ${
                   t.active
-                    ? "text-[#1d6c5c] font-extrabold after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[5px] after:bg-[#1d6c5c] after:rounded-t-[5px]"
-                    : "text-[#0f2133] font-semibold hover:text-[#1d6c5c]"
+                    ? "text-[#1d6c5c] font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:bg-[#1d6c5c] after:rounded-t-[2px]"
+                    : "text-[#0f2133] dark:text-gray-200 hover:text-[#1d6c5c]"
                 }`}
               >
                 {t.label}
@@ -200,7 +200,7 @@ const Postpaidplans = () => {
 
         {/* Heading row */}
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h2 className="text-[#0f2133] dark:text-white text-5xl font-extrabold leading-10 tracking-tight">
+          <h2 className="text-[#0f2133] dark:text-white text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight">
             A clearer choice for every workday.
           </h2>
           {/* Compare full features */}
@@ -244,7 +244,7 @@ const Postpaidplans = () => {
           <div className="pl-7 border-l border-[#89c8bb]">
             <div className="flex items-baseline gap-1">
               <span className="text-[#0f2133] text-5xl font-extrabold leading-[48px]">$220</span>
-              <span className="text-[#4a6a7a] text-xl font-normal leading-8">/mo</span>
+              <span className="text-[#4a6a7a] text-base font-normal leading-7">/mo</span>
             </div>
           </div>
 

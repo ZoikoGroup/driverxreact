@@ -240,13 +240,13 @@ const Prepaidplans = () => {
         </div>
 
         <div className="relative mx-auto max-w-[1280px] px-8 py-10 flex flex-col justify-center min-h-[256px]">
-          <p className="text-[#f5c518] font-extrabold tracking-widest text-xl uppercase leading-9">
+          <p className="text-[#f5c518] font-extrabold tracking-wider text-xl uppercase leading-9">
             Prepaid plans
           </p>
-          <h1 className="mt-1.5 text-white font-extrabold text-5xl leading-[1.05] tracking-tight max-w-[640px]">
+          <h1 className="mt-1 text-white font-extrabold text-4xl sm:text-5xl leading-[1.08] tracking-tight max-w-[640px]">
             Plan ahead. Keep moving.
           </h1>
-          <p className="mt-3 text-[#e8eeec] text-xl font-normal leading-7 max-w-[452px]">
+          <p className="mt-3 text-[#e8eeec] text-base sm:text-lg font-normal leading-7 max-w-[480px]">
             Pay upfront. Choose the data and hotspot allowance<br className="hidden md:block" /> that fits your workday.
           </p>
         </div>
@@ -254,16 +254,16 @@ const Prepaidplans = () => {
 
       {/* ── TABS ──────────────────────────────────────────────────────── */}
       <nav className="bg-white dark:bg-gray-800 border-b border-[#b2d8d1]">
-        <ul className="mx-auto max-w-[1440px] flex justify-start overflow-x-auto">
+        <ul className="mx-auto flex justify-center items-center overflow-x-auto scrollbar-hide px-4">
           {tabs.map((t, i) => (
             <li key={t.label} className="flex items-center shrink-0">
-              {i > 0 && <span className="h-5 w-px bg-[#aac8d3] self-center" />}
+              {i > 0 && <span className="h-4 w-px bg-[#aac8d3] self-center shrink-0" />}
               <Link
                 href={t.href}
-                className={`relative block px-7 py-3 text-xl leading-8 min-h-14 flex items-center ${
+                className={`relative block px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center transition-colors ${
                   t.active
-                    ? "text-[#1d6c5c] font-extrabold after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[5px] after:bg-[#1d6c5c] after:rounded-t-[5px]"
-                    : "text-[#0f2133] font-semibold hover:text-[#1d6c5c]"
+                    ? "text-[#1d6c5c] font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:bg-[#1d6c5c] after:rounded-t-[2px]"
+                    : "text-[#0f2133] dark:text-gray-200 hover:text-[#1d6c5c]"
                 }`}
               >
                 {t.label}
@@ -278,7 +278,7 @@ const Prepaidplans = () => {
 
         {/* Heading row */}
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h2 className="text-[#0f2133] dark:text-white text-5xl font-extrabold leading-10 tracking-tight">
+          <h2 className="text-[#0f2133] dark:text-white text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight">
             Four plans. A clear choice.
           </h2>
           {/* Compare all plans */}

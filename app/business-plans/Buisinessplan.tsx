@@ -370,16 +370,16 @@ export default function Buisinessplans() {
 
       {/* ── CATEGORY TABS ───────────────────────────────────────────── */}
       <nav className="bg-white dark:bg-gray-800 border-b border-[#b2d8d1]">
-        <ul className="mx-auto max-w-[1440px] flex justify-start md:justify-center overflow-x-auto scrollbar-hide">
+        <ul className="mx-auto flex justify-center items-center overflow-x-auto scrollbar-hide px-4">
           {tabs.map((t, i) => (
             <li key={t.label} className="flex items-center shrink-0">
-              {i > 0 && <span className="h-5 w-px bg-[#aac8d3] self-center" />}
+              {i > 0 && <span className="h-4 w-px bg-[#aac8d3] self-center shrink-0" />}
               <Link
                 href={t.href}
-                className={`relative block px-6 sm:px-7 py-3 text-lg sm:text-xl leading-8 min-h-14 flex items-center transition-colors ${
+                className={`relative block px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center transition-colors ${
                   t.active
-                    ? "text-[#1d6c5c] font-extrabold after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[5px] after:bg-[#1d6c5c] after:rounded-t-[5px]"
-                    : "text-[#0f2133] dark:text-gray-200 font-semibold hover:text-[#1d6c5c]"
+                    ? "text-[#1d6c5c] font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:bg-[#1d6c5c] after:rounded-t-[2px]"
+                    : "text-[#0f2133] dark:text-gray-200 hover:text-[#1d6c5c]"
                 }`}
               >
                 {t.label}
@@ -393,10 +393,10 @@ export default function Buisinessplans() {
       <div id="plans" className="mx-auto max-w-[1280px] px-4 md:px-8 pt-8 pb-4 flex flex-col gap-5">
         {/* Heading & Subtitle */}
         <div>
-          <h2 className="text-[#0f2133] dark:text-white text-3xl sm:text-5xl font-extrabold leading-10 tracking-tight">
+          <h2 className="text-[#0f2133] dark:text-white text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight">
             Business plans built to move with you.
           </h2>
-          <p className="text-[#4a6a7a] dark:text-gray-400 text-base font-normal mt-1 leading-7">
+          <p className="text-[#4a6a7a] dark:text-gray-400 text-sm sm:text-base font-normal mt-1 leading-6">
             Compare transparent data, hotspot and fleet features.
           </p>
         </div>
@@ -422,7 +422,7 @@ export default function Buisinessplans() {
         {/* Plan Cards Grid */}
         {loading && <p className="py-10 text-center text-[#4a6a7a]">Loading plans…</p>}
         {!loading && error && <p className="py-10 text-center text-red-500 font-medium">{error}</p>}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div className="flex flex-wrap justify-center items-stretch gap-5 pt-4">
           {pricedPlans.map((plan) => {
             const dataInfo = getDataAllowanceText(plan);
             const isPopular = plan.is_popular;
@@ -434,7 +434,7 @@ export default function Buisinessplans() {
             return (
               <div
                 key={plan.id}
-                className={`relative bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-[0px_6px_18px_-12px_rgba(16,38,59,0.35)] flex flex-col justify-between hover:shadow-md transition-all duration-200 ${
+                className={`relative w-full sm:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] lg:max-w-[305px] min-h-[580px] bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-[0px_6px_18px_-12px_rgba(16,38,59,0.35)] flex flex-col justify-between hover:shadow-md transition-all duration-200 ${
                   isPopular
                     ? "border-2 border-[#f5c518] dark:border-[#f5c518]"
                     : "border border-[#c8e3de]"
@@ -449,23 +449,38 @@ export default function Buisinessplans() {
 
                 <div>
                   {/* Card Name */}
-                  <h3 className="text-[#0f2133] dark:text-white text-2xl font-extrabold leading-7 tracking-tight mt-1">
+                  <h3 className="text-[#0f2133] dark:text-white text-2xl font-extrabold leading-7 tracking-tight min-h-[32px] mt-1">
                     {plan.name}
                   </h3>
 
                   {/* Subtitle */}
-                  {plan.short_description && (
-                    <p className="mt-1 text-[#4a6a7a] dark:text-gray-400 text-sm font-normal min-h-[40px] leading-5">
-                      {plan.short_description}
-                    </p>
-                  )}
+                  <p className="mt-1 text-[#4a6a7a] dark:text-gray-400 text-sm font-normal min-h-[40px] flex items-center leading-5">
+                    {plan.short_description || "For fleets, growing teams, and daily operations."}
+                  </p>
 
                   {/* Price */}
-                  <div className="pt-2 flex items-baseline gap-1">
+                  <div className="pt-2 flex items-baseline gap-1 h-12">
                     <span className="text-[#0f2133] dark:text-white text-5xl font-extrabold leading-[48px]">
                       ${displayPrice}
                     </span>
                     <span className="text-[#4a6a7a] dark:text-gray-400 text-base font-normal leading-7">/line/mo</span>
+                  </div>
+
+                  {/* Pricing & Terms */}
+                  <div className="pt-1 pb-1 h-7 flex items-center">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setDetailModal({
+                          title: `${plan.name} - Pricing & Terms`,
+                          content:
+                            "Monthly service renews every 30 days. No long-term contracts. Volume fleet discounts apply automatically at checkout based on total line count.",
+                        })
+                      }
+                      className="text-[#1d6c5c] text-sm font-normal underline leading-6 cursor-pointer text-left hover:text-[#155a4c]"
+                    >
+                      Pricing &amp; terms
+                    </button>
                   </div>
 
                   {/* Data Allowance Box */}
