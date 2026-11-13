@@ -192,15 +192,15 @@ export default function AuthShell({
   children: ReactNode;
 }) {
   return (
-    <div className="grid min-h-screen bg-[#f2f6f9] lg:grid-cols-[52%_48%] dark:bg-gray-950">
-      {/* ---------------- LEFT: hero panel ---------------- */}
-      <aside className="relative hidden lg:flex flex-col overflow-hidden px-12 xl:px-14 py-10 text-white">
+    <div className="grid min-h-screen bg-[#f2f6f9] lg:grid-cols-[55%_45%] dark:bg-gray-950">
+      {/* ---------------- LEFT: hero panel (below the form on mobile) ---------------- */}
+      <aside className="relative order-2 flex flex-col overflow-hidden px-5 py-10 text-white sm:px-10 lg:order-1 xl:px-12">
         <Image
           src="/images/login/login.webp"
           alt="Smiling driver leaning on his car in front of a city skyline at sunset"
           fill
           priority
-          sizes="52vw"
+          sizes="(min-width: 1024px) 55vw, 100vw"
           className="object-cover object-center"
         />
         <div
@@ -211,13 +211,13 @@ export default function AuthShell({
         <div className="relative flex flex-1 flex-col">
           <Link
             href="/"
-            className="inline-flex w-fit items-center rounded-2xl bg-white px-4 py-2.5 shadow-lg"
+            className="hidden w-fit items-center rounded-2xl bg-white px-4 py-2.5 shadow-lg lg:inline-flex"
           >
             <Image src="/images/Logo.svg.png" alt="DriverX Mobile" width={120} height={34} priority />
           </Link>
 
-          <div className="mt-auto">
-            <h1 className="text-[44px] xl:text-[52px] font-extrabold leading-[1.02] tracking-tight [text-shadow:0_2px_18px_rgba(255,255,255,0.35)]">
+          <div className="mt-auto pt-6 lg:pt-16">
+            <h1 className="text-[34px] sm:text-[44px] xl:text-[52px] font-extrabold leading-[1.02] tracking-tight [text-shadow:0_2px_18px_rgba(255,255,255,0.35)]">
               <span className="block text-[#10294a]">Your drive</span>
               <span className="block text-[#2f8f4e]">Greater opportunities</span>
             </h1>
@@ -226,27 +226,29 @@ export default function AuthShell({
               Real support. On the road and in your corner.
             </p>
 
-            <ul className="mt-8 grid max-w-[440px] grid-cols-2 gap-3.5">
+            <ul className="mt-8 grid w-full max-w-[680px] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5">
               {FEATURES.map(({ icon: Icon, title, text }) => (
                 <li
                   key={title}
-                  className="flex items-start gap-3 rounded-2xl bg-white/95 p-3.5 text-[#1f2d3d] shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur"
+                  className="flex min-w-0 items-center gap-3 rounded-2xl bg-white/95 px-4 py-3.5 text-[#1f2d3d] shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e3f1ee] text-[#2f8a80]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e3f1ee] text-[#2f8a80]">
                     <Icon className="h-[18px] w-[18px]" />
                   </span>
-                  <span>
-                    <span className="block text-[13px] font-bold leading-4">{title}</span>
-                    <span className="mt-1 block text-[11px] leading-[14px] text-[#5b6b79]">{text}</span>
+                  <span className="min-w-0">
+                    <span className="block text-[14px] font-bold leading-5">{title}</span>
+                    <span className="mt-0.5 block text-[12px] leading-4 text-[#5b6b79] md:whitespace-nowrap lg:whitespace-normal min-[1320px]:whitespace-nowrap">
+                      {text}
+                    </span>
                   </span>
                 </li>
               ))}
             </ul>
 
-            <dl className="mt-10 flex w-fit items-center divide-x divide-white/25 rounded-2xl bg-[#0c1a2b]/55 px-2 py-3 backdrop-blur-md">
+            <dl className="mt-8 grid w-full grid-cols-3 divide-x divide-white/25 rounded-2xl bg-[#0c1a2b]/55 px-1 py-3 backdrop-blur-md sm:mt-10 sm:flex sm:w-fit sm:items-center sm:px-2">
               {STATS.map(({ icon: Icon, value, label }) => (
-                <div key={label} className="flex items-center gap-3 px-4">
-                  <Icon className="h-5 w-5 shrink-0 text-white" />
+                <div key={label} className="flex items-center gap-3 px-2 sm:px-4">
+                  <Icon className="hidden h-5 w-5 shrink-0 text-white sm:block" />
                   <div>
                     <dt className="sr-only">{label}</dt>
                     <dd className="text-[16px] font-extrabold leading-5">{value}</dd>
@@ -260,7 +262,7 @@ export default function AuthShell({
       </aside>
 
       {/* ---------------- RIGHT: form card ---------------- */}
-      <section className="flex items-center justify-center px-4 py-10 sm:px-8">
+      <section className="order-1 flex items-center justify-center px-4 py-10 sm:px-8 lg:order-2">
         <div className="w-full max-w-[460px] rounded-[22px] bg-white px-4 pt-3 pb-5 shadow-[0_20px_60px_rgba(16,41,74,0.08)] sm:px-5 dark:bg-gray-900">
           {/* Mobile logo */}
           <Link href="/" className="mb-3 mt-2 flex justify-center lg:hidden">
