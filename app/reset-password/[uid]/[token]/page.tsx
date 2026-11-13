@@ -2,6 +2,15 @@
 
 import { use, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import AuthShell, {
+  AuthAlert,
+  AuthHeading,
+  authInput,
+  authLabel,
+  authLink,
+  authPrimaryBtn,
+} from "../../../components/auth/AuthShell";
 
 type PageProps = {
   params: Promise<{
@@ -61,49 +70,55 @@ export default function ResetPasswordPage({ params }: PageProps) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-        {/* extra header removed */}
+    <AuthShell activeTab="reset">
+      <AuthHeading title="Reset password" subtitle="Choose a new password for your DriverXmobile account." />
 
-      <main className="flex-grow flex items-center justify-center bg-gray-100 py-8 px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            Reset Password
-          </h2>
-
-          <form onSubmit={handleReset} className="space-y-4">
-            <input
-              type="password"
-              placeholder="New Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-3 py-2 border rounded-md"
-            />
-
-            <input
-              type="password"
-              placeholder="Confirm New Password"
-              value={password2}
-              onChange={(e) => setPassword2(e.target.value)}
-              required
-              className="w-full px-3 py-2 border rounded-md"
-            />
-
-            {error && <p className="text-red-600 text-sm">{error}</p>}
-            {success && <p className="text-green-600 text-sm">{success}</p>}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-2 px-4 rounded-md text-white bg-orange-500 hover:bg-orange-600 disabled:opacity-60"
-            >
-              {loading ? "Resetting..." : "Reset Password"}
-            </button>
-          </form>
+      <form onSubmit={handleReset} className="space-y-4">
+        <div>
+          <label htmlFor="rp-password" className={authLabel}>
+            New password
+          </label>
+          <input
+            id="rp-password"
+            type="password"
+            placeholder="Enter new password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            autoComplete="new-password"
+            className={authInput}
+          />
         </div>
-      </main>
 
-  {/* extra footer removed */}
-    </div>
+        <div>
+          <label htmlFor="rp-password2" className={authLabel}>
+            Confirm new password
+          </label>
+          <input
+            id="rp-password2"
+            type="password"
+            placeholder="Confirm new password"
+            value={password2}
+            onChange={(e) => setPassword2(e.target.value)}
+            required
+            autoComplete="new-password"
+            className={authInput}
+          />
+        </div>
+
+        {error && <AuthAlert type="error">{error}</AuthAlert>}
+        {success && <AuthAlert type="success">{success}</AuthAlert>}
+
+        <button type="submit" disabled={loading} className={authPrimaryBtn}>
+          {loading ? "Resetting..." : "Reset Password"}
+        </button>
+      </form>
+
+      <p className="mt-6 text-center text-sm text-[#1f2d3d] dark:text-gray-300">
+        <Link href="/login" className={authLink}>
+          Back to login
+        </Link>
+      </p>
+    </AuthShell>
   );
 }
