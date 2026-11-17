@@ -5,6 +5,7 @@ import Blog1 from "../Blog1";
 import Blog2 from "../Blog2";
 import Blog3 from "../Blog3";
 import Blog4 from "../Blog4";
+import Blog5 from "../Blog5";
 import { BLOGS } from "../blogsData";
 
 interface PageProps {
@@ -73,6 +74,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {blog.id === "2" && <Blog2 />}
       {blog.id === "3" && <Blog3 />}
       {blog.id === "4" && <Blog4 />}
+      {blog.id === "5" && <Blog5 />}
     </div>
   );
 }
