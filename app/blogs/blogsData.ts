@@ -68,4 +68,18 @@ export const BLOGS: BlogPostItem[] = [
     metaDescription:
       "Learn how to choose reliable delivery driver mobile service, including prepaid, postpaid, unlimited talk and text, data, coverage and affordable plans.",
   },
+  {
+    id: "5",
+    slug: "save-35-percent-driverx-mobile-plans",
+    href: "/blogs/save-35-percent-driverx-mobile-plans",
+    title: "Drive Smarter and Save More: Get 35% Off DriverX Mobile Plans for Three Months",
+    category: "OFFERS & SAVINGS",
+    image: "/images/new/DriverX-branded delivery vans parked at a logistics depot at sunrise.png",
+    excerpt:
+      "Eligible customers can get 35% off eligible DriverX Mobile driver-plan charges for the first three months, with a potential activation-fee waiver for qualifying new lines.",
+    date: "Nov 17, 2026",
+    readTime: "8 min read",
+    metaDescription:
+      "Discover how eligible customers can save 35% on DriverX Mobile eligible driver-plan charges for the first three months, with a potential activation-fee waiver for qualifying new lines.",
+  },
 ];
