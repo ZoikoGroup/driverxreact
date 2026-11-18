@@ -9,6 +9,23 @@ import { DowntimeSplit } from "./components/DowntimeSplit";
 import { Hero } from "./components/Hero";
 import { NewsletterSignup } from "./components/NewsletterSignup";
 
+export const metadata = {
+  title: "Black Friday Mobile Deals: Save Up to 40% | DriverX Mobile",
+  description:
+    "Save up to 40% on DriverX Mobile Black Friday deals. Explore flexible wireless plans, reliable connectivity and exclusive offers for drivers and businesses.",
+  alternates: {
+    canonical: "https://driverxmobile.com/black-friday",
+  },
+  openGraph: {
+    title: "Black Friday Mobile Deals: Save Up to 40% | DriverX Mobile",
+    description:
+      "Save up to 40% on DriverX Mobile Black Friday deals. Explore flexible wireless plans, reliable connectivity and exclusive offers for drivers and businesses.",
+    url: "https://driverxmobile.com/black-friday",
+    siteName: "DriverX Mobile",
+    type: "website",
+  },
+};
+
 export default function BlackFridayPage() {
   return (
     <main
