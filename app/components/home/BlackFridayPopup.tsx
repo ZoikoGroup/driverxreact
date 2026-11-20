@@ -7,7 +7,7 @@ import { fontVariables } from "../../black-friday/components/fonts";
 import styles from "./BlackFridayPopup.module.css";
 
 // Campaign window (local time). Popup stops appearing once the sale is over.
-const SALE_START = new Date("2026-11-27T00:00:00");
+const SALE_START = new Date("2026-11-20T00:00:00");
 const SALE_END = new Date("2026-12-01T00:00:00");
 const OPEN_DELAY_MS = 700;
 
@@ -19,9 +19,9 @@ const PLANS = [
 ] as const;
 
 const TICKER = [
-  "Black Friday · 27 Nov",
+  "Black Friday · 20 Nov",
   "35% off driver plans",
-  "Cyber Monday · 30 Nov",
+  "Sale ends · 30 Nov",
   "First 3 months",
   "Plans from $16/mo",
 ];
@@ -154,7 +154,7 @@ export default function BlackFridayPopup() {
 
             <div className={styles.dateTag}>
               <span className={styles.dateTagTitle}>Black Friday</span>
-              <span className={styles.dateTagDates}>27 &amp; 30 Nov 2026</span>
+              <span className={styles.dateTagDates}>20 – 30 Nov 2026</span>
             </div>
           </div>
 
@@ -199,7 +199,7 @@ export default function BlackFridayPopup() {
                 </div>
               ) : (
                 <div className={styles.liveBanner}>
-                  Ends Cyber Monday · 30 Nov 2026
+                  Ends 30 Nov 2026
                 </div>
               )}
             </div>
