@@ -7,8 +7,8 @@ import { FONT_DISPLAY, WDTH, fontVariables } from "./fonts";
 import { ArrowRightIcon, SignalIcon } from "./icons";
 
 const DATES = [
-  { label: "Black Friday", value: "27 Nov 2026" },
-  { label: "Cyber Monday", value: "30 Nov 2026" },
+  { label: "Sale starts", value: "20 Nov 2026" },
+  { label: "Sale ends", value: "30 Nov 2026" },
 ] as const;
 
 export function SalePopup() {
@@ -70,7 +70,7 @@ export function SalePopup() {
               Black Friday
             </p>
             <p className="text-[11px] font-bold leading-[14px] text-[#fcd018]">
-              27 &amp; 30 Nov 2026
+              20 – 30 Nov 2026
             </p>
           </div>
         </div>

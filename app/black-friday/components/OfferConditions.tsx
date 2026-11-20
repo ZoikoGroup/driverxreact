@@ -52,7 +52,7 @@ const CONDITIONS: readonly Condition[] = [
   {
     label: "Campaign dates",
     detail:
-      "Black Friday 27 Nov and Cyber Monday 30 Nov 2026. Exact offer window",
+      "Black Friday sale runs 20 Nov to 30 Nov 2026. Exact offer window",
     status: "Pending",
     tone: "pending",
   },
