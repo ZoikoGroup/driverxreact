@@ -547,4 +547,4 @@ export const SPARE_ICONS = [
 ];
 
 export const LOGIN = { label: "Log in", href: "/login" } as const;
-export const CTA = { label: "Get Connected", href: "/register" } as const;
+export const CTA = { label: "Get Connected", href: "/24-7-driver-support" } as const;
