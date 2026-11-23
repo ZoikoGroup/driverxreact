@@ -4,6 +4,7 @@ import AuthProvider from "./components/AuthProvider";
 import Script from "next/script";
 import Navbar from "./components/layout/navbar/Navbar";
 import Footer from "./components/layout/footer/Footer";
+import DrixoWidget from "./components/drixo/DrixoWidget";
 export const metadata = {
   title: "DriverX",
   description: "DriverX Mobile - Your Ultimate Driving Companion",
@@ -56,6 +57,8 @@ export default function RootLayout({
           <Navbar />
           <div className="w-full overflow-hidden">{children}</div>
           <Footer />
+          {/* Drixo Phase 1 shell: off unless explicitly enabled (not a secret). */}
+          {process.env.NEXT_PUBLIC_DRIXO_ENABLED === "true" && <DrixoWidget />}
         </AuthProvider>
       </body>
     </html>

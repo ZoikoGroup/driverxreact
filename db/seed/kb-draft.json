@@ -1,0 +1,852 @@
+{
+  "_note": "DRAFT editorial records extracted from Document 06 v1.0. None are approved for public use (D-03). Do not import as APPROVED.",
+  "sources": [
+    {
+      "key": "S01",
+      "url": "https://driverxmobile.com/",
+      "title": "Homepage and latest plan spotlight",
+      "observedDecision": "PUBLIC_CANDIDATE"
+    },
+    {
+      "key": "S02",
+      "url": "https://driverxmobile.com/plans",
+      "title": "Plans directory",
+      "observedDecision": "HOLD"
+    },
+    {
+      "key": "S03",
+      "url": "https://driverxmobile.com/faqs-self-service",
+      "title": "FAQs & self-service",
+      "observedDecision": "REVIEW"
+    },
+    {
+      "key": "S04",
+      "url": "https://driverxmobile.com/activate-your-esim-psim",
+      "title": "SIM / eSIM activation",
+      "observedDecision": "HOLD"
+    },
+    {
+      "key": "S05",
+      "url": "https://driverxmobile.com/24-7-driver-support",
+      "title": "Driver support contact",
+      "observedDecision": "PUBLIC_CANDIDATE"
+    },
+    {
+      "key": "S06",
+      "url": "https://driverxmobile.com/fleet-connectivity-without-compromise",
+      "title": "Fleet connectivity",
+      "observedDecision": "HOLD"
+    },
+    {
+      "key": "S07",
+      "url": "https://driverxmobile.com/privacy-policy",
+      "title": "Privacy policy",
+      "observedDecision": "REVIEW"
+    },
+    {
+      "key": "S08",
+      "url": "https://driverxmobile.com/terms-of-service-legal",
+      "title": "Terms of service",
+      "observedDecision": "REVIEW"
+    },
+    {
+      "key": "S09",
+      "url": "https://driverxmobile.com/network-coverage-performance",
+      "title": "Network coverage / performance",
+      "observedDecision": "HOLD"
+    },
+    {
+      "key": "S10",
+      "url": "https://driverxmobile.com/data-only-plans",
+      "title": "Data-only plans",
+      "observedDecision": "HOLD"
+    },
+    {
+      "key": "S11",
+      "url": "https://driverxmobile.com/custom-iot-plans",
+      "title": "Custom IoT plans",
+      "observedDecision": "REVIEW"
+    },
+    {
+      "key": "S12",
+      "url": "https://driverxmobile.com/join-driverx",
+      "title": "Join DriverX",
+      "observedDecision": "HOLD"
+    },
+    {
+      "key": "S13",
+      "url": "https://driverxmobile.com/prepaid-plans",
+      "title": "Prepaid plans",
+      "observedDecision": "REVIEW"
+    },
+    {
+      "key": "S14",
+      "url": "https://driverxmobile.com/dashboard",
+      "title": "Account sign-in",
+      "observedDecision": "REVIEW"
+    }
+  ],
+  "articles": [
+    {
+      "code": "KB-001",
+      "title": "What DriverX Mobile provides",
+      "category": "Brand & scope",
+      "status": "DRAFT",
+      "intentFlow": [
+        "ABOUT",
+        "PUBLIC_BRAND",
+        "PLANS"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "What is DriverX Mobile?",
+        "Is DriverX like a rideshare app?"
+      ],
+      "answer": "DriverX Mobile offers wireless connectivity designed around the needs of drivers, delivery professionals, trucking and logistics teams, and fleets. It is a wireless service, not a rideshare-dispatch or driver-payments app. You can explore mobile plans and coverage information on the official DriverX website.",
+      "doNotImply": "Do not imply gig-platform affiliation or guaranteed earnings."
+    },
+    {
+      "code": "KB-002",
+      "title": "Choose a driver profile",
+      "category": "Brand & scope",
+      "status": "DRAFT",
+      "intentFlow": [
+        "DRIVER_PROFILE",
+        "PLANS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Do you have plans for DoorDash drivers?",
+        "What if I drive a truck?"
+      ],
+      "answer": "Tell me which best describes your work: rideshare, deliveries, long-haul or logistics, fleet management, or general mobile use. I can point you to relevant published options and explain the trade-offs between data, hotspot, and coverage without guaranteeing a particular outcome."
+    },
+    {
+      "code": "KB-003",
+      "title": "Public support contact",
+      "category": "Support",
+      "status": "DRAFT",
+      "intentFlow": [
+        "CONTACT",
+        "SUPPORT_ROUTE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01",
+        "S05"
+      ],
+      "userMightAsk": [
+        "How do I contact DriverX?",
+        "Do you have a support phone number?"
+      ],
+      "answer": "For direct help, use DriverX Mobile’s official support page or the contact details published there. I can explain your issue and help you prepare the questions to ask; I cannot confirm that a human agent is online or that a case has been opened.",
+      "doNotImply": "Verified contact URL only. Link and phone must be periodically rechecked."
+    },
+    {
+      "code": "KB-031",
+      "title": "Network outage or downtime",
+      "category": "Support",
+      "status": "DRAFT",
+      "intentFlow": [
+        "OUTAGE",
+        "CONNECTION_TRIAGE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01",
+        "S05"
+      ],
+      "userMightAsk": [
+        "Is the network down right now?",
+        "Has the outage been fixed?"
+      ],
+      "answer": "I cannot confirm a real-time outage from this public chat unless an approved, live status integration provides that information. If you have no service, we can run safe basic checks and I can direct you to the official support channel."
+    },
+    {
+      "code": "KB-032",
+      "title": "Human agent and escalation",
+      "category": "Support",
+      "status": "DRAFT",
+      "intentFlow": [
+        "HUMAN",
+        "SUPPORT_ROUTE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01",
+        "S05"
+      ],
+      "userMightAsk": [
+        "Connect me to a person",
+        "I need urgent human support"
+      ],
+      "answer": "You can reach DriverX through its official public contact channels. I can summarize the public troubleshooting steps to mention, but a chat-to-agent transfer, ticket number, agent availability, or response time must not be claimed unless a connected support system confirms it."
+    },
+    {
+      "code": "KB-038",
+      "title": "Accessibility support",
+      "category": "Support",
+      "status": "DRAFT",
+      "intentFlow": [
+        "ACCESSIBILITY",
+        "ACCESSIBILITY_GUIDE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Can I use this with a screen reader?",
+        "Is your chatbot keyboard accessible?"
+      ],
+      "answer": "Drixo is being designed to support keyboard navigation, readable controls, and screen-reader announcements. For an issue with accessibility on the website, use the official contact channel. Do not assume a specific accommodation or completed certification unless confirmed by an accessibility assessment.",
+      "doNotImply": "Future product intention, not deployed feature claim."
+    },
+    {
+      "code": "KB-004",
+      "title": "Start service: purchase vs activation",
+      "category": "Activation",
+      "status": "DRAFT",
+      "intentFlow": [
+        "PURCHASE_VS_ACTIVATION",
+        "SIM_GUIDE",
+        "ACTIVATION"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Does buying a plan activate my SIM?",
+        "What happens after checkout?"
+      ],
+      "answer": "Choosing or buying a plan and activating your SIM/eSIM are separate steps. First compare plan terms, then confirm device compatibility, and then use the official activation instructions when you are ready. I cannot activate service from this public chat."
+    },
+    {
+      "code": "KB-005",
+      "title": "Bring your own phone",
+      "category": "Activation",
+      "status": "DRAFT",
+      "intentFlow": [
+        "BYOD",
+        "SIM_GUIDE",
+        "ACTIVATION"
+      ],
+      "sources": [
+        "S01",
+        "S03"
+      ],
+      "userMightAsk": [
+        "Can I bring my own unlocked phone?",
+        "Will my phone work?"
+      ],
+      "answer": "You may be able to use your own unlocked phone, depending on device and network compatibility. Check the phone’s lock status and the official compatibility requirements before buying or activating. I cannot verify your specific device or IMEI in this public conversation.",
+      "doNotImply": "Never request IMEI in the chat composer."
+    },
+    {
+      "code": "KB-006",
+      "title": "Understand eSIM basics",
+      "category": "Activation",
+      "status": "DRAFT",
+      "intentFlow": [
+        "ESIM_GUIDE",
+        "SIM_GUIDE",
+        "ACTIVATION"
+      ],
+      "sources": [
+        "S01",
+        "S04"
+      ],
+      "userMightAsk": [
+        "What is an eSIM?",
+        "How do I install DriverX eSIM?"
+      ],
+      "answer": "An eSIM is a digital SIM profile supported by some devices. Before setup, check that your phone supports eSIM and is unlocked, and connect to Wi-Fi if installation needs a data connection. Follow the exact instructions provided in your approved activation channel; do not post a QR code or activation credentials here.",
+      "doNotImply": "No claim that QR issuance or instant provisioning is available through Drixo."
+    },
+    {
+      "code": "KB-007",
+      "title": "Physical SIM installation",
+      "category": "Activation",
+      "status": "DRAFT",
+      "intentFlow": [
+        "PSIM_GUIDE",
+        "SIM_GUIDE",
+        "ACTIVATION"
+      ],
+      "sources": [
+        "S01",
+        "S04"
+      ],
+      "userMightAsk": [
+        "How do I install my SIM?",
+        "Where does my physical SIM go?"
+      ],
+      "answer": "Turn off your device if its manufacturer recommends doing so, insert the supplied SIM using the device’s instructions, and restart as directed. Verify mobile service only after the carrier’s activation process is complete. For device-specific steps, consult your device manufacturer or official DriverX instructions.",
+      "doNotImply": "Do not repeat unverified *611 or 60-second activation promises."
+    },
+    {
+      "code": "KB-008",
+      "title": "Keep your existing phone number",
+      "category": "Activation",
+      "status": "DRAFT",
+      "intentFlow": [
+        "PORT_IN",
+        "PORTING_GUIDE",
+        "ACTIVATION"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Can I keep my number?",
+        "What is a transfer PIN?"
+      ],
+      "answer": "Eligible numbers may be transferred from an existing carrier. The published preparation guidance calls for your current account number and transfer PIN; keep your existing service active until the transfer completes. Submit these details only through an authorized secure transfer channel, not in Drixo chat.",
+      "doNotImply": "No porting ETA or success assurance."
+    },
+    {
+      "code": "KB-009",
+      "title": "Activation status inquiry is protected",
+      "category": "Activation",
+      "status": "DRAFT",
+      "intentFlow": [
+        "ACTIVATION_STATUS",
+        "ACCOUNT_GATE",
+        "SIGN_IN"
+      ],
+      "sources": [
+        "S01",
+        "S14"
+      ],
+      "userMightAsk": [
+        "Is my line active yet?",
+        "Where is my eSIM QR code?"
+      ],
+      "answer": "I cannot view your line status or retrieve an activation QR code in public chat. Please use the official secure account or activation pathway for status information, or contact DriverX support. Never paste an activation QR code, account PIN, or verification code here."
+    },
+    {
+      "code": "KB-010",
+      "title": "General connection failure",
+      "category": "Connectivity",
+      "status": "DRAFT",
+      "intentFlow": [
+        "FIX_CONNECTION",
+        "CONNECTION_TRIAGE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "My mobile data stopped working",
+        "I have no internet during deliveries"
+      ],
+      "answer": "When safely parked, first check whether calls and texts work. Then check your phone’s signal indicator, mobile-data setting, and whether the issue affects all apps or only one. I can guide you through one step at a time, but I cannot detect or repair your carrier network from this chat.",
+      "doNotImply": "Deterministic flow; ask one branching question at a time."
+    },
+    {
+      "code": "KB-011",
+      "title": "Calls work, data does not",
+      "category": "Connectivity",
+      "status": "DRAFT",
+      "intentFlow": [
+        "VOICE_OK_DATA_FAIL",
+        "CONNECTION_TRIAGE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Calls work but mobile data is down",
+        "Texts are fine but apps cannot connect"
+      ],
+      "answer": "If calls and texts work but data does not, check that mobile data is enabled for the correct SIM and that airplane mode is off while you are parked. Try a normal device restart and retest one app. If the problem continues, contact official support; avoid changing APN settings without verified device-specific instructions."
+    },
+    {
+      "code": "KB-012",
+      "title": "No signal or calls",
+      "category": "Connectivity",
+      "status": "DRAFT",
+      "intentFlow": [
+        "NO_SERVICE",
+        "CONNECTION_TRIAGE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01",
+        "S09"
+      ],
+      "userMightAsk": [
+        "My phone says no service",
+        "I cannot call or text"
+      ],
+      "answer": "When safely parked, check whether your phone recognizes the SIM and whether your location or surroundings may affect reception. You can try restarting your phone, then check published coverage guidance and contact support if the issue persists. I cannot tell whether there is a live outage without an approved status feed."
+    },
+    {
+      "code": "KB-013",
+      "title": "Only one app is failing",
+      "category": "Connectivity",
+      "status": "DRAFT",
+      "intentFlow": [
+        "APP_ONLY_FAIL",
+        "CONNECTION_TRIAGE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Only my delivery app is not loading",
+        "Maps works but one app fails"
+      ],
+      "answer": "If other websites and apps work, the problem may be specific to that app. Check the app’s own service status, updates, and permissions, and contact its support when appropriate. Drixo cannot access your rideshare or delivery-platform account or guarantee the third-party app will recover."
+    },
+    {
+      "code": "KB-014",
+      "title": "Slow mobile data",
+      "category": "Connectivity",
+      "status": "DRAFT",
+      "intentFlow": [
+        "SLOW_DATA",
+        "CONNECTION_TRIAGE",
+        "COVERAGE"
+      ],
+      "sources": [
+        "S01",
+        "S09"
+      ],
+      "userMightAsk": [
+        "Why is my internet slow?",
+        "My GPS takes forever to load"
+      ],
+      "answer": "Mobile speeds can change with location, device capabilities, congestion, network conditions, and plan terms. When parked, test whether the slowdown occurs in several apps and review current plan information. I cannot confirm an exact speed or network condition for your phone through public chat."
+    },
+    {
+      "code": "KB-015",
+      "title": "Mobile hotspot will not connect",
+      "category": "Connectivity",
+      "status": "DRAFT",
+      "intentFlow": [
+        "HOTSPOT_FAIL",
+        "HOTSPOT_TRIAGE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "My laptop cannot connect to my hotspot",
+        "Is mobile hotspot broken?"
+      ],
+      "answer": "When parked, confirm that cellular data works on the phone first. Then check that hotspot is enabled, your other device is using the correct Wi-Fi network and password, and your plan’s published hotspot allowance supports your needs. I cannot inspect current line usage or change your hotspot allowance here."
+    },
+    {
+      "code": "KB-016",
+      "title": "High-speed data allowance explained",
+      "category": "Plans & pricing",
+      "status": "DRAFT",
+      "intentFlow": [
+        "ALLOWANCES",
+        "PLANS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01",
+        "S13"
+      ],
+      "userMightAsk": [
+        "What happens after my data limit?",
+        "Is unlimited always full speed?"
+      ],
+      "answer": "Plans may distinguish high-speed data from reduced-speed use after a threshold, and hotspot limits can differ from phone data. Read the effective plan terms and Broadband Consumer Label before purchase. I will not describe any plan as unlimited high-speed unless the current approved terms explicitly say that.",
+      "doNotImply": "Homepage example: Unlimited plan advertises 35 GB high-speed then 2G; do not publish without sign-off."
+    },
+    {
+      "code": "KB-017",
+      "title": "Compare plan families",
+      "category": "Plans & pricing",
+      "status": "DRAFT",
+      "intentFlow": [
+        "PLAN_FAMILIES",
+        "PLANS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01",
+        "S02"
+      ],
+      "userMightAsk": [
+        "Do you offer prepaid or postpaid?",
+        "What is a data-only plan?"
+      ],
+      "answer": "DriverX’s public website describes prepaid, postpaid, business, and data-only options. The right choice depends on your expected data use, hotspot needs, device type, and published service terms. I can help you make a checklist, then direct you to the official plan details.",
+      "doNotImply": "Do not quote rates from incomplete /plans page."
+    },
+    {
+      "code": "KB-018",
+      "title": "Plan names and prices",
+      "category": "Plans & pricing",
+      "status": "DRAFT",
+      "intentFlow": [
+        "PRICE_QUOTE",
+        "PLANS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01",
+        "S02",
+        "S13"
+      ],
+      "userMightAsk": [
+        "How much is DriverX Starter 5?",
+        "Compare monthly prices"
+      ],
+      "answer": "I can help compare plans, but I need the current approved pricing and disclosure version before quoting a price or allowance. Please check the official plan detail and Broadband Consumer Label, or ask support for the current offer.",
+      "doNotImply": "Price-specific answers blocked pending D-01 canonical SKU/offer decision."
+    },
+    {
+      "code": "KB-019",
+      "title": "Hotspot allowance by plan",
+      "category": "Plans & pricing",
+      "status": "DRAFT",
+      "intentFlow": [
+        "HOTSPOT_ALLOWANCE",
+        "PLANS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01",
+        "S13"
+      ],
+      "userMightAsk": [
+        "How much hotspot comes with the plans?",
+        "Does the unlimited plan include hotspot?"
+      ],
+      "answer": "Hotspot use may have a separate allowance from your phone’s high-speed data. Check the current plan disclosure for the exact amount and any reduced-speed conditions. If you tell me how you use hotspot, I can help you identify which plan details to compare.",
+      "doNotImply": "Do not quote 1/5/15/20 GB until product approval."
+    },
+    {
+      "code": "KB-022",
+      "title": "Data-only and devices",
+      "category": "Plans & pricing",
+      "status": "DRAFT",
+      "intentFlow": [
+        "DATA_ONLY",
+        "PLANS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01",
+        "S10"
+      ],
+      "userMightAsk": [
+        "Do you have data plans for tablets?",
+        "Can I connect a mobile router?"
+      ],
+      "answer": "DriverX advertises data-only and hotspot connectivity for certain devices, including tablets and fleet use cases. Whether a particular router, tablet, or telematics unit works requires device, SIM, and plan compatibility confirmation. Enterprise use may need a tailored quote."
+    },
+    {
+      "code": "KB-023",
+      "title": "International service questions",
+      "category": "Plans & pricing",
+      "status": "DRAFT",
+      "intentFlow": [
+        "INTERNATIONAL",
+        "PLANS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Can I use DriverX in Canada?",
+        "Do I get international calls?"
+      ],
+      "answer": "International calling, texting, and roaming entitlements depend on the specific current plan and destination. Review the published plan terms before traveling or using service abroad; do not assume that every plan has the same benefits or rates.",
+      "doNotImply": "No destination rate without approved tariff and country list."
+    },
+    {
+      "code": "KB-020",
+      "title": "Coverage expectations",
+      "category": "Coverage",
+      "status": "DRAFT",
+      "intentFlow": [
+        "COVERAGE",
+        "COVERAGE_GUIDE",
+        "COVERAGE"
+      ],
+      "sources": [
+        "S01",
+        "S09"
+      ],
+      "userMightAsk": [
+        "Will I have signal on my routes?",
+        "Can you guarantee highway coverage?"
+      ],
+      "answer": "Coverage information predicts where service may be available; it does not guarantee a signal on every route. Buildings, terrain, vehicles, network traffic, and device compatibility can affect service. Check the approved coverage tool and your device before choosing service.",
+      "doNotImply": "External mvnoc.ai destination on homepage must be whitelisted or replaced before showing."
+    },
+    {
+      "code": "KB-021",
+      "title": "Coverage ZIP code",
+      "category": "Coverage",
+      "status": "DRAFT",
+      "intentFlow": [
+        "ZIP_LOOKUP",
+        "COVERAGE_GUIDE",
+        "COVERAGE"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Can I check coverage in 30301?",
+        "Do you need my GPS location?"
+      ],
+      "answer": "The website describes checking predicted coverage by a five-digit U.S. ZIP code; it does not require precise location access for that basic check. Drixo can explain how to use an approved coverage page, but the chatbot itself must not claim it ran a live network check."
+    },
+    {
+      "code": "KB-024",
+      "title": "Top-ups and renewals",
+      "category": "Billing & account",
+      "status": "DRAFT",
+      "intentFlow": [
+        "TOP_UPS",
+        "ACCOUNT_GATE",
+        "SIGN_IN"
+      ],
+      "sources": [
+        "S01",
+        "S03"
+      ],
+      "userMightAsk": [
+        "Can I top up my data?",
+        "When does my plan renew?"
+      ],
+      "answer": "The public website mentions top-up options, but I cannot check your balance, eligibility, renewal date, or complete a payment here. Use the official secure account or plan information to confirm options, and contact support if you need assistance."
+    },
+    {
+      "code": "KB-025",
+      "title": "Billing and account balances",
+      "category": "Billing & account",
+      "status": "DRAFT",
+      "intentFlow": [
+        "BILLING_PRIVATE",
+        "ACCOUNT_GATE",
+        "SIGN_IN"
+      ],
+      "sources": [
+        "S01",
+        "S14"
+      ],
+      "userMightAsk": [
+        "What is my bill?",
+        "How much data do I have left?"
+      ],
+      "answer": "Those details are private to your account. I cannot look up your bill, payment history, remaining data, or line status in this public chat. Please sign in through the official DriverX account page; never share payment details, passwords, or one-time codes with Drixo."
+    },
+    {
+      "code": "KB-026",
+      "title": "Refunds, cancellations and disputes",
+      "category": "Billing & account",
+      "status": "DRAFT",
+      "intentFlow": [
+        "REFUNDS",
+        "ACCOUNT_GATE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S07",
+        "S08"
+      ],
+      "userMightAsk": [
+        "Can you refund me?",
+        "How do I cancel my service?"
+      ],
+      "answer": "I can direct you to the official terms and support channels, but I cannot issue refunds, cancel lines, or decide an individual dispute in public chat. Fees, eligibility, and cancellation rules must be confirmed in the current signed service agreement or approved policy."
+    },
+    {
+      "code": "KB-027",
+      "title": "Fleet connectivity overview",
+      "category": "Fleet & IoT",
+      "status": "DRAFT",
+      "intentFlow": [
+        "FLEET_INFO",
+        "FLEET_GUIDE",
+        "FLEET_CONTACT"
+      ],
+      "sources": [
+        "S01",
+        "S06"
+      ],
+      "userMightAsk": [
+        "Can I get 100 lines for my delivery team?",
+        "Do you support business fleets?"
+      ],
+      "answer": "DriverX describes fleet connectivity for logistics teams, couriers, service vehicles, and other mobile workforces. Public options include discussion of multiple lines, data needs, devices, and telematics, but pricing, deployment dates, and service guarantees require enterprise review. I can point you to the official enterprise inquiry channel."
+    },
+    {
+      "code": "KB-028",
+      "title": "Telematics and IoT inquiries",
+      "category": "Fleet & IoT",
+      "status": "DRAFT",
+      "intentFlow": [
+        "IOT_INFO",
+        "FLEET_GUIDE",
+        "FLEET_CONTACT"
+      ],
+      "sources": [
+        "S01",
+        "S11"
+      ],
+      "userMightAsk": [
+        "Can DriverX connect vehicle trackers?",
+        "Do you have IoT SIMs?"
+      ],
+      "answer": "DriverX publicly describes connectivity options for telematics, connected vehicles, sensors, and other IoT uses. Compatibility depends on hardware, region, provisioning and commercial requirements. Share only general project needs here; avoid posting VINs, live vehicle locations, device secrets, or private fleet data."
+    },
+    {
+      "code": "KB-029",
+      "title": "Fleet administrator protected records",
+      "category": "Fleet & IoT",
+      "status": "DRAFT",
+      "intentFlow": [
+        "FLEET_PRIVATE",
+        "ACCOUNT_GATE",
+        "FLEET_CONTACT"
+      ],
+      "sources": [
+        "S06",
+        "S14"
+      ],
+      "userMightAsk": [
+        "Show me all of my fleet lines",
+        "Can you suspend a driver's SIM?"
+      ],
+      "answer": "Public Drixo cannot view or change your organization’s lines, driver records, locations, device identifiers, or fleet billing. Use the authorized fleet-management or enterprise support pathway. I cannot grant myself administrative permissions based on a chat request."
+    },
+    {
+      "code": "KB-030",
+      "title": "Driver benefits and partners",
+      "category": "Driver benefits",
+      "status": "DRAFT",
+      "intentFlow": [
+        "BENEFITS",
+        "BENEFITS_GUIDE",
+        "PLANS"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Do you give fuel discounts?",
+        "Do you offer repair and insurance help?"
+      ],
+      "answer": "DriverX describes driver-focused benefits and partner offerings. Availability, eligibility, cost, and partner terms must be confirmed on the specific current offer page. I can help you find published information, but I cannot promise a discount, reward, insurance coverage, legal service, or other benefit."
+    },
+    {
+      "code": "KB-033",
+      "title": "Parked-only safety notice",
+      "category": "Safety & privacy",
+      "status": "DRAFT",
+      "intentFlow": [
+        "DRIVING_SAFETY",
+        "SAFETY_GATE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Can you guide me while I drive?",
+        "Read me the steps during my trip"
+      ],
+      "answer": "For your safety, use this chat only when parked. If you are driving, please wait until you can safely stop before reading or following troubleshooting steps. I cannot control your vehicle or operate a navigation app for you.",
+      "doNotImply": "Do not encourage manipulating settings while driving."
+    },
+    {
+      "code": "KB-034",
+      "title": "Emergency situations",
+      "category": "Safety & privacy",
+      "status": "DRAFT",
+      "intentFlow": [
+        "EMERGENCY",
+        "SAFETY_GATE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "There was a crash",
+        "I need emergency help"
+      ],
+      "answer": "If anyone is in immediate danger or needs emergency assistance in the United States, call 911 or use appropriate local emergency services. Drixo cannot dispatch emergency responders or monitor your location. Do not use this chat instead of emergency assistance.",
+      "doNotImply": "General safety guidance; Legal review required."
+    },
+    {
+      "code": "KB-035",
+      "title": "Secrets and sensitive information",
+      "category": "Safety & privacy",
+      "status": "DRAFT",
+      "intentFlow": [
+        "SECRET_INPUT",
+        "SECRET_WARNING",
+        "PRIVACY"
+      ],
+      "sources": [
+        "S07"
+      ],
+      "userMightAsk": [
+        "Can I paste my transfer PIN?",
+        "Here is my OTP or card number"
+      ],
+      "answer": "Please do not share passwords, transfer PINs, one-time codes, full card details, or activation QR codes in this public chat. Use only the official secure account or activation form for protected information. If you already entered a secret, consider changing or revoking it through the official provider channel."
+    },
+    {
+      "code": "KB-036",
+      "title": "How Drixo uses information",
+      "category": "Safety & privacy",
+      "status": "DRAFT",
+      "intentFlow": [
+        "CHAT_PRIVACY",
+        "PRIVACY_GUIDE",
+        "PRIVACY"
+      ],
+      "sources": [
+        "S07"
+      ],
+      "userMightAsk": [
+        "Is this chat private?",
+        "Will you save my messages?"
+      ],
+      "answer": "Drixo is intended for public guidance, not private account management. Please avoid entering sensitive or identifying information. The exact chat-data storage, retention, and deletion details must be confirmed in the published Drixo-specific privacy notice; I cannot promise that every copy is immediately erased.",
+      "doNotImply": "Drixo retention still awaiting Privacy/Legal approval."
+    },
+    {
+      "code": "KB-037",
+      "title": "Uncertain or unsupported facts",
+      "category": "Fallback",
+      "status": "DRAFT",
+      "intentFlow": [
+        "NO_SOURCE",
+        "NO_SOURCE",
+        "SUPPORT"
+      ],
+      "sources": [
+        "S01"
+      ],
+      "userMightAsk": [
+        "Can you guarantee I get 5G everywhere?",
+        "What is my exact refund entitlement?"
+      ],
+      "answer": "I don’t have a verified current source for that exact answer. Rather than guess, I can show you the relevant official page or help you contact DriverX support."
+    }
+  ]
+}
