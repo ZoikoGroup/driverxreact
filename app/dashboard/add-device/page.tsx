@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { cleanImei, getImeiError } from "../../utils/imei";
 import {
   getSubscriberByEmail,
   getLinesBySubscriberID,
@@ -111,14 +112,12 @@ export default function AddDevicePage() {
   };
 
   const validateAndCheckDevice = async (): Promise<void> => {
-    const cleanedImei = imei.replace(/\s/g, "").trim();
+    const cleanedImei = cleanImei(imei);
 
-    if (!cleanedImei) {
-      setImeiError("Please enter your IMEI/MEID number.");
-      return;
-    }
-    if (!/^\d{14,16}$/.test(cleanedImei)) {
-      setImeiError("Please enter a valid 14-16 digit IMEI number.");
+    // Reject fake / mistyped IMEIs before calling any service
+    const invalidReason = getImeiError(cleanedImei);
+    if (invalidReason) {
+      setImeiError(invalidReason);
       return;
     }
 
@@ -152,79 +151,24 @@ export default function AddDevicePage() {
         return;
       }
 
-      // STEP 2: GOLITE CHECK
-      const goliteRes = await fetch(
-        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY as string,
-          },
-          body: JSON.stringify({ action: "esim_check", imei: cleanedImei }),
-        }
-      );
-      const goliteData = await goliteRes.json();
-      if (goliteData.compatible === true) {
-        setCompatResult({ compatible: true, message: `${cleanedImei} is compatible with eSIM.` });
-        localStorage.setItem(
-          `device_serial_${nextIndex}`,
-          JSON.stringify({ device_serial: cleanedImei, esim_compatible: true })
-        );
-        return;
+      // Provider checks run server-side (keys stay off the client).
+      const res = await fetch("/api/device-compatibility", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imei: cleanedImei }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || typeof data.compatible !== "boolean") {
+        throw new Error(data.error || "Device check unavailable");
       }
-
-      // STEP 3: BEQUICK API
-      const bequickRes = await fetch(
-        "https://zoiko-atom-api.bequickapps.com/carriers/3/query_device_info",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-AUTH-TOKEN": process.env.NEXT_PUBLIC_BEQUICK_TOKEN as string,
-          },
-          body: JSON.stringify({ device_serial: cleanedImei }),
-        }
-      );
-      const bequickData = await bequickRes.json();
-      if (bequickData?.esim_compatible === true) {
-        setCompatResult({ compatible: true, message: `${cleanedImei} is compatible with eSIM.` });
-        localStorage.setItem(
-          `device_serial_${nextIndex}`,
-          JSON.stringify({ device_serial: cleanedImei, esim_compatible: true })
-        );
-        await fetch("https://goliteapi.golitemobile.com/api/device_compatibility_checker/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY as string,
-          },
-          body: JSON.stringify({ action: "esim_update", imei: cleanedImei }),
-        });
-        return;
-      }
-
-      // STEP 4: FINAL CHECK
-      const finalRes = await fetch(
-        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY as string,
-          },
-          body: JSON.stringify({ action: "esim_v_check", imei: cleanedImei }),
-        }
-      );
-      const finalData = await finalRes.json();
-      const finalResult: boolean = finalData.esimCompatible === true;
+      const isCompatible: boolean = data.compatible;
       localStorage.setItem(
         `device_serial_${nextIndex}`,
-        JSON.stringify({ device_serial: cleanedImei, esim_compatible: finalResult })
+        JSON.stringify({ device_serial: cleanedImei, esim_compatible: isCompatible })
       );
       setCompatResult({
-        compatible: finalResult,
-        message: `${cleanedImei} is ${finalResult ? "" : "not "}compatible with eSIM.`,
+        compatible: isCompatible,
+        message: `${cleanedImei} is ${isCompatible ? "" : "not "}compatible with eSIM.`,
       });
     } catch (err) {
       setCompatResult({
@@ -339,7 +283,8 @@ export default function AddDevicePage() {
 
   // ---------- Step 2 ----------
   const renderStep2 = () => {
-    const isValidIMEI = /^\d{15,16}$/.test(imei) || /^\d{32}$/.test(imei);
+    // Enable the button once something is typed; validation shows the reason if it's wrong.
+    const isValidIMEI = cleanImei(imei).length > 0;
 
     const handleLineSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const lineId = parseInt(e.target.value, 10);
@@ -372,7 +317,9 @@ export default function AddDevicePage() {
                 setImeiError(null);
               }}
               className="flex-1 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white placeholder-gray-400"
-              placeholder="Enter 15/16-digit IMEI or 32-digit EID"
+              placeholder="15-digit IMEI (dial *#06#)"
+              inputMode="numeric"
+              maxLength={20}
             />
             <button
               type="button"
