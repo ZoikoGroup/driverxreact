@@ -400,12 +400,11 @@ export const BuyPlanModal = ({
       }
 
       const goliteEsimTblSrchResponse = await fetch(
-        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
+        "/api/upstream/golite-device-check",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
           },
           body: JSON.stringify({
             action: "esim_check",
@@ -466,12 +465,11 @@ export const BuyPlanModal = ({
         );
 
         await fetch(
-          "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
+          "/api/upstream/golite-device-check",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
             },
             body: JSON.stringify({
               action: "esim_update",
@@ -483,12 +481,11 @@ export const BuyPlanModal = ({
       } 
 
       const goliteVResponse = await fetch(
-        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
+        "/api/upstream/golite-device-check",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY!,
           },
           body: JSON.stringify({
             action: "esim_v_check",

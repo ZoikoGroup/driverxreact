@@ -154,12 +154,11 @@ export default function AddDevicePage() {
 
       // STEP 2: GOLITE CHECK
       const goliteRes = await fetch(
-        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
+        "/api/upstream/golite-device-check",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY as string,
           },
           body: JSON.stringify({ action: "esim_check", imei: cleanedImei }),
         }
@@ -193,11 +192,10 @@ export default function AddDevicePage() {
           `device_serial_${nextIndex}`,
           JSON.stringify({ device_serial: cleanedImei, esim_compatible: true })
         );
-        await fetch("https://goliteapi.golitemobile.com/api/device_compatibility_checker/", {
+        await fetch("/api/upstream/golite-device-check", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY as string,
           },
           body: JSON.stringify({ action: "esim_update", imei: cleanedImei }),
         });
@@ -206,12 +204,11 @@ export default function AddDevicePage() {
 
       // STEP 4: FINAL CHECK
       const finalRes = await fetch(
-        "https://goliteapi.golitemobile.com/api/device_compatibility_checker/",
+        "/api/upstream/golite-device-check",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Secret-Key": process.env.NEXT_PUBLIC_ESIM_SECRET_KEY as string,
           },
           body: JSON.stringify({ action: "esim_v_check", imei: cleanedImei }),
         }
