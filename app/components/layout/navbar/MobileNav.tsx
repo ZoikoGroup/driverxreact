@@ -66,7 +66,9 @@ export default function MobileNav({ onNavigate }: Props) {
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FCD018] text-xs font-bold text-[#10263B]">
                 {user.name.trim().charAt(0).toUpperCase() || "U"}
               </span>
-              <span className="max-w-[120px] truncate">{user.name}</span>
+              <span className="max-w-[90px] truncate">
+                {user.name.trim().split(/\s+/)[0] || "Account"}
+              </span>
             </Link>
             <button
               type="button"
