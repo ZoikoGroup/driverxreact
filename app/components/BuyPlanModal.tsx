@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { cleanImei, getImeiError } from "../utils/imei";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -344,17 +345,14 @@ export const BuyPlanModal = ({
   // ── IMEI check ─────────────────────────────────────────────────────────────
 
   const handleCheckDevice = async () => {
-      const cleanedImei = imei.replace(/\s/g, "").trim();
+    const cleanedImei = cleanImei(imei);
 
     // -------------------------------
-    // Validation
+    // Validation: reject fake / mistyped IMEIs before calling any service
     // -------------------------------
-    if (!cleanedImei) {
-      setImeiError("Please enter your IMEI/MEID number.");
-      return;
-    }
-    if (!/^\d{14,16}$/.test(cleanedImei)) {
-      setImeiError("Please enter a valid 14-16 digit IMEI number.");
+    const invalidReason = getImeiError(cleanedImei);
+    if (invalidReason) {
+      setImeiError(invalidReason);
       return;
     }
     setImeiError(null);
@@ -399,139 +397,32 @@ export const BuyPlanModal = ({
         return; // stop here, no API calls needed        
       }
 
-      const goliteEsimTblSrchResponse = await fetch(
-        "/api/upstream/golite-device-check",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            action: "esim_check",
-            imei: cleanedImei,
-          }),
-        }
-      );
-
-      const goliteEsimTblSrchData = await goliteEsimTblSrchResponse.json();
-      if (goliteEsimTblSrchData.compatible === true) {
-        setCompatResult({
-          compatible: true,
-          message: cleanedImei +" is compatible with eSIM.",
-        });
-        localStorage.setItem(
-          `device_serial_${nextIndex}`,
-          JSON.stringify({
-            device_serial: cleanedImei,
-            esim_compatible: true,
-          })
-        );
-        return; // stop here, no API calls needed        
+      // Provider checks run server-side (keys stay off the client).
+      const res = await fetch("/api/device-compatibility", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imei: cleanedImei }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || typeof data.compatible !== "boolean") {
+        throw new Error(data.error || "Device check unavailable");
       }
-
-      
-      // =========================================================
-      // STEP 2: NOT IN LOCAL STORAGE — AND NOT IN GOLITE DB EITHER — SO CALL BEQUICK API
-      // =========================================================
-      const bequickRes = await fetch(
-        "https://zoiko-atom-api.bequickapps.com/carriers/3/query_device_info",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-AUTH-TOKEN": process.env.NEXT_PUBLIC_BEQUICK_TOKEN!,
-          },
-          body: JSON.stringify({ device_serial: cleanedImei }),
-        }
+      const isCompatible: boolean = data.compatible;
+      localStorage.setItem(
+        `device_serial_${nextIndex}`,
+        JSON.stringify({ device_serial: cleanedImei, esim_compatible: isCompatible })
       );
-
-      const bequickData = await bequickRes.json();
-      console.log("Bequick API response:", bequickData);
-      const info = bequickData ?? {};      
-      const isEsimCompatible = info.esim_compatible;    
-
-      if (isEsimCompatible === true) {
-        setCompatResult({
-          compatible: true,
-          message: cleanedImei +" is compatible with eSIM.",
-        });
-        
-        localStorage.setItem(
-          `device_serial_${nextIndex}`,
-          JSON.stringify({
-            device_serial: cleanedImei,
-            esim_compatible: isEsimCompatible,
-          })
-        );
-
-        await fetch(
-          "/api/upstream/golite-device-check",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              action: "esim_update",
-              imei: cleanedImei,
-            }),
-          }
-        );
-        return; // stop here, no further API calls needed
-      } 
-
-      const goliteVResponse = await fetch(
-        "/api/upstream/golite-device-check",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            action: "esim_v_check",
-            imei: cleanedImei,
-          }),
-        }
-      );
-
-      const goliteVData = await goliteVResponse.json();
-
-      if(goliteVData.esimCompatible === true) {
-        setCompatResult({
-          compatible: true,
-          message: cleanedImei +" is compatible with eSIM.",
-        });
-
-        localStorage.setItem(
-          `device_serial_${nextIndex}`,
-          JSON.stringify({
-            device_serial: cleanedImei,
-            esim_compatible: true,
-          })
-        );
-        return; 
-      }else { 
-
-        localStorage.setItem(
-          `device_serial_${nextIndex}`,
-          JSON.stringify({
-            device_serial: cleanedImei,
-            esim_compatible: false,
-          })
-        );
-        setCompatResult({
-          compatible: false,
-          message: cleanedImei +" is not compatible with eSIM.",
-        });
-      } 
+      setCompatResult({
+        compatible: isCompatible,
+        message: `${cleanedImei} is ${isCompatible ? "" : "not "}compatible with eSIM.`,
+      });
 
     } catch (err) {
+      console.error("Device compatibility check failed:", err);
       setCompatResult({
         compatible: false,
         message:
-          err instanceof Error
-            ? err.message
-            : "Unable to verify device. Please try again.",
+          "We couldn't verify your device right now. Please try again, or use Skip & Continue.",
       });
     } finally {
       setChecking(false);
@@ -607,7 +498,9 @@ export const BuyPlanModal = ({
             value={imei}
             onChange={(e) => setImei(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") handleCheckDevice(); }}
-            placeholder="Enter your IMEI/MEID number"
+            placeholder="15-digit IMEI (dial *#06#)"
+            inputMode="numeric"
+            maxLength={20}
             className={`flex-1 px-4 py-2.5 rounded-xl border text-sm bg-white dark:bg-gray-700 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1a8a76] transition ${
               imeiError ? "border-red-400" : "border-gray-200 dark:border-gray-500"
             }`}

@@ -1,9 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check, SignalHigh } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, ArrowUpRight, Check, Loader2, SignalHigh } from "lucide-react";
+import { BuyPlanModal, type Plan } from "../BuyPlanModal";
+import { EnquiryModal } from "../EnquiryModal";
+
+/** Normalise a plan name for matching home cards to API plans. */
+const normalizeName = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+/** Find the live API plan that corresponds to a home-page card (by name, then by price). */
+function findApiPlan(card: { name: string; price: string }, apiPlans: Plan[]): Plan | undefined {
+  const active = apiPlans.filter((p) => p.is_active);
+  const target = normalizeName(card.name);
+  const byName = active.find((p) => normalizeName(p.name) === target);
+  if (byName) return byName;
+  const price = Number(card.price.replace(/[^0-9.]/g, ""));
+  const byPrice = active.filter((p) => p.final_price === price);
+  return byPrice.length === 1 ? byPrice[0] : undefined;
+}
 
 const AUDIENCES = [
   "Rideshare drivers",
@@ -295,6 +312,56 @@ const FOOTER_LINKS = [
 
 export default function PlansPricing() {
   const [activeTab, setActiveTab] = useState<string>("/prepaid-plans");
+  const router = useRouter();
+
+  // Live plans from the API, cached per category (same source the plan pages use).
+  const plansCache = useRef<Record<string, Promise<Plan[]>>>({});
+  const [buyPlan, setBuyPlan] = useState<Plan | null>(null);
+  const [enquiryPlan, setEnquiryPlan] = useState<Plan | null>(null);
+  const [pendingCard, setPendingCard] = useState<string | null>(null);
+
+  const loadCategory = useCallback((tabKey: string): Promise<Plan[]> => {
+    const slug = tabKey.replace(/^\//, "");
+    if (!plansCache.current[slug]) {
+      plansCache.current[slug] = fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/plans/v1/category/${slug}`
+      )
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch plans");
+          return res.json() as Promise<Plan[]>;
+        })
+        .catch((err) => {
+          delete plansCache.current[slug]; // allow retry on next click
+          throw err;
+        });
+    }
+    return plansCache.current[slug];
+  }, []);
+
+  // Prefetch the visible tab so the Choose click opens instantly.
+  useEffect(() => {
+    loadCategory(activeTab).catch(() => {});
+  }, [activeTab, loadCategory]);
+
+  const handleChoose = async (card: any) => {
+    setPendingCard(card.name);
+    try {
+      const apiPlans = await loadCategory(activeTab);
+      const match = findApiPlan(card, apiPlans);
+      if (match) {
+        const isEnquiry = match.final_price === 0 || String(card.cta).startsWith("Enquire");
+        if (isEnquiry) setEnquiryPlan(match);
+        else setBuyPlan(match); // SIM setup steps → /checkout, same as plan pages
+        return;
+      }
+    } catch {
+      // fall through to the category page
+    } finally {
+      setPendingCard(null);
+    }
+    // No live plan found: fall back to the category page.
+    router.push(card.href);
+  };
 
   const currentPlans = PLANS_MAP[activeTab] || PLANS_MAP["/prepaid-plans"];
   const isDataOnly = activeTab === "/data-only-plans";
@@ -429,19 +496,25 @@ export default function PlansPricing() {
                 ))}
               </ul>
 
-              <Link
-                href={plan.href}
+              <button
+                type="button"
+                onClick={() => handleChoose(plan)}
+                disabled={pendingCard === plan.name}
                 className={
                   plan.featured
-                    ? "mt-6 flex items-center justify-between rounded-full bg-[#f9c80e] hover:bg-[#e3b810] py-2 pl-5 pr-2 text-sm font-semibold text-[#14233a] transition-colors"
-                    : "mt-6 flex items-center justify-between rounded-full bg-[#1f5c4f] hover:bg-[#17483e] py-2 pl-5 pr-2 text-sm font-semibold text-white transition-colors"
+                    ? "mt-6 flex w-full cursor-pointer items-center justify-between rounded-full bg-[#f9c80e] hover:bg-[#e3b810] py-2 pl-5 pr-2 text-sm font-semibold text-[#14233a] transition-colors disabled:cursor-wait disabled:opacity-80"
+                    : "mt-6 flex w-full cursor-pointer items-center justify-between rounded-full bg-[#1f5c4f] hover:bg-[#17483e] py-2 pl-5 pr-2 text-sm font-semibold text-white transition-colors disabled:cursor-wait disabled:opacity-80"
                 }
               >
                 {plan.cta}
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#14233a]">
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  {pendingCard === plan.name ? (
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  ) : (
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  )}
                 </span>
-              </Link>
+              </button>
 
               <Link
                 href={plan.details}
@@ -472,6 +545,10 @@ export default function PlansPricing() {
           </div>
         </div>
       </div>
+
+      {/* Same checkout flow as the plan pages */}
+      {buyPlan && <BuyPlanModal plan={buyPlan} onClose={() => setBuyPlan(null)} />}
+      {enquiryPlan && <EnquiryModal plan={enquiryPlan} onClose={() => setEnquiryPlan(null)} />}
     </section>
   );
 }
