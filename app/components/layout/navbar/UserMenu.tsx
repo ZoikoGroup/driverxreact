@@ -14,6 +14,7 @@ export default function UserMenu({ user, onLogout }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const initial = user.name.trim().charAt(0).toUpperCase() || "U";
+  const firstName = user.name.trim().split(/\s+/)[0] || "Account";
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -40,12 +41,13 @@ export default function UserMenu({ user, onLogout }: Props) {
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="inline-flex max-w-[200px] items-center gap-2 text-sm font-semibold text-white hover:text-[#FCD018]"
+        title={user.name}
+        className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-white hover:text-[#FCD018]"
       >
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FCD018] text-xs font-bold text-[#10263B]">
           {initial}
         </span>
-        <span className="truncate">{user.name}</span>
+        <span className="max-w-[90px] truncate">{firstName}</span>
         <ChevronDown
           className={`h-4 w-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
           aria-hidden="true"

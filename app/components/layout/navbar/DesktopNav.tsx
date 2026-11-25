@@ -105,7 +105,7 @@ export default function DesktopNav() {
           )}
           <Link
             href={CTA.href}
-            className="inline-flex items-center gap-4 rounded-full bg-[#FCD018] py-2 pl-5 pr-2 text-sm font-bold text-[#10263B] hover:opacity-90"
+            className="inline-flex shrink-0 items-center gap-4 whitespace-nowrap rounded-full bg-[#FCD018] py-2 pl-5 pr-2 text-sm font-bold text-[#10263B] hover:opacity-90"
           >
             {CTA.label}
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white">
