@@ -4,11 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { CTA, DROPDOWNS, LOGIN } from "./data";
+import { useAuthUser } from "./useAuthUser";
 
 type Props = { onNavigate: () => void };
 
 export default function MobileNav({ onNavigate }: Props) {
   const [open, setOpen] = useState<string | null>(null);
+  const { user, logout } = useAuthUser();
 
   return (
     <div
@@ -54,13 +56,38 @@ export default function MobileNav({ onNavigate }: Props) {
         })}
       </ul>
       <div className="mt-5 flex items-center gap-5">
-        <Link
-          href={LOGIN.href}
-          onClick={onNavigate}
-          className="text-sm font-semibold"
-        >
-          {LOGIN.label}
-        </Link>
+        {user ? (
+          <>
+            <Link
+              href="/dashboard"
+              onClick={onNavigate}
+              className="flex min-w-0 items-center gap-2 text-sm font-semibold"
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FCD018] text-xs font-bold text-[#10263B]">
+                {user.name.trim().charAt(0).toUpperCase() || "U"}
+              </span>
+              <span className="max-w-[120px] truncate">{user.name}</span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate();
+                logout();
+              }}
+              className="text-sm font-semibold text-red-300"
+            >
+              Log out
+            </button>
+          </>
+        ) : (
+          <Link
+            href={LOGIN.href}
+            onClick={onNavigate}
+            className="text-sm font-semibold"
+          >
+            {LOGIN.label}
+          </Link>
+        )}
         <Link
           href={CTA.href}
           onClick={onNavigate}
