@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fontVariables } from "../../black-friday/components/fonts";
 import styles from "./BlackFridayPopup.module.css";
+import { BLACK_FRIDAY } from "../../utils/blackFriday";
 
-// Campaign window (local time). Popup stops appearing once the sale is over.
-const SALE_START = new Date("2026-11-20T00:00:00");
-const SALE_END = new Date("2026-12-01T00:00:00");
+// Campaign window (local time) comes from the shared Black Friday config,
+// so the popup and the checkout discount always use the same dates.
+const SALE_START = BLACK_FRIDAY.start;
+const SALE_END = BLACK_FRIDAY.end;
 const OPEN_DELAY_MS = 700;
 
 const PLANS = [

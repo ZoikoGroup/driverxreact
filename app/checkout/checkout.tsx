@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { usStates } from "../utils/usStates";
 import { processOrderStripe } from "../utils/beQuickStripeWebPaymentApi";
+import { BLACK_FRIDAY, blackFridayDiscountOn, isBlackFridayActive } from "../utils/blackFriday";
 import StripePaymentForm, { StripePaymentFormRef } from "../components/StripePaymentForm";
 
 // ── Stub data for standalone compilation ──────────────────────────────────────
@@ -651,11 +652,22 @@ const handleQuantity = (index: number, delta: number) => {
     return acc + price * qty;
   }, 0);
 
-  const discountAmount = discountData
+  // Black Friday: automatic % off plan prices during the sale window.
+  // Decided on the client after mount so server and client render the same HTML.
+  const [blackFridayActive, setBlackFridayActive] = useState(false);
+  useEffect(() => setBlackFridayActive(isBlackFridayActive()), []);
+  const blackFridayDiscount = blackFridayActive ? blackFridayDiscountOn(subtotal) : 0;
+
+  // Coupons apply to the price after the Black Friday discount.
+  const couponBase = subtotal - blackFridayDiscount;
+  const couponDiscount = discountData
     ? discountData.type === "percentage"
-      ? (subtotal * Number(discountData.discount)) / 100
+      ? (couponBase * Number(discountData.discount)) / 100
       : Number(discountData.discount)
     : 0;
+
+  // Total discount (Black Friday + coupon) — what Stripe / the order record see.
+  const discountAmount = Math.min(blackFridayDiscount + couponDiscount, subtotal);
 
   useEffect(() => {
     setShippingFee(hasShippingItem ? selectedShippingOption.value : 0);
@@ -768,7 +780,16 @@ const handleQuantity = (index: number, delta: number) => {
       shippingOption: hasShippingItem ? { ...selectedShippingOption } : null,
       coupon: discountData ? { ...discountData } : null,
       cart: products,
-      totals: { subtotal, shipping: shippingFee, activationFee: activationFeeTotal, discount: discountAmount, total },
+      blackFriday: blackFridayDiscount > 0 ? { percent: BLACK_FRIDAY.percent, amount: blackFridayDiscount } : null,
+      totals: {
+        subtotal,
+        shipping: shippingFee,
+        activationFee: activationFeeTotal,
+        blackFridayDiscount,
+        couponDiscount,
+        discount: discountAmount,
+        total,
+      },
       agreedToTerms: agreeTerms,
       paymentMethod: "stripe",
       createdAt: new Date().toISOString(),
@@ -1094,6 +1115,18 @@ const handleQuantity = (index: number, delta: number) => {
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
               <h2 className="font-bold text-gray-900 mb-4">Order Summary</h2>
 
+              {blackFridayDiscount > 0 && (
+                <div className="mb-4 flex items-center gap-3 rounded-xl bg-gray-900 px-4 py-3 text-white">
+                  <span className="rounded-full bg-[#FCD018] px-2.5 py-1 text-xs font-extrabold text-gray-900">
+                    {BLACK_FRIDAY.percent}% OFF
+                  </span>
+                  <p className="text-sm">
+                    <span className="font-bold text-[#FCD018]">{BLACK_FRIDAY.label} deal applied!</span>{" "}
+                    You save ${blackFridayDiscount.toFixed(2)} on your plan.
+                  </p>
+                </div>
+              )}
+
               <div className="space-y-3">
                 {cart.map((item, idx) => (
                   <div key={idx} className="flex items-start justify-between gap-2 text-sm">
@@ -1161,17 +1194,31 @@ const handleQuantity = (index: number, delta: number) => {
                   );
                 })()}
 
+              {blackFridayDiscount > 0 && (
+                <div className="flex justify-between items-center text-sm mt-2">
+                  <span className="flex items-center gap-2 text-gray-700">
+                    <span className="rounded bg-gray-900 px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-[#FCD018]">
+                      {BLACK_FRIDAY.label}
+                    </span>
+                    {BLACK_FRIDAY.percent}% off plans
+                  </span>
+                  <span className="font-medium text-green-600">
+                    −${blackFridayDiscount.toFixed(2)}
+                  </span>
+                </div>
+              )}
+
               {discountData && (
                 <div className="flex justify-between text-sm mt-2">
                   <span className="text-gray-500">
-                    Discount (
+                    Coupon (
                     {discountData.type === "percentage"
                       ? formatDiscount(discountData.discount) + "%"
                       : "$" + formatDiscount(discountData.discount)}
                     )
                   </span>
                   <span className="font-medium text-green-600">
-                    −${discountAmount.toFixed(2)}
+                    −${couponDiscount.toFixed(2)}
                   </span>
                 </div>
               )}
