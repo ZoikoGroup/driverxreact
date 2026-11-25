@@ -6,9 +6,12 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, User } from "lucide-react";
 import { CTA, DROPDOWNS, LOGIN } from "./data";
 import MegaPanel from "./MegaPanel";
+import UserMenu from "./UserMenu";
+import { useAuthUser } from "./useAuthUser";
 
 export default function DesktopNav() {
   const [active, setActive] = useState<string | null>(null);
+  const { user, logout } = useAuthUser();
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
@@ -89,13 +92,17 @@ export default function DesktopNav() {
         </nav>
 
         <div className="flex items-center gap-5">
-          <Link
-            href={LOGIN.href}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#FCD018]"
-          >
-            <User className="h-4 w-4" aria-hidden="true" />
-            {LOGIN.label}
-          </Link>
+          {user ? (
+            <UserMenu user={user} onLogout={logout} />
+          ) : (
+            <Link
+              href={LOGIN.href}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#FCD018]"
+            >
+              <User className="h-4 w-4" aria-hidden="true" />
+              {LOGIN.label}
+            </Link>
+          )}
           <Link
             href={CTA.href}
             className="inline-flex items-center gap-4 rounded-full bg-[#FCD018] py-2 pl-5 pr-2 text-sm font-bold text-[#10263B] hover:opacity-90"

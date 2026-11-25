@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { displayNameFrom, useAuthUser } from "../components/layout/navbar/useAuthUser";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 import beQuick from "../utils/dasdbeQuickApi";
 
@@ -108,6 +109,7 @@ async function fetchDevices(planDetailsInfo: PlanDetails | null): Promise<Device
 // ---------- Component ----------
 export default function MyAccountPage() {
   const router = useRouter();
+  const { user: authUser, logout } = useAuthUser();
 
   const [loading, setLoading] = useState(true);
   const [subscriber, setSubscriber] = useState<SubscriberInfo | null>(null);
@@ -240,7 +242,7 @@ export default function MyAccountPage() {
         const userEmail: string = userData?.email || "";
 
         //const userEmail: string = "info@golitemobile.com";
-        setUserName(userData?.name || "Customer");
+        setUserName(displayNameFrom(userData) || "Customer");
 
         await fetchCards();
 
@@ -336,11 +338,32 @@ export default function MyAccountPage() {
       <main className="flex-grow dark:bg-gray-900 dark:text-white bg-gray-100 py-8 px-4">
         <div className="max-w-7xl mx-auto">
 
+          {/* Account bar: who is signed in + log out */}
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg bg-white px-4 py-3 shadow-sm dark:bg-gray-800">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              Signed in as <span className="font-semibold text-gray-900 dark:text-white">{authUser?.name || userName}</span>
+              {authUser?.email && <span className="hidden sm:inline text-gray-400"> · {authUser.email}</span>}
+            </p>
+            <button
+              type="button"
+              onClick={logout}
+              className="inline-flex items-center gap-2 rounded-md border border-red-200 px-3 py-1.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50 dark:border-red-800 dark:hover:bg-red-900/20"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+              </svg>
+              Log out
+            </button>
+          </div>
+
           {/* Subscriber not found */}
           {!loading && subscriberNotFound && (
             <div className="flex flex-col items-center justify-center py-16 bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 text-center">
               <img src="/images/cuate.png" alt="Welcome" className="max-w-xs mb-6" />
-              <h3 className="text-2xl font-bold mb-2">👋 Welcome to the Zoiko Network, {userName}!</h3>
+              <h3 className="text-2xl font-bold mb-2">
+                👋 Welcome to the Zoiko Network,{" "}
+                {userName !== "Customer" ? userName : authUser && authUser.name !== "My Account" ? authUser.name : "Customer"}!
+              </h3>
               <p className="text-gray-500 mb-6">
                 Your account is ready. To unlock high-speed 5G data, nationwide talk, and global messaging, let&apos;s choose your perfect plan.
               </p>
