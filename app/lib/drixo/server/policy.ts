@@ -104,6 +104,12 @@ export function containsSecret(input: string): boolean {
   if (/\b\d{4,8}\b[^\d]{0,24}\b(is|as)? ?(my |the )?(otp|one[- ]time|verification code|passcode)\b/.test(tj)) return true;
   // PIN / transfer PIN / account PIN with digits.
   if (/\b(pin|transfer pin|port(?:ing)? pin|account pin)\b[^\d]{0,16}\b\d{4,8}\b/.test(tj)) return true;
+  // US SSN (123-45-6789, also with spaces) or an SSN/social-security mention next to 9 digits.
+  if (/\b\d{3}[- ]\d{2}[- ]\d{4}\b/.test(raw)) return true;
+  if (/\b(ssn|social security( number)?)\b\D{0,12}\d{9}\b/.test(tj)) return true;
+  // API keys / access tokens: vendor-prefixed keys, or "token|api key|secret|bearer" followed by a long value.
+  if (/\b(?:sk|pk|rk)_(?:live|test)_[a-z0-9]{6,}/i.test(raw) || /\bAIza[0-9A-Za-z_-]{20,}/.test(raw) || /\bghp_[A-Za-z0-9]{20,}/.test(raw)) return true;
+  if (/\b(api[ _-]?key|access[ _-]?token|auth[ _-]?token|account token|secret(?: key)?|bearer)\b\s*(?:is|:|=)?\s*[A-Za-z0-9_\-.]{12,}/i.test(raw)) return true;
   // Password statements.
   if (/\b(my )?(password|passcode|passphrase)\s*(is|:|=)\s*\S+/.test(t)) return true;
   if (/\bpassword\b.{0,20}\b(is|was)\b\s*\S{4,}/.test(t)) return true;
@@ -116,10 +122,22 @@ const EMERGENCY = [
   /\b(suicide|kill myself|want to die)\b/,
   /\b(while|as) (i('| a)?m )?driving\b/,
   /\bi('| a)?m (driving|on the highway|behind the wheel)( right now)?\b/,
+  /\b(while|as|when) i (drive|am driving|'m driving)\b/,
+  /\bi('| a)?m (in (heavy |rush[- ]hour |slow )?traffic|on the road|on the move|stuck in traffic)\b/,
+  /^(in traffic|on the road|stuck in traffic)\b/,
+  /\bdriving (right )?now\b/,
+  /\bi('| a)?m driving an? (truck|car|van|rig|bus|cab|vehicle)\b/,
 ];
 
 const PROTECTED = [
-  /\b(my|the)\s+(bill|invoice|balance|statement|payment history|usage|data usage|account|line|subscription)\b/,
+  /\b(my|the)\s+(?:\w+\s+)?(bill|invoice|balance|statement|payment history|usage|data usage|account|line|subscription|account number)\b/,
+  // Password / login / PIN resets belong behind sign-in, not in the public chat.
+  /\b(reset|change|forgot|forgotten|recover|lost)\b.{0,15}\b(password|pin|login|log-in|username|passcode)\b/,
+  // Billing disputes and order lookups need an authenticated account.
+  /\b(charged|billed|overcharged|double[- ]charged)\b.{0,15}\b(twice|two times|again|wrong|incorrect|extra)\b/,
+  /\b(why (was|am|did)|was) (i|my card)\b.{0,12}\b(charged|billed)\b/,
+  /\b(my|the)\s+(?:\w+\s+)?(order|shipment|package|refund)\b|\border status\b|\bstatus of my\b/,
+  /\bwhen\b.{0,20}\b(my|the)\b.{0,15}\b(plan|service|subscription|line)\b.{0,15}\b(renew|expire|end|due)/,
   /\b(how much|what)\b.{0,25}\b(data|gb|minutes)\b.{0,20}\b(left|remaining|used|do i have)\b/,
   /\bdata (left|remaining|balance)\b/,
   /\b(am i|is my (sim|line|esim|number|service|account))\b.{0,20}\b(active|activated|suspended|working|on)\b/,
@@ -138,12 +156,13 @@ const PROTECTED = [
 ];
 
 // "How do I activate my eSIM?" is a request for guidance, not for an action.
-const HOW_TO = /\b(how (do|can|to|should|does)|steps?|instructions?|guide|what is|where (do|can)|explain)\b/;
+const HOW_TO = /\b(how (do|can|to|should|does)|steps?|instructions?|guide|what is|where (do|can)|explain|do i need|what do i need|need to|requirements?|prerequisites?|what (should|must) i)\b/;
 
 // Only unsupported when phrased as a command / an ask to DO it.
 const ACTION_COMMAND = [
   /\b(activate|provision|enable|turn on|switch on|start)\b.{0,25}\b(my |the |a |an )?(esim|e-sim|sim|line|service|number|phone)\b/,
   /\bport(?:ing)? (my|the|this)? ?(number|line)\b/,
+  /\b(transfer|move)\b.{0,10}\b(my|the)\b.{0,6}\b(number|line)\b/,
 ];
 
 const UNSUPPORTED_ACTION = [

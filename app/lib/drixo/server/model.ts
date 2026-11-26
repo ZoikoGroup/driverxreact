@@ -207,6 +207,24 @@ async function callGemini(cfg: Cfg, system: string, user: string): Promise<Raw> 
   return { stop: fr === "STOP" ? "end_turn" : (fr ?? "unknown"), text: text || undefined, ...usage };
 }
 
+/**
+ * One retry for transient provider errors (HTTP 429/5xx or a dropped connection), only if enough of the overall
+ * time budget remains. Timeouts are NOT retried. A failure that survives the retry is what trips the breaker.
+ */
+const TRANSIENT = new Set([429, 500, 502, 503, 504]);
+async function callGeminiWithRetry(cfg: Cfg, system: string, user: string, t0: number): Promise<Raw> {
+  try {
+    return await callGemini(cfg, system, user);
+  } catch (e) {
+    const timeout = e instanceof Error && (e.name === "TimeoutError" || e.name === "AbortError");
+    const transient = e instanceof HttpStatusError ? TRANSIENT.has(e.status) : e instanceof TypeError; // fetch network failure
+    const remaining = cfg.timeoutMs - (Date.now() - t0);
+    if (timeout || !transient || remaining < 2500) throw e;
+    await new Promise((r) => setTimeout(r, 300));
+    return callGemini({ ...cfg, timeoutMs: remaining - 300 }, system, user);
+  }
+}
+
 // ----------------------------------------------------------------------------- public API
 export type SynthesisResult =
   | { kind: "ANSWER"; text: string; hits: KbHit[] }
@@ -244,7 +262,7 @@ export async function synthesizeAnswer(question: string, hits: KbHit[], sessionI
   let res: Raw;
   try {
     res = modelProvider() === "gemini"
-      ? await callGemini(cfg, SYSTEM_PROMPT(canary()), buildUserContent(question, excerpts))
+      ? await callGeminiWithRetry(cfg, SYSTEM_PROMPT(canary()), buildUserContent(question, excerpts), t0)
       : await callClaude(cfg, SYSTEM_PROMPT(canary()), buildUserContent(question, excerpts));
   } catch (e) {
     recordFailure();
