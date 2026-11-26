@@ -169,7 +169,11 @@ export function getKV(): KV {
     return g.__drixoKV;
   }
   if (process.env.NODE_ENV === "production") {
-    throw new Error("DRIXO_REDIS_URL is required in production (per-process memory is not shared across instances)");
+    if (process.env.DRIXO_ALLOW_MEMORY_STORE !== "true") {
+      throw new Error("DRIXO_REDIS_URL is required in production (per-process memory is not shared across instances). Set DRIXO_ALLOW_MEMORY_STORE=true to opt in to in-memory storage on a SINGLE-process deployment.");
+    }
+    // Explicit opt-in: sessions, replay keys and rate limits live in this process only and are lost on restart.
+    console.warn("[drixo] DRIXO_ALLOW_MEMORY_STORE=true: using in-memory store; run a single instance only");
   }
   g.__drixoKV = new MemoryKV();
   return g.__drixoKV;
