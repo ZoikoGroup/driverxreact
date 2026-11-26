@@ -1,16 +1,17 @@
 // app/components/request-form/page.tsx
 import RequestForm from "./form";
 
+// Next.js route components only accept `params` / `searchParams`. The old `requestType` prop made
+// `next build` fail its type check, so the type now comes from the query string
+// (?requestType=demo) and defaults to "support" as before. The URL itself is unchanged.
 type Props = {
-  /** The request type you want to send – e.g. "support", "account", "demo" */
-  requestType?: string;
+  searchParams?: Promise<{ requestType?: string }>;
 };
 
-export default function Page({ requestType = "support" }: Props) {
+export default async function Page({ searchParams }: Props) {
+  const requestType = (await searchParams)?.requestType ?? "support";
   return (
     <div className="p-4">
-      {/*  👇  Pass the type down – you can import this page elsewhere
-            and give it a different value, e.g. <Page requestType="account" /> */}
       <RequestForm requestType={requestType} />
     </div>
   );
